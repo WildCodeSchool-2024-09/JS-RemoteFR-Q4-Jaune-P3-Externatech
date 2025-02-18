@@ -1,21 +1,80 @@
-create table user (
-  id int unsigned primary key auto_increment not null,
-  email varchar(255) not null unique,
-  password varchar(255) not null
+CREATE TABLE entreprise (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  description TEXT NOT NULL
 );
 
-create table item (
-  id int unsigned primary key auto_increment not null,
-  title varchar(255) not null,
-  user_id int unsigned not null,
-  foreign key(user_id) references user(id)
+
+CREATE TABLE language (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  name VARCHAR(100) NOT NULL
 );
 
-insert into user(id, email, password)
-values
-  (1, "jdoe@mail.com", "123456");
 
-insert into item(id, title, user_id)
-values
-  (1, "Stuff", 1),
-  (2, "Doodads", 1);
+CREATE TABLE contract (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  name VARCHAR(100) NOT NULL
+);
+
+
+CREATE TABLE offer (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  description TEXT NOT NULL,
+  date DATE NOT NULL,
+  salary INT NOT NULL,
+  requirements TEXT NOT NULL,
+  entreprise_id INT UNSIGNED NOT NULL,
+  FOREIGN KEY (entreprise_id) REFERENCES entreprise(id),
+  contract_id INT UNSIGNED NOT NULL,
+  FOREIGN KEY (contract_id) REFERENCES contract(id)
+);
+
+INSERT INTO entreprise (name, description) VALUES
+('Tech Innov', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.'),
+('Green Future', 'Entreprise dédiée aux solutions écologiques et durables.'),
+('DataCorp', 'Société experte en analyse de données et business intelligence.'),
+('DevStudio', 'Agence de développement web et mobile sur mesure.');
+
+
+INSERT INTO contract (name) VALUES
+('CDI'),
+('CDD'),
+('Stage'),
+('Alternance');
+
+INSERT INTO offer (title, description, date, salary, requirements, entreprise_id, contract_id) VALUES
+('Développeur Fullstack', 
+ 'Nous recherchons un développeur Fullstack pour renforcer notre équipe sur des projets innovants.', 
+ '2025-03-01', 
+ 40000, 
+ 'Maîtrise de JavaScript (React/Node.js), SQL et des bonnes pratiques de développement.', 
+ 1, 
+ 1),
+
+
+('Ingénieur Data', 
+ 'Rejoignez notre équipe Data pour analyser et structurer des ensembles de données complexes.', 
+ '2025-03-10', 
+ 45000, 
+ 'Expérience en SQL, Python et en modélisation de données.', 
+ 3, 
+ 2),
+
+
+('Développeur Web Frontend', 
+ 'Stage de 6 mois en développement frontend avec React et Tailwind.', 
+ '2025-04-01', 
+ 1200, 
+ 'Bonne connaissance de JavaScript, React et CSS moderne.', 
+ 4, 
+ 3),
+
+
+('Alternant DevOps', 
+ 'Nous cherchons un alternant pour nous aider à automatiser et optimiser notre infrastructure cloud.', 
+ '2025-09-01', 
+ 22000, 
+ 'Connaissances en CI/CD, Docker et Kubernetes.', 
+ 2, 
+ 4);
