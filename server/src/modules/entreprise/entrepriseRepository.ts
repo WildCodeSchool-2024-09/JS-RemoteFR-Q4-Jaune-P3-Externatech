@@ -9,8 +9,6 @@ type Entreprise = {
 };
 
 class EntrepriseRepository {
-  // The C of CRUD - Create operation
-
   async create(entreprise: Omit<Entreprise, "id">) {
     // Execute the SQL INSERT query to add a new entreprise to the "entreprise" table
     const [result] = await databaseClient.query<Result>(

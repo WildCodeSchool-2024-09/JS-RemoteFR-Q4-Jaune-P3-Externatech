@@ -1,6 +1,5 @@
 import type { RequestHandler } from "express";
 
-// Import access to data
 import entrepriseRepository from "./entrepriseRepository";
 
 // The B of BREAD - Browse (Read All) operation
