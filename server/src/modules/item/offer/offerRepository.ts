@@ -14,7 +14,6 @@ type Offer = {
 
 class offerRepository {
   async create(offer: Omit<Offer, "id">) {
-    // Execute the SQL INSERT query to add a new category to the "category" table
     const {
       title,
       description,
@@ -37,15 +36,12 @@ class offerRepository {
       ],
     );
 
-    // Return the ID of the newly inserted item
     return result.insertId;
   }
 
   async readAll() {
-    // Execute the SQL SELECT query to retrieve all categories from the "category" table
     const [rows] = await DatabaseClient.query<Rows>("select * from offer");
 
-    // Return the array of categories
     return rows as Offer[];
   }
 
@@ -55,11 +51,10 @@ class offerRepository {
       [id],
     );
 
-    return rows.length > 0 ? rows[0] : null; // Retourne null si non trouvé
+    return rows.length > 0 ? rows[0] : null;
   }
 
   async update(offer: Offer) {
-    // Execute the SQL UPDATE query to update an existing category in the "category" table
     const [result] = await DatabaseClient.query<Result>(
       "update offer set title = ?, description = ?, date = ?, salary = ?, requirements = ?, entreprise_id = ?, contract_id = ? where id = ?",
       [
@@ -78,7 +73,6 @@ class offerRepository {
   }
 
   async delete(id: number) {
-    // Execute the SQL DELETE query to delete an existing offer from the "offer" table
     const [result] = await DatabaseClient.query<Result>(
       "delete from offer where id = ?",
       [id],
