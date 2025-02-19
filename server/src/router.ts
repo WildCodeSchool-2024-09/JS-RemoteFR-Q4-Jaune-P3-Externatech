@@ -24,4 +24,13 @@ router.post("/api/items", itemActions.add);
 
 /* ************************************************************************* */
 
+// Define offer-related routes
+import offerActions from "./modules/item/offer/offerActions";
+
+router.get("/api/offers", offerActions.browse);
+router.get("/api/offers/:id", offerActions.read);
+router.post("/api/offers", offerActions.add);
+router.put("/api/offers/:id", offerActions.edit);
+router.delete("/api/offers/:id", offerActions.destroy);
+
 export default router;

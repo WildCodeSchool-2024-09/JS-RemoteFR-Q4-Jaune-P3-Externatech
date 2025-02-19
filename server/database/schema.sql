@@ -1,4 +1,4 @@
-CREATE TABLE entreprise (
+CREATE TABLE company (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL,
   description TEXT NOT NULL
@@ -24,13 +24,13 @@ CREATE TABLE offer (
   date DATE NOT NULL,
   salary INT NOT NULL,
   requirements TEXT NOT NULL,
-  entreprise_id INT UNSIGNED NOT NULL,
-  FOREIGN KEY (entreprise_id) REFERENCES entreprise(id),
+  company_id INT UNSIGNED NOT NULL,
+  FOREIGN KEY (company_id) REFERENCES company(id),
   contract_id INT UNSIGNED NOT NULL,
   FOREIGN KEY (contract_id) REFERENCES contract(id)
 );
 
-INSERT INTO entreprise (name, description) VALUES
+INSERT INTO company (name, description) VALUES
 ('Tech Innov', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.'),
 ('Green Future', 'Entreprise dédiée aux solutions écologiques et durables.'),
 ('DataCorp', 'Société experte en analyse de données et business intelligence.'),
@@ -43,7 +43,7 @@ INSERT INTO contract (name) VALUES
 ('Stage'),
 ('Alternance');
 
-INSERT INTO offer (title, description, date, salary, requirements, entreprise_id, contract_id) VALUES
+INSERT INTO offer (title, description, date, salary, requirements, company_id, contract_id) VALUES
 ('Développeur Fullstack', 
  'Nous recherchons un développeur Fullstack pour renforcer notre équipe sur des projets innovants.', 
  '2025-03-01', 
