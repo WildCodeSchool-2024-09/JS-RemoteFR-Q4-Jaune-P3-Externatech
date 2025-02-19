@@ -46,7 +46,6 @@ function NewOfferForm({ children, defaultValue, onSubmit }: OfferFormProps) {
         Titre:
         <input type="text" name="title" defaultValue={defaultValue.title} />
       </label>
-      <br />
       <label>
         description:
         <input
@@ -55,7 +54,6 @@ function NewOfferForm({ children, defaultValue, onSubmit }: OfferFormProps) {
           defaultValue={defaultValue.description}
         />
       </label>
-      <br />
       <label>
         date :
         <input
@@ -65,13 +63,10 @@ function NewOfferForm({ children, defaultValue, onSubmit }: OfferFormProps) {
           required
         />
       </label>
-
-      <br />
       <label>
         salaire:
         <input type="text" name="salary" defaultValue={defaultValue.salary} />
       </label>
-      <br />
       <label>
         Exigences du poste:
         <input
@@ -80,7 +75,6 @@ function NewOfferForm({ children, defaultValue, onSubmit }: OfferFormProps) {
           defaultValue={defaultValue.requirements}
         />
       </label>
-      <br />
       <label>
         l'id de l'entreprise (sera récupéré plus tard)
         <input
@@ -89,7 +83,6 @@ function NewOfferForm({ children, defaultValue, onSubmit }: OfferFormProps) {
           defaultValue={defaultValue.company_id}
         />
       </label>
-      <br />
       <label>
         l'id du contrat (sera récupéré plus tard)
         <input
@@ -98,8 +91,6 @@ function NewOfferForm({ children, defaultValue, onSubmit }: OfferFormProps) {
           defaultValue={defaultValue.contract_id}
         />
       </label>
-
-      <br />
       <button type="submit">{children}</button>
     </form>
   );
