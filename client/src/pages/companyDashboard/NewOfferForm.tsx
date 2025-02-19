@@ -19,6 +19,7 @@ interface OfferFormProps {
 function NewOfferForm({ children, defaultValue, onSubmit }: OfferFormProps) {
   return (
     <form
+      className="form-offer"
       onSubmit={(event) => {
         event.preventDefault();
 
