@@ -1,7 +1,7 @@
 import axios from "axios";
-import OfferForm from "../../components/OfferForm";
+import NewOfferForm from "./NewOfferForm";
 
-function OfferCreat() {
+function CompanyDashboard() {
   const newOffer = {
     title: "",
     description: "",
@@ -13,7 +13,7 @@ function OfferCreat() {
   };
 
   return (
-    <OfferForm
+    <NewOfferForm
       defaultValue={newOffer}
       onSubmit={(offerData) => {
         axios
@@ -24,8 +24,8 @@ function OfferCreat() {
       }}
     >
       Ajouter
-    </OfferForm>
+    </NewOfferForm>
   );
 }
 
-export default OfferCreat;
+export default CompanyDashboard;
