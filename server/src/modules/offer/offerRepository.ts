@@ -1,5 +1,5 @@
-import DatabaseClient from "../../../../database/client";
-import type { Result, Rows } from "../../../../database/client";
+import DatabaseClient from "../../../database/client";
+import type { Result, Rows } from "../../../database/client";
 
 type Offer = {
   id: number;
