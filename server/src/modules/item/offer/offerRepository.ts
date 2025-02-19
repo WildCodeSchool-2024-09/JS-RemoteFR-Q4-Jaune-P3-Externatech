@@ -8,7 +8,7 @@ type Offer = {
   date: string;
   salary: number;
   requirements: string;
-  entreprise_id: number;
+  company_id: number;
   contract_id: number;
 };
 
@@ -20,18 +20,18 @@ class offerRepository {
       date,
       salary,
       requirements,
-      entreprise_id,
+      company_id,
       contract_id,
     } = offer;
     const [result] = await DatabaseClient.query<Result>(
-      "insert into offer (title, description, date, salary, requirements, entreprise_id, contract_id) values (?, ?, ?, ?, ?, ?, ?)",
+      "insert into offer (title, description, date, salary, requirements, company_id, contract_id) values (?, ?, ?, ?, ?, ?, ?)",
       [
         offer.title,
         offer.description,
         offer.date,
         offer.salary,
         offer.requirements,
-        offer.entreprise_id,
+        offer.company_id,
         offer.contract_id,
       ],
     );
@@ -56,14 +56,14 @@ class offerRepository {
 
   async update(offer: Offer) {
     const [result] = await DatabaseClient.query<Result>(
-      "update offer set title = ?, description = ?, date = ?, salary = ?, requirements = ?, entreprise_id = ?, contract_id = ? where id = ?",
+      "update offer set title = ?, description = ?, date = ?, salary = ?, requirements = ?, company_id = ?, contract_id = ? where id = ?",
       [
         offer.title,
         offer.description,
         offer.date,
         offer.salary,
         offer.requirements,
-        offer.entreprise_id,
+        offer.company_id,
         offer.contract_id,
         offer.id,
       ],

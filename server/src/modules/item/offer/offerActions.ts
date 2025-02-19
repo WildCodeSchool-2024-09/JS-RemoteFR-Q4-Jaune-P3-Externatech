@@ -35,7 +35,7 @@ const edit: RequestHandler = async (req, res, next) => {
       date: req.body.date,
       salary: req.body.salary,
       requirements: req.body.requirements,
-      entreprise_id: req.body.entreprise_id,
+      company_id: req.body.company_id,
       contract_id: req.body.contract_id,
     };
 
