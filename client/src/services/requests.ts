@@ -7,6 +7,14 @@ const getOfferDetails = (id: string | undefined) => {
     .catch((error) => console.error(error));
 };
 
+const getCompany = (id: string) => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/companies/${id}`)
+
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
 const getCompanies = () => {
   return axios
     .get(`${import.meta.env.VITE_API_URL}/api/companies`)
@@ -14,4 +22,4 @@ const getCompanies = () => {
     .catch((error) => console.error(error));
 };
 
-export { getOfferDetails, getCompanies };
+export { getOfferDetails, getCompanies, getCompany };
