@@ -1,6 +1,6 @@
 import axios from "axios";
-import NewOfferForm from "./NewOfferForm";
 import { useLoaderData } from "react-router-dom";
+import NewOfferForm from "./NewOfferForm";
 import "./company-dashboard.css";
 function CompanyDasboard() {
   const companyData = useLoaderData() as CompanyData;
