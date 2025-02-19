@@ -1,8 +1,18 @@
+import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+import NewOfferForm from "./NewOfferForm";
 import "./company-dashboard.css";
-
 function CompanyDasboard() {
   const companyData = useLoaderData() as CompanyData;
+  const newOffer = {
+    title: "",
+    description: "",
+    date: "",
+    salary: 0,
+    requirements: "",
+    company_id: 0,
+    contract_id: 0,
+  };
   console.info(companyData);
   return (
     <div className="company-dashboard">
@@ -45,6 +55,20 @@ function CompanyDasboard() {
         <h2>Mes INFORMATIONS</h2>
         <p>{companyData.description}</p>
         <button type="button">MODIFIER</button>
+
+        <h2>Creer une offre</h2>
+        <NewOfferForm
+          defaultValue={newOffer}
+          onSubmit={(offerData) => {
+            axios
+              .post(`${import.meta.env.VITE_API_URL}/api/offers`, offerData)
+              .catch((error) => {
+                console.error("Erreur lors de l'ajout de l'offre :", error);
+              });
+          }}
+        >
+          Ajouter
+        </NewOfferForm>
       </section>
     </div>
   );
