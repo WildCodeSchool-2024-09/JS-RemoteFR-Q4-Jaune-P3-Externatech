@@ -1,0 +1,86 @@
+.company-dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1rem;
+}
+/* ********************************************* */
+.general-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  border: 1px grey solid;
+  margin: 0.5rem;
+  overflow: hidden;
+  min-width: 40%;
+}
+
+.box h3 {
+  background-color: green;
+  color: white;
+  margin: 0;
+  padding: 1rem;
+}
+.box ul {
+  list-style-position: inside;
+  padding: 1rem 0.1rem 1rem 0.5rem;
+  margin-left: 0;
+}
+.box li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.box li::before {
+  content: "■";
+  color: green;
+  font-size: 1.2em;
+}
+
+/* ********************************************* */
+.display {
+  display: flex;
+  flex-direction: column;
+}
+
+.display h2 {
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.display h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 0;
+  height: 0.2rem;
+  background-color: grey;
+}
+.display p {
+  padding: 1rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: end;
+  margin: 1rem 0.5rem 1rem 0;
+  gap: 1rem;
+}
+.display button {
+  width: auto;
+  padding: 0.5rem 1rem;
+  align-self: flex-end;
+}
