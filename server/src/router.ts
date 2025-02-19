@@ -6,14 +6,14 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
-// Define entreprise-related routes
-import entrepriseActions from "./modules/entreprise/entrepriseActions";
+// Define company-related routes
+import companyActions from "./modules/company/companyActions";
 
-router.get("/api/entreprises", entrepriseActions.browse);
-router.get("/api/entreprises/:id", entrepriseActions.read);
-router.post("/api/entreprises", entrepriseActions.add);
-router.put("/api/entreprises/:id", entrepriseActions.edit);
-router.delete("/api/entreprises/:id", entrepriseActions.destroy);
+router.get("/api/companies", companyActions.browse);
+router.get("/api/companies/:id", companyActions.read);
+router.post("/api/companies", companyActions.add);
+router.put("/api/companies/:id", companyActions.edit);
+router.delete("/api/companies/:id", companyActions.destroy);
 
 // Define item-related routes
 import itemActions from "./modules/item/itemActions";
