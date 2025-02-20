@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.headerHomepage {
+  background-image: url("../public/Header-Homepage.png");
+  width: 100%;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+}
+
+#infoHeader {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 300px;
+  gap: 1rem;
+}
+
+#infoHeader h1 {
+  font-size: 1.5rem;
+}
+
+#infoHeader p {
+  font-size: 1rem;
+}
+
+section h2 {
+  margin-left: 0.5rem;
+}
+
+.gradientBar {
+  width: 20rem;
+  height: 0.5rem;
+  background: linear-gradient(to left, #79be7b, #1b1c23);
+  margin-left: 0.5rem;
+}
