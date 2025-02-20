@@ -1,18 +1,28 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .headerHomepage {
   background-image: url("../public/Header-Homepage.png");
   width: 100%;
   object-fit: cover;
   display: flex;
   justify-content: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  gap: 1rem;
 }
 
-#infoHeader {
+#h1Header {
+  width: 70%;
+  text-align: center;
+}
+
+#pHeader {
+  text-align: center;
+}
+
+/* #infoHeader {
   color: white;
   display: flex;
   flex-direction: column;
@@ -21,7 +31,7 @@
   width: 50%;
   height: 300px;
   gap: 1rem;
-}
+} */
 
 #infoHeader h1 {
   font-size: 1.5rem;
