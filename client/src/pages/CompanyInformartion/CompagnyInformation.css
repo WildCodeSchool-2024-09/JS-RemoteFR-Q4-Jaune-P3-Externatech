@@ -1,0 +1,24 @@
+p {
+  color: black;
+}
+.title_CI {
+  color: black;
+  padding-bottom: 1rem;
+}
+
+.form_CI {
+  border: 1px solid rgba(107, 107, 107, 0.443);
+  height: 2rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  min-height: 2rem;
+  height: auto;
+  padding-left: 0.3rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .container_CI {
+    display: flex;
+    flex-direction: column;
+  }
+}
