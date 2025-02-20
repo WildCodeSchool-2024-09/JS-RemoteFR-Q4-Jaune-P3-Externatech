@@ -7,12 +7,14 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
-import HomePage from "./pages/homepage/HomePage";
-// Import additional components for new routes
-// Try creating these components in the "pages" folder
 
-// import About from "./pages/About";
-// import Contact from "./pages/Contact";
+// Import pages
+
+import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
+import HomePage from "./pages/homepage/HomePage";
+
+//Import API requests
+import { getCompany } from "./services/requests";
 
 /* ************************************************************************* */
 
@@ -26,9 +28,17 @@ const router = createBrowserRouter([
         path: "/", // The root path
         element: <HomePage />,
       },
+
+      {
+        path: "/companies/dashboard/:id",
+        element: <CompanyDasboard />,
+        loader: async ({ params }) => {
+          const company = await getCompany(String(params.id));
+          return company || null;
+        },
+      },
     ],
   },
-  // Try adding a new route! For example, "/about" with an About component
 ]);
 
 /* ************************************************************************* */
