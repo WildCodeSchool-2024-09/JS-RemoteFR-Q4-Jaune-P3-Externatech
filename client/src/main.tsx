@@ -15,7 +15,7 @@ import OfferDetails from "./pages/OfferDetails/OfferDetails";
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
 
 //Import API requests
-import { getCompanies, getCompany, getOfferDetails } from "./services/requests";
+import { getCompany, getOfferDetails } from "./services/requests";
 
 /* ************************************************************************* */
 
@@ -30,14 +30,7 @@ const router = createBrowserRouter([
       {
         path: "/OfferDetails/:id",
         element: <OfferDetails />,
-        loader: async ({ params }) => {
-          const offers = await getOfferDetails(params.id);
-          const companies = await getCompanies();
-          return {
-            offers,
-            companies,
-          };
-        },
+        loader: ({ params }) => getOfferDetails(params.id),
       },
 
       {

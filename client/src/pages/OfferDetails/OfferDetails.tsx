@@ -4,38 +4,24 @@ import { useLoaderData } from "react-router-dom";
 interface OfferTypes {
   id: number;
   title: string;
-  description: string;
+  offer_description: string;
   date: string;
   salary: number;
   requirements: string;
   company_id: number;
   contract_id: number;
-}
-
-interface CompaniesType {
-  id: number;
   name: string;
-  description: string;
-}
-
-interface OfferDetailsTypes {
-  offers: OfferTypes;
-  companies: CompaniesType[];
+  company_description: string;
 }
 
 export default function OfferDetails() {
-  const { offers, companies } = useLoaderData() as OfferDetailsTypes;
-  const company = companies.find((company) => company.id === offers.company_id);
-
-  if (!company) {
-    return <p>Company not found for offer: {offers.title}</p>;
-  }
+  const offer = useLoaderData() as OfferTypes;
 
   return (
-    <article key={offers.id} className="all_detail_page">
+    <article key={offer.id} className="all_detail_page">
       <section className="presentation">
-        <h2>{company.name}</h2>
-        <h3>{offers.title}</h3>
+        <h2>{offer.name}</h2>
+        <h3>{offer.title}</h3>
         <p>Résumé du poste</p>
         <p>Compétences & expertises</p>
         <div className="buttons">
@@ -48,20 +34,20 @@ export default function OfferDetails() {
         <p>
           <b>Descriptif du poste</b>
         </p>
-        <p>{offers.description}</p>
+        <p>{offer.offer_description}</p>
       </section>
-      <section key={offers.id} className="entreprise">
+      <section key={offer.id} className="entreprise">
         <h4>L'entreprise</h4>
-        <h2>{company.name}</h2>
+        <h2>{offer.name}</h2>
         <p>
           <b>Description de l'entreprise</b>
         </p>
-        <p>{company.description}</p>
+        <p>{offer.company_description}</p>
         <button type="button">Explore l'entreprise</button>
       </section>
       <section className="profil_recherché">
         <h4>Profil recherché</h4>
-        <p>{offers.requirements}</p>
+        <p>{offer.requirements}</p>
       </section>
     </article>
   );
