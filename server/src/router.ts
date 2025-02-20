@@ -15,17 +15,10 @@ router.post("/api/companies", companyActions.add);
 router.put("/api/companies/:id", companyActions.edit);
 router.delete("/api/companies/:id", companyActions.destroy);
 
-// Define item-related routes
-import itemActions from "./modules/item/itemActions";
-
-router.get("/api/items", itemActions.browse);
-router.get("/api/items/:id", itemActions.read);
-router.post("/api/items", itemActions.add);
-
 /* ************************************************************************* */
 
 // Define offer-related routes
-import offerActions from "./modules/item/offer/offerActions";
+import offerActions from "./modules/offer/offerActions";
 
 router.get("/api/offers", offerActions.browse);
 router.get("/api/offers/:id", offerActions.read);
