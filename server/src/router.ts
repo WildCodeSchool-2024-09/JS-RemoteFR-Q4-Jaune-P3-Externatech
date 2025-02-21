@@ -1,4 +1,5 @@
 import express from "express";
+import form from "./middlewares/form";
 import formOffer from "./middlewares/formOffer";
 
 const router = express.Router();
@@ -12,16 +13,9 @@ import companyActions from "./modules/company/companyActions";
 
 router.get("/api/companies", companyActions.browse);
 router.get("/api/companies/:id", companyActions.read);
-router.post("/api/companies", companyActions.add);
-router.put("/api/companies/:id", companyActions.edit);
+router.post("/api/companies", form.validate, companyActions.add);
+router.put("/api/companies/:id", form.validate, companyActions.edit);
 router.delete("/api/companies/:id", companyActions.destroy);
-
-// Define item-related routes
-import itemActions from "./modules/item/itemActions";
-
-router.get("/api/items", itemActions.browse);
-router.get("/api/items/:id", itemActions.read);
-router.post("/api/items", itemActions.add);
 
 /* ************************************************************************* */
 
