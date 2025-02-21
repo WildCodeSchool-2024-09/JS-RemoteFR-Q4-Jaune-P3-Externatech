@@ -32,8 +32,6 @@ const add: RequestHandler = async (req, res, next) => {
     const newCompany = {
       name: req.body.name,
       description: req.body.description,
-      email: req.body.email,
-      password: req.body.password,
     };
 
     const insertId = await companyRepository.create(newCompany);
@@ -62,8 +60,6 @@ const edit: RequestHandler = async (req, res, next) => {
       id: Number(req.params.id),
       name: req.body.name,
       description: req.body.description,
-      email: req.body.email,
-      password: req.body.password,
     };
 
     const affectedRows = await companyRepository.update(company);

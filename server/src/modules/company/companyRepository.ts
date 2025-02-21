@@ -6,15 +6,13 @@ type Company = {
   id: number;
   name: string;
   description: string;
-  email: string;
-  password: string;
 };
 
 class CompanyRepository {
   async create(company: Omit<Company, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "insert into company (name, description, email, password) values (?, ?, ?, ?)",
-      [company.name, company.description, company.email, company.password],
+      "insert into company (name, description) values (?, ?)",
+      [company.name, company.description],
     );
 
     return result.insertId;

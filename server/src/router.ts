@@ -34,11 +34,4 @@ router.post("/api/offers", formOffer.validate, offerActions.add);
 router.put("/api/offers/:id", offerActions.edit);
 router.delete("/api/offers/:id", offerActions.destroy);
 
-// router.post(
-//     "/api/companies",
-//     companyActions.validate,
-//     auth.checkIfAdmin,
-//     companyActions.add,
-//   );
-
 export default router;
