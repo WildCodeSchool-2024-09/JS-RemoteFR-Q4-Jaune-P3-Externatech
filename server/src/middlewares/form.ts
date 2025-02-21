@@ -26,14 +26,18 @@ const companySchema = Joi.object({
     .max(100)
     .required()
     .pattern(/^[a-zA-Z0-9]{3,30}$/)
+    .label("password")
     .messages({
       "string.empty": "Le champ ne peut pas être vide",
       "string.min": "Une longueur de 8 caractères est demandée",
       "any.required": "Le champ est obligatoire",
-      "string.email": "L'adresse mail doit être valide",
       "string.pattern":
         "Le mot de passe doit contenir des majuscules, minuscules et caractères spéciaux",
     }),
+  password_confirmation: Joi.any()
+    .valid(Joi.ref("password"))
+    .required()
+    .options({ messages: { any: { allowOnly: "must match password" } } }),
 });
 
 const validate: RequestHandler = (req, res, next) => {
