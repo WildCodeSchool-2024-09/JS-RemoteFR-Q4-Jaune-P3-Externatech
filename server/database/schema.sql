@@ -1,7 +1,10 @@
+-- SQLBook: Code
 CREATE TABLE company (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL,
-  description TEXT NOT NULL
+  description TEXT NOT NULL, 
+  email VARCHAR(100) NOT NULL,
+  password VARCHAR(100) NOT NULL
 );
 
 
@@ -30,11 +33,12 @@ CREATE TABLE offer (
   FOREIGN KEY (contract_id) REFERENCES contract(id)
 );
 
-INSERT INTO company (name, description) VALUES
-('Tech Innov', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.'),
-('Green Future', 'Entreprise dédiée aux solutions écologiques et durables.'),
-('DataCorp', 'Société experte en analyse de données et business intelligence.'),
-('DevStudio', 'Agence de développement web et mobile sur mesure.');
+INSERT INTO company (name, description, email, password) VALUES
+('Tech Innov', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.', 'contact@techinnov.com', 'TechInnov123'),
+('Green Future', 'Entreprise dédiée aux solutions écologiques et durables.', 'contact@greenfuture.com', 'GreenFuture123'),
+('DataCorp', 'Société experte en analyse de données et business intelligence.', 'contact@datacorp.com', 'DataCorp123'),
+('DevStudio', 'Agence de développement web et mobile sur mesure.', 'contact@devstudio.com', 'DevStudio123');
+
 
 
 INSERT INTO contract (name) VALUES
