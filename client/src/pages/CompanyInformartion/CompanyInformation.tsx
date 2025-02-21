@@ -1,16 +1,25 @@
 import { useLoaderData } from "react-router-dom";
+import { getCompany } from "../../services/requests";
 import "./CompagnyInformation.css";
 
-export function companyLoader() {
-  const companyId = 1;
-  return fetch(
-    `${import.meta.env.VITE_API_URL}/api/companies/${companyId}`,
-  ).then((response) => response.json());
+export async function companyLoader() {
+  const companyId = "1";
+
+  try {
+    const company = await getCompany(companyId);
+    return company || null;
+  } catch (error) {
+    console.error("Erreur lors du chargement de la société :", error);
+    return null;
+  }
 }
 
 export default function CompanyInformation() {
-  const company = useLoaderData() as Company;
+  const company = useLoaderData() as Company | null;
 
+  if (!company) {
+    return <p>Erreur lors du chargement des données.</p>;
+  }
   return (
     <div className="container_CI">
       <h2 className="title_CI">Mes Informations:</h2>
