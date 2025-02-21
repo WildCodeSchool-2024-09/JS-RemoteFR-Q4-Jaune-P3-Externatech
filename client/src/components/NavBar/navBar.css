@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.LogoApp {
+  width: 10rem;
+  margin: 0.5rem;
+  object-fit: contain;
+}
+
+.burgerContainer {
+  margin: 1rem;
+}
+
+.burgerButton {
+  border: none;
+  background-color: white;
+}
+
+.close,
+.open {
+  font-size: 2rem;
+}
+
+.menuDroper {
+  position: absolute;
+  background-color: green;
+  right: 0.5rem;
+}
+
+.menuDroper ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0.5rem;
+}
+
+.menuDroper ul li {
+  color: white;
+}
+
+.menuDesktop {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .burgerContainer,
+  .burgerButton {
+    display: none;
+  }
+
+  .LogoApp {
+    width: 10rem;
+    margin: 1rem;
+    object-fit: contain;
+  }
+
+  .menuDesktop {
+    display: block;
+  }
+
+  .menuDesktop ul {
+    display: flex;
+    list-style: none;
+    margin: 1.5rem;
+    gap: 0.5rem;
+  }
+
+  .menuDesktop ul li {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .menuDesktop ul {
+    gap: 2rem;
+  }
+}
