@@ -45,16 +45,24 @@ function CompanyDasboard() {
         <h2>Mes OFFRES</h2>
         <p>card offres</p>
         <div className="actions">
-          <button type="button">AFFICHER TOUT</button>
-          <button type="button">AJOUTER UNE OFFRE</button>
+          <a className="colored-box" href="/">
+            AFFICHER TOUT
+          </a>
+          <a className="light-box" href="/">
+            AJOUTER UNE OFFRE
+          </a>
         </div>
         <h2>Mes CANDIDATS</h2>
         <p>cards candidats</p>
 
-        <button type="button">AFFICHER TOUT</button>
+        <a className="colored-box" href="/">
+          AFFICHER TOUT
+        </a>
         <h2>Mes INFORMATIONS</h2>
         <p>{companyData.description}</p>
-        <button type="button">MODIFIER</button>
+        <a className="light-box" href="/">
+          MODIFIER
+        </a>
 
         <h2>Creer une offre</h2>
         <NewOfferForm
