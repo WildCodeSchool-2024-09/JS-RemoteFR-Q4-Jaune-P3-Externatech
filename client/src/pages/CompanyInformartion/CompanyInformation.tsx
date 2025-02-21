@@ -1,24 +1,15 @@
-import { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import "./CompagnyInformation.css";
 
-interface Company {
-  id: number;
-  name: string;
-  description: string;
+export function companyLoader() {
+  const companyId = 1;
+  return fetch(
+    `${import.meta.env.VITE_API_URL}/api/companies/${companyId}`,
+  ).then((response) => response.json());
 }
 
 export default function CompanyInformation() {
-  const [company, setCompany] = useState<Company | null>(null);
-  const companyId = 1;
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/companies/${companyId}`)
-      .then((response) => response.json())
-      .then((data: Company) => {
-        setCompany(data);
-      });
-  }, []);
-
-  console.info(company);
+  const company = useLoaderData() as Company;
 
   return (
     <div className="container_CI">
@@ -38,7 +29,7 @@ export default function CompanyInformation() {
         <select className="form_CI">
           <option value="1-15">1-15</option>
           <option value="16-49">16-49</option>
-          <option value="50-99">51-99</option>
+          <option value="50-99">50-99</option>
           <option value="100-500">100-500</option>
           <option value="500+">500+</option>
         </select>
