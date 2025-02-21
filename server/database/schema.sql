@@ -78,3 +78,5 @@ INSERT INTO offer (title, description, date, salary, requirements, company_id, c
  'Connaissances en CI/CD, Docker et Kubernetes.', 
  2, 
  4);
+
+

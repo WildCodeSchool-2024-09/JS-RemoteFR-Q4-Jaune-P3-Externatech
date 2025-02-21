@@ -5,8 +5,11 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 /* ************************************************************************* */
 
+// Import Requests
+
 // Import the main app component
 import App from "./App";
+import OfferDetails from "./pages/OfferDetails/OfferDetails";
 
 // Import pages
 
@@ -14,7 +17,7 @@ import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
 import HomePage from "./pages/homepage/HomePage";
 
 //Import API requests
-import { getCompany } from "./services/requests";
+import { getCompany, getOfferDetails } from "./services/requests";
 
 /* ************************************************************************* */
 
@@ -22,11 +25,17 @@ import { getCompany } from "./services/requests";
 // You can add more routes as you build out your app!
 const router = createBrowserRouter([
   {
-    element: <App />, // Renders the App component for the home page
+    element: <App />,
     children: [
       {
         path: "/",
         element: <HomePage />,
+      },
+
+      {
+        path: "/OfferDetails/:id",
+        element: <OfferDetails />,
+        loader: ({ params }) => getOfferDetails(params.id),
       },
 
       {
