@@ -5,14 +5,17 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 /* ************************************************************************* */
 
+// Import Requests
+
 // Import the main app component
 import App from "./App";
+import OfferDetails from "./pages/OfferDetails/OfferDetails";
 
 // Import pages
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
 
 //Import API requests
-import { getCompany } from "./services/requests";
+import { getCompany, getOfferDetails } from "./services/requests";
 
 /* ************************************************************************* */
 
@@ -21,8 +24,15 @@ import { getCompany } from "./services/requests";
 const router = createBrowserRouter([
   {
     path: "/", // The root path
-    element: <App />, // Renders the App component for the home page
+
+    element: <App />,
     children: [
+      {
+        path: "/OfferDetails/:id",
+        element: <OfferDetails />,
+        loader: ({ params }) => getOfferDetails(params.id),
+      },
+
       {
         path: "/companies/dashboard/:id",
         element: <CompanyDasboard />,
