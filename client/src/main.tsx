@@ -9,7 +9,6 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
-// import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
 import CompanyInformation, {
   companyLoader,
 } from "./pages/CompanyInformartion/CompanyInformation";
