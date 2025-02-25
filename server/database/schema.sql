@@ -1,3 +1,4 @@
+-- SQLBook: Code
 CREATE TABLE company (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL,
@@ -41,7 +42,8 @@ INSERT INTO contract (name) VALUES
 ('CDI'),
 ('CDD'),
 ('Stage'),
-('Alternance');
+('Alternance'),
+('Freelance');
 
 INSERT INTO offer (title, description, date, salary, requirements, company_id, contract_id) VALUES
 ('Développeur Fullstack', 
