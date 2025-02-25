@@ -43,6 +43,7 @@ class contractRepository {
   async delete(id: number) {
     const [result] = await DatabaseClient.query<Result>(
       "delete from contract where id = ?",
+      [id],
     );
 
     return result.affectedRows;
