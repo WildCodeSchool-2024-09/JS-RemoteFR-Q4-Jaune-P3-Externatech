@@ -27,10 +27,10 @@ router.delete("/api/offers/:id", offerActions.destroy);
 
 import contractActions from "./modules/contract/contractActions";
 
-router.get("/api/contract", contractActions.browse);
-router.get("/api/contract/:id", contractActions.read);
-router.post("/api/contract", contractActions.add);
-router.put("/api/contract/:id", contractActions.edit);
-router.delete("/api/contract/:id", contractActions.destroy);
+router.get("/api/contracts", contractActions.browse);
+router.get("/api/contracts/:id", contractActions.read);
+router.post("/api/contracts", contractActions.add);
+router.put("/api/contracts/:id", contractActions.edit);
+router.delete("/api/contracts/:id", contractActions.destroy);
 
 export default router;
