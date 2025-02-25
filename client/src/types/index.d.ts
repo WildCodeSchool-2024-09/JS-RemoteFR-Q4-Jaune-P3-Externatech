@@ -5,14 +5,13 @@ interface CompanyData {
 }
 
 interface Company {
-  id: number;
   name: string;
-  description: string;
-  email: string;
-  website: string;
-  siret: string;
-  street: string;
+  address: string;
   postalCode: string;
   city: string;
-  companySize: string;
+  email: string;
+  size: string;
+  website: string;
+  siret: string;
+  description: string;
 }

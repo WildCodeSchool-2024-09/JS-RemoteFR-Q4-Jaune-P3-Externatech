@@ -9,9 +9,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
-import CompanyInformation, {
-  companyLoader,
-} from "./pages/CompanyInformartion/CompanyInformation";
+import { companyLoader } from "./pages/CompanyInformartion/CompanyInformation";
+import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
 
 // Import pages
@@ -50,7 +49,7 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/CompanyInformation",
+        path: "/companies/information/:companyId",
         element: <CompanyInformation />,
         loader: companyLoader,
       },
