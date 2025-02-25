@@ -9,6 +9,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+// import { companyLoader } from "./pages/CompanyInformartion/CompanyInformation";
+import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
 
 // Import pages
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
           const company = await getCompany(String(params.id));
           return company || null;
         },
+      },
+      {
+        path: "/companies/:id",
+        element: <CompanyInformation />,
+        loader: async ({ params }) => {
+          const company = await getCompany(String(params.id));
+          return company || null;
+        }, // load
       },
     ],
   },
