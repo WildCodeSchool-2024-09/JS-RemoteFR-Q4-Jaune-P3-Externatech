@@ -1,4 +1,6 @@
 import express from "express";
+import form from "./middlewares/form";
+import formOffer from "./middlewares/formOffer";
 
 const router = express.Router();
 
@@ -11,8 +13,8 @@ import companyActions from "./modules/company/companyActions";
 
 router.get("/api/companies", companyActions.browse);
 router.get("/api/companies/:id", companyActions.read);
-router.post("/api/companies", companyActions.add);
-router.put("/api/companies/:id", companyActions.edit);
+router.post("/api/companies", form.validate, companyActions.add);
+router.put("/api/companies/:id", form.validate, companyActions.edit);
 router.delete("/api/companies/:id", companyActions.destroy);
 
 /* ************************************************************************* */
@@ -21,7 +23,7 @@ import offerActions from "./modules/offer/offerActions";
 
 router.get("/api/offers", offerActions.browse);
 router.get("/api/offers/:id", offerActions.read);
-router.post("/api/offers", offerActions.add);
+router.post("/api/offers", formOffer.validate, offerActions.add);
 router.put("/api/offers/:id", offerActions.edit);
 router.delete("/api/offers/:id", offerActions.destroy);
 

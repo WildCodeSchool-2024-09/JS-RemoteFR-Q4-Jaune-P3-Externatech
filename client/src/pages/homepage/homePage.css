@@ -4,7 +4,7 @@
   object-fit: cover;
   display: flex;
   justify-content: center;
-  color: white;
+  color: var(--light);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,17 +22,6 @@
   text-align: center;
 }
 
-/* #infoHeader {
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 300px;
-  gap: 1rem;
-} */
-
 #infoHeader h1 {
   font-size: 1.5rem;
 }
@@ -48,6 +37,6 @@ section h2 {
 .gradientBar {
   width: 20rem;
   height: 0.5rem;
-  background: linear-gradient(to left, #79be7b, #1b1c23);
+  background: linear-gradient(to left, var(--secundary), var(--primary));
   margin-left: 0.5rem;
 }

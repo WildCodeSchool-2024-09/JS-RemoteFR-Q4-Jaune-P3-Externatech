@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import NewOfferForm from "./NewOfferForm";
 import "./company-dashboard.css";
 function CompanyDasboard() {
@@ -45,16 +45,24 @@ function CompanyDasboard() {
         <h2>Mes OFFRES</h2>
         <p>card offres</p>
         <div className="actions">
-          <button type="button">AFFICHER TOUT</button>
-          <button type="button">AJOUTER UNE OFFRE</button>
+          <Link className="colored-box" to="/">
+            AFFICHER TOUT
+          </Link>
+          <Link className="light-box" to="/">
+            AJOUTER UNE OFFRE
+          </Link>
         </div>
         <h2>Mes CANDIDATS</h2>
         <p>cards candidats</p>
 
-        <button type="button">AFFICHER TOUT</button>
+        <Link className="colored-box" to="/">
+          AFFICHER TOUT
+        </Link>
         <h2>Mes INFORMATIONS</h2>
         <p>{companyData.description}</p>
-        <button type="button">MODIFIER</button>
+        <Link className="light-box" to="/">
+          MODIFIER
+        </Link>
 
         <h2>Creer une offre</h2>
         <NewOfferForm
