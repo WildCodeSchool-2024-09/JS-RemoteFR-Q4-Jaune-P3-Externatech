@@ -21,32 +21,21 @@
 .box {
   display: flex;
   flex-direction: column;
-  border: 1px grey solid;
+  border: 1px var(--tertiary) solid;
   margin: 0.5rem;
   overflow: hidden;
   min-width: 40%;
 }
 
 .box h3 {
-  background-color: green;
-  color: white;
+  background-color: var(--secundary);
+  color: var(--light);
   margin: 0;
   padding: 1rem;
 }
 .box ul {
-  list-style-position: inside;
   padding: 1rem 0.1rem 1rem 0.5rem;
   margin-left: 0;
-}
-.box li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.box li::before {
-  content: "■";
-  color: green;
-  font-size: 1.2em;
 }
 
 /* ********************************************* */
@@ -67,7 +56,7 @@
   left: 20%;
   right: 0;
   height: 0.2rem;
-  background-color: grey;
+  background-color: var(--tertiary);
 }
 .display p {
   padding: 1rem;

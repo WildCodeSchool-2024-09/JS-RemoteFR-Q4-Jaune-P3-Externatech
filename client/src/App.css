@@ -1,5 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --primary: #1b1c23;
+  --secundary: #79be7b;
+  --tertiary: #d9d9d9;
+  --light: #fff;
+}
+
+#root {
+  height: 100vh;
+  background-color: var(--light);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--primary);
+  margin: 0;
+}
+
+main {
+  display: flex;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+}
+
+a,
+button {
+  font-optical-sizing: auto;
+  font-size: 1.5rem;
+  all: unset;
+  color: inherit;
+  font-family: "Open Sans", serif;
+  font-weight: 500;
+}
+
+ul {
+  list-style: none;
+  list-style-position: inside;
+}
+li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+li::before {
+  content: "■";
+  color: var(--secundary);
+  font-size: 1.2em;
+}
+
+.colored-box {
+  background-color: var(--secundary);
+  color: var(--light);
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+.light-box {
+  background-color: var(--light);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border: solid var(--tertiary) 1px;
 }
