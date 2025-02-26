@@ -46,9 +46,6 @@ function CompanyDasboard() {
         <h2>Mes OFFRES</h2>
         <div className="card-container">
           <OfferCard />
-          <OfferCard />
-          <OfferCard />
-          <OfferCard />
         </div>
         <div className="actions">
           <Link className="colored-box" to="/">
