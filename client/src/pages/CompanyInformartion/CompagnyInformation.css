@@ -1,0 +1,23 @@
+.container_CI {
+  margin: 0 1rem;
+}
+.title_CI {
+  padding-bottom: 2rem;
+}
+
+.form_CI {
+  border: 1px solid #79be7b;
+  height: 2rem;
+  margin-bottom: 1rem;
+  max-width: 50rem;
+  height: auto;
+  padding-left: 0.3rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .container_CI {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

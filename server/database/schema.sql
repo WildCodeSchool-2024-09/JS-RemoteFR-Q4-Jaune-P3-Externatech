@@ -45,7 +45,8 @@ INSERT INTO contract (name) VALUES
 ('CDI'),
 ('CDD'),
 ('Stage'),
-('Alternance');
+('Alternance'),
+('Freelance');
 
 INSERT INTO offer (title, description, date, salary, requirements, company_id, contract_id) VALUES
 ('Développeur Fullstack', 
@@ -83,4 +84,4 @@ INSERT INTO offer (title, description, date, salary, requirements, company_id, c
  2, 
  4);
 
-
+-- SQLBook: Code

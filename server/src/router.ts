@@ -19,7 +19,6 @@ router.delete("/api/companies/:id", companyActions.destroy);
 
 /* ************************************************************************* */
 
-// Define offer-related routes
 import offerActions from "./modules/offer/offerActions";
 
 router.get("/api/offers", offerActions.browse);
@@ -27,5 +26,9 @@ router.get("/api/offers/:id", offerActions.read);
 router.post("/api/offers", formOffer.validate, offerActions.add);
 router.put("/api/offers/:id", offerActions.edit);
 router.delete("/api/offers/:id", offerActions.destroy);
+
+import contractActions from "./modules/contract/contractActions";
+
+router.get("/api/contracts", contractActions.browse);
 
 export default router;
