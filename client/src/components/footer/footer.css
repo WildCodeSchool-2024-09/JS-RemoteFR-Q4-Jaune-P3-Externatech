@@ -1,0 +1,56 @@
+footer {
+  background-color: #1b1c23;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  & ul {
+    list-style: none;
+  }
+  & img {
+    max-height: 5vh;
+    margin: 2rem;
+  }
+}
+
+footer div ul li {
+  margin: 1rem;
+}
+
+footer div a {
+  text-decoration: none;
+  color: white;
+}
+
+@media screen and (min-width: 768px) {
+  footer div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  footer div div {
+    width: 4px;
+    height: 8rem;
+    background-color: rgba(9, 255, 0, 0.623);
+  }
+
+  footer div ul {
+    display: flex;
+    width: 35vw;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  footer div ul {
+    margin-left: 4rem;
+  }
+  footer div ul:first-of-type li {
+    margin-left: 6rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  footer div ul:first-of-type li {
+    margin-left: 10rem;
+  }
+}
