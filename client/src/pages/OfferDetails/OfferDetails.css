@@ -48,33 +48,28 @@ article {
   border-color: var(--tertiary);
 }
 
-.enregistrer,
-.explore {
+.register {
+  display: flex;
+  align-items: center;
   background-color: var(--light);
   color: var(--primary);
   padding: 0.5rem 1rem;
-  text-align: center;
   border: solid var(--tertiary) 1px;
   border-radius: 8px;
   margin-bottom: 2rem;
-}
-
-.enregistrer {
-  display: flex;
-  align-items: center;
   gap: 1rem;
 }
 
-.bookmark {
-  width: 1rem;
-  height: 1rem;
-  margin-left: -0.5rem;
+.register > .bookmark {
+  width: 0.8rem;
 }
 
-img {
-  width: 2.5rem;
-  height: 2.5rem;
+.box_png,
+.company,
+.people {
   margin-left: 1rem;
+  width: 3rem;
+  height: 3rem;
 }
 
 .offername {
@@ -84,6 +79,7 @@ img {
 .buttons {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 2rem;
 }
 
@@ -113,7 +109,7 @@ img {
   text-align: center;
   border: solid var(--tertiary) 1px;
   border-radius: 8px;
-  margin-top: 2rem;
+  margin: 2rem 0 2rem 0;
   align-self: center;
   width: 15rem;
 }

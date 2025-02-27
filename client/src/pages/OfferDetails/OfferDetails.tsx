@@ -42,11 +42,7 @@ export default function OfferDetails() {
           <Link to="/Apply" className="apply">
             Postuler
           </Link>
-          <button
-            type="button"
-            className="enregistrer"
-            onClick={handleOpenModal}
-          >
+          <button type="button" className="register" onClick={handleOpenModal}>
             <img
               src="/Logos/Icon_bookmark.png"
               alt="bookmark"
@@ -77,7 +73,7 @@ export default function OfferDetails() {
       )}
       <article className="le_poste">
         <div className="titre_le_poste">
-          <img src="/Logos/Icon_inbox.png" alt="box" />
+          <img src="/Logos/Icon_inbox.png" alt="box" className="box_png" />
           <h2 className="leposte">Le poste</h2>
         </div>
         <p>
@@ -87,7 +83,11 @@ export default function OfferDetails() {
       </article>
       <article className="entreprise">
         <div className="titre_company">
-          <img src="/Logos/Icon_company.png" alt="company" />
+          <img
+            src="/Logos/Icon_company.png"
+            alt="company"
+            className="company"
+          />
           <h2 className="entreprise_titre">L'entreprise</h2>
         </div>
         <h1 className="offername">{offer.name}</h1>
@@ -101,7 +101,7 @@ export default function OfferDetails() {
       </article>
       <article className="profil_recherché">
         <div className="profil_titre">
-          <img src="/Logos/Icon_profil.png" alt="people" />
+          <img src="/Logos/Icon_profil.png" alt="people" className="people" />
           <h2 className="profil_recherche">Profil recherché</h2>
         </div>
         <p>{offer.requirements}</p>

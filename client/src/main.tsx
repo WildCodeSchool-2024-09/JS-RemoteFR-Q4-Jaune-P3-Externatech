@@ -39,10 +39,7 @@ const router = createBrowserRouter([
       {
         path: "/OfferDetails/:id",
         element: <OfferDetails />,
-        loader: async ({ params }) => {
-          const offer = await getOfferDetails(params.id);
-          return offer;
-        },
+        loader: ({ params }) => getOfferDetails(params.id),
       },
 
       {
