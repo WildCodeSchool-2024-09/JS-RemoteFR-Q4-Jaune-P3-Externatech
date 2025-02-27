@@ -37,14 +37,13 @@ export default function Company_NavBar() {
             <Link to={`/companies/dashboard/${id}`} className="dashboard_link">
               <b>Dashboard</b>
             </Link>
-            <Link to="/companies/CompanyOffers" className="offers_link">
-              {" "}
+            <Link to="#">
               <b>Mes offres</b>
             </Link>
-            <Link to="/companies/CompanyCandidats" className="candidats_link">
+            <Link to="#">
               <b>Mes candidats</b>
             </Link>
-            <Link to="/companies/CompanyLogin" className="login_link">
+            <Link to="#">
               <b>Se connecter</b>
             </Link>
           </ul>
@@ -55,13 +54,13 @@ export default function Company_NavBar() {
         <Link to={`/companies/dashboard/${id}`}>
           <b>Dashboard</b>
         </Link>
-        <Link to="/companies/CompanyOffers">
+        <Link to="#">
           <b>Mes offres</b>
         </Link>
-        <Link to="/companies/CompanyCandidats">
+        <Link to="#">
           <b>Mes candidats</b>
         </Link>
-        <Link to="/companies/CompanyLogin">
+        <Link to="#">
           <b>Se connecter</b>
         </Link>
       </ul>
