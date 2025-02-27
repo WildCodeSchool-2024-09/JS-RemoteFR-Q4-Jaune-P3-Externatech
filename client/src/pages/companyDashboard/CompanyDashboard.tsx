@@ -3,18 +3,29 @@ import { Link, useLoaderData } from "react-router-dom";
 import NewOfferForm from "./NewOfferForm";
 import "./company-dashboard.css";
 import OfferCard from "../../components/OfferCard";
-function CompanyDasboard() {
+
+function CompanyDashboard() {
   const companyData = useLoaderData() as CompanyData;
   const newOffer = {
     title: "",
+    city: "",
+    logo: "",
+    background: "",
     description: "",
-    date: "",
     salary: 0,
-    requirements: "",
-    company_id: 0,
+    profile: "",
+    remote: "",
+    company_id: companyData.id,
     contract_id: 0,
   };
-  console.info(companyData);
+
+  const handleOfferSubmit = (offerData: typeof newOffer) => {
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/api/offers`, offerData)
+      .catch((error) => {
+        console.error("Erreur lors de l'ajout de l'offre :", error);
+      });
+  };
   return (
     <div className="company-dashboard">
       <h1>Bienvenue {companyData.name}</h1>
@@ -68,21 +79,12 @@ function CompanyDasboard() {
         </Link>
 
         <h2>Creer une offre</h2>
-        <NewOfferForm
-          defaultValue={newOffer}
-          onSubmit={(offerData) => {
-            axios
-              .post(`${import.meta.env.VITE_API_URL}/api/offers`, offerData)
-              .catch((error) => {
-                console.error("Erreur lors de l'ajout de l'offre :", error);
-              });
-          }}
-        >
-          Ajouter
+        <NewOfferForm value={newOffer} onSubmit={handleOfferSubmit}>
+          Ajouter une nouvelle offre
         </NewOfferForm>
       </section>
     </div>
   );
 }
 
-export default CompanyDasboard;
+export default CompanyDashboard;

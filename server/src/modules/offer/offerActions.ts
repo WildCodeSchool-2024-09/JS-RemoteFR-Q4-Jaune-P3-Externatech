@@ -31,10 +31,13 @@ const edit: RequestHandler = async (req, res, next) => {
     const offer = {
       id: Number(req.params.id),
       title: req.body.title,
+      city: req.body.city,
+      logo: req.body.logo,
+      background: req.body.background,
       description: req.body.description,
-      date: req.body.date,
       salary: req.body.salary,
-      requirements: req.body.requirements,
+      profile: req.body.skills,
+      remote: req.body.remote,
       company_id: req.body.company_id,
       contract_id: req.body.contract_id,
     };
@@ -54,7 +57,7 @@ const edit: RequestHandler = async (req, res, next) => {
 const add: RequestHandler = async (req, res, next) => {
   try {
     const newOffer = req.body;
-
+    console.info(req.body);
     const insertId = await offerRepository.create(newOffer);
 
     res.status(201).json({ insertId });
