@@ -17,10 +17,8 @@ type OfferData = {
   logo: string;
   background: string;
   description: string;
-  date: string;
   salary: number;
-  skills: string;
-  requirements: string;
+  profile: string;
   remote: string;
   company_id: number;
   contract_id: number;

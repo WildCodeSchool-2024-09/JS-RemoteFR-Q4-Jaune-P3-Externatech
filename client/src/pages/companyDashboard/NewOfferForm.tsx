@@ -36,11 +36,11 @@ function NewOfferForm({ children, value, onSubmit }: OfferFormProps) {
         />
       </label>
       <label>
-        Skills:
+        profile recherché:
         <input
           type="text"
-          name="skills"
-          value={formData.skills}
+          name="profile"
+          value={formData.profile}
           onChange={handleChange}
         />
       </label>
@@ -63,30 +63,11 @@ function NewOfferForm({ children, value, onSubmit }: OfferFormProps) {
         />
       </label>
       <label>
-        Date:
-        <input
-          type="date"
-          name="date"
-          value={formData.date}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
         Salaire:
         <input
           type="text"
           name="salary"
           value={formData.salary}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Exigences du poste:
-        <input
-          type="text"
-          name="requirements"
-          value={formData.requirements}
           onChange={handleChange}
         />
       </label>

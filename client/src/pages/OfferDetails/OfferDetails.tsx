@@ -7,7 +7,7 @@ interface OfferTypes {
   offer_description: string;
   date: string;
   salary: number;
-  requirements: string;
+  profile: string;
   company_id: number;
   contract_id: number;
   name: string;
@@ -47,7 +47,7 @@ export default function OfferDetails() {
       </section>
       <section className="profil_recherché">
         <h4>Profil recherché</h4>
-        <p>{offer.requirements}</p>
+        <p>{offer.profile}</p>
       </section>
     </article>
   );

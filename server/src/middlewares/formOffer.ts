@@ -25,24 +25,17 @@ const offerSchema = Joi.object({
     "string.empty": "La description est obligatoire.",
     "any.required": "La description est obligatoire.",
   }),
-  date: Joi.date().required().messages({
-    "date.base": "La date doit être sous la forme : YYYY-MM-DD .",
-    "any.required": "La date est obligatoire.",
-  }),
   salary: Joi.number().integer().positive().required().messages({
     "number.base": "Le salaire doit être un nombre.",
     "number.integer": "Le salaire doit être un nombre entier.",
     "number.positive": "Le salaire doit être un nombre positif.",
     "any.required": "Le salaire est obligatoire.",
   }),
-  skills: Joi.string().required().messages({
-    "string.empty": "Les compétences sont obligatoires.",
-    "any.required": "Les compétences sont obligatoires.",
+  profile: Joi.string().required().messages({
+    "string.empty": "Le profil recherché est obligatoire.",
+    "any.required": "Le profil recherché est obligatoire.",
   }),
-  requirements: Joi.string().required().messages({
-    "string.empty": "Les exigences sont obligatoires.",
-    "any.required": "Les exigences sont obligatoires.",
-  }),
+
   remote: Joi.string().max(255).required().messages({
     "string.max": "Le type de télétravail ne peut pas dépasser 255 caractères.",
     "string.empty": "Le type de télétravail est obligatoire.",
