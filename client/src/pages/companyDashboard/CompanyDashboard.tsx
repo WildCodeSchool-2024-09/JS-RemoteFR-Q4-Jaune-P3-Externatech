@@ -2,6 +2,8 @@ import axios from "axios";
 import { Link, useLoaderData } from "react-router-dom";
 import NewOfferForm from "./NewOfferForm";
 import "./company-dashboard.css";
+import OfferCard from "../../components/OfferCard";
+
 function CompanyDashboard() {
   const companyData = useLoaderData() as CompanyData;
   const newOffer = {
@@ -55,7 +57,9 @@ function CompanyDashboard() {
       </section>
       <section className="display">
         <h2>Mes OFFRES</h2>
-        <p>card offres</p>
+        <div className="card-container">
+          <OfferCard />
+        </div>
         <div className="actions">
           <Link className="colored-box" to="/">
             AFFICHER TOUT
