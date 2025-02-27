@@ -7,6 +7,9 @@
 nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 7rem;
+  margin-left: 1rem;
 }
 
 .LogoApp {
@@ -16,7 +19,7 @@ nav {
 }
 
 .burgerContainer {
-  margin: 1rem;
+  z-index: 10;
 }
 
 .burgerButton {
