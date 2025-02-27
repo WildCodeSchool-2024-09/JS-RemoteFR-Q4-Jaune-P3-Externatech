@@ -33,44 +33,38 @@ export default function Company_NavBar() {
           {isOpen ? burgerClose() : burgerOpen()}
         </button>
         {isOpen && (
-          <div className="menuDroper">
-            <ul>
-              <Link
-                to={`/companies/dashboard/${id}`}
-                className="dashboard_link"
-              >
-                <b>Dashboard</b>
-              </Link>
-              <Link to="/companies/CompanyOffers" className="offers_link">
-                {" "}
-                <b>Mes offres</b>
-              </Link>
-              <Link to="/companies/CompanyCandidats" className="candidats_link">
-                <b>Mes candidats</b>
-              </Link>
-              <Link to="/companies/CompanyLogin" className="login_link">
-                <b>Se connecter</b>
-              </Link>
-            </ul>
-          </div>
+          <ul className="menuDroper">
+            <Link to={`/companies/dashboard/${id}`} className="dashboard_link">
+              <b>Dashboard</b>
+            </Link>
+            <Link to="/companies/CompanyOffers" className="offers_link">
+              {" "}
+              <b>Mes offres</b>
+            </Link>
+            <Link to="/companies/CompanyCandidats" className="candidats_link">
+              <b>Mes candidats</b>
+            </Link>
+            <Link to="/companies/CompanyLogin" className="login_link">
+              <b>Se connecter</b>
+            </Link>
+          </ul>
         )}
       </div>
-      <div className="menuDesktop">
-        <ul>
-          <Link to={`/companies/dashboard/${id}`}>
-            <b>Dashboard</b>
-          </Link>
-          <Link to="/companies/CompanyOffers">
-            <b>Mes offres</b>
-          </Link>
-          <Link to="/companies/CompanyCandidats">
-            <b>Mes candidats</b>
-          </Link>
-          <Link to="/companies/CompanyLogin">
-            <b>Se connecter</b>
-          </Link>
-        </ul>
-      </div>
+
+      <ul className="menu_Desktop">
+        <Link to={`/companies/dashboard/${id}`}>
+          <b>Dashboard</b>
+        </Link>
+        <Link to="/companies/CompanyOffers">
+          <b>Mes offres</b>
+        </Link>
+        <Link to="/companies/CompanyCandidats">
+          <b>Mes candidats</b>
+        </Link>
+        <Link to="/companies/CompanyLogin">
+          <b>Se connecter</b>
+        </Link>
+      </ul>
     </nav>
   );
 }

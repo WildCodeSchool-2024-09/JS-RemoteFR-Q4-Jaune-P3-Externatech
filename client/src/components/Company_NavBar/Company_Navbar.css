@@ -38,6 +38,9 @@ nav {
 .menuDroper {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
+  list-style: none;
+  padding: 0.5rem;
   position: fixed;
   background-color: green;
   border-radius: 0 0 0 8px;
@@ -46,15 +49,7 @@ nav {
   transition: 1s ease;
 }
 
-.menuDroper ul {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  list-style: none;
-  padding: 0.5rem;
-}
-
-.menuDroper > ul > a {
+.menuDroper > a {
   color: white;
   gap: 1rem;
   cursor: pointer;
@@ -76,18 +71,18 @@ nav {
     object-fit: contain;
   }
 
-  .menuDesktop {
+  /* .menuDesktop {
     display: block;
-  }
+  } */
 
-  .menuDesktop ul {
+  .menu_Desktop {
     display: flex;
     list-style: none;
-    margin: 1.5rem;
-    gap: 0.5rem;
+    gap: 2rem;
+    margin: 1.5rem 1.5rem 0 0;
   }
 
-  .menuDesktop ul a {
+  .menu_Desktop > a > b {
     text-decoration: none;
     font-size: 1rem;
     cursor: pointer;
@@ -95,7 +90,7 @@ nav {
 }
 
 @media screen and (min-width: 1080px) {
-  .menuDesktop ul {
+  .menuDesktop {
     gap: 2rem;
   }
 }
