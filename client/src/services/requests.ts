@@ -3,9 +3,7 @@ import axios from "axios";
 const getOfferDetails = (id: string | undefined) => {
   return axios
     .get(`${import.meta.env.VITE_API_URL}/api/offers/${id}`)
-    .then((response) => {
-      return response.data;
-    })
+    .then((response) => response.data)
     .catch((error) => console.error(error));
 };
 

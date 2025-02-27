@@ -41,7 +41,6 @@ const router = createBrowserRouter([
         element: <OfferDetails />,
         loader: async ({ params }) => {
           const offer = await getOfferDetails(params.id);
-          console.info(offer);
           return offer;
         },
       },
