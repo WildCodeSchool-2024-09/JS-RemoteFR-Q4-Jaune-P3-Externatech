@@ -28,6 +28,6 @@ type OfferData = {
 
 interface OfferFormProps {
   children: ReactNode;
-  defaultValue: OfferData;
+  value: OfferData;
   onSubmit: (offer: OfferData) => void;
 }

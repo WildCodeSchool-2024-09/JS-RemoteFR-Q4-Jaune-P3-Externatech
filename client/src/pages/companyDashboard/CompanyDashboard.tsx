@@ -77,7 +77,7 @@ function CompanyDashboard() {
         </Link>
 
         <h2>Creer une offre</h2>
-        <NewOfferForm defaultValue={newOffer} onSubmit={handleOfferSubmit}>
+        <NewOfferForm value={newOffer} onSubmit={handleOfferSubmit}>
           Ajouter une nouvelle offre
         </NewOfferForm>
       </section>

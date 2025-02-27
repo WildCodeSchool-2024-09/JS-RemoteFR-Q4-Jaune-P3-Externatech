@@ -1,104 +1,120 @@
-function NewOfferForm({ children, defaultValue, onSubmit }: OfferFormProps) {
+import { useState } from "react";
+function NewOfferForm({ children, value, onSubmit }: OfferFormProps) {
+  const [formData, setFormData] = useState(value);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
   return (
     <form
       className="form-offer"
       onSubmit={(event) => {
         event.preventDefault();
-
-        const offerData = new FormData(event.currentTarget);
-
-        const title = offerData.get("title") as string;
-        const city = offerData.get("city") as string;
-        const logo = offerData.get("logo") as string;
-        const background = offerData.get("background") as string;
-        const skills = offerData.get("skills") as string;
-        const description = offerData.get("description") as string;
-        const date = offerData.get("date") as string;
-        const salary = Number(offerData.get("salary")) as number;
-        const requirements = offerData.get("requirements") as string;
-        const remote = offerData.get("remote") as string;
-        const company_id = defaultValue.company_id;
-        const contract_id = Number(offerData.get("contract_id")) as number;
-        onSubmit({
-          title,
-          city,
-          logo,
-          background,
-          description,
-          date,
-          salary,
-          skills,
-          requirements,
-          remote,
-          company_id,
-          contract_id,
-        });
+        onSubmit(formData);
       }}
     >
       <label>
         Titre:
-        <input type="text" name="title" defaultValue={defaultValue.title} />
-      </label>
-      <label>
-        Ville:
-        <input type="text" name="city" defaultValue={defaultValue.city} />
-      </label>
-
-      <label>
-        skills:
-        <input type="text" name="skills" defaultValue={defaultValue.skills} />
-      </label>
-      <label>
-        description:
         <input
           type="text"
-          name="description"
-          defaultValue={defaultValue.description}
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
         />
       </label>
       <label>
-        remote:
-        <input type="text" name="remote" defaultValue={defaultValue.remote} />
+        Ville:
+        <input
+          type="text"
+          name="city"
+          value={formData.city}
+          onChange={handleChange}
+        />
       </label>
       <label>
-        date :
+        Skills:
+        <input
+          type="text"
+          name="skills"
+          value={formData.skills}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Description:
+        <input
+          type="text"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Remote:
+        <input
+          type="text"
+          name="remote"
+          value={formData.remote}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Date:
         <input
           type="date"
           name="date"
-          defaultValue={defaultValue.date}
+          value={formData.date}
+          onChange={handleChange}
           required
         />
       </label>
       <label>
-        salaire:
-        <input type="text" name="salary" defaultValue={defaultValue.salary} />
+        Salaire:
+        <input
+          type="text"
+          name="salary"
+          value={formData.salary}
+          onChange={handleChange}
+        />
       </label>
       <label>
         Exigences du poste:
         <input
           type="text"
           name="requirements"
-          defaultValue={defaultValue.requirements}
+          value={formData.requirements}
+          onChange={handleChange}
         />
       </label>
       <label>
-        l'id du contrat (sera récupéré plus tard)
+        ID du contrat (sera récupéré plus tard):
         <input
           type="text"
           name="contract_id"
-          defaultValue={defaultValue.contract_id}
+          value={formData.contract_id}
+          onChange={handleChange}
         />
       </label>
       <label>
-        logo :
-        <input type="text" name="logo" defaultValue={defaultValue.logo} />
+        Logo:
+        <input
+          type="text"
+          name="logo"
+          value={formData.logo}
+          onChange={handleChange}
+        />
       </label>
       <label>
-        background :
+        Background:
         <input
           type="text"
           name="background"
-          defaultValue={defaultValue.background}
+          value={formData.background}
+          onChange={handleChange}
         />
       </label>
       <button type="submit">{children}</button>
