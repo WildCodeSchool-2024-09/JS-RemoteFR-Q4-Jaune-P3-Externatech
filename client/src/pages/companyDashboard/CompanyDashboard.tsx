@@ -19,13 +19,9 @@ function CompanyDashboard() {
     contract_id: 0,
   };
 
-  console.info(typeof newOffer.company_id);
   const handleOfferSubmit = (offerData: typeof newOffer) => {
     axios
       .post(`${import.meta.env.VITE_API_URL}/api/offers`, offerData)
-      .then((response) => {
-        console.info("Offre ajoutée avec succès :", response.data);
-      })
       .catch((error) => {
         console.error("Erreur lors de l'ajout de l'offre :", error);
       });

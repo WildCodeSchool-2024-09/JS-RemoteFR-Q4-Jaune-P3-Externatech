@@ -1,26 +1,3 @@
-import type { ReactNode } from "react";
-
-type OfferData = {
-  title: string;
-  city: string;
-  logo: string;
-  background: string;
-  description: string;
-  date: string;
-  salary: number;
-  skills: string;
-  requirements: string;
-  remote: string;
-  company_id: number;
-  contract_id: number;
-};
-
-interface OfferFormProps {
-  children: ReactNode;
-  defaultValue: OfferData;
-  onSubmit: (offer: OfferData) => void;
-}
-
 function NewOfferForm({ children, defaultValue, onSubmit }: OfferFormProps) {
   return (
     <form
