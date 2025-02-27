@@ -18,7 +18,7 @@ function OfferCard({ offer }: OfferDataProps) {
           <li>
             <strong>{offer.company_name}</strong>
           </li>
-          <li>Paris</li>
+          <li>{offer.city}</li>
           <li>CDD</li>
         </ul>
       </div>

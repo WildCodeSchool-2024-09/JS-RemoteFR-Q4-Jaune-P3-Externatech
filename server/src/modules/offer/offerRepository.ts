@@ -4,10 +4,13 @@ import type { Result, Rows } from "../../../database/client";
 type Offer = {
   id: number;
   title: string;
+  city: string;
+  logo: string;
+  background: string;
   description: string;
-  date: string;
   salary: number;
-  requirements: string;
+  profile: string;
+  remote: string;
   company_id: number;
   contract_id: number;
 };
@@ -16,21 +19,27 @@ class offerRepository {
   async create(offer: Omit<Offer, "id">) {
     const {
       title,
+      city,
+      logo,
+      background,
       description,
-      date,
       salary,
-      requirements,
+      profile,
+      remote,
       company_id,
       contract_id,
     } = offer;
     const [result] = await DatabaseClient.query<Result>(
-      "insert into offer (title, description, date, salary, requirements, company_id, contract_id) values (?, ?, ?, ?, ?, ?, ?)",
+      "insert into offer (title, city, logo, background, description,  salary, profile, remote,  company_id, contract_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         offer.title,
+        offer.city,
+        offer.logo,
+        offer.background,
         offer.description,
-        offer.date,
         offer.salary,
-        offer.requirements,
+        offer.profile,
+        offer.remote,
         offer.company_id,
         offer.contract_id,
       ],
@@ -56,7 +65,7 @@ class offerRepository {
 
   async read(id: number) {
     const [rows] = await DatabaseClient.query<Rows>(
-      "SELECT offer.id, offer.title, offer.description AS offer_description, offer.date, offer.salary, offer.requirements, company.name, company.description AS company_description, company_id, contract_id FROM offer INNER JOIN company ON offer.company_id = company.id INNER JOIN contract ON offer.contract_id = contract.id where offer.id = ? ",
+      "SELECT offer.id, offer.title, offer.description AS offer_description, offer.city, offer.logo, offer.background , offer.salary, offer.profile, offer.remote, company.name, company.description AS company_description FROM offer INNER JOIN company ON offer.company_id = company.id where offer.id = ?",
       [id],
     );
 
@@ -65,13 +74,16 @@ class offerRepository {
 
   async update(offer: Offer) {
     const [result] = await DatabaseClient.query<Result>(
-      "update offer set title = ?, description = ?, date = ?, salary = ?, requirements = ?, company_id = ?, contract_id = ? where id = ?",
+      "update offer set title = ?, description = ?, city = ?, logo = ?, background 1= ?, salary = ?, profile = ?,  remote = ?, company_id = ?, contract_id = ? where id = ?",
       [
         offer.title,
         offer.description,
-        offer.date,
+        offer.city,
+        offer.logo,
+        offer.background,
         offer.salary,
-        offer.requirements,
+        offer.profile,
+        offer.remote,
         offer.company_id,
         offer.contract_id,
         offer.id,

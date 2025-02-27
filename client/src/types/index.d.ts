@@ -14,14 +14,24 @@ interface CompanyData {
 interface OfferData {
   id: number;
   title: string;
+  city: string;
+  logo: string;
+  background: string;
   description: string;
-  title: string;
-  date: string;
   salary: number;
-  requirements: string;
+  profile: string;
+  remote: string;
   company_id: number;
+  contract_id: number;
   company_name: string;
 }
+
 interface OfferDataProps {
   offer: OfferData;
+}
+
+interface OfferFormProps {
+  children: ReactNode;
+  value: OfferData;
+  onSubmit: (offer: OfferData) => void;
 }

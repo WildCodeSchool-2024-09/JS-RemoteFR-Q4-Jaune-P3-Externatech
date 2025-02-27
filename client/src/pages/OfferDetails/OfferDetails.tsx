@@ -7,9 +7,8 @@ interface OfferTypes {
   id: number;
   title: string;
   offer_description: string;
-  date: string;
   salary: number;
-  requirements: string;
+  profile: string;
   company_id: number;
   contract_id: number;
   name: string;
@@ -37,7 +36,7 @@ export default function OfferDetails() {
         <h3>Résumé du poste</h3>
         <p>{offer.offer_description}</p>
         <h3>Compétences & expertises</h3>
-        <p>{offer.requirements}</p>
+        <p>en attente de la table de jointure</p>
         <div className="buttons">
           <Link to="/Apply" className="apply">
             Postuler
@@ -104,7 +103,7 @@ export default function OfferDetails() {
           <img src="/Logos/Icon_profil.png" alt="people" className="people" />
           <h2 className="profil_recherche">Profil recherché</h2>
         </div>
-        <p>{offer.requirements}</p>
+        <p>{offer.profile}</p>
       </article>
     </main>
   );
