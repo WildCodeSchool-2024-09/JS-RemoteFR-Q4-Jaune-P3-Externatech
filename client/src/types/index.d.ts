@@ -11,7 +11,8 @@ interface CompanyData {
   siret: string;
 }
 
-type OfferData = {
+interface OfferData {
+  id: number;
   title: string;
   city: string;
   logo: string;
@@ -22,7 +23,13 @@ type OfferData = {
   remote: string;
   company_id: number;
   contract_id: number;
-};
+  company_name: string;
+  contract_name: string;
+}
+
+interface OfferDataProps {
+  offer: OfferData;
+}
 
 interface OfferFormProps {
   children: ReactNode;

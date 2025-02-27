@@ -54,6 +54,15 @@ class offerRepository {
     return rows as Offer[];
   }
 
+  async readAllByCompany(id: number) {
+    const [rows] = await DatabaseClient.query<Rows>(
+      "SELECT offer.*, company.name AS company_name, contract.name AS contract_name FROM offer JOIN company ON offer.company_id = company.id JOIN contract ON offer.contract_id = contract.id WHERE offer.company_id = ?",
+      [id],
+    );
+
+    return rows as Offer[];
+  }
+
   async read(id: number) {
     const [rows] = await DatabaseClient.query<Rows>(
       "SELECT offer.id, offer.title, offer.description AS offer_description, offer.city, offer.logo, offer.background , offer.salary, offer.profile, offer.remote, company.name, company.description AS company_description FROM offer INNER JOIN company ON offer.company_id = company.id where offer.id = ?",

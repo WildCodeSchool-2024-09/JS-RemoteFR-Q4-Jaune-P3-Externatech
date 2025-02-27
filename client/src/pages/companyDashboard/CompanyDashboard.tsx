@@ -5,18 +5,30 @@ import "./company-dashboard.css";
 import OfferCard from "../../components/OfferCard";
 
 function CompanyDashboard() {
-  const companyData = useLoaderData() as CompanyData;
+  const { company, offers } = useLoaderData() as {
+    company: CompanyData;
+    offers: OfferData[];
+  };
+
+  const activeOffers =
+    offers.length <= 1
+      ? `${offers.length} offre active`
+      : `${offers.length} offres actives`;
+
   const newOffer = {
+    id: 0,
     title: "",
     city: "",
+    company_name: "",
     logo: "",
     background: "",
     description: "",
     salary: 0,
     profile: "",
     remote: "",
-    company_id: companyData.id,
+    company_id: company.id,
     contract_id: 0,
+    contract_name: "",
   };
 
   const handleOfferSubmit = (offerData: typeof newOffer) => {
@@ -28,13 +40,13 @@ function CompanyDashboard() {
   };
   return (
     <div className="company-dashboard">
-      <h1>Bienvenue {companyData.name}</h1>
+      <h1>Bienvenue {company.name}</h1>
       <section className="general-view">
         <div className="top">
           <div className="box">
             <h3>Mes offres</h3>
             <ul>
-              <li>7 offres actives</li>
+              <li>{activeOffers}</li>
               <li>12 offres archivées</li>
             </ul>
           </div>
@@ -56,7 +68,9 @@ function CompanyDashboard() {
       <section className="display">
         <h2>Mes OFFRES</h2>
         <div className="card-container">
-          <OfferCard />
+          {offers.map((offer) => (
+            <OfferCard key={offer.id} offer={offer} />
+          ))}
         </div>
         <div className="actions">
           <Link className="colored-box" to="/">
@@ -73,7 +87,7 @@ function CompanyDashboard() {
           AFFICHER TOUT
         </Link>
         <h2>Mes INFORMATIONS</h2>
-        <p>{companyData.description}</p>
+        <p>{company.description}</p>
         <Link className="light-box" to="/">
           MODIFIER
         </Link>
