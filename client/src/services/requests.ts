@@ -10,7 +10,6 @@ const getOfferDetails = (id: string | undefined) => {
 const getCompany = (id: string | undefined) => {
   return axios
     .get(`${import.meta.env.VITE_API_URL}/api/companies/${id}`)
-
     .then((response) => response.data)
     .catch((error) => console.error(error));
 };

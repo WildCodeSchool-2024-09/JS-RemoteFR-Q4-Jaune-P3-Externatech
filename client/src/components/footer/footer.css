@@ -7,8 +7,9 @@ footer {
     list-style: none;
   }
   & img {
-    max-height: 5vh;
-    margin: 2rem;
+    width: 10rem;
+    margin: 0.5rem;
+    object-fit: contain;
   }
 }
 
