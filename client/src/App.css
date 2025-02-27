@@ -67,18 +67,26 @@ li::before {
 }
 
 .colored-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--secundary);
   color: var(--light);
   padding: 0.5rem 1rem;
   text-align: center;
+  border-radius: 5px;
 }
 
 .light-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--light);
   color: var(--primary);
   padding: 0.5rem 1rem;
   text-align: center;
   border: solid var(--tertiary) 1px;
+  border-radius: 5px;
 }
 
 *:focus {
