@@ -21,7 +21,11 @@ import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
 import HomePage from "./pages/homepage/HomePage";
 
 //Import API requests
-import { getCompany, getOfferDetails } from "./services/requests";
+import {
+  getCompany,
+  getOfferDetails,
+  getOffersByCompany,
+} from "./services/requests";
 
 /* ************************************************************************* */
 
@@ -45,10 +49,10 @@ const router = createBrowserRouter([
       {
         path: "/companies/dashboard/:id",
         element: <CompanyDasboard />,
-        loader: async ({ params }) => {
-          const company = await getCompany(String(params.id));
-          return company || null;
-        },
+        loader: async ({ params }) => ({
+          company: await getCompany(String(params.id)),
+          offers: await getOffersByCompany(String(params.id)),
+        }),
       },
       {
         path: "/companies/:id",

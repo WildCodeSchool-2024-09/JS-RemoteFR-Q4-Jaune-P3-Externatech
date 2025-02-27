@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./offer-card.css";
 
-function OfferCard() {
+function OfferCard({ offer }: OfferDataProps) {
   return (
     <article className="offer-card">
       <img src="/office-1.jpg" alt="équipe dans un bureau" />
@@ -13,17 +13,17 @@ function OfferCard() {
         </div>
       </div>
       <div className="company-info">
-        <h2>Développeur Full Stack</h2>
+        <h2>{offer.title}</h2>
         <ul>
           <li>
-            <strong>Tech Innov</strong>
+            <strong>{offer.company_name}</strong>
           </li>
           <li>Paris</li>
           <li>CDD</li>
         </ul>
       </div>
       <div className="actions-buttons">
-        <Link to="/" className="colored-box">
+        <Link to={`/OfferDetails/${offer.id}`} className="colored-box">
           VOIR L'OFFRE
         </Link>
         <Link to="/" className="light-box">
