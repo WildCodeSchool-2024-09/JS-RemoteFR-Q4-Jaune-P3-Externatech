@@ -33,6 +33,7 @@ CREATE TABLE offer (
   FOREIGN KEY (contract_id) REFERENCES contract(id)
 );
 
+
 INSERT INTO company (name, description, email, password) VALUES
 ('Tech Innov', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.', 'contact@techinnov.com', 'TechInnov123'),
 ('Green Future', 'Entreprise dédiée aux solutions écologiques et durables.', 'contact@greenfuture.com', 'GreenFuture123'),
@@ -84,4 +85,5 @@ INSERT INTO offer (title, description, date, salary, requirements, company_id, c
  2, 
  4);
 
--- SQLBook: Code
+
+
