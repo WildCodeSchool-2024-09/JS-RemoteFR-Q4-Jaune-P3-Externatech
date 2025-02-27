@@ -31,10 +31,15 @@ const edit: RequestHandler = async (req, res, next) => {
     const offer = {
       id: Number(req.params.id),
       title: req.body.title,
+      city: req.body.city,
+      logo: req.body.logo,
+      background: req.body.background,
       description: req.body.description,
       date: req.body.date,
       salary: req.body.salary,
+      skills: req.body.skills,
       requirements: req.body.requirements,
+      remote: req.body.remote,
       company_id: req.body.company_id,
       contract_id: req.body.contract_id,
     };
