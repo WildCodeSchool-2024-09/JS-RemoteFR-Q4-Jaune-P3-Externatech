@@ -24,6 +24,7 @@ interface OfferData {
   company_id: number;
   contract_id: number;
   company_name: string;
+  contract_name: string;
 }
 
 interface OfferDataProps {

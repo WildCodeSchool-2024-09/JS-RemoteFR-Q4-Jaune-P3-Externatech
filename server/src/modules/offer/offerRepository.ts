@@ -56,7 +56,7 @@ class offerRepository {
 
   async readAllByCompany(id: number) {
     const [rows] = await DatabaseClient.query<Rows>(
-      "SELECT offer.*, company.name AS company_name FROM offer JOIN company ON offer.company_id = company.id WHERE offer.company_id = ?",
+      "SELECT offer.*, company.name AS company_name, contract.name AS contract_name FROM offer JOIN company ON offer.company_id = company.id JOIN contract ON offer.contract_id = contract.id WHERE offer.company_id = ?",
       [id],
     );
 

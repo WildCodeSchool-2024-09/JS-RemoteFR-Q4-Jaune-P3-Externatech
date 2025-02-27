@@ -28,6 +28,7 @@ function CompanyDashboard() {
     remote: "",
     company_id: company.id,
     contract_id: 0,
+    contract_name: "",
   };
 
   const handleOfferSubmit = (offerData: typeof newOffer) => {
