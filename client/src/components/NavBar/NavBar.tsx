@@ -31,24 +31,37 @@ export default function NavBar() {
           {isOpen ? burgerClose() : burgerOpen()}
         </button>
         {isOpen && (
-          <div className="menuDroper">
-            <ul>
-              <li>Les entreprises</li>
-              <li>Les offres</li>
-              <li>Espace entreprise</li>
-              <li>Se connecter</li>
-            </ul>
-          </div>
+          <ul className="menuDroper">
+            <Link to="#">
+              <b>Les entreprises</b>
+            </Link>
+            <Link to="#">
+              <b>Les offres</b>
+            </Link>
+            <Link to="#">
+              <b>Espace entreprise</b>
+            </Link>
+            <Link to="#">
+              <b>Se connecter</b>
+            </Link>
+          </ul>
         )}
       </div>
-      <div className="menuDesktop">
-        <ul>
-          <li>Les entreprises</li>
-          <li>Les offres</li>
-          <li>Espace entreprise</li>
-          <li>Se connecter</li>
-        </ul>
-      </div>
+
+      <ul className="menuDesktop">
+        <Link to="#">
+          <b>Les entreprises</b>
+        </Link>
+        <Link to="#">
+          <b>Les offres</b>
+        </Link>
+        <Link to="#">
+          <b>Espace entreprise</b>
+        </Link>
+        <Link to="#">
+          <b>Se connecter</b>
+        </Link>
+      </ul>
     </nav>
   );
 }

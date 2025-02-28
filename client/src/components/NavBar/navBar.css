@@ -27,7 +27,7 @@ nav {
 .burgerButton {
   cursor: pointer;
   border: none;
-  background-color: white;
+  background-color: var(--light);
 }
 
 .close,
@@ -38,25 +38,21 @@ nav {
 .menuDroper {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   position: fixed;
-  background-color: green;
+  list-style: none;
+  background-color: var(--secundary);
+  padding: 0.5rem;
   border-radius: 0 0 0 8px;
   top: 7rem;
   right: 0;
   transition: 1s ease;
 }
 
-.menuDroper ul {
-  display: flex;
-  flex-direction: column;
+.menuDroper > a {
+  color: var(--primary);
   gap: 1rem;
-  list-style: none;
-  padding: 0.5rem;
-}
-
-.menuDroper ul li {
-  color: white;
-  gap: 1rem;
+  cursor: pointer;
 }
 
 .menuDesktop {
@@ -79,22 +75,23 @@ nav {
     display: block;
   }
 
-  .menuDesktop ul {
+  .menuDesktop {
     display: flex;
     list-style: none;
-    margin: 1.5rem;
-    gap: 0.5rem;
+    margin: 0.5rem 1.5rem 0 0;
+    gap: 2rem;
+    cursor: pointer;
   }
 
-  .menuDesktop ul li {
+  .menuDesktop > a > b {
     text-decoration: none;
-    font-weight: bold;
+    cursor: pointer;
     font-size: 1rem;
   }
 }
 
 @media screen and (min-width: 1080px) {
-  .menuDesktop ul {
+  .menuDesktop {
     gap: 2rem;
   }
 }

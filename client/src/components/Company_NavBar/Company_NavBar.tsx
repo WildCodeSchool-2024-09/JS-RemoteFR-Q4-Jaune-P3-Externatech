@@ -21,7 +21,7 @@ export default function Company_NavBar() {
         <img
           src="/public/logo-app.png"
           alt="Logo de l'application Externatech"
-          className="LogoApp"
+          className="Logo_App"
         />
       </Link>
       <div className="burgerContainer">
@@ -33,7 +33,7 @@ export default function Company_NavBar() {
           {isOpen ? burgerClose() : burgerOpen()}
         </button>
         {isOpen && (
-          <ul className="menuDroper">
+          <ul className="menu_Droper">
             <Link to={`/companies/dashboard/${id}`} className="dashboard_link">
               <b>Dashboard</b>
             </Link>
