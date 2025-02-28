@@ -33,7 +33,7 @@ export default function NavBar() {
         {isOpen && (
           <ul className="menuDroper">
             <Link to="#">Les entreprises</Link>
-            <Link to="#">Les offres</Link>
+            <Link to="/offer">Les offres</Link>
             <Link to="#">Espace entreprise</Link>
             <Link to="#">Se connecter</Link>
           </ul>
@@ -42,7 +42,7 @@ export default function NavBar() {
 
       <ul className="menuDesktop">
         <Link to="#">Les entreprises</Link>
-        <Link to="#">Les offres</Link>
+        <Link to="/offer">Les offres</Link>
         <Link to="#">Espace entreprise</Link>
         <Link to="#">Se connecter</Link>
       </ul>

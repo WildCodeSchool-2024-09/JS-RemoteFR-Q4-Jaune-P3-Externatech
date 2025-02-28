@@ -1,0 +1,65 @@
+.hero-container {
+  background-image: url("../../public/Hero_background.webp");
+  background-size: cover;
+  background-attachment: fixed;
+  width: 100%;
+  height: 20rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-title {
+  margin: 2rem;
+  text-align: center;
+  color: white;
+}
+
+h2 > span {
+  color: var(--secundary);
+}
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  height: 2rem;
+}
+
+.job-search {
+  text-indent: .2rem;
+}
+
+.search-button {
+  color: var(--light);
+  background-color: var(--secundary);
+  text-align: center;
+  width: 10rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s, transform 0.1s;
+}
+
+.search-button:active {
+  color: var(--secundary);
+  background-color: var(--tertiary);
+  transform: scale(0.98);
+}
+
+@media only screen and (max-width: 767px) {
+  .hero-container {
+    background-image: url("../../public/Hero_background.webp");
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .search-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search-button {
+    width: 20rem;
+  }
+}

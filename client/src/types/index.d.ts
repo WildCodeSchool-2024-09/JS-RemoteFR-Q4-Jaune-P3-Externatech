@@ -11,6 +11,16 @@ interface CompanyData {
   siret: string;
 }
 
+interface LanguageType {
+  name: string;
+  id: number;
+}
+
+interface ContractType {
+  id: number;
+  name: string;
+}
+
 interface OfferData {
   id: number;
   title: string;

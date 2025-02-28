@@ -1,3 +1,4 @@
+
 CREATE TABLE company (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL,
@@ -106,3 +107,4 @@ INSERT INTO offer (title, city, logo, background, description, profile, salary, 
  4);
 
 INSERT INTO offer_stack VALUES (1,1),(1,2),(2,1),(2,2),(2,3),(3,2),(3,4),(3,5),(4,5),(4,1),(4,4);
+
