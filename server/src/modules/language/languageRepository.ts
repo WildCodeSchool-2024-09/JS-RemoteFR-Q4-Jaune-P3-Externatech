@@ -6,7 +6,6 @@ type Language = {
   name: string;
 };
 
-//Fonction pour accéder à toute la table language
 class LanguageRepository {
   async readAll() {
     const [rows] = await DatabaseClient.query<Rows>("SELECT * FROM language");

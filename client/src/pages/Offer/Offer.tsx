@@ -1,12 +1,8 @@
 import "./Offer.css";
 import Hero from "../../components/Hero/Hero";
-// import { useLoaderData } from "react-router-dom";
 
 export default function Offer() {
-  // const data = useLoaderData() as language;
-
   return (
-    // <main>
     <>
       <div className="full-width">
         <Hero />
@@ -23,6 +19,5 @@ export default function Offer() {
         <p>offre 5</p>
       </section>
     </>
-    // </main>
   );
 }

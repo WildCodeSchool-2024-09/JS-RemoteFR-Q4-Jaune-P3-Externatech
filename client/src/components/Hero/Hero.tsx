@@ -2,7 +2,6 @@ import "./Hero.css";
 import { useLoaderData } from "react-router-dom";
 
 export default function Hero() {
-  // const data= useLoaderData() as language[];
   const { languages } = useLoaderData() as {
     languages: LanguageType[];
     contracts: ContractType[];
@@ -35,17 +34,6 @@ export default function Hero() {
             <option value="option3">Stage</option>
             <option value="option4">Alternance</option>
           </select>
-
-          {/* <select className="filter" name="contract" defaultValue="">
-            <option value="" hidden>
-              Type de contrat
-            </option>
-            {contracts.map((contract) => (
-              <option key={contract.id} value={contract.name}>
-                {contract.name}
-              </option>
-            ))}
-          </select> */}
 
           <select className="filter" name="stack" defaultValue="">
             <option value="" hidden>

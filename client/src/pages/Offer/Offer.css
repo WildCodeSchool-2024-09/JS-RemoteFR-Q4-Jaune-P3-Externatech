@@ -7,8 +7,8 @@
 }
 
 .trait-gradient {
-  width: 100%; /* Largeur du trait */
-  height: 8px; /* Épaisseur du trait */
+  width: 100%;
+  height: 8px;
   background: linear-gradient(to right, var(--primary), var(--secundary));
 }
 
