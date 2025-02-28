@@ -32,35 +32,19 @@ export default function NavBar() {
         </button>
         {isOpen && (
           <ul className="menuDroper">
-            <Link to="#">
-              <b>Les entreprises</b>
-            </Link>
-            <Link to="#">
-              <b>Les offres</b>
-            </Link>
-            <Link to="#">
-              <b>Espace entreprise</b>
-            </Link>
-            <Link to="#">
-              <b>Se connecter</b>
-            </Link>
+            <Link to="#">Les entreprises</Link>
+            <Link to="#">Les offres</Link>
+            <Link to="#">Espace entreprise</Link>
+            <Link to="#">Se connecter</Link>
           </ul>
         )}
       </div>
 
       <ul className="menuDesktop">
-        <Link to="#">
-          <b>Les entreprises</b>
-        </Link>
-        <Link to="#">
-          <b>Les offres</b>
-        </Link>
-        <Link to="#">
-          <b>Espace entreprise</b>
-        </Link>
-        <Link to="#">
-          <b>Se connecter</b>
-        </Link>
+        <Link to="#">Les entreprises</Link>
+        <Link to="#">Les offres</Link>
+        <Link to="#">Espace entreprise</Link>
+        <Link to="#">Se connecter</Link>
       </ul>
     </nav>
   );

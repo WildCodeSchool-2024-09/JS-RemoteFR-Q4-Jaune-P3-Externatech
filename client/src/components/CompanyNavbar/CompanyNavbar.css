@@ -53,6 +53,7 @@ nav {
   color: var(--primary);
   gap: 1rem;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .menu_Desktop {
@@ -83,10 +84,11 @@ nav {
     cursor: pointer;
   }
 
-  .menu_Desktop > a > b {
+  .menu_Desktop > a {
     text-decoration: none;
     font-size: 1rem;
     cursor: pointer;
+    font-weight: bold;
   }
 }
 
