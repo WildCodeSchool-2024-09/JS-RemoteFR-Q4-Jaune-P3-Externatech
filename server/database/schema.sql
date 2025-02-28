@@ -7,9 +7,9 @@ CREATE TABLE company (
 );
 
 
-CREATE TABLE language (
+CREATE TABLE stack (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  name VARCHAR(100) NOT NULL
+  name VARCHAR(100) NOT NULL UNIQUE
 );
 
 
@@ -35,12 +35,21 @@ CREATE TABLE offer (
   FOREIGN KEY (contract_id) REFERENCES contract(id)
 );
 
+CREATE TABLE offer_stack (
+  offer_id INT UNSIGNED NOT NULL,
+  stack_id INT UNSIGNED NOT NULL,
+  PRIMARY KEY (offer_id, stack_id),
+  FOREIGN KEY (offer_id) REFERENCES offer(id) ON DELETE CASCADE,
+  FOREIGN KEY (stack_id) REFERENCES stack(id) ON DELETE CASCADE
+);
+
 INSERT INTO company (name, description, email, password) VALUES
 ('Tech Innov', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.', 'contact@techinnov.com', 'TechInnov123'),
 ('Green Future', 'Entreprise dédiée aux solutions écologiques et durables.', 'contact@greenfuture.com', 'GreenFuture123'),
 ('DataCorp', 'Société experte en analyse de données et business intelligence.', 'contact@datacorp.com', 'DataCorp123'),
 ('DevStudio', 'Agence de développement web et mobile sur mesure.', 'contact@devstudio.com', 'DevStudio123');
 
+INSERT INTO stack (name) VALUES ('JavaScript'), ('Python'), ('Java'), ('C#'), ('Ruby');
 
 
 INSERT INTO contract (name) VALUES
@@ -60,6 +69,8 @@ INSERT INTO offer (title, city, logo, background, description, profile, salary, 
  'Télétravail hybride', 
  1, 
  1),
+
+
 
 ('Ingénieur Data', 
  'Lyon', 
@@ -93,3 +104,5 @@ INSERT INTO offer (title, city, logo, background, description, profile, salary, 
  'Présentiel', 
  2, 
  4);
+
+INSERT INTO offer_stack VALUES (1,1),(1,2),(2,1),(2,2),(2,3),(3,2),(3,4),(3,5),(4,5),(4,1),(4,4);
