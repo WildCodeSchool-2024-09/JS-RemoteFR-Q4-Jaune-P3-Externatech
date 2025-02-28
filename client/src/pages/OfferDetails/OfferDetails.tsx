@@ -6,13 +6,19 @@ import { Link } from "react-router-dom";
 interface OfferTypes {
   id: number;
   title: string;
+  city: string;
+  logo: string;
+  background: string;
   offer_description: string;
   salary: number;
   profile: string;
   company_id: number;
   contract_id: number;
+  contract_name: string;
+  remote: string;
   name: string;
   company_description: string;
+  stack_names: string;
 }
 
 export default function OfferDetails() {
@@ -31,12 +37,19 @@ export default function OfferDetails() {
   return (
     <main className="all_detail_page">
       <article className="presentation">
-        <h1 className="offername">{offer.name}</h1>
+        <div className="titre_logo">
+          <img src={offer.logo} alt="logo" className="logo_company" />
+          <h1 className="offername">{offer.name}</h1>
+        </div>
         <h2 className="offertitle">{offer.title}</h2>
         <h3>Résumé du poste</h3>
-        <p>{offer.offer_description}</p>
+        <div className="resume_content">
+          <p>{offer.contract_name}</p>
+          <p>{offer.city}</p>
+          <p>{offer.remote}</p>
+        </div>
         <h3>Compétences & expertises</h3>
-        <p>en attente de la table de jointure</p>
+        <p className="skills">{offer.stack_names}</p>
         <div className="buttons">
           <Link to="/Apply" className="apply">
             Postuler
@@ -89,7 +102,10 @@ export default function OfferDetails() {
           />
           <h2 className="entreprise_titre">L'entreprise</h2>
         </div>
-        <h1 className="offername">{offer.name}</h1>
+        <div className="titre_logo_2">
+          <img src={offer.logo} alt="logo" className="logo_company" />
+          <h1 className="offername">{offer.name}</h1>
+        </div>
         <p>
           <b>Description de l'entreprise</b>
         </p>
