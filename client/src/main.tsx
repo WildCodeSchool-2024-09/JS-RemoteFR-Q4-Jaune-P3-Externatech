@@ -16,8 +16,10 @@ import OfferDetails from "./pages/OfferDetails/OfferDetails";
 // Import pages
 
 import Apply from "./pages/Apply/Apply";
+
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
+
 import HomePage from "./pages/homepage/HomePage";
 
 //Import API requests

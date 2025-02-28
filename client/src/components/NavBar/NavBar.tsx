@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./navBar.css";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,11 +15,13 @@ export default function NavBar() {
 
   return (
     <nav>
-      <img
-        src="/public/logo-app.png"
-        alt="Logo de l'application Externatech"
-        className="LogoApp"
-      />
+      <Link to="/" className="logo_title">
+        <img
+          src="/public/logo-app.png"
+          alt="Logo de l'application Externatech"
+          className="LogoApp"
+        />
+      </Link>
       <div className="burgerContainer">
         <button
           type="button"
