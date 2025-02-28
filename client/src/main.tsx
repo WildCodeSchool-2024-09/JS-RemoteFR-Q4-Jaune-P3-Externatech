@@ -16,7 +16,7 @@ import OfferDetails from "./pages/OfferDetails/OfferDetails";
 // Import pages
 
 import Apply from "./pages/Apply/Apply";
-import CompanyOffers from "./pages/CompanyOffers/CompanyOffers";
+
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
 
@@ -67,11 +67,6 @@ const router = createBrowserRouter([
       {
         path: "/Apply",
         element: <Apply />,
-      },
-
-      {
-        path: "/companies/CompanyOffers",
-        element: <CompanyOffers />,
       },
     ],
   },
