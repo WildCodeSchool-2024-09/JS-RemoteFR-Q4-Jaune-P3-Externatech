@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Company_NavBar from "./components/Company_NavBar/Company_NavBar";
+import CompanyNavbar from "./components/CompanyNavbar/CompanyNavbar";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/footer/Footer";
 
@@ -14,7 +14,7 @@ function App() {
 
   return (
     <>
-      {isCompanyPage ? <Company_NavBar /> : <NavBar />}
+      {isCompanyPage ? <CompanyNavbar /> : <NavBar />}
       <Outlet />
       <Footer />
     </>

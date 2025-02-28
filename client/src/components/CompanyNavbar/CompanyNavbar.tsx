@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./Company_Navbar.css";
+import "./companyNavbar.css";
 import { Link, useParams } from "react-router-dom";
 
-export default function Company_NavBar() {
+export default function companyNavbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const { id } = useParams();
