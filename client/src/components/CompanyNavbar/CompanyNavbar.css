@@ -14,7 +14,7 @@ nav {
 .logo_title {
   cursor: pointer;
 }
-.LogoApp {
+.Logo_App {
   width: 10rem;
   margin: 0.5rem;
   object-fit: contain;
@@ -27,7 +27,7 @@ nav {
 .burgerButton {
   cursor: pointer;
   border: none;
-  background-color: white;
+  background-color: var(--light);
 }
 
 .close,
@@ -35,27 +35,28 @@ nav {
   font-size: 2rem;
 }
 
-.menuDroper {
+.menu_Droper {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   list-style: none;
   padding: 0.5rem;
   position: fixed;
-  background-color: green;
+  background-color: var(--secundary);
   border-radius: 0 0 0 8px;
   top: 7rem;
   right: 0;
   transition: 1s ease;
 }
 
-.menuDroper > a {
-  color: white;
+.menu_Droper > a {
+  color: var(--primary);
   gap: 1rem;
   cursor: pointer;
+  font-weight: bold;
 }
 
-.menuDesktop {
+.menu_Desktop {
   display: none;
 }
 
@@ -65,32 +66,34 @@ nav {
     display: none;
   }
 
-  .LogoApp {
+  .Logo_App {
     width: 10rem;
     margin: 1rem;
     object-fit: contain;
   }
 
   /* .menuDesktop {
-    display: block;
-  } */
+      display: block;
+    } */
 
   .menu_Desktop {
     display: flex;
     list-style: none;
     gap: 2rem;
-    margin: 1.5rem 1.5rem 0 0;
+    margin: 0.5rem 1.5rem 0 0;
+    cursor: pointer;
   }
 
-  .menu_Desktop > a > b {
+  .menu_Desktop > a {
     text-decoration: none;
     font-size: 1rem;
     cursor: pointer;
+    font-weight: bold;
   }
 }
 
 @media screen and (min-width: 1080px) {
-  .menuDesktop {
+  .menu_Desktop {
     gap: 2rem;
   }
 }

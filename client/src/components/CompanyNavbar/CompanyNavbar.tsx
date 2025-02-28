@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./Company_Navbar.css";
+import "./companyNavbar.css";
 import { Link, useParams } from "react-router-dom";
 
-export default function Company_NavBar() {
+export default function companyNavbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const { id } = useParams();
@@ -21,7 +21,7 @@ export default function Company_NavBar() {
         <img
           src="/public/logo-app.png"
           alt="Logo de l'application Externatech"
-          className="LogoApp"
+          className="Logo_App"
         />
       </Link>
       <div className="burgerContainer">
@@ -33,36 +33,22 @@ export default function Company_NavBar() {
           {isOpen ? burgerClose() : burgerOpen()}
         </button>
         {isOpen && (
-          <ul className="menuDroper">
+          <ul className="menu_Droper">
             <Link to={`/companies/dashboard/${id}`} className="dashboard_link">
-              <b>Dashboard</b>
+              Dashboard
             </Link>
-            <Link to="#">
-              <b>Mes offres</b>
-            </Link>
-            <Link to="#">
-              <b>Mes candidats</b>
-            </Link>
-            <Link to="#">
-              <b>Se connecter</b>
-            </Link>
+            <Link to="#">Mes offres</Link>
+            <Link to="#">Mes candidats</Link>
+            <Link to="#">Se connecter</Link>
           </ul>
         )}
       </div>
 
       <ul className="menu_Desktop">
-        <Link to={`/companies/dashboard/${id}`}>
-          <b>Dashboard</b>
-        </Link>
-        <Link to="#">
-          <b>Mes offres</b>
-        </Link>
-        <Link to="#">
-          <b>Mes candidats</b>
-        </Link>
-        <Link to="#">
-          <b>Se connecter</b>
-        </Link>
+        <Link to={`/companies/dashboard/${id}`}>Dashboard</Link>
+        <Link to="#">Mes offres</Link>
+        <Link to="#">Mes candidats</Link>
+        <Link to="#">Se connecter</Link>
       </ul>
     </nav>
   );
