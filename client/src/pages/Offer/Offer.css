@@ -1,0 +1,19 @@
+.full-width {
+  width: 100vw;
+}
+
+.offer {
+  margin: 2rem;
+}
+
+.trait-gradient {
+  width: 100%; /* Largeur du trait */
+  height: 8px; /* Épaisseur du trait */
+  background: linear-gradient(to right, var(--primary), var(--secundary));
+}
+
+.offerdetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

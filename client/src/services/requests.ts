@@ -22,4 +22,24 @@ const getCompanies = () => {
     .catch((error) => console.error(error));
 };
 
-export { getOfferDetails, getCompanies, getCompany };
+const getContracts = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/contracts`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
+const getLanguages = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/languages`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
+export {
+  getContracts,
+  getOfferDetails,
+  getCompanies,
+  getCompany,
+  getLanguages,
+};

@@ -10,3 +10,13 @@ interface CompanyData {
   website: string;
   siret: string;
 }
+
+interface LanguageType {
+  name: string;
+  id: number;
+}
+
+interface ContractType {
+  id: number;
+  name: string;
+}

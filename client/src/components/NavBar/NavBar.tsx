@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./navBar.css";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +32,9 @@ export default function NavBar() {
           <div className="menuDroper">
             <ul>
               <li>Les entreprises</li>
-              <li>Les offres</li>
+              <li>
+                <Link to="/offer">Les offres</Link>
+              </li>
               <li>Espace entreprise</li>
               <li>Se connecter</li>
             </ul>
@@ -41,7 +44,9 @@ export default function NavBar() {
       <div className="menuDesktop">
         <ul>
           <li>Les entreprises</li>
-          <li>Les offres</li>
+          <li>
+            <Link to="/offer">Les offres</Link>
+          </li>
           <li>Espace entreprise</li>
           <li>Se connecter</li>
         </ul>

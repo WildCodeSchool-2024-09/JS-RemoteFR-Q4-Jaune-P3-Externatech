@@ -28,4 +28,13 @@ router.post("/api/offers", formOffer.validate, offerActions.add);
 router.put("/api/offers/:id", offerActions.edit);
 router.delete("/api/offers/:id", offerActions.destroy);
 
+/* ************************************************************************* */
+
+// Define language-related routes
+import languageAction from "./modules/language/languageAction";
+
+router.get("/api/languages", languageAction.browse);
+
+/* ************************************************************************* */
+
 export default router;

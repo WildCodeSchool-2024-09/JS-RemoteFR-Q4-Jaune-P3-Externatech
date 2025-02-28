@@ -83,4 +83,10 @@ INSERT INTO offer (title, description, date, salary, requirements, company_id, c
  2, 
  4);
 
-
+INSERT INTO language (name) VALUES
+('JavaScript'),
+('Python'),
+('C++'),
+('Java'),
+('React'),
+('Angular');

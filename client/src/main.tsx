@@ -14,12 +14,17 @@ import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
 
 // Import pages
-
+import Offer from "./pages/Offer/Offer";
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
 import HomePage from "./pages/homepage/HomePage";
 
 //Import API requests
-import { getCompany, getOfferDetails } from "./services/requests";
+import {
+  getCompany,
+  getContracts,
+  getLanguages,
+  getOfferDetails,
+} from "./services/requests";
 
 /* ************************************************************************* */
 
@@ -32,6 +37,15 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+
+      {
+        path: "/Offer",
+        element: <Offer />,
+        loader: async () => ({
+          languages: await getLanguages(),
+          contracts: await getContracts(),
+        }),
       },
 
       {

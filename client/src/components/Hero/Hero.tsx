@@ -1,0 +1,76 @@
+import "./Hero.css";
+import { useLoaderData } from "react-router-dom";
+
+export default function Hero() {
+  // const data= useLoaderData() as language[];
+  const { languages } = useLoaderData() as {
+    languages: LanguageType[];
+    contracts: ContractType[];
+  };
+
+  return (
+    <>
+      <div className="hero-container">
+        <h2 className="hero-title">
+          Trouvez le <span>PERFECT</span> job
+        </h2>
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Recherchez un emploi..."
+            className="job-search"
+          />
+          <input
+            type="text"
+            placeholder="Localisation"
+            className="job-search"
+          />
+
+          <select className="filter" name="job-type" defaultValue="">
+            <option value="" selected hidden>
+              Type de job (CDI, Stage, Alternance)
+            </option>
+            <option value="option1">CDI</option>
+            <option value="option2">CDD</option>
+            <option value="option3">Stage</option>
+            <option value="option4">Alternance</option>
+          </select>
+
+          {/* <select className="filter" name="contract" defaultValue="">
+            <option value="" hidden>
+              Type de contrat
+            </option>
+            {contracts.map((contract) => (
+              <option key={contract.id} value={contract.name}>
+                {contract.name}
+              </option>
+            ))}
+          </select> */}
+
+          <select className="filter" name="stack" defaultValue="">
+            <option value="" hidden>
+              Environnement technique
+            </option>
+            {languages.map((language) => (
+              <option key={language.id} value={language.name}>
+                {language.name}
+              </option>
+            ))}
+          </select>
+
+          <select className="filter" name="remote">
+            <option value="" selected hidden>
+              Télétravail
+            </option>
+            <option value="option1">Inconnu</option>
+            <option value="option2">Télétravail complet</option>
+            <option value="option3">Télétravail occasionnel</option>
+          </select>
+          <button type="button" className="search-button">
+            Rechercher
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}
