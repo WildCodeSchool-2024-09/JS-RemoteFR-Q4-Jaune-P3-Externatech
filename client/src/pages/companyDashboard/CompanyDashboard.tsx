@@ -2,27 +2,51 @@ import axios from "axios";
 import { Link, useLoaderData } from "react-router-dom";
 import NewOfferForm from "./NewOfferForm";
 import "./company-dashboard.css";
-function CompanyDasboard() {
-  const companyData = useLoaderData() as CompanyData;
-  const newOffer = {
-    title: "",
-    description: "",
-    date: "",
-    salary: 0,
-    requirements: "",
-    company_id: 0,
-    contract_id: 0,
+import OfferCard from "../../components/OfferCard";
+
+function CompanyDashboard() {
+  const { company, offers } = useLoaderData() as {
+    company: CompanyData;
+    offers: OfferData[];
   };
-  console.info(companyData);
+
+  const activeOffers =
+    offers.length <= 1
+      ? `${offers.length} offre active`
+      : `${offers.length} offres actives`;
+
+  const newOffer = {
+    id: 0,
+    title: "",
+    city: "",
+    company_name: "",
+    logo: "",
+    background: "",
+    description: "",
+    salary: 0,
+    profile: "",
+    remote: "",
+    company_id: company.id,
+    contract_id: 0,
+    contract_name: "",
+  };
+
+  const handleOfferSubmit = (offerData: typeof newOffer) => {
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/api/offers`, offerData)
+      .catch((error) => {
+        console.error("Erreur lors de l'ajout de l'offre :", error);
+      });
+  };
   return (
     <div className="company-dashboard">
-      <h1>Bienvenue {companyData.name}</h1>
+      <h1>Bienvenue {company.name}</h1>
       <section className="general-view">
         <div className="top">
           <div className="box">
             <h3>Mes offres</h3>
             <ul>
-              <li>7 offres actives</li>
+              <li>{activeOffers}</li>
               <li>12 offres archivées</li>
             </ul>
           </div>
@@ -43,7 +67,11 @@ function CompanyDasboard() {
       </section>
       <section className="display">
         <h2>Mes OFFRES</h2>
-        <p>card offres</p>
+        <div className="card-container">
+          {offers.map((offer) => (
+            <OfferCard key={offer.id} offer={offer} />
+          ))}
+        </div>
         <div className="actions">
           <Link className="colored-box" to="/">
             AFFICHER TOUT
@@ -59,27 +87,18 @@ function CompanyDasboard() {
           AFFICHER TOUT
         </Link>
         <h2>Mes INFORMATIONS</h2>
-        <p>{companyData.description}</p>
+        <p>{company.description}</p>
         <Link className="light-box" to="/">
           MODIFIER
         </Link>
 
         <h2>Creer une offre</h2>
-        <NewOfferForm
-          defaultValue={newOffer}
-          onSubmit={(offerData) => {
-            axios
-              .post(`${import.meta.env.VITE_API_URL}/api/offers`, offerData)
-              .catch((error) => {
-                console.error("Erreur lors de l'ajout de l'offre :", error);
-              });
-          }}
-        >
-          Ajouter
+        <NewOfferForm value={newOffer} onSubmit={handleOfferSubmit}>
+          Ajouter une nouvelle offre
         </NewOfferForm>
       </section>
     </div>
   );
 }
 
-export default CompanyDasboard;
+export default CompanyDashboard;

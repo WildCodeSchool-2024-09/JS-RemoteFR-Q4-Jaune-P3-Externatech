@@ -1,95 +1,101 @@
-import type { ReactNode } from "react";
+import { useState } from "react";
+function NewOfferForm({ children, value, onSubmit }: OfferFormProps) {
+  const [formData, setFormData] = useState(value);
 
-type OfferData = {
-  title: string;
-  description: string;
-  date: string;
-  salary: number;
-  requirements: string;
-  company_id: number;
-  contract_id: number;
-};
-
-interface OfferFormProps {
-  children: ReactNode;
-  defaultValue: OfferData;
-  onSubmit: (offer: OfferData) => void;
-}
-
-function NewOfferForm({ children, defaultValue, onSubmit }: OfferFormProps) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
   return (
     <form
       className="form-offer"
       onSubmit={(event) => {
         event.preventDefault();
-
-        const offerData = new FormData(event.currentTarget);
-
-        const title = offerData.get("title") as string;
-        const description = offerData.get("description") as string;
-        const date = offerData.get("date") as string;
-        const salary = Number(offerData.get("salary")) as number;
-        const requirements = offerData.get("requirements") as string;
-        const company_id = Number(offerData.get("company_id")) as number;
-        const contract_id = Number(offerData.get("contract_id")) as number;
-        onSubmit({
-          title,
-          description,
-          date,
-          salary,
-          requirements,
-          company_id,
-          contract_id,
-        });
+        onSubmit(formData);
       }}
     >
       <label>
         Titre:
-        <input type="text" name="title" defaultValue={defaultValue.title} />
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+        />
       </label>
       <label>
-        description:
+        Ville:
+        <input
+          type="text"
+          name="city"
+          value={formData.city}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        profile recherché:
+        <input
+          type="text"
+          name="profile"
+          value={formData.profile}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Description:
         <input
           type="text"
           name="description"
-          defaultValue={defaultValue.description}
+          value={formData.description}
+          onChange={handleChange}
         />
       </label>
       <label>
-        date :
-        <input
-          type="date"
-          name="date"
-          defaultValue={defaultValue.date}
-          required
-        />
-      </label>
-      <label>
-        salaire:
-        <input type="text" name="salary" defaultValue={defaultValue.salary} />
-      </label>
-      <label>
-        Exigences du poste:
+        Remote:
         <input
           type="text"
-          name="requirements"
-          defaultValue={defaultValue.requirements}
+          name="remote"
+          value={formData.remote}
+          onChange={handleChange}
         />
       </label>
       <label>
-        l'id de l'entreprise (sera récupéré plus tard)
+        Salaire:
         <input
           type="text"
-          name="company_id"
-          defaultValue={defaultValue.company_id}
+          name="salary"
+          value={formData.salary}
+          onChange={handleChange}
         />
       </label>
       <label>
-        l'id du contrat (sera récupéré plus tard)
+        ID du contrat (sera récupéré plus tard):
         <input
           type="text"
           name="contract_id"
-          defaultValue={defaultValue.contract_id}
+          value={formData.contract_id}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Logo:
+        <input
+          type="text"
+          name="logo"
+          value={formData.logo}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        Background:
+        <input
+          type="text"
+          name="background"
+          value={formData.background}
+          onChange={handleChange}
         />
       </label>
       <button type="submit">{children}</button>

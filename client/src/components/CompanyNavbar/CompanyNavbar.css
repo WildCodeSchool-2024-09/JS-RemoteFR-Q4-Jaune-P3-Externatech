@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 7rem;
+  margin-left: 1rem;
+}
+.logo_title {
+  cursor: pointer;
+}
+.Logo_App {
+  width: 10rem;
+  margin: 0.5rem;
+  object-fit: contain;
+}
+
+.burgerContainer {
+  z-index: 10;
+}
+
+.burgerButton {
+  cursor: pointer;
+  border: none;
+  background-color: var(--light);
+}
+
+.close,
+.open {
+  font-size: 2rem;
+}
+
+.menu_Droper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  list-style: none;
+  padding: 0.5rem;
+  position: fixed;
+  background-color: var(--secundary);
+  border-radius: 0 0 0 8px;
+  top: 7rem;
+  right: 0;
+  transition: 1s ease;
+}
+
+.menu_Droper > a {
+  color: var(--primary);
+  gap: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.menu_Desktop {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .burgerContainer,
+  .burgerButton {
+    display: none;
+  }
+
+  .Logo_App {
+    width: 10rem;
+    margin: 1rem;
+    object-fit: contain;
+  }
+
+  /* .menuDesktop {
+      display: block;
+    } */
+
+  .menu_Desktop {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0.5rem 1.5rem 0 0;
+    cursor: pointer;
+  }
+
+  .menu_Desktop > a {
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .menu_Desktop {
+    gap: 2rem;
+  }
+}

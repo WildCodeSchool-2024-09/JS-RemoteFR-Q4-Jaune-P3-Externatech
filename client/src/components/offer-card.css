@@ -1,0 +1,98 @@
+.offer-card {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: 60vh;
+  margin: 1rem auto;
+  border: solid 1px var(--tertiary);
+}
+
+.offer-card > img {
+  object-fit: cover;
+  height: 35%;
+}
+
+.offer-card > div:first-of-type {
+  display: flex;
+  flex: 1;
+}
+
+/*************************************************/
+.header-card {
+  display: flex;
+  margin-top: -3rem;
+  justify-content: space-between;
+  align-items: end;
+  margin-left: 1rem;
+}
+
+.header-card > img {
+  width: 6rem;
+  background-color: var(--light);
+  border: solid 1px var(--tertiary);
+}
+
+.header-card > div {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem;
+}
+.header-card div img {
+  width: 2rem;
+}
+.header-card > div > p {
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/*************************************************/
+
+.company-info {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-left: 1rem;
+  position: relative;
+  flex: 1;
+}
+
+.company-info h2 {
+  font-size: 1rem;
+  padding: 1rem 0 0 0;
+  font-weight: 900;
+  margin: 0;
+  font-family: "Verdana", sans-serif;
+}
+
+.company-info h2::after {
+  display: none;
+}
+
+.company-info li {
+  padding-top: 0.5rem;
+}
+
+.company-info li::before {
+  content: none;
+}
+
+/*************************************************/
+.offer-card .actions-buttons {
+  display: flex;
+  margin: 0.5rem;
+  gap: 1rem;
+  position: relative;
+}
+
+.offer-card .actions-buttons a {
+  width: 50%;
+}
+
+/******************************************************/
+@media screen and (min-width: 768px) {
+  .offer-card {
+    max-width: 40vw;
+    margin: 1rem;
+  }
+}

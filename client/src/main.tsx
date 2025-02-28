@@ -14,8 +14,15 @@ import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
 
 // Import pages
+
 import Offer from "./pages/Offer/Offer";
+
+import Apply from "./pages/Apply/Apply";
+
+import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
+
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
+
 import HomePage from "./pages/homepage/HomePage";
 
 //Import API requests
@@ -24,6 +31,7 @@ import {
   getContracts,
   getLanguages,
   getOfferDetails,
+  getOffersByCompany,
 } from "./services/requests";
 
 /* ************************************************************************* */
@@ -57,10 +65,10 @@ const router = createBrowserRouter([
       {
         path: "/companies/dashboard/:id",
         element: <CompanyDasboard />,
-        loader: async ({ params }) => {
-          const company = await getCompany(String(params.id));
-          return company || null;
-        },
+        loader: async ({ params }) => ({
+          company: await getCompany(String(params.id)),
+          offers: await getOffersByCompany(String(params.id)),
+        }),
       },
       {
         path: "/companies/:id",
@@ -68,7 +76,15 @@ const router = createBrowserRouter([
         loader: async ({ params }) => {
           const company = await getCompany(String(params.id));
           return company || null;
-        }, // load
+        },
+      },
+      {
+        path: "/RegisteredOffers",
+        element: <RegisteredOffers />,
+      },
+      {
+        path: "/Apply",
+        element: <Apply />,
       },
     ],
   },

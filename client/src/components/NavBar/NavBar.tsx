@@ -15,11 +15,13 @@ export default function NavBar() {
 
   return (
     <nav>
-      <img
-        src="./public/logo-app.png"
-        alt="Logo de l'application Externatech"
-        className="LogoApp"
-      />
+      <Link to="/" className="logo_title">
+        <img
+          src="/public/logo-app.png"
+          alt="Logo de l'application Externatech"
+          className="LogoApp"
+        />
+      </Link>
       <div className="burgerContainer">
         <button
           type="button"
@@ -29,28 +31,21 @@ export default function NavBar() {
           {isOpen ? burgerClose() : burgerOpen()}
         </button>
         {isOpen && (
-          <div className="menuDroper">
-            <ul>
-              <li>Les entreprises</li>
-              <li>
-                <Link to="/offer">Les offres</Link>
-              </li>
-              <li>Espace entreprise</li>
-              <li>Se connecter</li>
-            </ul>
-          </div>
+          <ul className="menuDroper">
+            <Link to="#">Les entreprises</Link>
+            <Link to="/offer">Les offres</Link>
+            <Link to="#">Espace entreprise</Link>
+            <Link to="#">Se connecter</Link>
+          </ul>
         )}
       </div>
-      <div className="menuDesktop">
-        <ul>
-          <li>Les entreprises</li>
-          <li>
-            <Link to="/offer">Les offres</Link>
-          </li>
-          <li>Espace entreprise</li>
-          <li>Se connecter</li>
-        </ul>
-      </div>
+
+      <ul className="menuDesktop">
+        <Link to="#">Les entreprises</Link>
+        <Link to="/offer">Les offres</Link>
+        <Link to="#">Espace entreprise</Link>
+        <Link to="#">Se connecter</Link>
+      </ul>
     </nav>
   );
 }

@@ -7,10 +7,16 @@ const getOfferDetails = (id: string | undefined) => {
     .catch((error) => console.error(error));
 };
 
+const getOffersByCompany = (id: string) => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/offers/companies/${id}`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
 const getCompany = (id: string | undefined) => {
   return axios
     .get(`${import.meta.env.VITE_API_URL}/api/companies/${id}`)
-
     .then((response) => response.data)
     .catch((error) => console.error(error));
 };
@@ -39,6 +45,7 @@ const getLanguages = () => {
 export {
   getContracts,
   getOfferDetails,
+  getOffersByCompany,
   getCompanies,
   getCompany,
   getLanguages,
