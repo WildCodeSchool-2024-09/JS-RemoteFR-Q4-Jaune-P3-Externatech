@@ -37,20 +37,20 @@ export default function OfferDetails() {
   return (
     <main className="all_detail_page">
       <article className="presentation">
-        <div className="titre_logo">
+        <section className="titre_logo">
           <img src={offer.logo} alt="logo" className="logo_company" />
           <h1 className="offername">{offer.name}</h1>
-        </div>
+        </section>
         <h2 className="offertitle">{offer.title}</h2>
         <h3>Résumé du poste</h3>
-        <div className="resume_content">
+        <section className="resume_content">
           <p>{offer.contract_name}</p>
           <p>{offer.city}</p>
           <p>{offer.remote}</p>
-        </div>
+        </section>
         <h3>Compétences & expertises</h3>
         <p className="skills">{offer.stack_names}</p>
-        <div className="buttons">
+        <section className="buttons">
           <Link to="/Apply" className="apply">
             Postuler
           </Link>
@@ -62,12 +62,12 @@ export default function OfferDetails() {
             />
             Enregistrer
           </button>
-        </div>
+        </section>
       </article>
 
       {showModal && (
-        <div className="modal">
-          <div className="modal-content">
+        <section className="modal">
+          <section className="modal-content">
             <h2>Succès</h2>
             <p className="registered_p">Cette offre a été enregistrée !</p>
             <Link to="/RegisteredOffers" className="registered_offers">
@@ -80,32 +80,32 @@ export default function OfferDetails() {
             >
               Fermer
             </button>
-          </div>
-        </div>
+          </section>
+        </section>
       )}
       <article className="le_poste">
-        <div className="titre_le_poste">
+        <section className="titre_le_poste">
           <img src="/Logos/Icon_inbox.png" alt="box" className="box_png" />
           <h2 className="leposte">Le poste</h2>
-        </div>
+        </section>
         <p>
           <b>Descriptif du poste</b>
         </p>
         <p>{offer.offer_description}</p>
       </article>
       <article className="entreprise">
-        <div className="titre_company">
+        <section className="titre_company">
           <img
             src="/Logos/Icon_company.png"
             alt="company"
             className="company"
           />
           <h2 className="entreprise_titre">L'entreprise</h2>
-        </div>
-        <div className="titre_logo_2">
+        </section>
+        <section className="titre_logo_2">
           <img src={offer.logo} alt="logo" className="logo_company" />
           <h1 className="offername">{offer.name}</h1>
-        </div>
+        </section>
         <p>
           <b>Description de l'entreprise</b>
         </p>
@@ -115,10 +115,10 @@ export default function OfferDetails() {
         </Link>
       </article>
       <article className="profil_recherché">
-        <div className="profil_titre">
+        <section className="profil_titre">
           <img src="/Logos/Icon_profil.png" alt="people" className="people" />
           <h2 className="profil_recherche">Profil recherché</h2>
-        </div>
+        </section>
         <p>{offer.profile}</p>
       </article>
     </main>
