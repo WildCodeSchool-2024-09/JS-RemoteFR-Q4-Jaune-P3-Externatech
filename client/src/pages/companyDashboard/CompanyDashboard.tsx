@@ -66,7 +66,7 @@ function CompanyDashboard() {
         <h2>Mes OFFRES</h2>
         <div className="card-container">
           {offers.map((offer) => (
-            <OfferCard key={Number(offer.id)} offer={offer} />
+            <OfferCard key={offer.id} offer={offer} />
           ))}
         </div>
         <div className="actions">
