@@ -23,14 +23,13 @@
   background-color: var(--light);
 }
 
-h1,
-h2,
-h3,
-p {
-  margin: 2rem 1rem 2rem 1rem;
+.all_detail_page h1,
+.all_detail_page h2,
+.all_detail_page h3,
+.all_detail_page p {
+  margin: 2rem 1rem;
 }
-
-h3 {
+.all_detail_page h3 {
   color: var(--fourth);
 }
 
@@ -43,7 +42,7 @@ h3 {
   text-align: center;
 }
 
-article {
+.all_detail_page article {
   border: 1px solid;
   border-color: var(--tertiary);
 }

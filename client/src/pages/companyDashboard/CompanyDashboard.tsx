@@ -1,58 +1,59 @@
 import axios from "axios";
 import { Link, useLoaderData } from "react-router-dom";
-import NewOfferForm from "./NewOfferForm";
+import OfferForm from "./OfferForm";
 import "./company-dashboard.css";
 import OfferCard from "../../components/OfferCard";
 
 function CompanyDashboard() {
   const { company, offers } = useLoaderData() as {
     company: CompanyData;
-    offers: OfferData[];
+    offers: Offers[];
   };
-
+  console.info(offers);
   const activeOffers =
     offers.length <= 1
       ? `${offers.length} offre active`
       : `${offers.length} offres actives`;
 
   const newOffer = {
-    id: 0,
     title: "",
     city: "",
-    company_name: "",
     logo: "",
-    background: "",
+    background: "/public/background-default.jpg",
     description: "",
     salary: 0,
     profile: "",
     remote: "",
     company_id: company.id,
     contract_id: 0,
-    contract_name: "",
   };
 
   const handleOfferSubmit = (offerData: typeof newOffer) => {
+    console.info("Nouvelle offre :", offerData);
     axios
       .post(`${import.meta.env.VITE_API_URL}/api/offers`, offerData)
       .catch((error) => {
         console.error("Erreur lors de l'ajout de l'offre :", error);
       });
   };
+
+  console.info(offers);
+
   return (
-    <div className="company-dashboard">
+    <main className="company-dashboard">
       <h1>Bienvenue {company.name}</h1>
       <section className="general-view">
         <div className="top">
           <div className="box">
             <h3>Mes offres</h3>
-            <ul>
+            <ul className="square-list">
               <li>{activeOffers}</li>
               <li>12 offres archivées</li>
             </ul>
           </div>
           <div className="box">
             <h3>Mes candidats</h3>
-            <ul>
+            <ul className="square-list">
               <li>11 candidatures à examiner</li>
               <li>6 candidatures acceptées</li>
             </ul>
@@ -60,7 +61,7 @@ function CompanyDashboard() {
         </div>
         <div className="box">
           <h3>Mes infos</h3>
-          <ul>
+          <ul className="square-list">
             <li>dernière actualisation le 12/02/2025</li>
           </ul>
         </div>
@@ -69,7 +70,7 @@ function CompanyDashboard() {
         <h2>Mes OFFRES</h2>
         <div className="card-container">
           {offers.map((offer) => (
-            <OfferCard key={offer.id} offer={offer} />
+            <OfferCard key={Number(offer.id)} offer={offer} />
           ))}
         </div>
         <div className="actions">
@@ -91,13 +92,12 @@ function CompanyDashboard() {
         <Link className="light-box" to="/">
           MODIFIER
         </Link>
-
-        <h2>Creer une offre</h2>
-        <NewOfferForm value={newOffer} onSubmit={handleOfferSubmit}>
-          Ajouter une nouvelle offre
-        </NewOfferForm>
       </section>
-    </div>
+      <h2>Créer une OFFRE</h2>
+      <OfferForm value={newOffer} onSubmit={handleOfferSubmit}>
+        Ajouter une offre
+      </OfferForm>
+    </main>
   );
 }
 

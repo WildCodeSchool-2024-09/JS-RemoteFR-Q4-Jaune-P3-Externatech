@@ -51,16 +51,17 @@ button {
   font-weight: 500;
 }
 
-ul {
+.square-list ul {
   list-style: none;
   list-style-position: inside;
 }
-li {
+.square-list li {
   display: flex;
   gap: 0.5rem;
   align-items: center;
 }
-li::before {
+
+.square-list li::before {
   content: "■";
   color: var(--secundary);
   font-size: 1.2em;
