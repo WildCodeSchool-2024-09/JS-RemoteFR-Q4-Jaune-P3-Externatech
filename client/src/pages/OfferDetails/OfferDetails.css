@@ -23,6 +23,13 @@
   background-color: var(--light);
 }
 
+.all_detail_page h1,
+.all_detail_page h2,
+.all_detail_page h3,
+.all_detail_page p {
+  margin: 2rem 1rem 1.5rem 1rem;
+}
+
 .title_logo {
   display: flex;
   flex-direction: row;
@@ -62,14 +69,6 @@
 .skills {
   margin: 2.5rem 1rem 2.5rem 1rem;
 }
-
-.all_detail_page > h1,
-h2,
-h3,
-p {
-  margin: 2rem 1rem 1.5rem 1rem;
-}
-
 .all_detail_page h3 {
   color: var(--fourth);
 }
@@ -84,7 +83,7 @@ p {
   margin-left: 2rem;
 }
 
-article {
+.all_detail_page article {
   border: 1px solid;
   border-color: var(--tertiary);
 }
