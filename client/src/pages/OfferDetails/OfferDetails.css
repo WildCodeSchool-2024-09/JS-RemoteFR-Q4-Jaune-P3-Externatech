@@ -135,7 +135,7 @@ article {
 
 .title_the_offer,
 .title_company,
-.profil_titre {
+.profil_title {
   display: flex;
   justify-content: flex-start;
   align-items: center;
