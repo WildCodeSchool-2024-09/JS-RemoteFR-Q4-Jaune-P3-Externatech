@@ -46,7 +46,7 @@ const offerSchema = Joi.object({
     "any.required": "L'ID de l'entreprise est obligatoire.",
   }),
   contract_id: Joi.number().integer().positive().required().messages({
-    "number.empty": "Les exigences sont obligatoires.",
+    "string.empty": "Les exigences sont obligatoires.",
     "any.required": "Les exigences sont obligatoires.",
   }),
 });

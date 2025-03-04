@@ -120,11 +120,7 @@ function OfferForm({ children, value, onSubmit }: OfferFormProps) {
             onChange={handleChange}
           />
         </label>
-        <p>Background par défault : </p>
-        <img
-          src="/background-default.jpg"
-          alt="bureau avec pc portable et lampe"
-        />
+
         <button className="colored-box" type="submit">
           {children}
         </button>

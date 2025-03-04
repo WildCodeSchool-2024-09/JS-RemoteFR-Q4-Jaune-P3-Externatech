@@ -7,7 +7,7 @@ import OfferCard from "../../components/OfferCard";
 function CompanyDashboard() {
   const { company, offers } = useLoaderData() as {
     company: CompanyData;
-    offers: Offers[];
+    offers: OfferData[];
   };
   const activeOffers =
     offers.length <= 1
@@ -18,7 +18,7 @@ function CompanyDashboard() {
     title: "",
     city: "",
     logo: "",
-    background: "/public/background-default.jpg",
+    background: "",
     description: "",
     salary: 0,
     profile: "",

@@ -11,7 +11,7 @@ interface CompanyData {
   siret: string;
 }
 
-interface Offers {
+interface OfferData {
   id: number;
   title: string;
   city: string;
@@ -23,6 +23,8 @@ interface Offers {
   remote: string;
   company_id: number;
   contract_id: number;
+  company_name: string;
+  contract_name: string;
 }
 
 interface OfferDataForm {
@@ -45,5 +47,5 @@ interface OfferDataProps {
 interface OfferFormProps {
   children: ReactNode;
   value: OfferDataForm;
-  onSubmit: (offer: OfferData) => void;
+  onSubmit: (offer: OfferDataForm) => void;
 }
