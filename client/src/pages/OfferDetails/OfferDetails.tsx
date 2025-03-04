@@ -37,7 +37,7 @@ export default function OfferDetails() {
   return (
     <main className="all_detail_page">
       <article className="presentation">
-        <section className="titre_logo">
+        <section className="title_logo">
           <img src={offer.logo} alt="logo" className="logo_company" />
           <h1 className="offername">{offer.name}</h1>
         </section>
@@ -83,26 +83,26 @@ export default function OfferDetails() {
           </section>
         </section>
       )}
-      <article className="le_poste">
-        <section className="titre_le_poste">
+      <article className="the_offer">
+        <section className="title_the_offer">
           <img src="/Logos/Icon_inbox.png" alt="box" className="box_png" />
-          <h2 className="leposte">Le poste</h2>
+          <h2 className="offer_title">Le poste</h2>
         </section>
         <p>
           <b>Descriptif du poste</b>
         </p>
         <p>{offer.offer_description}</p>
       </article>
-      <article className="entreprise">
-        <section className="titre_company">
+      <article className="the_company">
+        <section className="title_company">
           <img
             src="/Logos/Icon_company.png"
             alt="company"
             className="company"
           />
-          <h2 className="entreprise_titre">L'entreprise</h2>
+          <h2 className="the_company_title">L'entreprise</h2>
         </section>
-        <section className="titre_logo_2">
+        <section className="title_logo_2">
           <img src={offer.logo} alt="logo" className="logo_company" />
           <h1 className="offername">{offer.name}</h1>
         </section>
@@ -114,10 +114,10 @@ export default function OfferDetails() {
           Explore l'entreprise
         </Link>
       </article>
-      <article className="profil_recherché">
-        <section className="profil_titre">
+      <article className="profile_search">
+        <section className="searched_profile">
           <img src="/Logos/Icon_profil.png" alt="people" className="people" />
-          <h2 className="profil_recherche">Profil recherché</h2>
+          <h2 className="search_profil_title">Profil recherché</h2>
         </section>
         <p>{offer.profile}</p>
       </article>
