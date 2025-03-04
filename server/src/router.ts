@@ -8,6 +8,9 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
+import authActions from "./middlewares/authActions";
+router.post("/api/companies/login", authActions.login);
+
 // Define company-related routes
 import companyActions from "./modules/company/companyActions";
 
