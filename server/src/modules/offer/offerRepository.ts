@@ -65,7 +65,7 @@ class offerRepository {
 
   async read(id: number) {
     const [rows] = await DatabaseClient.query<Rows>(
-      "SELECT offer.id, offer.title, offer.description AS offer_description, offer.city, offer.logo, offer.background , offer.salary, offer.profile, offer.remote, company.name, company.description AS company_description FROM offer INNER JOIN company ON offer.company_id = company.id where offer.id = ?",
+      "SELECT offer.id, offer.title, offer.description AS offer_description, offer.city, offer.logo, offer.background, offer.salary, offer.profile, offer.remote, contract.name AS contract_name,company.name, company.description AS company_description, company.id as company_id, GROUP_CONCAT(stack.name SEPARATOR ', ') AS stack_names FROM offer INNER JOIN company ON offer.company_id = company.id INNER JOIN offer_stack ON offer.id = offer_stack.offer_id INNER JOIN stack ON offer_stack.stack_id = stack.id INNER JOIN contract ON offer.contract_id = contract.id WHERE offer.id = ? GROUP BY offer.id, company.id",
       [id],
     );
 

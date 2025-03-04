@@ -1,3 +1,4 @@
+
 CREATE TABLE company (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL,
@@ -7,9 +8,9 @@ CREATE TABLE company (
 );
 
 
-CREATE TABLE language (
+CREATE TABLE stack (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  name VARCHAR(100) NOT NULL
+  name VARCHAR(100) NOT NULL UNIQUE
 );
 
 
@@ -35,12 +36,21 @@ CREATE TABLE offer (
   FOREIGN KEY (contract_id) REFERENCES contract(id)
 );
 
+CREATE TABLE offer_stack (
+  offer_id INT UNSIGNED NOT NULL,
+  stack_id INT UNSIGNED NOT NULL,
+  PRIMARY KEY (offer_id, stack_id),
+  FOREIGN KEY (offer_id) REFERENCES offer(id) ON DELETE CASCADE,
+  FOREIGN KEY (stack_id) REFERENCES stack(id) ON DELETE CASCADE
+);
+
 INSERT INTO company (name, description, email, password) VALUES
 ('Tech Innov', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.', 'contact@techinnov.com', 'TechInnov123'),
 ('Green Future', 'Entreprise dédiée aux solutions écologiques et durables.', 'contact@greenfuture.com', 'GreenFuture123'),
 ('DataCorp', 'Société experte en analyse de données et business intelligence.', 'contact@datacorp.com', 'DataCorp123'),
 ('DevStudio', 'Agence de développement web et mobile sur mesure.', 'contact@devstudio.com', 'DevStudio123');
 
+INSERT INTO stack (name) VALUES ('JavaScript'), ('Python'), ('Java'), ('C#'), ('Ruby');
 
 
 INSERT INTO contract (name) VALUES
@@ -61,9 +71,11 @@ INSERT INTO offer (title, city, logo, background, description, profile, salary, 
  1, 
  1),
 
+
+
 ('Ingénieur Data', 
  'Lyon', 
- 'https://upload.wikimedia.org/wikipedia/commons/4/45/Data_icon.svg', 
+ 'https://www.datacorp.fr/media/firm/social_sharing/23/06/24f49b62-d3f7-42bc-b853-c5633ae33b65.png', 
  'https://img.freepik.com/photos-gratuite/espace-travail-ecran-ordinateur-ordinateur-portable_23-2148821901.jpg?t=st=1740582397~exp=1740585997~hmac=7e34d7b17961b37b532ffca3cccae3494295d3fb30927bb0620e862526051984&w=740', 
  'Rejoignez notre équipe Data pour analyser et structurer des ensembles de données complexes.',  
  'Ingénieur spécialisé en Data Science, capable de manipuler des grands ensembles de données et d’optimiser leur exploitation.', 
@@ -74,7 +86,7 @@ INSERT INTO offer (title, city, logo, background, description, profile, salary, 
 
 ('Développeur Web Frontend', 
  'Bordeaux', 
- 'https://upload.wikimedia.org/wikipedia/commons/3/3b/Web_development_logo.png', 
+ 'https://media.licdn.com/dms/image/v2/C4D0BAQGKTv968NBbPg/company-logo_200_200/company-logo_200_200/0/1631312412114?e=2147483647&v=beta&t=AB8IRLN3AzATwC0DfCqDVAOADWeXMFaTc9-pmhaq8Mk', 
  'https://img.freepik.com/photos-gratuite/espace-travail-ecran-ordinateur-ordinateur-portable_23-2148821901.jpg?t=st=1740582397~exp=1740585997~hmac=7e34d7b17961b37b532ffca3cccae3494295d3fb30927bb0620e862526051984&w=740', 
  'Stage de 6 mois en développement frontend avec React et Tailwind.', 
  'Développeur Frontend motivé, avec un fort intérêt pour l’UI/UX et une volonté d’apprendre React et Tailwind.', 
@@ -85,7 +97,7 @@ INSERT INTO offer (title, city, logo, background, description, profile, salary, 
 
 ('Alternant DevOps', 
  'Nantes', 
- 'https://upload.wikimedia.org/wikipedia/commons/0/0e/DevOps-toolchain.svg', 
+ 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVWJrgkClpIpFAti2dHF06O9620rtYabS0NA&s', 
  'https://img.freepik.com/photos-gratuite/espace-travail-ecran-ordinateur-ordinateur-portable_23-2148821901.jpg?t=st=1740582397~exp=1740585997~hmac=7e34d7b17961b37b532ffca3cccae3494295d3fb30927bb0620e862526051984&w=740', 
  'Nous cherchons un alternant pour nous aider à automatiser et optimiser notre infrastructure cloud.',  
  'Étudiant en DevOps passionné par l’automatisation, souhaitant approfondir ses compétences en CI/CD et cloud computing.', 
@@ -93,3 +105,6 @@ INSERT INTO offer (title, city, logo, background, description, profile, salary, 
  'Présentiel', 
  2, 
  4);
+
+INSERT INTO offer_stack VALUES (1,1),(1,2),(2,1),(2,2),(2,3),(3,2),(3,4),(3,5),(4,5),(4,1),(4,4);
+

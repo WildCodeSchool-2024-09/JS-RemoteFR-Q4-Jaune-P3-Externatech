@@ -1,9 +1,11 @@
 import { useState } from "react";
-import "./navBar.css";
-import { Link } from "react-router-dom";
+import "./companyNavbar.css";
+import { Link, useParams } from "react-router-dom";
 
-export default function NavBar() {
+export default function companyNavbar() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { id } = useParams();
 
   const burgerClose = () => {
     return <p className="close">✖</p>;
@@ -19,7 +21,7 @@ export default function NavBar() {
         <img
           src="/public/logo-app.png"
           alt="Logo de l'application Externatech"
-          className="LogoApp"
+          className="Logo_App"
         />
       </Link>
       <div className="burgerContainer">
@@ -31,19 +33,21 @@ export default function NavBar() {
           {isOpen ? burgerClose() : burgerOpen()}
         </button>
         {isOpen && (
-          <ul className="menuDroper">
-            <Link to="#">Les entreprises</Link>
-            <Link to="/offer">Les offres</Link>
-            <Link to="#">Espace entreprise</Link>
+          <ul className="menu_Droper">
+            <Link to={`/companies/dashboard/${id}`} className="dashboard_link">
+              Dashboard
+            </Link>
+            <Link to="#">Mes offres</Link>
+            <Link to="#">Mes candidats</Link>
             <Link to="#">Se connecter</Link>
           </ul>
         )}
       </div>
 
-      <ul className="menuDesktop">
-        <Link to="#">Les entreprises</Link>
-        <Link to="/offer">Les offres</Link>
-        <Link to="#">Espace entreprise</Link>
+      <ul className="menu_Desktop">
+        <Link to={`/companies/dashboard/${id}`}>Dashboard</Link>
+        <Link to="#">Mes offres</Link>
+        <Link to="#">Mes candidats</Link>
         <Link to="#">Se connecter</Link>
       </ul>
     </nav>
