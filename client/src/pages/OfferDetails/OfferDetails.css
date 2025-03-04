@@ -23,13 +23,13 @@
   background-color: var(--light);
 }
 
-.titre_logo {
+.title_logo {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.titre_logo_2 {
+.title_logo_2 {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -133,9 +133,10 @@ article {
   border-radius: 8px;
 }
 
-.titre_le_poste,
-.titre_company,
-.profil_titre {
+.title_the_offer,
+.title_company,
+.profil_title,
+.searched_profile {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -198,7 +199,7 @@ article {
   margin-bottom: 3rem;
 }
 
-.entreprise {
+.the_company {
   display: flex;
   flex-direction: column;
 }
