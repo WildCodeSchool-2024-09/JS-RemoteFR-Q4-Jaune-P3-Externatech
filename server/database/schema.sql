@@ -1,10 +1,19 @@
+-- SQLBook: Code
 
 CREATE TABLE company (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL,
   description TEXT NOT NULL, 
-  email VARCHAR(100) NOT NULL,
-  password VARCHAR(100) NOT NULL
+  email VARCHAR(100) NOT NULL UNIQUE,
+  hashed_password VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE candidate (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  firstname VARCHAR(100) NOT NULL,
+  lastname VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  hashed_password VARCHAR(200) NOT NULL
 );
 
 
@@ -12,6 +21,7 @@ CREATE TABLE stack (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL UNIQUE
 );
+
 
 
 CREATE TABLE contract (
@@ -44,11 +54,20 @@ CREATE TABLE offer_stack (
   FOREIGN KEY (stack_id) REFERENCES stack(id) ON DELETE CASCADE
 );
 
-INSERT INTO company (name, description, email, password) VALUES
+CREATE TABLE candidate_offer (
+  candidate_id INT UNSIGNED NOT NULL,
+  offer_id INT UNSIGNED NOT NULL
+);
+
+INSERT INTO company (name, description, email, hashed_password) VALUES
 ('Tech Innov', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.', 'contact@techinnov.com', 'TechInnov123'),
 ('Green Future', 'Entreprise dédiée aux solutions écologiques et durables.', 'contact@greenfuture.com', 'GreenFuture123'),
 ('DataCorp', 'Société experte en analyse de données et business intelligence.', 'contact@datacorp.com', 'DataCorp123'),
-('DevStudio', 'Agence de développement web et mobile sur mesure.', 'contact@devstudio.com', 'DevStudio123');
+('DevStudio', 'Agence de développement web et mobile sur mesure.', 'contact@devstudio.com', 'DevStudio123'),
+('CyberSecure', 'Entreprise spécialisée en cybersécurité et protection des données.', 'contact@cybersecure.com', 'CyberSecure123'),
+('HealthTech', 'Société innovante dans le domaine de la santé numérique.', 'contact@healthtech.com', 'HealthTech123'),
+('EcoSolutions', 'Solutions technologiques pour un monde plus vert.', 'contact@ecosolutions.com', 'EcoSolutions123'),
+('AI Dynamics', 'Développement d\'intelligences artificielles avancées.', 'contact@aidynamics.com', 'AIDynamics123');
 
 INSERT INTO stack (name) VALUES ('JavaScript'), ('Python'), ('Java'), ('C#'), ('Ruby');
 
@@ -107,4 +126,16 @@ INSERT INTO offer (title, city, logo, background, description, profile, salary, 
  4);
 
 INSERT INTO offer_stack VALUES (1,1),(1,2),(2,1),(2,2),(2,3),(3,2),(3,4),(3,5),(4,5),(4,1),(4,4);
+
+INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
+('Julian', 'Delaplaya', 'julian.delaplaya@email.com', 'hashed_password_1'),
+('Jacky', 'Martin', 'jack.martin@email.com', 'hashed_password_2'),
+('Pierre', 'Durand', 'pierre.durand@email.com', 'hashed_password_3'),
+('Sophie', 'Lefebvre', 'sophie.lefebvre@email.com', 'hashed_password_4'),
+('Thomas', 'Moreau', 'thomas.moreau@email.com', 'hashed_password_5'),
+('Camille', 'Roux', 'camille.roux@email.com', 'hashed_password_6'),
+('Lucas', 'Girard', 'lucas.girard@email.com', 'hashed_password_7'),
+('Emma', 'Bernard', 'emma.bernard@email.com', 'hashed_password_8'),
+('Hugo', 'Petit', 'hugo.petit@email.com', 'hashed_password_9'),
+('Chloé', 'Robert', 'chloe.robert@email.com', 'hashed_password_10');
 
