@@ -114,8 +114,8 @@ export default function OfferDetails() {
           Explore l'entreprise
         </Link>
       </article>
-      <article className="profil_search">
-        <section className="searched_profil">
+      <article className="profile_search">
+        <section className="searched_profile">
           <img src="/Logos/Icon_profil.png" alt="people" className="people" />
           <h2 className="search_profil_title">Profil recherché</h2>
         </section>
