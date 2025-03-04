@@ -9,7 +9,6 @@ function CompanyDashboard() {
     company: CompanyData;
     offers: Offers[];
   };
-  console.info(offers);
   const activeOffers =
     offers.length <= 1
       ? `${offers.length} offre active`
@@ -29,15 +28,12 @@ function CompanyDashboard() {
   };
 
   const handleOfferSubmit = (offerData: typeof newOffer) => {
-    console.info("Nouvelle offre :", offerData);
     axios
       .post(`${import.meta.env.VITE_API_URL}/api/offers`, offerData)
       .catch((error) => {
         console.error("Erreur lors de l'ajout de l'offre :", error);
       });
   };
-
-  console.info(offers);
 
   return (
     <main className="company-dashboard">
