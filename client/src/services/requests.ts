@@ -1,5 +1,12 @@
 import axios from "axios";
 
+const getAllOffers = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/offers`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
 const getOfferDetails = (id: string | undefined) => {
   return axios
     .get(`${import.meta.env.VITE_API_URL}/api/offers/${id}`)
@@ -28,4 +35,10 @@ const getCompanies = () => {
     .catch((error) => console.error(error));
 };
 
-export { getOfferDetails, getOffersByCompany, getCompanies, getCompany };
+export {
+  getOfferDetails,
+  getOffersByCompany,
+  getCompanies,
+  getCompany,
+  getAllOffers,
+};

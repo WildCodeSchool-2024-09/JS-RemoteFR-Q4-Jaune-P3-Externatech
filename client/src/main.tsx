@@ -19,11 +19,12 @@ import Apply from "./pages/Apply/Apply";
 
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
-
 import HomePage from "./pages/homepage/HomePage";
+import Offers from "./pages/offers/Offers";
 
 //Import API requests
 import {
+  getAllOffers,
   getCompany,
   getOfferDetails,
   getOffersByCompany,
@@ -46,6 +47,12 @@ const router = createBrowserRouter([
         path: "/OfferDetails/:id",
         element: <OfferDetails />,
         loader: ({ params }) => getOfferDetails(params.id),
+      },
+
+      {
+        path: "/Offers",
+        element: <Offers />,
+        loader: getAllOffers,
       },
 
       {

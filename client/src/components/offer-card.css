@@ -85,6 +85,13 @@
   position: relative;
 }
 
+.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
 .offer-card .actions-buttons a {
   width: 50%;
 }
