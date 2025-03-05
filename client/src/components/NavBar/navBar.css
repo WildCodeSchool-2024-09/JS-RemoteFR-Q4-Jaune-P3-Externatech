@@ -8,8 +8,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 7rem;
-  margin-left: 1rem;
+  height: 6rem;
+  margin: 0 1.2rem;
 }
 .logo_title {
   cursor: pointer;
@@ -95,5 +95,6 @@ nav {
 @media screen and (min-width: 1080px) {
   .menuDesktop {
     gap: 2rem;
+    cursor: pointer;
   }
 }

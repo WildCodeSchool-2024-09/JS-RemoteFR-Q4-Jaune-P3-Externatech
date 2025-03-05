@@ -4,12 +4,12 @@ import "./offers.css";
 
 export default function Offers() {
   const allOffers = useLoaderData() as OfferData[];
-
+  console.info(allOffers);
   return (
     <div className="containerAll">
       <div className="containerTop">
         <h2>Les Offres</h2>
-        <span className="offersCount">{allOffers.length}</span>
+        {<span className="offersCount">{allOffers.length}</span>}
       </div>
       <div className="gradientBar" />
       {allOffers.map((offer) => (

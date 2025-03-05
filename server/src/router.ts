@@ -8,6 +8,9 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
+import authActions from "./middlewares/authActions";
+router.post("/api/companies/login", authActions.login);
+
 // Define company-related routes
 import companyActions from "./modules/company/companyActions";
 
@@ -27,6 +30,15 @@ router.get("/api/offers/:id", offerActions.read);
 router.post("/api/offers", formOffer.validate, offerActions.add);
 router.put("/api/offers/:id", offerActions.edit);
 router.delete("/api/offers/:id", offerActions.destroy);
+
+/* ************************************************************************* */
+
+// Define language-related routes
+import languageAction from "./modules/language/languageAction";
+
+router.get("/api/languages", languageAction.browse);
+
+/* ************************************************************************* */
 
 import contractActions from "./modules/contract/contractActions";
 

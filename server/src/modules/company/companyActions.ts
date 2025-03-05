@@ -33,7 +33,7 @@ const add: RequestHandler = async (req, res, next) => {
       name: req.body.name,
       description: req.body.description,
       email: req.body.email,
-      password: req.body.password,
+      hashed_password: req.body.hashed_password,
     };
 
     const insertId = await companyRepository.create(newCompany);
@@ -63,7 +63,7 @@ const edit: RequestHandler = async (req, res, next) => {
       name: req.body.name,
       description: req.body.description,
       email: req.body.email,
-      password: req.body.password,
+      hashed_password: req.body.hashed_password,
     };
 
     const affectedRows = await companyRepository.update(company);
