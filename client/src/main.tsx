@@ -14,22 +14,18 @@ import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
 
 // Import pages
-
-import Offer from "./pages/Offer/Offer";
-
 import Apply from "./pages/Apply/Apply";
 
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
 
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
-
 import HomePage from "./pages/homepage/HomePage";
+import Offers from "./pages/offers/Offers";
 
 //Import API requests
 import {
+  getAllOffers,
   getCompany,
-  getContracts,
-  getLanguages,
   getOfferDetails,
   getOffersByCompany,
 } from "./services/requests";
@@ -48,18 +44,15 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/Offer",
-        element: <Offer />,
-        loader: async () => ({
-          languages: await getLanguages(),
-          contracts: await getContracts(),
-        }),
-      },
-
-      {
         path: "/OfferDetails/:id",
         element: <OfferDetails />,
         loader: ({ params }) => getOfferDetails(params.id),
+      },
+
+      {
+        path: "/Offers",
+        element: <Offers />,
+        loader: getAllOffers,
       },
 
       {
