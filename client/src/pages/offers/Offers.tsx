@@ -4,7 +4,7 @@ import "./offers.css";
 
 export default function Offers() {
   const allOffers = useLoaderData() as OfferData[];
-  console.info(allOffers);
+
   return (
     <div className="containerAll">
       <div className="containerTop">
