@@ -27,11 +27,12 @@ import HomePage from "./pages/homepage/HomePage";
 
 //Import API requests
 import {
+  getCities,
   getCompany,
   getContracts,
-  getLanguages,
   getOfferDetails,
   getOffersByCompany,
+  getStacks,
 } from "./services/requests";
 
 /* ************************************************************************* */
@@ -51,8 +52,9 @@ const router = createBrowserRouter([
         path: "/Offer",
         element: <Offer />,
         loader: async () => ({
-          languages: await getLanguages(),
+          stacks: await getStacks(),
           contracts: await getContracts(),
+          cities: await getCities(),
         }),
       },
 

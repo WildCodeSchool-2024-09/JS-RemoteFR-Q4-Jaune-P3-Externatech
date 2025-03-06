@@ -30,10 +30,17 @@ router.delete("/api/offers/:id", offerActions.destroy);
 
 /* ************************************************************************* */
 
-// Define language-related routes
-import languageAction from "./modules/language/languageAction";
+// Define stack-related routes
+import stackActions from "./modules/stack/stackActions";
 
-router.get("/api/languages", languageAction.browse);
+router.get("/api/stacks", stackActions.browse);
+
+/* ************************************************************************* */
+
+// Define city-related routes
+import cityActions from "./modules/city/cityActions";
+
+router.get("/api/cities", cityActions.browse);
 
 /* ************************************************************************* */
 

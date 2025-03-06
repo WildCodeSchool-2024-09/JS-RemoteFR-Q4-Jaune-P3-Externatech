@@ -2,9 +2,9 @@ import "./Hero.css";
 import { useLoaderData } from "react-router-dom";
 
 export default function Hero() {
-  const { languages } = useLoaderData() as {
-    languages: LanguageType[];
-    contracts: ContractType[];
+  const { stacks, cities } = useLoaderData() as {
+    stacks: StackType[];
+    cities: CityType[];
   };
 
   return (
@@ -19,12 +19,17 @@ export default function Hero() {
             placeholder="Recherchez un emploi..."
             className="job-search"
           />
-          <input
-            type="text"
-            placeholder="Localisation"
-            className="job-search"
-          />
 
+          <select className="filter" name="city" defaultValue="">
+            <option value="" hidden>
+              Ville
+            </option>
+            {cities.map((city) => (
+              <option key={city.id} value={city.city}>
+                {city.city}
+              </option>
+            ))}
+          </select>
           <select className="filter" name="job-type" defaultValue="">
             <option value="" selected hidden>
               Type de job (CDI, Stage, Alternance)
@@ -34,18 +39,16 @@ export default function Hero() {
             <option value="option3">Stage</option>
             <option value="option4">Alternance</option>
           </select>
-
           <select className="filter" name="stack" defaultValue="">
             <option value="" hidden>
               Environnement technique
             </option>
-            {languages.map((language) => (
-              <option key={language.id} value={language.name}>
-                {language.name}
+            {stacks.map((stack) => (
+              <option key={stack.id} value={stack.name}>
+                {stack.name}
               </option>
             ))}
           </select>
-
           <select className="filter" name="remote">
             <option value="" selected hidden>
               Télétravail

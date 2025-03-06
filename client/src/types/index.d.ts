@@ -11,8 +11,13 @@ interface CompanyData {
   siret: string;
 }
 
-interface LanguageType {
+interface StackType {
   name: string;
+  id: number;
+}
+
+interface CityType {
+  city: string;
   id: number;
 }
 
