@@ -6,15 +6,20 @@ type Company = {
   id: number;
   name: string;
   email: string;
-  password: string;
   description: string;
+  hashed_password: string;
 };
 
 class CompanyRepository {
   async create(company: Omit<Company, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "insert into company (name, description, email, password) values (?, ?, ?, ?)",
-      [company.name, company.description, company.email, company.password],
+      "insert into company (name, description, email, hashed_password) values (?, ?, ?, ?)",
+      [
+        company.name,
+        company.description,
+        company.email,
+        company.hashed_password,
+      ],
     );
 
     return result.insertId;
@@ -29,6 +34,16 @@ class CompanyRepository {
     return rows[0] as Company;
   }
 
+  async readByEmailWithPassword(email: string) {
+    const [rows] = await databaseClient.query<Rows>(
+      "select * from company where email = ?",
+      [email],
+    );
+
+    // Return the first row of the result, which represents the user
+    return rows[0] as Company;
+  }
+
   async readAll() {
     const [rows] = await databaseClient.query<Rows>("select * from company");
 
@@ -37,12 +52,12 @@ class CompanyRepository {
 
   async update(company: Company) {
     const [result] = await databaseClient.query<Result>(
-      "update company set name = ?, description = ?, email = ?, password = ? where id = ?",
+      "update company set name = ?, description = ?, email = ?, hashed_password = ? where id = ?",
       [
         company.name,
         company.description,
         company.email,
-        company.password,
+        company.hashed_password,
         company.id,
       ],
     );
