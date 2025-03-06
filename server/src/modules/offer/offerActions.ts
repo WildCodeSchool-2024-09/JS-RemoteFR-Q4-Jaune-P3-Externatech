@@ -70,6 +70,7 @@ const edit: RequestHandler = async (req, res, next) => {
 const add: RequestHandler = async (req, res, next) => {
   try {
     const newOffer = req.body;
+    console.info("newOffer", newOffer);
     const insertId = await offerRepository.create(newOffer);
 
     res.status(201).json({ insertId });

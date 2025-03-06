@@ -1,6 +1,7 @@
 interface CompanyData {
   id: number;
   name: string;
+  logo: string;
   description: string;
   address: string;
   postalCode: string;
@@ -21,31 +22,49 @@ interface ContractType {
   name: string;
 }
 
+// interface OfferData {
+//   id: number;
+//   title: string;
+//   city: string;
+//   logo: string;
+//   background: string;
+//   description: string;
+//   salary: number;
+//   profile: string;
+//   remote: string;
+//   company_id: number;
+//   contract_id: number;
+//   company_name: string;
+//   contract_name: string;
+// }
+
+// interface OfferTypes {
 interface OfferData {
   id: number;
   title: string;
   city: string;
-  logo: string;
+  company_logo: string;
   background: string;
-  description: string;
+  offer_description: string;
   salary: number;
   profile: string;
-  remote: string;
   company_id: number;
   contract_id: number;
-  company_name: string;
   contract_name: string;
+  remote_name: string;
+  company_name: string;
+  company_description: string;
+  stack_names: string;
 }
 
 interface OfferDataForm {
   title: string;
   city: string;
-  logo: string;
   background: string;
   description: string;
   salary: number;
   profile: string;
-  remote: string;
+  remote_id: number;
   company_id: number;
   contract_id: number;
 }

@@ -17,19 +17,18 @@ function CompanyDashboard() {
   const newOffer = {
     title: "",
     city: "",
-    logo: "",
     background: "",
     description: "",
     salary: 0,
     profile: "",
-    remote: "",
+    remote_id: 0,
     company_id: company.id,
     contract_id: 0,
   };
 
-  const handleOfferSubmit = (offerData: typeof newOffer) => {
+  const handleOfferSubmit = (newOffer: OfferDataForm) => {
     axios
-      .post(`${import.meta.env.VITE_API_URL}/api/offers`, offerData)
+      .post(`${import.meta.env.VITE_API_URL}/api/offers`, newOffer)
       .catch((error) => {
         console.error("Erreur lors de l'ajout de l'offre :", error);
       });
