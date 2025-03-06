@@ -5,12 +5,10 @@ type Offer = {
   id: number;
   title: string;
   city: string;
-  // logo: string;
   background: string;
   description: string;
   salary: number;
   profile: string;
-  // remote: string;
   remote_id: number;
   company_id: number;
   contract_id: number;
@@ -21,12 +19,10 @@ class offerRepository {
     const {
       title,
       city,
-      // logo,
       background,
       description,
       salary,
       profile,
-      // remote,
       remote_id,
       company_id,
       contract_id,
@@ -36,12 +32,10 @@ class offerRepository {
       [
         offer.title,
         offer.city,
-        // offer.logo,
         offer.background,
         offer.description,
         offer.salary,
         offer.profile,
-        // offer.remote,
         offer.remote_id,
         offer.company_id,
         offer.contract_id,
@@ -50,7 +44,7 @@ class offerRepository {
 
     return result.insertId;
   }
-  //garder offer.* ou appeler uniquement les colonnes nécessaires
+
   async readAll() {
     const [rows] = await DatabaseClient.query<Rows>(
       "select offer.*, company.name AS company_name, contract.name AS contract_name, remote.name AS remote_name from offer JOIN company ON offer.company_id = company.id JOIN contract ON offer.contract_id = contract.id JOIN remote ON offer.remote_id = remote.id",

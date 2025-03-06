@@ -13,21 +13,21 @@ router.post("/api/companies/login", authActions.login);
 
 // Define company-related routes
 import companyActions from "./modules/company/companyActions";
-//formCompany.validate à remettre sur post et put une fois le front prêt
+
 router.get("/api/companies", companyActions.browse);
 router.get("/api/companies/:id", companyActions.read);
-router.post("/api/companies", companyActions.add);
+router.post("/api/companies", formCompany.validate, companyActions.add);
 router.put("/api/companies/:id", companyActions.edit);
 router.delete("/api/companies/:id", companyActions.destroy);
 
 /* ************************************************************************* */
 
 import offerActions from "./modules/offer/offerActions";
-// formOffer.validate, a remettre sur add
+
 router.get("/api/offers", offerActions.browse);
 router.get("/api/offers/companies/:id", offerActions.browseByCompany);
 router.get("/api/offers/:id", offerActions.read);
-router.post("/api/offers", offerActions.add);
+router.post("/api/offers", formOffer.validate, offerActions.add);
 router.put("/api/offers/:id", offerActions.edit);
 router.delete("/api/offers/:id", offerActions.destroy);
 
