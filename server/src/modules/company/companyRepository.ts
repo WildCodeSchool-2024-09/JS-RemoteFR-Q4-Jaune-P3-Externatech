@@ -7,8 +7,8 @@ type Company = {
   logo: string;
   name: string;
   email: string;
-  hashed_password: string;
   description: string;
+  hashed_password: string;
 };
 
 class CompanyRepository {

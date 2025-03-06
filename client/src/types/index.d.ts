@@ -22,23 +22,6 @@ interface ContractType {
   name: string;
 }
 
-// interface OfferData {
-//   id: number;
-//   title: string;
-//   city: string;
-//   logo: string;
-//   background: string;
-//   description: string;
-//   salary: number;
-//   profile: string;
-//   remote: string;
-//   company_id: number;
-//   contract_id: number;
-//   company_name: string;
-//   contract_name: string;
-// }
-
-// interface OfferTypes {
 interface OfferData {
   id: number;
   title: string;
