@@ -4,14 +4,26 @@ import formOffer from "./middlewares/formOffer";
 
 const router = express.Router();
 
-/* ************************************************************************* */
-// Define Your API Routes Here
+//Define your imports here
 /* ************************************************************************* */
 import authActions from "./middlewares/authActions";
-router.post("/api/candidates/login", authActions.loginCandidate);
-
-// Define company-related routes
+import candidateActions from "./modules/candidate/candidateActions";
 import companyActions from "./modules/company/companyActions";
+import contractActions from "./modules/contract/contractActions";
+import languageAction from "./modules/language/languageAction";
+import offerActions from "./modules/offer/offerActions";
+
+/* ************************************************************************* */
+
+import formCandidate from "./middlewares/formCandidate";
+
+/* ************************************************************************* */
+// Define Your API Routes Here
+
+router.post("/api/candidates/login", authActions.loginCandidate);
+router.post("/api/companies/login", authActions.login);
+
+/* ************************************************************************* */
 
 router.get("/api/companies", companyActions.browse);
 router.get("/api/companies/:id", companyActions.read);
@@ -26,22 +38,22 @@ router.delete("/api/companies/:id", companyActions.destroy);
 
 /* ************************************************************************* */
 
-import candidateAction from "./modules/candidate/candidateAction";
-
-router.get("/api/candidates", candidateAction.browse);
-router.get("/api/candidates/:id", candidateAction.read);
+router.get("/api/candidates", candidateActions.browse);
+router.get("/api/candidates/:id", candidateActions.read);
 router.post(
   "/api/candidates",
   authActions.hashPassword,
   formCandidate.validate,
-  candidateAction.add,
+  candidateActions.add,
 );
-router.put("/api/candidates/:id", formCandidate.validate, candidateAction.edit);
-router.delete("/api/candidates/:id", candidateAction.destroy);
+router.put(
+  "/api/candidates/:id",
+  formCandidate.validate,
+  candidateActions.edit,
+);
+router.delete("/api/candidates/:id", candidateActions.destroy);
 
 /* ************************************************************************* */
-
-import offerActions from "./modules/offer/offerActions";
 
 router.get("/api/offers", offerActions.browse);
 router.get("/api/offers/companies/:id", offerActions.browseByCompany);
@@ -52,19 +64,12 @@ router.delete("/api/offers/:id", offerActions.destroy);
 
 /* ************************************************************************* */
 
-// Define language-related routes
-import languageAction from "./modules/language/languageAction";
-
 router.get("/api/languages", languageAction.browse);
 
 /* ************************************************************************* */
 
-import contractActions from "./modules/contract/contractActions";
-
 router.get("/api/contracts", contractActions.browse);
 
 /* ************************************************************************* */
-
-import formCandidate from "./middlewares/formCandidate";
 
 export default router;
