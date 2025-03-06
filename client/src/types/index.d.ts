@@ -59,3 +59,7 @@ interface OfferFormProps {
   value: OfferDataForm;
   onSubmit: (offer: OfferDataForm) => void;
 }
+type LoginCompanyProps = {
+  isOpen: boolean;
+  onClose: () => void;
+};
