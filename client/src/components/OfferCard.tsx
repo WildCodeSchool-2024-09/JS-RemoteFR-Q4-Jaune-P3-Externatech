@@ -1,7 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./offer-card.css";
 
 function OfferCard({ offer }: OfferDataProps) {
+  const location = useLocation();
+
+  const isOnOffersPage = location.pathname === "/Offers/" || "/Offers";
+
   return (
     <article className="offer-card">
       <img src="/office-1.jpg" alt="équipe dans un bureau" />
@@ -23,12 +27,20 @@ function OfferCard({ offer }: OfferDataProps) {
         </ul>
       </div>
       <div className="actions-buttons">
-        <Link to={`/OfferDetails/${offer.id}`} className="colored-box">
-          VOIR L'OFFRE
-        </Link>
-        <Link to="/" className="light-box">
-          VOIR LES CANDIDATURES
-        </Link>
+        {isOnOffersPage ? (
+          <Link to={`/OfferDetails/${offer.id}`} className="light-box centered">
+            VOIR LES OFFRES
+          </Link>
+        ) : (
+          <Link to={`/OfferDetails/${offer.id}`} className="light-box">
+            VOIR L'OFFRES
+          </Link>
+        )}
+        {isOnOffersPage ? null : (
+          <Link to="/" className="light-box">
+            VOIR LES CANDIDATURES
+          </Link>
+        )}
       </div>
     </article>
   );

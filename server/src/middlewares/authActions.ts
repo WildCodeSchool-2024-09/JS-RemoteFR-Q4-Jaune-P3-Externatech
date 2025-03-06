@@ -15,6 +15,7 @@ const login: RequestHandler = async (req, res, next) => {
 
     const verified = await argon2.verify(
       company.hashed_password,
+
       req.body.password,
     );
 

@@ -60,14 +60,14 @@ CREATE TABLE candidate_offer (
 );
 
 INSERT INTO company (name, description, email, hashed_password) VALUES
-('Tech Innov', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.', 'contact@techinnov.com', 'TechInnov123'),
-('Green Future', 'Entreprise dédiée aux solutions écologiques et durables.', 'contact@greenfuture.com', 'GreenFuture123'),
-('DataCorp', 'Société experte en analyse de données et business intelligence.', 'contact@datacorp.com', 'DataCorp123'),
-('DevStudio', 'Agence de développement web et mobile sur mesure.', 'contact@devstudio.com', 'DevStudio123'),
-('CyberSecure', 'Entreprise spécialisée en cybersécurité et protection des données.', 'contact@cybersecure.com', 'CyberSecure123'),
-('HealthTech', 'Société innovante dans le domaine de la santé numérique.', 'contact@healthtech.com', 'HealthTech123'),
-('EcoSolutions', 'Solutions technologiques pour un monde plus vert.', 'contact@ecosolutions.com', 'EcoSolutions123'),
-('AI Dynamics', 'Développement d\'intelligences artificielles avancées.', 'contact@aidynamics.com', 'AIDynamics123');
+('Tech Innov', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.', 'contact@techinnov.com', '$argon2id$v=19$m=65536,t=3,p=4$tYykqjuRhLqF+J/VKx25sw$uf2YOEwp4c/5hCzLXizfewLN3UAdLWpqCS3LTmF/fJM'),
+('Green Future', 'Entreprise dédiée aux solutions écologiques et durables.', 'contact@greenfuture.com', '$argon2id$v=19$m=65536,t=3,p=4$mhjsza6PK0G8kI7LaJm2gQ$bX5kYl/Xz2Jb2716RdRHoP8+LWCnXKfjyc9SsusFk3Y'),
+('DataCorp', 'Société experte en analyse de données et business intelligence.', 'contact@datacorp.com', '$argon2id$v=19$m=65536,t=3,p=4$dnPMkZ69DvtnaT5rC2wkuQ$GxkOezr8jaouUpRu+YRkZl3z43jgUFt2m27LHbkI3E4'),
+('DevStudio', 'Agence de développement web et mobile sur mesure.', 'contact@devstudio.com', '$argon2id$v=19$m=65536,t=3,p=4$M1x4Uer4552/q2y3+BLVTA$Ueiv0XwGr22wRnOTOCuRFYrU9herwsjiiqMOUdy/mDU'),
+('CyberSecure', 'Entreprise spécialisée en cybersécurité et protection des données.', 'contact@cybersecure.com', '$argon2id$v=19$m=65536,t=3,p=4$IcK0QfINDCvq4nZM88oSMA$H8oOOVuK/Bb1+VbhTs54khT1U5HuTG7v12paRAQcN8A'),
+('HealthTech', 'Société innovante dans le domaine de la santé numérique.', 'contact@healthtech.com', '$argon2id$v=19$m=65536,t=3,p=4$gL4ldMUzAu9kJIDtqWjRtw$JFjh2pQZO7DiIIichNhrbpG3Fvi9phstBKs6XqRKf+8'),
+('EcoSolutions', 'Solutions technologiques pour un monde plus vert.', 'contact@ecosolutions.com', '$argon2id$v=19$m=65536,t=3,p=4$SaZLVtpjmr3qEFI9wrOZ3A$KxZZLhQy0mbm9qLiZ7r1QrdkFYy0cCaB7Y5Ka4P6INM'),
+('AI Dynamics', 'Développement d\'intelligences artificielles avancées.', 'contact@aidynamics.com', '$argon2id$v=19$m=65536,t=3,p=4$n40qO5lYLuI8SuBZLu3f/w$MV3TsEHporSTYiP/GcIrFq3877pCGvBQQV2XIN0iqB8');
 
 INSERT INTO stack (name) VALUES ('JavaScript'), ('Python'), ('Java'), ('C#'), ('Ruby');
 
@@ -128,6 +128,7 @@ INSERT INTO offer (title, city, logo, background, description, profile, salary, 
 INSERT INTO offer_stack VALUES (1,1),(1,2),(2,1),(2,2),(2,3),(3,2),(3,4),(3,5),(4,5),(4,1),(4,4);
 
 INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
+
 ('Julian', 'Delaplaya', 'julian.delaplaya@email.com', '$argon2id$v=19$m=65536,t=3,p=4$0gSirVxaZ5//6QdEjccD1Q$wuF1+3HOhIYkJXfD+lDHoJXPDKjnW77pLTikjkhfyd0'),
 ('Jacky', 'Martin', 'jack.martin@email.com', '$argon2id$v=19$m=65536,t=3,p=4$Y7JKA5VyiqwJ8oiPZrQJjg$tfH8+cmRd3GECZC5dPBZFP0b0jUvHjZQYFQgR2xq4fk'),
 ('Pierre', 'Durand', 'pierre.durand@email.com', '$argon2id$v=19$m=65536,t=3,p=4$kBakQ7YyxYbQuruRzUy66w$38aGTdMIaEtNs/x6ztw7ki1NC3gud+eH3i4K4V1qTAI'),
@@ -138,4 +139,5 @@ INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
 ('Emma', 'Bernard', 'emma.bernard@email.com', '$argon2id$v=19$m=65536,t=3,p=4$0ZYYQTYvhxAiSOKkbn30Mw$Q6Z7xmcNb48ZQrHFbZ8/BLrxzZhkyKYqHPclkJgWo6o'),
 ('Hugo', 'Petit', 'hugo.petit@email.com', '$argon2id$v=19$m=65536,t=3,p=4$+0bzPBz6kPpxWJxJ3vxjag$D5FTW4x/Tt+O2d5c9Z/5rtaZmgZSenEm+YgUT8G9kWI'),
 ('Chloé', 'Robert', 'chloe.robert@email.com', '$argon2id$v=19$m=65536,t=3,p=4$m6OBd+0A/SORXcghzJLJFw$2s69MN5DrX/zrxE7k49Sjl5zyIuKaS+YOvTFk54pHjc');
+
 

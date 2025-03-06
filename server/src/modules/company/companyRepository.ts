@@ -25,22 +25,21 @@ class CompanyRepository {
     return result.insertId;
   }
 
-  async read(id: number) {
-    const [rows] = await databaseClient.query<Rows>(
-      "select * from company where id = ?",
-      [id],
-    );
-
-    return rows[0] as Company;
-  }
-
   async readByEmailWithPassword(email: string) {
     const [rows] = await databaseClient.query<Rows>(
       "select * from company where email = ?",
       [email],
     );
 
-    // Return the first row of the result, which represents the user
+    return rows[0] as Company;
+  }
+
+  async read(id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      "select * from company where id = ?",
+      [id],
+    );
+
     return rows[0] as Company;
   }
 
