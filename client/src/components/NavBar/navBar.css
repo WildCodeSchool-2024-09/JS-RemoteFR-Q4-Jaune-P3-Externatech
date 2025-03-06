@@ -8,8 +8,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 7rem;
-  margin-left: 1rem;
+  height: 6rem;
+  margin: 0 1.2rem;
 }
 .logo_title {
   cursor: pointer;

@@ -1,25 +1,29 @@
 -- SQLBook: Code
-
 CREATE TABLE company (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL,
   description TEXT NOT NULL, 
-  email VARCHAR(100) NOT NULL,
-  password VARCHAR(100) NOT NULL
+  email VARCHAR(100) NOT NULL UNIQUE,
+  hashed_password VARCHAR(200) NOT NULL
 );
 
+CREATE TABLE candidate (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  firstname VARCHAR(100) NOT NULL,
+  lastname VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  hashed_password VARCHAR(200) NOT NULL
+);
 
 CREATE TABLE stack (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL UNIQUE
 );
 
-
 CREATE TABLE contract (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL
 );
-
 
 CREATE TABLE offer (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -45,14 +49,22 @@ CREATE TABLE offer_stack (
   FOREIGN KEY (stack_id) REFERENCES stack(id) ON DELETE CASCADE
 );
 
-INSERT INTO company (name, description, email, password) VALUES
-('Tech Innov', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.', 'contact@techinnov.com', 'TechInnov123'),
-('Green Future', 'Entreprise dédiée aux solutions écologiques et durables.', 'contact@greenfuture.com', 'GreenFuture123'),
-('DataCorp', 'Société experte en analyse de données et business intelligence.', 'contact@datacorp.com', 'DataCorp123'),
-('DevStudio', 'Agence de développement web et mobile sur mesure.', 'contact@devstudio.com', 'DevStudio123');
+CREATE TABLE candidate_offer (
+  candidate_id INT UNSIGNED NOT NULL,
+  offer_id INT UNSIGNED NOT NULL
+);
+
+INSERT INTO company (name, description, email, hashed_password) VALUES
+('Tech Innov', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.', 'contact@techinnov.com', '$argon2id$v=19$m=65536,t=3,p=4$tYykqjuRhLqF+J/VKx25sw$uf2YOEwp4c/5hCzLXizfewLN3UAdLWpqCS3LTmF/fJM'),
+('Green Future', 'Entreprise dédiée aux solutions écologiques et durables.', 'contact@greenfuture.com', '$argon2id$v=19$m=65536,t=3,p=4$mhjsza6PK0G8kI7LaJm2gQ$bX5kYl/Xz2Jb2716RdRHoP8+LWCnXKfjyc9SsusFk3Y'),
+('DataCorp', 'Société experte en analyse de données et business intelligence.', 'contact@datacorp.com', '$argon2id$v=19$m=65536,t=3,p=4$dnPMkZ69DvtnaT5rC2wkuQ$GxkOezr8jaouUpRu+YRkZl3z43jgUFt2m27LHbkI3E4'),
+('DevStudio', 'Agence de développement web et mobile sur mesure.', 'contact@devstudio.com', '$argon2id$v=19$m=65536,t=3,p=4$M1x4Uer4552/q2y3+BLVTA$Ueiv0XwGr22wRnOTOCuRFYrU9herwsjiiqMOUdy/mDU'),
+('CyberSecure', 'Entreprise spécialisée en cybersécurité et protection des données.', 'contact@cybersecure.com', '$argon2id$v=19$m=65536,t=3,p=4$IcK0QfINDCvq4nZM88oSMA$H8oOOVuK/Bb1+VbhTs54khT1U5HuTG7v12paRAQcN8A'),
+('HealthTech', 'Société innovante dans le domaine de la santé numérique.', 'contact@healthtech.com', '$argon2id$v=19$m=65536,t=3,p=4$gL4ldMUzAu9kJIDtqWjRtw$JFjh2pQZO7DiIIichNhrbpG3Fvi9phstBKs6XqRKf+8'),
+('EcoSolutions', 'Solutions technologiques pour un monde plus vert.', 'contact@ecosolutions.com', '$argon2id$v=19$m=65536,t=3,p=4$SaZLVtpjmr3qEFI9wrOZ3A$KxZZLhQy0mbm9qLiZ7r1QrdkFYy0cCaB7Y5Ka4P6INM'),
+('AI Dynamics', 'Développement d\'intelligences artificielles avancées.', 'contact@aidynamics.com', '$argon2id$v=19$m=65536,t=3,p=4$n40qO5lYLuI8SuBZLu3f/w$MV3TsEHporSTYiP/GcIrFq3877pCGvBQQV2XIN0iqB8');
 
 INSERT INTO stack (name) VALUES ('JavaScript'), ('Python'), ('Java'), ('C#'), ('Ruby');
-
 
 INSERT INTO contract (name) VALUES
 ('CDI'),
@@ -60,6 +72,7 @@ INSERT INTO contract (name) VALUES
 ('Stage'),
 ('Alternance'),
 ('Freelance');
+
 INSERT INTO offer (title, city, logo, background, description, profile, salary, remote, company_id, contract_id) VALUES
 ('Développeur Fullstack', 
  'Paris', 
@@ -71,8 +84,6 @@ INSERT INTO offer (title, city, logo, background, description, profile, salary, 
  'Télétravail hybride', 
  1, 
  1),
-
-
 
 ('Ingénieur Data', 
  'Lyon', 
@@ -108,4 +119,10 @@ INSERT INTO offer (title, city, logo, background, description, profile, salary, 
  4);
 
 INSERT INTO offer_stack VALUES (1,1),(1,2),(2,1),(2,2),(2,3),(3,2),(3,4),(3,5),(4,5),(4,1),(4,4);
+
+INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
+('Julian', 'Delaplaya', 'julian.delaplaya@email.com', '$argon2id$v=19$m=65536,t=3,p=4$zHjwSepqmFU+m1zDWfEHWw$VtW7B5AZ0lcn4kgdDORVwtCFw1e7Razwssx/nFw2JFI'),
+('Jacky', 'Martin', 'jack.martin@email.com', 'hashed_password_2');
+
+
 

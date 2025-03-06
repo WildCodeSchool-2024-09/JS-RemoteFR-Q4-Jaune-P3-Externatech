@@ -9,24 +9,21 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+
 // import { companyLoader } from "./pages/CompanyInformartion/CompanyInformation";
 import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
 
 // Import pages
-
-import Offer from "./pages/Offer/Offer";
-
 import Apply from "./pages/Apply/Apply";
-
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
-
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
-
 import HomePage from "./pages/homepage/HomePage";
+import Offers from "./pages/offers/Offers";
 
 //Import API requests
 import {
+  getAllOffers,
   getCities,
   getCompany,
   getContracts,
@@ -50,18 +47,29 @@ const router = createBrowserRouter([
 
       {
         path: "/Offer",
-        element: <Offer />,
+        element: <Offers />,
         loader: async () => ({
           stacks: await getStacks(),
           contracts: await getContracts(),
           cities: await getCities(),
+          offers: await getAllOffers(),
         }),
       },
-
       {
         path: "/OfferDetails/:id",
         element: <OfferDetails />,
         loader: ({ params }) => getOfferDetails(params.id),
+      },
+
+      {
+        path: "/Offers",
+        element: <Offers />,
+        loader: async () => ({
+          stacks: await getStacks(),
+          contracts: await getContracts(),
+          cities: await getCities(),
+          allOffers: await getAllOffers(),
+        }),
       },
 
       {

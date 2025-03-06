@@ -23,13 +23,20 @@
   background-color: var(--light);
 }
 
-.titre_logo {
+.all_detail_page h1,
+.all_detail_page h2,
+.all_detail_page h3,
+.all_detail_page p {
+  margin: 2rem 1rem 1.5rem 1rem;
+}
+
+.title_logo {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.titre_logo_2 {
+.title_logo_2 {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -62,14 +69,6 @@
 .skills {
   margin: 2.5rem 1rem 2.5rem 1rem;
 }
-
-.all_detail_page > h1,
-h2,
-h3,
-p {
-  margin: 2rem 1rem 1.5rem 1rem;
-}
-
 .all_detail_page h3 {
   color: var(--fourth);
 }
@@ -84,7 +83,7 @@ p {
   margin-left: 2rem;
 }
 
-article {
+.all_detail_page article {
   border: 1px solid;
   border-color: var(--tertiary);
 }
@@ -133,9 +132,10 @@ article {
   border-radius: 8px;
 }
 
-.titre_le_poste,
-.titre_company,
-.profil_titre {
+.title_the_offer,
+.title_company,
+.profil_title,
+.searched_profile {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -198,7 +198,7 @@ article {
   margin-bottom: 3rem;
 }
 
-.entreprise {
+.the_company {
   display: flex;
   flex-direction: column;
 }
