@@ -1,29 +1,55 @@
-import type { RequestHandler } from "express";
-
 import argon2 from "argon2";
+import type { RequestHandler } from "express";
 
 import companyRepository from "../modules/company/companyRepository";
 
 const login: RequestHandler = async (req, res, next) => {
   try {
-    const user = await companyRepository.readByEmailWithPassword(
+    const company = await companyRepository.readByEmailWithPassword(
       req.body.email,
     );
-
-    if (user == null) {
+    if (company == null) {
       res.sendStatus(422);
       return;
     }
 
     const verified = await argon2.verify(
-      user.hashed_password,
+      company.hashed_password,
+
       req.body.password,
     );
 
     if (verified) {
-      const { hashed_password, ...userWithoutHashedPassword } = user;
+      const { hashed_password, ...companyWithoutHashedPassword } = company;
+      res.json(companyWithoutHashedPassword);
+    } else {
+      res.sendStatus(422);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
 
-      res.json(userWithoutHashedPassword);
+import candidateRepository from "../modules/candidate/candidateRepository";
+
+const loginCandidate: RequestHandler = async (req, res, next) => {
+  try {
+    const candidate = await candidateRepository.readByEmailWithPassword(
+      req.body.email,
+    );
+    if (candidate == null) {
+      res.sendStatus(422);
+      return;
+    }
+
+    const verfiedCandidate = await argon2.verify(
+      candidate.hashed_password,
+      req.body.password,
+    );
+
+    if (verfiedCandidate) {
+      const { hashed_password, ...candidateWithoutHashedPassword } = candidate;
+      res.json(candidateWithoutHashedPassword);
     } else {
       res.sendStatus(422);
     }
@@ -55,4 +81,4 @@ const hashPassword: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { login, hashPassword };
+export default { login, loginCandidate, hashPassword };
