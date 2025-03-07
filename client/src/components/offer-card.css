@@ -100,7 +100,7 @@
 @media screen and (min-width: 768px) {
   .offer-card {
     margin: 1rem;
-    width: 40vw;
+    width: 25rem;
     height: 65vh;
   }
 }
