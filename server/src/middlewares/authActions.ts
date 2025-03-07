@@ -2,26 +2,47 @@ import argon2 from "argon2";
 import type { RequestHandler } from "express";
 import jwt from "jsonwebtoken";
 
+import candidateRepository from "../modules/candidate/candidateRepository";
 import companyRepository from "../modules/company/companyRepository";
 
 const login: RequestHandler = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-
-    const company = await companyRepository.readByEmailWithPassword(email);
-    if (!company) {
-      res.sendStatus(422);
-      return;
+    const company = await companyRepository.readByEmailWithPassword(
+      req.body.email,
+    );
+    if (company) {
+      req.user = {
+        password: company.hashed_password,
+        id: company.id,
+        email: company.email,
+        role: "company",
+      };
     }
 
-    const verified = await argon2.verify(company.hashed_password, password);
+    const candidate = await candidateRepository.readByEmailWithPassword(
+      req.body.email,
+    );
+    if (candidate) {
+      req.user = {
+        password: candidate.hashed_password,
+        id: candidate.id,
+        email: candidate.email,
+        role: "candidate",
+      };
+    }
+
+    if (!req.user) {
+      res.sendStatus(403);
+    }
+
+    const verified = await argon2.verify(req.user.password, req.body.password);
 
     if (!verified) {
       res.sendStatus(422);
     } else {
       const payload = {
-        id: company.id,
-        email: company.email,
+        id: req.user.id,
+        email: req.user.email,
       };
 
       if (!process.env.APP_SECRET) {
@@ -37,34 +58,6 @@ const login: RequestHandler = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
-  }
-};
-
-import candidateRepository from "../modules/candidate/candidateRepository";
-
-const loginCandidate: RequestHandler = async (req, res, next) => {
-  try {
-    const candidate = await candidateRepository.readByEmailWithPassword(
-      req.body.email,
-    );
-    if (candidate == null) {
-      res.sendStatus(422);
-      return;
-    }
-
-    const verfiedCandidate = await argon2.verify(
-      candidate.hashed_password,
-      req.body.password,
-    );
-
-    if (verfiedCandidate) {
-      const { hashed_password, ...candidateWithoutHashedPassword } = candidate;
-      res.json(candidateWithoutHashedPassword);
-    } else {
-      res.sendStatus(422);
-    }
-  } catch (err) {
-    next(err);
   }
 };
 
@@ -91,4 +84,4 @@ const hashPassword: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { login, loginCandidate, hashPassword };
+export default { login, hashPassword };
