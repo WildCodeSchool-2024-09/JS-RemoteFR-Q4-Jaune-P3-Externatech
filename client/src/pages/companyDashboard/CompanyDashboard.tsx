@@ -36,7 +36,11 @@ function CompanyDashboard() {
 
   return (
     <main className="company-dashboard">
-      <h1>Bienvenue {company.name}</h1>
+      <h1>
+        Bienvenue {company.name}
+        <img src={company.logo} alt={`logo de ${company.name}`} />
+      </h1>
+
       <section className="general-view">
         <div className="top">
           <div className="box">
@@ -63,11 +67,14 @@ function CompanyDashboard() {
       </section>
       <section className="display">
         <h2>Mes OFFRES</h2>
-        <div className="card-container">
+        <ul>
           {offers.map((offer) => (
-            <OfferCard key={offer.id} offer={offer} />
+            <li key={offer.id}>
+              {" "}
+              <OfferCard offer={offer} />
+            </li>
           ))}
-        </div>
+        </ul>
         <div className="actions">
           <Link className="colored-box" to="/">
             AFFICHER TOUT
@@ -77,16 +84,24 @@ function CompanyDashboard() {
           </Link>
         </div>
         <h2>Mes CANDIDATS</h2>
-        <p>cards candidats</p>
-
-        <Link className="colored-box" to="/">
-          AFFICHER TOUT
-        </Link>
-        <h2>Mes INFORMATIONS</h2>
+        <ul>
+          <li>cards candidats</li>
+        </ul>
+        <div className="actions">
+          <Link className="colored-box actions" to="/">
+            AFFICHER TOUT
+          </Link>
+        </div>
+        <h2>Ma DESCRIPTION</h2>
         <p>{company.description}</p>
-        <Link className="light-box" to="/">
-          MODIFIER
-        </Link>
+        <div className="actions">
+          <Link className="colored-box" to="/">
+            MODIFIER
+          </Link>
+          <Link className="light-box" to={`/companies/${company.id}`}>
+            VOIR TOUTES MES INFOS
+          </Link>
+        </div>
       </section>
       <h2>Créer une OFFRE</h2>
       <OfferForm value={newOffer} onSubmit={handleOfferSubmit}>
