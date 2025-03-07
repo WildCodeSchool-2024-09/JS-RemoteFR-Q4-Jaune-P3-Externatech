@@ -1,4 +1,4 @@
-dialog {
+nav dialog {
   background: none;
   margin: 0 auto;
   border: none;
@@ -9,22 +9,31 @@ dialog {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin: 1rem;
     justify-self: center;
     width: 70vw;
     height: 80vh;
     top: 10vh;
     padding: 1rem;
 
+    & h2 {
+      margin: 2rem 0;
+    }
+    & button:first-of-type {
+      margin-top: 2rem;
+    }
     & input {
       padding: 0.6rem;
       border-radius: 8px;
       border: none;
     }
+    & p:last-of-type {
+      color: var(--message-error);
+      font-size: smaller;
+    }
   }
 }
 
-dialog[open]::before {
+nav dialog[open]::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -32,7 +41,7 @@ dialog[open]::before {
   z-index: 19;
 }
 
-dialog form {
+nav dialog form {
   position: relative;
   z-index: 21;
   background: white;
@@ -40,7 +49,7 @@ dialog form {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
-dialog:not([open]) {
+nav dialog:not([open]) {
   display: none;
 }
 

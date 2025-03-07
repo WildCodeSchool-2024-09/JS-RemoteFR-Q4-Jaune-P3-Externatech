@@ -6,6 +6,7 @@
   --tertiary: #d9d9d9;
   --fourth: #636363;
   --light: #fff;
+  --message-error: red;
 }
 
 #root {

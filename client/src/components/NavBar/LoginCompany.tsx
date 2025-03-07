@@ -1,64 +1,59 @@
 import type { FormEventHandler } from "react";
-import { useEffect, useRef } from "react";
+import { useRef, useState } from "react";
 import "./loginCompany.css";
+
 export default function LoginCompany({ isOpen, onClose }: LoginCompanyProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  // const closeDialog = () => {
-  //   dialogRef.current?.close();
-  //   document.body.style.overflow = "";
-  // };
+  const [error, setError] = useState(() => null as string | null);
 
   const handleSubmit: FormEventHandler = async (event) => {
     event.preventDefault();
+    setError(null);
+
+    const body = {
+      email: emailRef.current?.value,
+      password: passwordRef.current?.value,
+    };
 
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/companies/login`,
         {
-          method: "post",
+          method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: (emailRef.current as HTMLInputElement).value,
-            password: (passwordRef.current as HTMLInputElement).value,
-          }),
+          body: JSON.stringify(body),
         },
       );
 
-      if (response.status === 200) {
-        console.info("good");
+      if (response.ok) {
+        onClose();
       } else {
-        console.info(response);
+        setError("Échec de connexion. Vérifier vos identifiants ");
       }
     } catch (err) {
-      console.error(err);
+      console.error("Request failed:", err);
+      setError("Une erreur est survenue. Veuillez réessayer.");
     }
   };
-  useEffect(() => {
-    const modal = document.getElementById("loginModal");
-    if (modal) {
-      if (isOpen) {
-        modal.style.display = "block";
-      } else {
-        modal.style.display = "none";
-      }
-    }
-  }, [isOpen]);
 
   return (
     <dialog ref={dialogRef} open={isOpen}>
       <form onSubmit={handleSubmit}>
-        <p> email </p>
+        <h2>Login</h2>
+        <p>Email</p>
         <input type="email" ref={emailRef} required />
-        <p>mot de passe</p>
+        <p>Mot de passe</p>
         <input type="password" ref={passwordRef} required />
-        <button type="submit">se connecter</button>
-        <button type="button" onClick={onClose}>
+        <button className="colored-box " type="submit">
+          Se connecter
+        </button>
+        <button className="light-box" type="button" onClick={onClose}>
           Annuler
         </button>
+        {error ? <p>{error} </p> : ""}
       </form>
     </dialog>
   );

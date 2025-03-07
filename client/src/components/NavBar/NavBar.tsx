@@ -25,45 +25,43 @@ export default function NavBar() {
   };
 
   return (
-    <>
-      <nav>
-        <Link to="/" className="logo_title">
-          <img
-            src="/public/logo-app.png"
-            alt="Logo de l'application Externatech"
-            className="LogoApp"
-          />
-        </Link>
-        <div className="burgerContainer">
-          <button
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            className="burgerButton"
-          >
-            {isOpen ? burgerClose() : burgerOpen()}
-          </button>
-          {isOpen && (
-            <ul className="menuDroper">
-              <Link to="#">Les entreprises</Link>
-              <Link to="/offer">Les offres</Link>
-              <button type="button" onClick={openModal}>
-                Espace entreprise
-              </button>{" "}
-              <Link to="#">Se connecter</Link>
-            </ul>
-          )}
-        </div>
+    <nav>
+      <Link to="/" className="logo_title">
+        <img
+          src="/public/logo-app.png"
+          alt="Logo de l'application Externatech"
+          className="LogoApp"
+        />
+      </Link>
+      <div className="burgerContainer">
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className="burgerButton"
+        >
+          {isOpen ? burgerClose() : burgerOpen()}
+        </button>
+        {isOpen && (
+          <ul className="menuDroper">
+            <Link to="#">Les entreprises</Link>
+            <Link to="/offer">Les offres</Link>
+            <button type="button" onClick={openModal}>
+              Espace entreprise
+            </button>{" "}
+            <Link to="#">Se connecter</Link>
+          </ul>
+        )}
+      </div>
 
-        <ul className="menuDesktop">
-          <Link to="#">Les entreprises</Link>
-          <Link to="/offer">Les offres</Link>
-          <button type="button" onClick={openModal}>
-            Espace entreprise
-          </button>
-          <Link to="#">Se connecter</Link>
-        </ul>
-      </nav>
+      <ul className="menuDesktop">
+        <Link to="#">Les entreprises</Link>
+        <Link to="/offer">Les offres</Link>
+        <button type="button" onClick={openModal}>
+          Espace entreprise
+        </button>
+        <Link to="#">Se connecter</Link>
+      </ul>
       <LoginCompany isOpen={isModalOpen} onClose={closeModal} />
-    </>
+    </nav>
   );
 }
