@@ -44,16 +44,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
       },
-      // {
-      //   path: "/Offer",
-      //   element: <Hero />,
-      //   loader: async () => ({
-      //     stacks: await getStacks(),
-      //     contracts: await getContracts(),
-      //     cities: await getCities(),
-      //     offers: await getAllOffers(),
-      //   }),
-      // },
+
       {
         path: "/OfferDetails/:id",
         element: <OfferDetails />,
