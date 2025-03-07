@@ -1,52 +1,54 @@
+import axios from "axios";
 import type { FormEventHandler } from "react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import "./loginCompany.css";
 
 export default function LoginCompany({ isOpen, onClose }: LoginCompanyProps) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   const [error, setError] = useState(() => null as string | null);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setCredentials((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit: FormEventHandler = async (event) => {
     event.preventDefault();
     setError(null);
 
-    const body = {
-      email: emailRef.current?.value,
-      password: passwordRef.current?.value,
-    };
-
     try {
-      const response = await fetch(
+      await axios.post(
         `${import.meta.env.VITE_API_URL}/api/companies/login`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        },
+        credentials,
       );
-
-      if (response.ok) {
-        onClose();
-      } else {
-        setError("Échec de connexion. Vérifier vos identifiants ");
-      }
+      onClose();
     } catch (err) {
       console.error("Request failed:", err);
-      setError("Une erreur est survenue. Veuillez réessayer.");
+      setError("Échec de connexion. Vérifiez vos identifiants.");
     }
   };
 
   return (
-    <dialog ref={dialogRef} open={isOpen}>
+    <dialog open={isOpen}>
       <form onSubmit={handleSubmit}>
         <h2>Login</h2>
         <p>Email</p>
-        <input type="email" ref={emailRef} required />
+        <input
+          type="email"
+          name="email"
+          value={credentials.email}
+          onChange={handleChange}
+          required
+        />
         <p>Mot de passe</p>
-        <input type="password" ref={passwordRef} required />
+        <input
+          type="password"
+          name="password"
+          value={credentials.password}
+          onChange={handleChange}
+          required
+        />
         <button className="colored-box " type="submit">
           Se connecter
         </button>
