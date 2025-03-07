@@ -8,6 +8,11 @@ export default function CompanyInformation() {
     <div className="container_CI">
       <h2 className="title_CI">Mes Informations:</h2>
       <section>
+        <img
+          className="form_CI logo"
+          src={company.logo}
+          alt={`logo de l'entreprise ${company.name}`}
+        />
         <p>Nom de l'entreprise:</p>
         <p className="form_CI">{company.name}</p>
         <p>Rue:</p>

@@ -1,12 +1,13 @@
 import express from "express";
-import form from "./middlewares/form";
-import formOffer from "./middlewares/formOffer";
 
 const router = express.Router();
 
 //Define your imports here
 /* ************************************************************************* */
+
 import authActions from "./middlewares/authActions";
+import formCompany from "./middlewares/formCompany";
+import formOffer from "./middlewares/formOffer";
 import candidateActions from "./modules/candidate/candidateActions";
 import companyActions from "./modules/company/companyActions";
 import contractActions from "./modules/contract/contractActions";
@@ -19,8 +20,7 @@ import formCandidate from "./middlewares/formCandidate";
 /* ************************************************************************* */
 // Define Your API Routes Here
 
-router.post("/api/candidates/login", authActions.loginCandidate);
-router.post("/api/companies/login", authActions.login);
+router.post("/api/login", authActions.login);
 
 /* ************************************************************************* */
 
@@ -28,11 +28,11 @@ router.get("/api/companies", companyActions.browse);
 router.get("/api/companies/:id", companyActions.read);
 router.post(
   "/api/companies",
-  form.validate,
+  formCompany.validate,
   authActions.hashPassword,
   companyActions.add,
 );
-router.put("/api/companies/:id", form.validate, companyActions.edit);
+router.put("/api/companies/:id", formCompany.validate, companyActions.edit);
 router.delete("/api/companies/:id", companyActions.destroy);
 
 /* ************************************************************************* */

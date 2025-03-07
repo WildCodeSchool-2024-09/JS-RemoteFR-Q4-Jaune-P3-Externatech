@@ -6,6 +6,10 @@ const companySchema = Joi.object({
     "any.required": "Ce champ est obligatoire",
     "string.empty": "Le champ ne peut pas être vide",
   }),
+  logo: Joi.string().max(100).required().messages({
+    "any.required": "Le champ logo est obligatoire",
+    "string.empty": "Le champ logo ne peut pas être vide",
+  }),
   description: Joi.string().required().messages({
     "any.required": "Ce champs est obligatoire",
     "string.empty": "Le champ ne peut pas être vide",

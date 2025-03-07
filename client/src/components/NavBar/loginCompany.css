@@ -1,0 +1,59 @@
+nav dialog {
+  background: none;
+  margin: 0 auto;
+  border: none;
+  animation: openModal 0.3s linear;
+  top: -1rem;
+
+  & form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-self: center;
+    width: 70vw;
+    height: 80vh;
+    top: 10vh;
+    padding: 1rem;
+    position: relative;
+    z-index: 21;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+    & h2 {
+      margin: 2rem 0;
+    }
+    & button:first-of-type {
+      margin-top: 2rem;
+    }
+    & input {
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: none;
+    }
+  }
+}
+
+nav dialog[open]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 19;
+}
+
+nav dialog:not([open]) {
+  display: none;
+}
+
+@keyframes openModal {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,6 +1,8 @@
 import argon2 from "argon2";
 import type { RequestHandler } from "express";
+import jwt from "jsonwebtoken";
 
+import candidateRepository from "../modules/candidate/candidateRepository";
 import companyRepository from "../modules/company/companyRepository";
 
 const login: RequestHandler = async (req, res, next) => {
@@ -8,53 +10,54 @@ const login: RequestHandler = async (req, res, next) => {
     const company = await companyRepository.readByEmailWithPassword(
       req.body.email,
     );
-    if (company == null) {
-      res.sendStatus(422);
-      return;
+    if (company) {
+      req.user = {
+        password: company.hashed_password,
+        id: company.id,
+        email: company.email,
+        role: "company",
+      };
     }
 
-    const verified = await argon2.verify(
-      company.hashed_password,
-
-      req.body.password,
-    );
-
-    if (verified) {
-      const { hashed_password, ...companyWithoutHashedPassword } = company;
-      res.json(companyWithoutHashedPassword);
-    } else {
-      res.sendStatus(422);
-    }
-  } catch (err) {
-    next(err);
-  }
-};
-
-import candidateRepository from "../modules/candidate/candidateRepository";
-
-const loginCandidate: RequestHandler = async (req, res, next) => {
-  try {
     const candidate = await candidateRepository.readByEmailWithPassword(
       req.body.email,
     );
-    if (candidate == null) {
-      res.sendStatus(422);
-      return;
+    if (candidate) {
+      req.user = {
+        password: candidate.hashed_password,
+        id: candidate.id,
+        email: candidate.email,
+        role: "candidate",
+      };
     }
 
-    const verfiedCandidate = await argon2.verify(
-      candidate.hashed_password,
-      req.body.password,
-    );
+    if (!req.user) {
+      res.sendStatus(403);
+    }
 
-    if (verfiedCandidate) {
-      const { hashed_password, ...candidateWithoutHashedPassword } = candidate;
-      res.json(candidateWithoutHashedPassword);
+    const verified = await argon2.verify(req.user.password, req.body.password);
+
+    if (!verified) {
+      res.sendStatus(422);
     } else {
-      res.sendStatus(422);
+      const payload = {
+        id: req.user.id,
+        email: req.user.email,
+      };
+
+      if (!process.env.APP_SECRET) {
+        throw new Error(
+          "Vous n'avez pas configuré votre APP SECRET dans le .env",
+        );
+      }
+
+      const token = await jwt.sign(payload, process.env.APP_SECRET, {
+        expiresIn: "1y",
+      });
+      res.cookie("auth", token).send("Utilisateur connecté");
     }
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -81,4 +84,4 @@ const hashPassword: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { login, loginCandidate, hashPassword };
+export default { login, hashPassword };
