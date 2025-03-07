@@ -130,14 +130,13 @@ INSERT INTO offer_stack VALUES (1,1),(1,2),(2,1),(2,2),(2,3),(3,2),(3,4),(3,5),(
 INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
 
 ('Julian', 'Delaplaya', 'julian.delaplaya@email.com', '$argon2id$v=19$m=65536,t=3,p=4$0gSirVxaZ5//6QdEjccD1Q$wuF1+3HOhIYkJXfD+lDHoJXPDKjnW77pLTikjkhfyd0'),
-('Jacky', 'Martin', 'jack.martin@email.com', '$argon2id$v=19$m=65536,t=3,p=4$Y7JKA5VyiqwJ8oiPZrQJjg$tfH8+cmRd3GECZC5dPBZFP0b0jUvHjZQYFQgR2xq4fk'),
-('Pierre', 'Durand', 'pierre.durand@email.com', '$argon2id$v=19$m=65536,t=3,p=4$kBakQ7YyxYbQuruRzUy66w$38aGTdMIaEtNs/x6ztw7ki1NC3gud+eH3i4K4V1qTAI'),
-('Sophie', 'Lefebvre', 'sophie.lefebvre@email.com', '$argon2id$v=19$m=65536,t=3,p=4$qudg5CslpxP+y3UUAyzsuQ$SQjZUtbJM/7vg6FVmtIeUXLHxtilBmhorBbrZJ/Ap84'),
-('Thomas', 'Moreau', 'thomas.moreau@email.com', '$argon2id$v=19$m=65536,t=3,p=4$YJPgprQRgSP3BcQrXx7l1A$VSy1wpPjo6Ab/nibIs6+0QY2rIBu0sSio/5FWjzevUQ'),
-('Camille', 'Roux', 'camille.roux@email.com', '$argon2id$v=19$m=65536,t=3,p=4$HVooV7qh8jv6FPt6w71dSQ$i7y6L2cnSA/wJ/iTCbpvrIHG5/W+0KOWQNLlbKW0xT0'),
-('Lucas', 'Girard', 'lucas.girard@email.com', '$argon2id$v=19$m=65536,t=3,p=4$udjlpnzoIMcgVsvTBRvPTw$4Pr7fQ8gaRmAui+/+xy70fN0EXtMNxTjDG6nduDzshI'),
-('Emma', 'Bernard', 'emma.bernard@email.com', '$argon2id$v=19$m=65536,t=3,p=4$0ZYYQTYvhxAiSOKkbn30Mw$Q6Z7xmcNb48ZQrHFbZ8/BLrxzZhkyKYqHPclkJgWo6o'),
-('Hugo', 'Petit', 'hugo.petit@email.com', '$argon2id$v=19$m=65536,t=3,p=4$+0bzPBz6kPpxWJxJ3vxjag$D5FTW4x/Tt+O2d5c9Z/5rtaZmgZSenEm+YgUT8G9kWI'),
-('Chloé', 'Robert', 'chloe.robert@email.com', '$argon2id$v=19$m=65536,t=3,p=4$m6OBd+0A/SORXcghzJLJFw$2s69MN5DrX/zrxE7k49Sjl5zyIuKaS+YOvTFk54pHjc');
+('Jacky', 'Martin', 'jack.martin@email.com', '$argon2id$v=19$m=65536,t=3,p=4$SYqQzLj4Mlc/F6/5rQ8ywQ$lshrje56AtJTXEQkvGKR52tqaeAdu3I6QuR3BHhSo7s'),
+('Pierre', 'Durand', 'pierre.durand@email.com', '$argon2id$v=19$m=65536,t=3,p=4$efVsTP8vbERAh6KsGccf7g$xJSWKgJQ//CsTAEINJOehFG4lk65wshjge0LqTGN4u0'),
+('Sophie', 'Lefebvre', 'sophie.lefebvre@email.com', '$argon2id$v=19$m=65536,t=3,p=4$tHuZplLONXsr1FBcWEu+4g$x7zzzaKQuFz6tSJiaSjBdZZe18G1iSuCf45VjuYtLyg'),
+('Thomas', 'Moreau', 'thomas.moreau@email.com', '$argon2id$v=19$m=65536,t=3,p=4$07arFFGVJ/ZyEr0/ovTzdg$/CS9YHoTf0Di8R1lKTGXjlRZ960HR7ioKmUEyNsaUx8'),
+('Camille', 'Roux', 'camille.roux@email.com', '$argon2id$v=19$m=65536,t=3,p=4$nNov7CHswtJBCnsn42qMYg$xS9ZEfWb79RtJ7dhpqxWe4JekZ3J5sUz/T5e23D3qus'),
+('Emma', 'Bernard', 'emma.bernard@email.com', '$argon2id$v=19$m=65536,t=3,p=4$n2kfplbCq9EcDn2b/P3Cdg$B1lD+3c5DIE5Z6PE6tDj14U3dNRb3M7cKXyHA/OF9xk'),
+('Hugo', 'Petit', 'hugo.petit@email.com', '$argon2id$v=19$m=65536,t=3,p=4$sv1ZmMM4T3j87ccwqtPsDw$WzrkB8JD3eygcTbf+DhabNhJj/XueKh0b353vSOUhOk'),
+('Chloé', 'Robert', 'chloe.robert@email.com', '$argon2id$v=19$m=65536,t=3,p=4$1DtTIhD5guZLuRydbuznsg$gpDMWM/PPxi7K4tFvQaz8NADL7n2FAAlOfccNNccboU');
 
 
