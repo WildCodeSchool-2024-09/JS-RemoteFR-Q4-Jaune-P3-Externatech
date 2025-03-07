@@ -21,8 +21,7 @@ import formCandidate from "./middlewares/formCandidate";
 /* ************************************************************************* */
 // Define Your API Routes Here
 
-router.post("/api/candidates/login", authActions.loginCandidate);
-router.post("/api/companies/login", authActions.login);
+router.post("/api/login", authActions.login);
 
 /* ************************************************************************* */
 
