@@ -19,13 +19,9 @@ export default function LoginCompany({ isOpen, onClose }: LoginCompanyProps) {
 
     try {
       await axios
-        .post(
-          `${import.meta.env.VITE_API_URL}/api/companies/login`,
-          credentials,
-          {
-            withCredentials: true,
-          },
-        )
+        .post(`${import.meta.env.VITE_API_URL}/api/login`, credentials, {
+          withCredentials: true,
+        })
 
         .then((response) => console.info(response))
         .catch((error) => console.error(error));
