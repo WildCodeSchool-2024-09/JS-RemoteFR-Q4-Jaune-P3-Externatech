@@ -71,9 +71,8 @@ router.get("/api/stacks", stackActions.browse);
 /* ************************************************************************* */
 
 // Define city-related routes
-import cityActions from "./modules/city/cityActions";
 
-router.get("/api/cities", cityActions.browse);
+router.get("/api/cities", offerActions.browseCity);
 
 /* ************************************************************************* */
 

@@ -22,6 +22,15 @@ const browseByCompany: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseCity: RequestHandler = async (req, res, next) => {
+  try {
+    const cities = await offerRepository.readAllCities();
+    res.json(cities);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const read: RequestHandler = async (req, res, next) => {
   try {
     const offerId = Number(req.params.id);
@@ -88,4 +97,12 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, browseByCompany, read, add, edit, destroy };
+export default {
+  browse,
+  browseByCompany,
+  read,
+  add,
+  edit,
+  destroy,
+  browseCity,
+};

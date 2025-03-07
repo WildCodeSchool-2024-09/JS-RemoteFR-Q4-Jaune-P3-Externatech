@@ -1,8 +1,8 @@
-nav dialog {
+.dialog_login {
   background: none;
   margin: 0 auto;
   border: none;
-  animation: openModal 0.3s linear;
+  animation: openModal 0.2s linear;
   top: -1rem;
 
   & form {
@@ -20,21 +20,30 @@ nav dialog {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
+    & p {
+      text-align: left;
+    }
+
     & h2 {
       margin: 2rem 0;
     }
-    & button:first-of-type {
+    & .login_buttons {
       margin-top: 2rem;
     }
     & input {
       padding: 0.6rem;
       border-radius: 8px;
-      border: none;
+      border: var(--tertiary) 1px solid;
+    }
+    & div {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
   }
 }
 
-nav dialog[open]::before {
+.dialog_login[open]::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -42,7 +51,7 @@ nav dialog[open]::before {
   z-index: 19;
 }
 
-nav dialog:not([open]) {
+.dialog_login:not([open]) {
   display: none;
 }
 
@@ -55,5 +64,16 @@ nav dialog:not([open]) {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dialog_login .login_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    & button {
+      width: 10rem;
+    }
   }
 }

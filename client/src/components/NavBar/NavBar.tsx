@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./navBar.css";
 import { Link } from "react-router-dom";
-import LoginCompany from "./LoginCompany";
+import Login from "./Login";
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -48,7 +48,9 @@ export default function NavBar() {
             <button type="button" onClick={openModal}>
               Espace entreprise
             </button>{" "}
-            <Link to="#">Se connecter</Link>
+            <button type="button" onClick={openModal}>
+              Se connecter
+            </button>
           </ul>
         )}
       </div>
@@ -61,9 +63,11 @@ export default function NavBar() {
           Espace entreprise
         </button>
 
-        <Link to="#">Se connecter</Link>
+        <button type="button" onClick={openModal}>
+          Se connecter
+        </button>
       </ul>
-      <LoginCompany isOpen={isModalOpen} onClose={closeModal} />
+      <Login isOpen={isModalOpen} onClose={closeModal} />
     </nav>
   );
 }

@@ -13,6 +13,7 @@ export default function Offers() {
   return (
     <div className="containerAll">
       <Hero stacks={stacks} cities={cities} />
+
       <div className="containerTop">
         <h2>Les Offres</h2>
         <span className="offersCount">{offers.length}</span>
