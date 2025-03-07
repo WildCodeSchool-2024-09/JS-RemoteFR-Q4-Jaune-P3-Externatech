@@ -1,9 +1,9 @@
 import axios from "axios";
 import type { FormEventHandler } from "react";
 import { useState } from "react";
-import "./loginCompany.css";
+import "./login.css";
 
-export default function LoginCompany({ isOpen, onClose }: LoginCompanyProps) {
+export default function Login({ isOpen, onClose }: LoginCompanyProps) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   const [error, setError] = useState(() => null as string | null);
@@ -32,7 +32,7 @@ export default function LoginCompany({ isOpen, onClose }: LoginCompanyProps) {
   };
 
   return (
-    <dialog open={isOpen}>
+    <dialog className="dialog_login" open={isOpen}>
       <form onSubmit={handleSubmit}>
         <h2>Login</h2>
         <p>Email</p>
@@ -51,12 +51,14 @@ export default function LoginCompany({ isOpen, onClose }: LoginCompanyProps) {
           onChange={handleChange}
           required
         />
-        <button className="colored-box " type="submit">
-          Se connecter
-        </button>
-        <button className="light-box" type="button" onClick={onClose}>
-          Annuler
-        </button>
+        <div className="login_buttons">
+          <button className="colored-box " type="submit">
+            Se connecter
+          </button>
+          <button className="light-box" type="button" onClick={onClose}>
+            Annuler
+          </button>
+        </div>
         {error ? <p className="messageError">{error} </p> : ""}
       </form>
     </dialog>
