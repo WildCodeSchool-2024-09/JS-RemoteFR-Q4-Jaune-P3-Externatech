@@ -14,6 +14,11 @@ nav dialog {
     height: 80vh;
     top: 10vh;
     padding: 1rem;
+    position: relative;
+    z-index: 21;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
     & h2 {
       margin: 2rem 0;
@@ -26,10 +31,6 @@ nav dialog {
       border-radius: 8px;
       border: none;
     }
-    & p:last-of-type {
-      color: var(--message-error);
-      font-size: smaller;
-    }
   }
 }
 
@@ -41,14 +42,6 @@ nav dialog[open]::before {
   z-index: 19;
 }
 
-nav dialog form {
-  position: relative;
-  z-index: 21;
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
 nav dialog:not([open]) {
   display: none;
 }
