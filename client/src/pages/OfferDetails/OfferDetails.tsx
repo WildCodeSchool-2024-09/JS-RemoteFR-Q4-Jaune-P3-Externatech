@@ -3,26 +3,8 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-interface OfferTypes {
-  id: number;
-  title: string;
-  city: string;
-  logo: string;
-  background: string;
-  offer_description: string;
-  salary: number;
-  profile: string;
-  company_id: number;
-  contract_id: number;
-  contract_name: string;
-  remote: string;
-  name: string;
-  company_description: string;
-  stack_names: string;
-}
-
 export default function OfferDetails() {
-  const offer = useLoaderData() as OfferTypes;
+  const offer = useLoaderData() as OfferData;
 
   const [showModal, setShowModal] = useState(false);
 
@@ -38,15 +20,15 @@ export default function OfferDetails() {
     <main className="all_detail_page">
       <article className="presentation">
         <section className="title_logo">
-          <img src={offer.logo} alt="logo" className="logo_company" />
-          <h1 className="offername">{offer.name}</h1>
+          <img src={offer.company_logo} alt="logo" className="logo_company" />
+          <h1 className="offername">{offer.company_name}</h1>
         </section>
         <h2 className="offertitle">{offer.title}</h2>
         <h3>Résumé du poste</h3>
         <section className="resume_content">
           <p>{offer.contract_name}</p>
           <p>{offer.city}</p>
-          <p>{offer.remote}</p>
+          <p>{offer.remote_name}</p>
         </section>
         <h3>Compétences & expertises</h3>
         <p className="skills">{offer.stack_names}</p>
@@ -103,8 +85,8 @@ export default function OfferDetails() {
           <h2 className="the_company_title">L'entreprise</h2>
         </section>
         <section className="title_logo_2">
-          <img src={offer.logo} alt="logo" className="logo_company" />
-          <h1 className="offername">{offer.name}</h1>
+          <img src={offer.company_logo} alt="logo" className="logo_company" />
+          <h1 className="offername">{offer.company_name}</h1>
         </section>
         <p>
           <b>Description de l'entreprise</b>

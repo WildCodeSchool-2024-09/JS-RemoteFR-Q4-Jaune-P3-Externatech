@@ -8,12 +8,12 @@ function OfferCard({ offer }: OfferDataProps) {
 
   return (
     <article className="offer-card">
-      <img src="/office-1.jpg" alt="équipe dans un bureau" />
+      <img src={offer.background} alt="équipe dans un bureau" />
       <div className="header-card">
-        <img src="/logo-300- (1).png" alt="logo" />
+        <img src={offer.company_logo} alt="logo" />
         <div className="remote">
           <img src="/icon-home.png" alt="maison" />
-          <p>{offer.remote}</p>
+          <p>{offer.remote_name}</p>
         </div>
       </div>
       <div className="company-info">
@@ -33,7 +33,7 @@ function OfferCard({ offer }: OfferDataProps) {
           </Link>
         ) : (
           <Link to={`/OfferDetails/${offer.id}`} className="light-box">
-            VOIR L'OFFRES
+            VOIR L'OFFRE
           </Link>
         )}
         {isOnOffersPage ? null : (
