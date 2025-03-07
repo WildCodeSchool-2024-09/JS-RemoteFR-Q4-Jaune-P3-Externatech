@@ -18,11 +18,13 @@ export default function LoginCompany({ isOpen, onClose }: LoginCompanyProps) {
     setError(null);
 
     try {
-      await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/companies/login`,
-        credentials,
-      );
-      onClose();
+      await axios
+        .post(`${import.meta.env.VITE_API_URL}/api/login`, credentials, {
+          withCredentials: true,
+        })
+
+        .then((response) => console.info(response))
+        .catch((error) => console.error(error));
     } catch (err) {
       console.error("Request failed:", err);
       setError("Échec de connexion. Vérifiez vos identifiants.");

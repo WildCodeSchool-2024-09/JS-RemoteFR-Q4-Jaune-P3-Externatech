@@ -1,11 +1,12 @@
 // Load the express module to create a web application
-
 import express from "express";
 
 const app = express();
 
 // Configure it
 
+import cookieParser from "cookie-parser";
+app.use(cookieParser());
 /* ************************************************************************* */
 
 // CORS Handling: Why is the current code present and do I need to define specific allowed origins for my project?
@@ -21,7 +22,7 @@ const app = express();
 import cors from "cors";
 
 if (process.env.CLIENT_URL != null) {
-  app.use(cors({ origin: [process.env.CLIENT_URL] }));
+  app.use(cors({ origin: [process.env.CLIENT_URL], credentials: true }));
 }
 
 // If you need to allow extra origins, you can add something like this:

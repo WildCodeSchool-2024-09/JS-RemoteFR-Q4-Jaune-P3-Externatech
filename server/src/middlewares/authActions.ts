@@ -1,5 +1,6 @@
 import argon2 from "argon2";
 import type { RequestHandler } from "express";
+import jwt from "jsonwebtoken";
 
 import candidateRepository from "../modules/candidate/candidateRepository";
 import companyRepository from "../modules/company/companyRepository";
@@ -36,14 +37,27 @@ const login: RequestHandler = async (req, res, next) => {
 
     const verified = await argon2.verify(req.user.password, req.body.password);
 
-    if (verified) {
-      const { password, ...userWithoutHashedPassword } = req.user;
-      res.json(userWithoutHashedPassword);
-    } else {
+    if (!verified) {
       res.sendStatus(422);
+    } else {
+      const payload = {
+        id: req.user.id,
+        email: req.user.email,
+      };
+
+      if (!process.env.APP_SECRET) {
+        throw new Error(
+          "Vous n'avez pas configuré votre APP SECRET dans le .env",
+        );
+      }
+
+      const token = await jwt.sign(payload, process.env.APP_SECRET, {
+        expiresIn: "1y",
+      });
+      res.cookie("auth", token).send("Utilisateur connecté");
     }
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 };
 
