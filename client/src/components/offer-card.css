@@ -2,14 +2,15 @@
   display: flex;
   flex-direction: column;
   width: 95%;
-  height: 60vh;
+  height: 50%;
   margin: 1rem auto;
   border: solid 1px var(--tertiary);
 }
 
 .offer-card > img {
   object-fit: cover;
-  height: 35%;
+  aspect-ratio: 3 / 1;
+  width: 100%;
 }
 
 .offer-card > div:first-of-type {
@@ -53,7 +54,6 @@
   flex-direction: column;
   position: relative;
   margin-left: 1rem;
-  position: relative;
   flex: 1;
 }
 
@@ -99,7 +99,8 @@
 /******************************************************/
 @media screen and (min-width: 768px) {
   .offer-card {
-    max-width: 40vw;
     margin: 1rem;
+    width: 40vw;
+    height: 60vh;
   }
 }
