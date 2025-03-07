@@ -1,5 +1,5 @@
 footer {
-  background-color: #1b1c23;
+  background-color: var(--primary);
   color: white;
   text-align: center;
   padding: 2rem;
@@ -32,7 +32,7 @@ footer div a {
   footer div div {
     width: 4px;
     height: 8rem;
-    background-color: rgba(9, 255, 0, 0.623);
+    background-color: var(--secundary);
   }
 
   footer div ul {

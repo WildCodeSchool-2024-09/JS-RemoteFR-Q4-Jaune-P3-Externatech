@@ -13,7 +13,7 @@
 .hero-title {
   margin: 2rem;
   text-align: center;
-  color: white;
+  color: var(--light);
 }
 
 h2 > span {
