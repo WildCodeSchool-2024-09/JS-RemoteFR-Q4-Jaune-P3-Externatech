@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import Hero from "../../components/Hero/Hero";
 import OfferCard from "../../components/OfferCard";
 import "./offers.css";
 
@@ -7,6 +8,7 @@ export default function Offers() {
 
   return (
     <div className="containerAll">
+      <Hero />
       <div className="containerTop">
         <h2>Les Offres</h2>
         {<span className="offersCount">{allOffers.length}</span>}

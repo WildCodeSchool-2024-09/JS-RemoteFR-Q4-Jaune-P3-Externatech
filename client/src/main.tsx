@@ -14,7 +14,6 @@ import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
 
 // Import pages
-import Apply from "./pages/Apply/Apply";
 
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
 
@@ -50,7 +49,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/Offers",
+        path: "/offers",
         element: <Offers />,
         loader: getAllOffers,
       },
@@ -74,10 +73,6 @@ const router = createBrowserRouter([
       {
         path: "/RegisteredOffers",
         element: <RegisteredOffers />,
-      },
-      {
-        path: "/Apply",
-        element: <Apply />,
       },
     ],
   },
