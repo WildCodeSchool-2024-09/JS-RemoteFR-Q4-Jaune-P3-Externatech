@@ -47,7 +47,7 @@ class offerRepository {
 
   async readAll() {
     const [rows] = await DatabaseClient.query<Rows>(
-      "select offer.*, company.name AS company_name, contract.name AS contract_name, remote.name AS remote_name from offer JOIN company ON offer.company_id = company.id JOIN contract ON offer.contract_id = contract.id JOIN remote ON offer.remote_id = remote.id",
+      "select offer.*, company.name AS company_name, company.logo AS company_logo, contract.name AS contract_name, remote.name AS remote_name from offer JOIN company ON offer.company_id = company.id JOIN contract ON offer.contract_id = contract.id JOIN remote ON offer.remote_id = remote.id",
     );
 
     return rows as Offer[];
@@ -55,7 +55,7 @@ class offerRepository {
 
   async readAllByCompany(id: number) {
     const [rows] = await DatabaseClient.query<Rows>(
-      "SELECT offer.*, company.name AS company_name, contract.name AS contract_name, remote.name AS remote_name FROM offer JOIN company ON offer.company_id = company.id JOIN contract ON offer.contract_id = contract.id JOIN remote ON offer.remote_id = remote.id WHERE offer.company_id = ?",
+      "SELECT offer.*, company.name AS company_name, company.logo AS company_logo, contract.name AS contract_name, remote.name AS remote_name FROM offer JOIN company ON offer.company_id = company.id JOIN contract ON offer.contract_id = contract.id JOIN remote ON offer.remote_id = remote.id WHERE offer.company_id = ?",
       [id],
     );
 
@@ -78,7 +78,6 @@ class offerRepository {
         offer.title,
         offer.description,
         offer.city,
-        // offer.logo,
         offer.background,
         offer.salary,
         offer.profile,
