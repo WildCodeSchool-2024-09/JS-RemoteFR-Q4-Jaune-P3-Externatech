@@ -26,7 +26,7 @@ import {
   getAllOffers,
   getCities,
   getCompany,
-  getContracts,
+  // getContracts,
   getOfferDetails,
   getOffersByCompany,
   getStacks,
@@ -44,32 +44,30 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
       },
-
-      {
-        path: "/Offer",
-        element: <Offers />,
-        loader: async () => ({
-          stacks: await getStacks(),
-          contracts: await getContracts(),
-          cities: await getCities(),
-          offers: await getAllOffers(),
-        }),
-      },
+      // {
+      //   path: "/Offer",
+      //   element: <Hero />,
+      //   loader: async () => ({
+      //     stacks: await getStacks(),
+      //     contracts: await getContracts(),
+      //     cities: await getCities(),
+      //     offers: await getAllOffers(),
+      //   }),
+      // },
       {
         path: "/OfferDetails/:id",
         element: <OfferDetails />,
         loader: ({ params }) => getOfferDetails(params.id),
       },
-
       {
         path: "/Offers",
         element: <Offers />,
-        loader: async () => ({
-          stacks: await getStacks(),
-          contracts: await getContracts(),
-          cities: await getCities(),
-          allOffers: await getAllOffers(),
-        }),
+        loader: async () => {
+          const offers = await getAllOffers();
+          const stacks = await getStacks();
+          const cities = await getCities();
+          return { offers, stacks, cities };
+        },
       },
 
       {
