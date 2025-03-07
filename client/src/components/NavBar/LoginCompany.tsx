@@ -53,7 +53,7 @@ export default function LoginCompany({ isOpen, onClose }: LoginCompanyProps) {
         <button className="light-box" type="button" onClick={onClose}>
           Annuler
         </button>
-        {error ? <p>{error} </p> : ""}
+        {error ? <p className="messageError">{error} </p> : ""}
       </form>
     </dialog>
   );
