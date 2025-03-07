@@ -1,32 +1,42 @@
 import argon2 from "argon2";
 import type { RequestHandler } from "express";
+import jwt from "jsonwebtoken";
 
 import companyRepository from "../modules/company/companyRepository";
 
 const login: RequestHandler = async (req, res, next) => {
   try {
-    const company = await companyRepository.readByEmailWithPassword(
-      req.body.email,
-    );
-    if (company == null) {
+    const { email, password } = req.body;
+
+    const company = await companyRepository.readByEmailWithPassword(email);
+    if (!company) {
       res.sendStatus(422);
       return;
     }
 
-    const verified = await argon2.verify(
-      company.hashed_password,
+    const verified = await argon2.verify(company.hashed_password, password);
 
-      req.body.password,
-    );
-
-    if (verified) {
-      const { hashed_password, ...companyWithoutHashedPassword } = company;
-      res.json(companyWithoutHashedPassword);
-    } else {
+    if (!verified) {
       res.sendStatus(422);
+    } else {
+      const payload = {
+        id: company.id,
+        email: company.email,
+      };
+
+      if (!process.env.APP_SECRET) {
+        throw new Error(
+          "Vous n'avez pas configuré votre APP SECRET dans le .env",
+        );
+      }
+
+      const token = await jwt.sign(payload, process.env.APP_SECRET, {
+        expiresIn: "1y",
+      });
+      res.cookie("auth", token).send("Utilisateur connecté");
     }
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 };
 
