@@ -90,7 +90,7 @@ function CompanyDashboard() {
       </section>
       <h2>Créer une OFFRE</h2>
       <OfferForm value={newOffer} onSubmit={handleOfferSubmit}>
-        Ajouter une offre
+        AJOUTER UNE OFFRE
       </OfferForm>
     </main>
   );

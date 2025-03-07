@@ -45,10 +45,18 @@ a,
 button {
   font-optical-sizing: auto;
   font-size: 1.5rem;
-  all: unset;
+  text-decoration: none;
+  font-size: inherit;
   color: inherit;
+  border: none;
   font-family: "Open Sans", serif;
   font-weight: 500;
+  cursor: pointer;
+}
+a:hover,
+button:hover {
+  transform: scale(1.005);
+  transition: transform 0.2s ease-in-out;
 }
 
 .square-list ul {
