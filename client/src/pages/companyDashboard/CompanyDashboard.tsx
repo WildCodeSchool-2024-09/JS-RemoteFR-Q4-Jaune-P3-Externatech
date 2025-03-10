@@ -9,6 +9,9 @@ function CompanyDashboard() {
     company: CompanyData;
     offers: OfferData[];
   };
+
+  console.info(offers);
+  console.info("company", company);
   const activeOffers =
     offers.length <= 1
       ? `${offers.length} offre active`

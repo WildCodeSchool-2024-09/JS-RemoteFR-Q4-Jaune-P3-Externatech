@@ -26,6 +26,7 @@ import {
   getAllOffers,
   getCities,
   getCompany,
+  getCompanyAuth,
   getContracts,
   getOfferDetails,
   getOffersByCompany,
@@ -63,13 +64,12 @@ const router = createBrowserRouter([
           return { offers, stacks, cities, contracts, remoteOptions };
         },
       },
-
       {
-        path: "/companies/dashboard/:id",
+        path: "/companies/dashboard",
         element: <CompanyDasboard />,
-        loader: async ({ params }) => ({
-          company: await getCompany(String(params.id)),
-          offers: await getOffersByCompany(String(params.id)),
+        loader: async () => ({
+          company: await getCompanyAuth(),
+          offers: await getOffersByCompany(),
         }),
       },
       {

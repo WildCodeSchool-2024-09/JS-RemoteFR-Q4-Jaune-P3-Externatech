@@ -12,6 +12,20 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 
+const readAuth: RequestHandler = async (req, res, next) => {
+  try {
+    const companyId = req.companyID;
+    const company = await companyRepository.read(companyId);
+
+    if (company == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(company);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
 const read: RequestHandler = async (req, res, next) => {
   try {
     const companyId = Number(req.params.id);
@@ -80,4 +94,4 @@ const edit: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, destroy, edit };
+export default { browse, read, add, destroy, edit, readAuth };

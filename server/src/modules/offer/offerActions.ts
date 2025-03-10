@@ -13,7 +13,7 @@ const browse: RequestHandler = async (req, res, next) => {
 
 const browseByCompany: RequestHandler = async (req, res, next) => {
   try {
-    const id = Number(req.params.id);
+    const id = req.companyID;
     const offers = await offerRepository.readAllByCompany(id);
 
     res.json(offers);

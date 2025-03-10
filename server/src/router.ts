@@ -26,7 +26,10 @@ router.post("/api/login", authActions.login);
 /* ************************************************************************* */
 
 router.get("/api/companies", companyActions.browse);
+router.get("/api/authcompany", authActions.verifyCompany, companyActions.read);
+
 router.get("/api/companies/:id", companyActions.read);
+
 router.post(
   "/api/companies",
   formCompany.validate,
@@ -54,9 +57,15 @@ router.put(
 router.delete("/api/candidates/:id", candidateActions.destroy);
 
 /* ************************************************************************* */
-
+//test
 router.get("/api/offers", offerActions.browse);
-router.get("/api/offers/companies/:id", offerActions.browseByCompany);
+
+// router.get("/api/offers", offerActions.browse);
+router.get(
+  "/api/offers/companies",
+  authActions.verifyCompany,
+  offerActions.browseByCompany,
+);
 router.get("/api/offers/:id", offerActions.read);
 router.post("/api/offers", formOffer.validate, offerActions.add);
 router.put("/api/offers/:id", offerActions.edit);

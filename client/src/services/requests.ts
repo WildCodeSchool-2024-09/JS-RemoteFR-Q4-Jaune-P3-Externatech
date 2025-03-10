@@ -14,9 +14,20 @@ const getOfferDetails = (id: string | undefined) => {
     .catch((error) => console.error(error));
 };
 
-const getOffersByCompany = (id: string) => {
+const getOffersByCompany = () => {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/offers/companies/${id}`)
+    .get(`${import.meta.env.VITE_API_URL}/api/offers/companies`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
+const getCompanyAuth = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/company`, {
+      withCredentials: true,
+    })
     .then((response) => response.data)
     .catch((error) => console.error(error));
 };
@@ -66,6 +77,7 @@ const getCities = () => {
 export {
   getContracts,
   getOfferDetails,
+  getCompanyAuth,
   getOffersByCompany,
   getCompanies,
   getCompany,
