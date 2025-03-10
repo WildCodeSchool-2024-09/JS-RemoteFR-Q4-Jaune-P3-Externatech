@@ -4,15 +4,23 @@ import OfferCard from "../../components/OfferCard";
 import "./offers.css";
 
 export default function Offers() {
-  const { offers, stacks, cities } = useLoaderData() as {
-    offers: OfferData[];
-    stacks: StackType[];
-    cities: CityType[];
-  };
-  console.info(offers);
+  const { offers, stacks, cities, remoteOptions, contracts } =
+    useLoaderData() as {
+      offers: OfferData[];
+      stacks: StackData[];
+      cities: CityData[];
+      remoteOptions: RemoteData[];
+      contracts: ContractData[];
+    };
+
   return (
     <div className="containerAll">
-      <Hero stacks={stacks} cities={cities} />
+      <Hero
+        stacks={stacks}
+        cities={cities}
+        remoteOptions={remoteOptions}
+        contracts={contracts}
+      />
 
       <div className="containerTop">
         <h2>Les Offres</h2>

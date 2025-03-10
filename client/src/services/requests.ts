@@ -42,6 +42,13 @@ const getContracts = () => {
     .catch((error) => console.error(error));
 };
 
+const getRemoteOptions = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/remote_options`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
 const getStacks = () => {
   return axios
     .get(`${import.meta.env.VITE_API_URL}/api/stacks`)
@@ -62,6 +69,7 @@ export {
   getOffersByCompany,
   getCompanies,
   getCompany,
+  getRemoteOptions,
   getStacks,
   getCities,
   getAllOffers,

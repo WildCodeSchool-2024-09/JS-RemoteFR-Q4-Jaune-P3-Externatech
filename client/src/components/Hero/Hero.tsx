@@ -1,11 +1,11 @@
 import "./Hero.css";
 
-type HeroProps = {
-  stacks: StackType[];
-  cities: CityType[];
-};
-
-export default function Hero({ stacks, cities }: HeroProps) {
+export default function Hero({
+  stacks,
+  cities,
+  remoteOptions,
+  contracts,
+}: HeroProps) {
   return (
     <div className="hero-container">
       <h2 className="hero-title">
@@ -32,10 +32,11 @@ export default function Hero({ stacks, cities }: HeroProps) {
           <option value="" selected hidden>
             Type de job (CDI, Stage, Alternance)
           </option>
-          <option value="option1">CDI</option>
-          <option value="option2">CDD</option>
-          <option value="option3">Stage</option>
-          <option value="option4">Alternance</option>
+          {contracts.map((contract) => (
+            <option key={contract.id} value={contract.name}>
+              {contract.name}
+            </option>
+          ))}
         </select>
 
         <select className="filter" name="stack" defaultValue="">
@@ -53,9 +54,11 @@ export default function Hero({ stacks, cities }: HeroProps) {
           <option value="" selected hidden>
             Télétravail
           </option>
-          <option value="option1">Inconnu</option>
-          <option value="option2">Télétravail complet</option>
-          <option value="option3">Télétravail occasionnel</option>
+          {remoteOptions.map((remote) => (
+            <option key={remote.id} value={remote.name}>
+              {remote.name}
+            </option>
+          ))}
         </select>
 
         <button type="button" className="search-button">

@@ -26,9 +26,10 @@ import {
   getAllOffers,
   getCities,
   getCompany,
-  // getContracts,
+  getContracts,
   getOfferDetails,
   getOffersByCompany,
+  getRemoteOptions,
   getStacks,
 } from "./services/requests";
 
@@ -57,7 +58,9 @@ const router = createBrowserRouter([
           const offers = await getAllOffers();
           const stacks = await getStacks();
           const cities = await getCities();
-          return { offers, stacks, cities };
+          const contracts = await getContracts();
+          const remoteOptions = await getRemoteOptions();
+          return { offers, stacks, cities, contracts, remoteOptions };
         },
       },
 
