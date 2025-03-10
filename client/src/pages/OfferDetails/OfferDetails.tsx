@@ -28,7 +28,7 @@ export default function OfferDetails() {
         <section className="resume_content">
           <p>{offer.contract_name}</p>
           <p>{offer.city}</p>
-          <p>{offer.remote_name}</p>
+          <p>{offer.work_condition_name}</p>
         </section>
         <h3>Compétences & expertises</h3>
         <p className="skills">{offer.stack_names}</p>

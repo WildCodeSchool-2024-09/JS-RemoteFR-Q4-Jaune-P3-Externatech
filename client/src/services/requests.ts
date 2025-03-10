@@ -42,9 +42,9 @@ const getContracts = () => {
     .catch((error) => console.error(error));
 };
 
-const getRemoteOptions = () => {
+const getWorkCondition = () => {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/remote_options`)
+    .get(`${import.meta.env.VITE_API_URL}/api/work_condition_options`)
     .then((response) => response.data)
     .catch((error) => console.error(error));
 };
@@ -69,7 +69,7 @@ export {
   getOffersByCompany,
   getCompanies,
   getCompany,
-  getRemoteOptions,
+  getWorkCondition,
   getStacks,
   getCities,
   getAllOffers,
