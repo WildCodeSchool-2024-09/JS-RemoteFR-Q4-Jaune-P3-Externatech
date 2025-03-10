@@ -1,3 +1,18 @@
+interface CandidateData {
+  id: number;
+  firstname: string;
+  lastname: string;
+  email: string;
+}
+interface Candidate_ByCompanyData {
+  candidate_id: number;
+  offer_id: number;
+  candidate_firstname: string;
+  candidate_lastname: string;
+  candidate_email: string;
+  company_id: number;
+}
+
 interface CompanyData {
   id: number;
   name: string;

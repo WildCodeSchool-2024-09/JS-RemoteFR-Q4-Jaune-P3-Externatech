@@ -145,4 +145,4 @@ INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
 ('Chloé', 'Robert', 'chloe.robert@email.com', '$argon2id$v=19$m=65536,t=3,p=4$1DtTIhD5guZLuRydbuznsg$gpDMWM/PPxi7K4tFvQaz8NADL7n2FAAlOfccNNccboU');
 
 
-
+INSERT INTO candidate_offer (candidate_id, offer_id) VALUES (1,1),(2,1),(3,1),(4,1),(1,2),(2,2);

@@ -24,6 +24,7 @@ import Offers from "./pages/offers/Offers";
 //Import API requests
 import {
   getAllOffers,
+  getCandidatesByCompany,
   getCities,
   getCompany,
   getContracts,
@@ -70,6 +71,7 @@ const router = createBrowserRouter([
         loader: async ({ params }) => ({
           company: await getCompany(String(params.id)),
           offers: await getOffersByCompany(String(params.id)),
+          candidatesByCompany: await getCandidatesByCompany(String(params.id)),
         }),
       },
       {

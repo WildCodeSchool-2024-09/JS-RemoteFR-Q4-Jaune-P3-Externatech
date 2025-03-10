@@ -5,10 +5,14 @@ import "./company-dashboard.css";
 import OfferCard from "../../components/OfferCard";
 
 function CompanyDashboard() {
-  const { company, offers } = useLoaderData() as {
+  const { company, offers, candidatesByCompany } = useLoaderData() as {
     company: CompanyData;
     offers: OfferData[];
+    candidatesByCompany: Candidate_ByCompanyData[];
   };
+  /******************************************* */
+  console.info(candidatesByCompany);
+  /********************************************************************************* */
   const activeOffers =
     offers.length <= 1
       ? `${offers.length} offre active`

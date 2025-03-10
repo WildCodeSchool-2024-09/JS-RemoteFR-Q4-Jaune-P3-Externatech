@@ -6,24 +6,26 @@ const router = express.Router();
 /* ************************************************************************* */
 
 import authActions from "./middlewares/authActions";
+import formCandidate from "./middlewares/formCandidate";
 import formCompany from "./middlewares/formCompany";
 import formOffer from "./middlewares/formOffer";
+
+/* *********************************************************************** */
+
 import candidateActions from "./modules/candidate/candidateActions";
+
+import candidate_offerActions from "./modules/candidate_offer/candidate_offerActions";
 import companyActions from "./modules/company/companyActions";
 import contractActions from "./modules/contract/contractActions";
 import offerActions from "./modules/offer/offerActions";
 import remoteActions from "./modules/remote/remoteActions";
+import stackActions from "./modules/stack/stackActions";
 
-/* ************************************************************************* */
-
-import formCandidate from "./middlewares/formCandidate";
-
-/* ************************************************************************* */
-// Define Your API Routes Here
+/* LOGIN ************************************************************************* */
 
 router.post("/api/login", authActions.login);
 
-/* ************************************************************************* */
+/* COMPANIES ************************************************************************* */
 
 router.get("/api/companies", companyActions.browse);
 router.get("/api/companies/:id", companyActions.read);
@@ -36,7 +38,7 @@ router.post(
 router.put("/api/companies/:id", formCompany.validate, companyActions.edit);
 router.delete("/api/companies/:id", companyActions.destroy);
 
-/* ************************************************************************* */
+/* CANDIDATES ************************************************************************* */
 
 router.get("/api/candidates", candidateActions.browse);
 router.get("/api/candidates/:id", candidateActions.read);
@@ -53,7 +55,7 @@ router.put(
 );
 router.delete("/api/candidates/:id", candidateActions.destroy);
 
-/* ************************************************************************* */
+/* OFFERS ************************************************************************* */
 
 router.get("/api/offers", offerActions.browse);
 router.get("/api/offers/companies/:id", offerActions.browseByCompany);
@@ -62,24 +64,26 @@ router.post("/api/offers", formOffer.validate, offerActions.add);
 router.put("/api/offers/:id", offerActions.edit);
 router.delete("/api/offers/:id", offerActions.destroy);
 
-/* ************************************************************************* */
+/* CANDIDATE_OFFER / APPLICATIONS ************************************************************************* */
 
-// Define stack-related routes
-import stackActions from "./modules/stack/stackActions";
+router.get(
+  "/api/applications/:company_id",
+  candidate_offerActions.browseCandidatesByCompany,
+);
+
+/* STACK ************************************************************************* */
 
 router.get("/api/stacks", stackActions.browse);
 
-/* ************************************************************************* */
-
-// Define city-related routes
+/* CITY ************************************************************************* */
 
 router.get("/api/cities", offerActions.browseCity);
 
-/* ************************************************************************* */
+/* CONTRACTS ************************************************************************* */
 
 router.get("/api/contracts", contractActions.browse);
 
-/* ************************************************************************* */
+/* REMOTE OPTIONS ************************************************************************* */
 
 router.get("/api/remote_options", remoteActions.browse);
 
