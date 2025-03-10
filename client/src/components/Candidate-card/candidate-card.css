@@ -26,3 +26,9 @@
 .candidate-card .actions button:not(:first-child) {
   flex: 1;
 }
+
+@media screen and (min-width: 768px) {
+  .candidate-card {
+    width: 25rem;
+  }
+}

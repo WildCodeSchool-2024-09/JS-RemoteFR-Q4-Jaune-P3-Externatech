@@ -84,4 +84,34 @@ const hashPassword: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { login, hashPassword };
+const verifyCompany: RequestHandler = async (req, res, next) => {
+  if (!process.env.APP_SECRET) {
+    throw new Error("Vous n'avez pas configuré votre APP SECRET dans le .env");
+  }
+
+  try {
+    // Récupérer le token qui est à l'intérieur du cookie
+    const { auth } = req.cookies;
+
+    // Si il y a pas le cookie on déclenche une erreur
+    if (!auth) {
+      res.sendStatus(403);
+    }
+
+    // Vérifier le token JWT qu'il y a à l'intérieur
+    const resultPayload = await jwt.verify(auth, process.env.APP_SECRET);
+
+    if (typeof resultPayload !== "object") {
+      throw new Error("Token invalid");
+    }
+
+    req.companyID = resultPayload.id;
+
+    // Si tout se passe bien => next()
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default { login, hashPassword, verifyCompany };

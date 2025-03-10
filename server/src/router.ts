@@ -66,7 +66,8 @@ router.delete("/api/offers/:id", offerActions.destroy);
 /* CANDIDATE_OFFER / APPLICATIONS ************************************************************************* */
 
 router.get(
-  "/api/candidates_offers/:company_id",
+  "/api/candidates_offers",
+  authActions.verifyCompany,
   candidate_offerActions.browseCandidatesByCompany,
 );
 
