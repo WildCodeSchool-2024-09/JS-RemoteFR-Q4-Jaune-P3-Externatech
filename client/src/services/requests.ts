@@ -65,7 +65,7 @@ const getCities = () => {
 
 const getCandidatesByCompany = (company_id: string) => {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/applications/${company_id}`)
+    .get(`${import.meta.env.VITE_API_URL}/api/candidates_offers/${company_id}`)
     .then((response) => response.data)
     .catch((error) => console.error(error));
 };
