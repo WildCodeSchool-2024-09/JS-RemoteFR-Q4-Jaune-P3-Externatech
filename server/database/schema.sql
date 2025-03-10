@@ -59,8 +59,11 @@ CREATE TABLE offer_stack (
 );
 
 CREATE TABLE candidate_offer (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   candidate_id INT UNSIGNED NOT NULL,
-  offer_id INT UNSIGNED NOT NULL
+  offer_id INT UNSIGNED NOT NULL,
+  FOREIGN KEY (offer_id) REFERENCES offer(id) ON DELETE CASCADE,
+  FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE
 );
 
 INSERT INTO company (name, logo, description, email, hashed_password) VALUES

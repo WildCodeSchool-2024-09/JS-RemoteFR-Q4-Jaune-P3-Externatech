@@ -13,7 +13,6 @@ import formOffer from "./middlewares/formOffer";
 /* *********************************************************************** */
 
 import candidateActions from "./modules/candidate/candidateActions";
-
 import candidate_offerActions from "./modules/candidate_offer/candidate_offerActions";
 import companyActions from "./modules/company/companyActions";
 import contractActions from "./modules/contract/contractActions";

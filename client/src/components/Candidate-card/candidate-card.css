@@ -1,0 +1,28 @@
+.candidate-card {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border: solid 1px var(--tertiary);
+}
+.candidate-card p {
+  padding-left: 0;
+}
+.candidate-card .identity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.candidate-card .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.candidate-card .actions button:first-child {
+  width: 100%;
+}
+
+.candidate-card .actions button:not(:first-child) {
+  flex: 1;
+}

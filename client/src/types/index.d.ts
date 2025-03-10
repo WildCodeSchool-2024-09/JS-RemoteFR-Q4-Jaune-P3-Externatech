@@ -1,16 +1,12 @@
-interface CandidateData {
+interface CandidateOfferData {
   id: number;
-  firstname: string;
-  lastname: string;
-  email: string;
-}
-interface Candidate_ByCompanyData {
   candidate_id: number;
   offer_id: number;
   candidate_firstname: string;
   candidate_lastname: string;
   candidate_email: string;
   company_id: number;
+  offer_title: string;
 }
 
 interface CompanyData {
@@ -86,13 +82,19 @@ interface OfferFormProps {
   value: OfferDataForm;
   onSubmit: (offer: OfferDataForm) => void;
 }
+
 type LoginCompanyProps = {
   isOpen: boolean;
   onClose: () => void;
 };
+
 type HeroProps = {
   stacks: StackData[];
   cities: CityData[];
   remoteOptions: RemoteData[];
   contracts: ContractData[];
 };
+
+interface CandidateOfferProps {
+  candidateOffer: Candidate_ByCompanyData;
+}
