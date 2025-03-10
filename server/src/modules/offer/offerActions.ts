@@ -57,7 +57,7 @@ const edit: RequestHandler = async (req, res, next) => {
       salary: req.body.salary,
       profile: req.body.profile,
       remote_id: req.body.remote_id,
-      company_id: req.body.company_id,
+      company_id: req.companyID,
       contract_id: req.body.contract_id,
     };
 
@@ -75,7 +75,17 @@ const edit: RequestHandler = async (req, res, next) => {
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const newOffer = req.body;
+    const newOffer = {
+      title: req.body.title,
+      city: req.body.city,
+      background: req.body.background,
+      description: req.body.description,
+      salary: req.body.salary,
+      profile: req.body.profile,
+      remote_id: req.body.remote_id,
+      company_id: req.companyID,
+      contract_id: req.body.contract_id,
+    };
     console.info("newOffer", newOffer);
     const insertId = await offerRepository.create(newOffer);
 

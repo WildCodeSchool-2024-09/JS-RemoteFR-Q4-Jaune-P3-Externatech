@@ -8,25 +8,26 @@ export default function Login({ isOpen, onClose }: LoginCompanyProps) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   const [error, setError] = useState(() => null as string | null);
+  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setCredentials((prev) => ({ ...prev, [name]: value }));
   };
-  const navigate = useNavigate();
 
   const handleSubmit: FormEventHandler = async (event) => {
     event.preventDefault();
     setError(null);
 
     try {
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API_URL}/api/login`,
         credentials,
-        { withCredentials: true },
+        {
+          withCredentials: true,
+        },
       );
 
-      console.info(response.data);
       onClose();
       navigate("/companies/dashboard");
     } catch (err) {

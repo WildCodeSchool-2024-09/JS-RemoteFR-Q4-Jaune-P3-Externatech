@@ -25,7 +25,7 @@ const getOffersByCompany = () => {
 
 const getCompanyAuth = () => {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/company`, {
+    .get(`${import.meta.env.VITE_API_URL}/api/companies`, {
       withCredentials: true,
     })
     .then((response) => response.data)

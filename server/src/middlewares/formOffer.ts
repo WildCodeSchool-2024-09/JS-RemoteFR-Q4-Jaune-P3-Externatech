@@ -36,10 +36,7 @@ const offerSchema = Joi.object({
     "number.base": "L'ID de l'entreprise doit être un nombre.",
     "any.required": "Le type de télétravail est obligatoire.",
   }),
-  company_id: Joi.number().integer().positive().required().messages({
-    "number.base": "L'ID de l'entreprise doit être un nombre.",
-    "any.required": "L'ID de l'entreprise est obligatoire.",
-  }),
+
   contract_id: Joi.number().integer().positive().required().messages({
     "string.empty": "Les exigences sont obligatoires.",
     "any.required": "Les exigences sont obligatoires.",
