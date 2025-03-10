@@ -9,7 +9,7 @@ export default function Offers() {
       offers: OfferData[];
       stacks: StackData[];
       cities: CityData[];
-      work_conditionOptions: work_conditionData[];
+      work_conditionOptions: Work_conditionData[];
       contracts: ContractData[];
     };
 

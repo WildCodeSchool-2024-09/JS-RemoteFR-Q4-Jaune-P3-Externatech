@@ -27,7 +27,7 @@ interface ContractData {
   name: string;
 }
 
-interface work_conditionData {
+interface Work_conditionData {
   id: number;
   name: string;
 }
