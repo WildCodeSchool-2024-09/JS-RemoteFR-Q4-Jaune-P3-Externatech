@@ -78,6 +78,6 @@ type LoginCompanyProps = {
 type HeroProps = {
   stacks: StackData[];
   cities: CityData[];
-  work_conditionOptions: work_conditionData[];
+  work_conditions: work_conditionData[];
   contracts: ContractData[];
 };

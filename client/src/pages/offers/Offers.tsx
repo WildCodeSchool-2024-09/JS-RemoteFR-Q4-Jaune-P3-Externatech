@@ -18,7 +18,7 @@ export default function Offers() {
       <Hero
         stacks={stacks}
         cities={cities}
-        work_conditionOptions={work_conditionOptions}
+        work_conditions={work_conditionOptions}
         contracts={contracts}
       />
 
