@@ -4,17 +4,30 @@ import OfferCard from "../../components/OfferCard";
 import "./offers.css";
 
 export default function Offers() {
-  const allOffers = useLoaderData() as OfferData[];
+  const { offers, stacks, cities, remoteOptions, contracts } =
+    useLoaderData() as {
+      offers: OfferData[];
+      stacks: StackData[];
+      cities: CityData[];
+      remoteOptions: RemoteData[];
+      contracts: ContractData[];
+    };
 
   return (
     <div className="containerAll">
-      <Hero />
+      <Hero
+        stacks={stacks}
+        cities={cities}
+        remoteOptions={remoteOptions}
+        contracts={contracts}
+      />
+
       <div className="containerTop">
         <h2>Les Offres</h2>
-        {<span className="offersCount">{allOffers.length}</span>}
+        <span className="offersCount">{offers.length}</span>
       </div>
       <div className="gradientBar" />
-      {allOffers.map((offer) => (
+      {offers.map((offer) => (
         <OfferCard key={offer.id} offer={offer} />
       ))}
     </div>

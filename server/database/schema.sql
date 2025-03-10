@@ -1,5 +1,4 @@
 -- SQLBook: Code
-
 CREATE TABLE company (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL,
@@ -17,23 +16,22 @@ CREATE TABLE candidate (
   hashed_password VARCHAR(200) NOT NULL
 );
 
-
 CREATE TABLE stack (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL UNIQUE
 );
-
-
 
 CREATE TABLE contract (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL
 );
 
+
 CREATE TABLE remote(
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL
 );
+
 
 
 CREATE TABLE offer (
@@ -77,7 +75,6 @@ INSERT INTO company (name, logo, description, email, hashed_password) VALUES
 
 INSERT INTO stack (name) VALUES ('JavaScript'), ('Python'), ('Java'), ('C#'), ('Ruby');
 
-
 INSERT INTO contract (name) VALUES
 ('CDI'),
 ('CDD'),
@@ -85,12 +82,14 @@ INSERT INTO contract (name) VALUES
 ('Alternance'),
 ('Freelance');
 
+
 INSERT INTO remote (name) VALUES
 ('sur site'),
 ('télétravail hybride'),
 ('full remote');
 
 INSERT INTO offer (title, city, background, description, profile, salary, remote_id, company_id, contract_id) VALUES
+
 ('Développeur Fullstack', 
  'Paris', 
  'https://img.freepik.com/photos-gratuite/espace-travail-ecran-ordinateur-ordinateur-portable_23-2148821901.jpg?t=st=1740582397~exp=1740585997~hmac=7e34d7b17961b37b532ffca3cccae3494295d3fb30927bb0620e862526051984&w=740', 
@@ -100,8 +99,6 @@ INSERT INTO offer (title, city, background, description, profile, salary, remote
  2, 
  1, 
  1),
-
-
 
 ('Ingénieur Data', 
  'Lyon', 
@@ -146,5 +143,6 @@ INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
 ('Emma', 'Bernard', 'emma.bernard@email.com', '$argon2id$v=19$m=65536,t=3,p=4$n2kfplbCq9EcDn2b/P3Cdg$B1lD+3c5DIE5Z6PE6tDj14U3dNRb3M7cKXyHA/OF9xk'),
 ('Hugo', 'Petit', 'hugo.petit@email.com', '$argon2id$v=19$m=65536,t=3,p=4$sv1ZmMM4T3j87ccwqtPsDw$WzrkB8JD3eygcTbf+DhabNhJj/XueKh0b353vSOUhOk'),
 ('Chloé', 'Robert', 'chloe.robert@email.com', '$argon2id$v=19$m=65536,t=3,p=4$1DtTIhD5guZLuRydbuznsg$gpDMWM/PPxi7K4tFvQaz8NADL7n2FAAlOfccNNccboU');
+
 
 

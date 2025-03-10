@@ -12,12 +12,22 @@ interface CompanyData {
   siret: string;
 }
 
-interface LanguageType {
+interface StackData {
   name: string;
   id: number;
 }
 
-interface ContractType {
+interface CityData {
+  city: string;
+  id: number;
+}
+
+interface ContractData {
+  id: number;
+  name: string;
+}
+
+interface RemoteData {
   id: number;
   name: string;
 }
@@ -64,4 +74,10 @@ interface OfferFormProps {
 type LoginCompanyProps = {
   isOpen: boolean;
   onClose: () => void;
+};
+type HeroProps = {
+  stacks: StackData[];
+  cities: CityData[];
+  remoteOptions: RemoteData[];
+  contracts: ContractData[];
 };

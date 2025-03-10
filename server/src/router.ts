@@ -11,8 +11,8 @@ import formOffer from "./middlewares/formOffer";
 import candidateActions from "./modules/candidate/candidateActions";
 import companyActions from "./modules/company/companyActions";
 import contractActions from "./modules/contract/contractActions";
-import languageAction from "./modules/language/languageAction";
 import offerActions from "./modules/offer/offerActions";
+import remoteActions from "./modules/remote/remoteActions";
 
 /* ************************************************************************* */
 
@@ -64,11 +64,24 @@ router.delete("/api/offers/:id", offerActions.destroy);
 
 /* ************************************************************************* */
 
-router.get("/api/languages", languageAction.browse);
+// Define stack-related routes
+import stackActions from "./modules/stack/stackActions";
+
+router.get("/api/stacks", stackActions.browse);
+
+/* ************************************************************************* */
+
+// Define city-related routes
+
+router.get("/api/cities", offerActions.browseCity);
 
 /* ************************************************************************* */
 
 router.get("/api/contracts", contractActions.browse);
+
+/* ************************************************************************* */
+
+router.get("/api/remote_options", remoteActions.browse);
 
 /* ************************************************************************* */
 

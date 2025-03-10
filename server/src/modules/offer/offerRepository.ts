@@ -14,6 +14,11 @@ type Offer = {
   contract_id: number;
 };
 
+type City = {
+  id: number;
+  name: string;
+};
+
 class offerRepository {
   async create(offer: Omit<Offer, "id">) {
     const {
@@ -60,6 +65,13 @@ class offerRepository {
     );
 
     return rows as Offer[];
+  }
+
+  async readAllCities() {
+    const [rows] = await DatabaseClient.query<Rows>(
+      "SELECT id, city FROM offer",
+    );
+    return rows as City[];
   }
 
   async read(id: number) {

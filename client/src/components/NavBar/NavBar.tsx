@@ -57,10 +57,12 @@ export default function NavBar() {
 
       <ul className="menuDesktop">
         <Link to="#">Les entreprises</Link>
+
         <Link to="/offers">Les offres</Link>
         <button type="button" onClick={openModal}>
           Espace entreprise
         </button>
+
         <button type="button" onClick={openModal}>
           Se connecter
         </button>

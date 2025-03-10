@@ -9,6 +9,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+
 // import { companyLoader } from "./pages/CompanyInformartion/CompanyInformation";
 import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
@@ -16,7 +17,6 @@ import OfferDetails from "./pages/OfferDetails/OfferDetails";
 // Import pages
 
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
-
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
 import HomePage from "./pages/homepage/HomePage";
 import Offers from "./pages/offers/Offers";
@@ -24,9 +24,13 @@ import Offers from "./pages/offers/Offers";
 //Import API requests
 import {
   getAllOffers,
+  getCities,
   getCompany,
+  getContracts,
   getOfferDetails,
   getOffersByCompany,
+  getRemoteOptions,
+  getStacks,
 } from "./services/requests";
 
 /* ************************************************************************* */
@@ -47,11 +51,17 @@ const router = createBrowserRouter([
         element: <OfferDetails />,
         loader: ({ params }) => getOfferDetails(params.id),
       },
-
       {
         path: "/offers",
         element: <Offers />,
-        loader: getAllOffers,
+        loader: async () => {
+          const offers = await getAllOffers();
+          const stacks = await getStacks();
+          const cities = await getCities();
+          const contracts = await getContracts();
+          const remoteOptions = await getRemoteOptions();
+          return { offers, stacks, cities, contracts, remoteOptions };
+        },
       },
 
       {
