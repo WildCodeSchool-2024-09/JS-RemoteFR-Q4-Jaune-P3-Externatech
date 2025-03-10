@@ -56,7 +56,7 @@ const edit: RequestHandler = async (req, res, next) => {
       description: req.body.description,
       salary: req.body.salary,
       profile: req.body.profile,
-      remote_id: req.body.remote_id,
+      work_condition_id: req.body.work_condition_id,
       company_id: req.body.company_id,
       contract_id: req.body.contract_id,
     };

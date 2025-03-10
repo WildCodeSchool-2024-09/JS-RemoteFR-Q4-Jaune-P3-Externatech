@@ -32,7 +32,7 @@ const offerSchema = Joi.object({
     "any.required": "Le profil recherché est obligatoire.",
   }),
 
-  remote_id: Joi.number().integer().positive().required().messages({
+  work_condition_id: Joi.number().integer().positive().required().messages({
     "number.base": "L'ID de l'entreprise doit être un nombre.",
     "any.required": "Le type de télétravail est obligatoire.",
   }),

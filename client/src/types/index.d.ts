@@ -27,7 +27,7 @@ interface ContractData {
   name: string;
 }
 
-interface RemoteData {
+interface work_conditionData {
   id: number;
   name: string;
 }
@@ -44,7 +44,7 @@ interface OfferData {
   company_id: number;
   contract_id: number;
   contract_name: string;
-  remote_name: string;
+  work_condition_name: string;
   company_name: string;
   company_description: string;
   stack_names: string;
@@ -57,7 +57,7 @@ interface OfferDataForm {
   description: string;
   salary: number;
   profile: string;
-  remote_id: number;
+  work_condition_id: number;
   company_id: number;
   contract_id: number;
 }
@@ -78,6 +78,6 @@ type LoginCompanyProps = {
 type HeroProps = {
   stacks: StackData[];
   cities: CityData[];
-  remoteOptions: RemoteData[];
+  work_conditionOptions: work_conditionData[];
   contracts: ContractData[];
 };

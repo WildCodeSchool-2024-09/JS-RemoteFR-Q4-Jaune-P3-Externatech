@@ -1,11 +1,11 @@
 import type { RequestHandler } from "express";
-import remoteRepository from "./remoteRepository";
+import workConditionRepository from "./workConditionRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    const remote = await remoteRepository.readAll();
+    const workCondition = await workConditionRepository.readAll();
 
-    res.json(remote);
+    res.json(workCondition);
   } catch (err) {
     next(err);
   }

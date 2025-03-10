@@ -9,7 +9,7 @@ type Offer = {
   description: string;
   salary: number;
   profile: string;
-  remote_id: number;
+  work_condition_id: number;
   company_id: number;
   contract_id: number;
 };
@@ -28,12 +28,12 @@ class offerRepository {
       description,
       salary,
       profile,
-      remote_id,
+      work_condition_id,
       company_id,
       contract_id,
     } = offer;
     const [result] = await DatabaseClient.query<Result>(
-      "insert into offer (title, city, background, description,  salary, profile, remote_id, company_id, contract_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "insert into offer (title, city, background, description,  salary, profile, work_condition_id, company_id, contract_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         offer.title,
         offer.city,
@@ -41,7 +41,7 @@ class offerRepository {
         offer.description,
         offer.salary,
         offer.profile,
-        offer.remote_id,
+        offer.work_condition_id,
         offer.company_id,
         offer.contract_id,
       ],
@@ -52,7 +52,7 @@ class offerRepository {
 
   async readAll() {
     const [rows] = await DatabaseClient.query<Rows>(
-      "select offer.*, company.name AS company_name, company.logo AS company_logo, contract.name AS contract_name, remote.name AS remote_name from offer JOIN company ON offer.company_id = company.id JOIN contract ON offer.contract_id = contract.id JOIN remote ON offer.remote_id = remote.id",
+      "select offer.*, company.name AS company_name, company.logo AS company_logo, contract.name AS contract_name, work_condition.name AS work_condition_name from offer JOIN company ON offer.company_id = company.id JOIN contract ON offer.contract_id = contract.id JOIN work_condition ON offer.work_condition_id = work_condition.id",
     );
 
     return rows as Offer[];
@@ -60,7 +60,7 @@ class offerRepository {
 
   async readAllByCompany(id: number) {
     const [rows] = await DatabaseClient.query<Rows>(
-      "SELECT offer.*, company.name AS company_name, company.logo AS company_logo, contract.name AS contract_name, remote.name AS remote_name FROM offer JOIN company ON offer.company_id = company.id JOIN contract ON offer.contract_id = contract.id JOIN remote ON offer.remote_id = remote.id WHERE offer.company_id = ?",
+      "SELECT offer.*, company.name AS company_name, company.logo AS company_logo, contract.name AS contract_name, work_condition.name AS work_condition_name FROM offer JOIN company ON offer.company_id = company.id JOIN contract ON offer.contract_id = contract.id JOIN work_condition ON offer.work_condition_id = work_condition.id WHERE offer.company_id = ?",
       [id],
     );
 
@@ -76,7 +76,7 @@ class offerRepository {
 
   async read(id: number) {
     const [rows] = await DatabaseClient.query<Rows>(
-      "SELECT offer.id, offer.title, offer.description, offer.city, offer.background, offer.salary, offer.profile, contract.name AS contract_name, remote.name AS remote_name, company.name AS company_name, company.description AS company_description, company.id as company_id, company.logo AS company_logo, GROUP_CONCAT(stack.name SEPARATOR ', ') AS stack_names FROM offer INNER JOIN company ON offer.company_id = company.id INNER JOIN offer_stack ON offer.id = offer_stack.offer_id INNER JOIN stack ON offer_stack.stack_id = stack.id INNER JOIN contract ON offer.contract_id = contract.id INNER JOIN remote ON offer.remote_id=remote.id WHERE offer.id = ? GROUP BY offer.id, company.id",
+      "SELECT offer.id, offer.title, offer.description, offer.city, offer.background, offer.salary, offer.profile, contract.name AS contract_name, work_condition.name AS work_condition_name, company.name AS company_name, company.description AS company_description, company.id as company_id, company.logo AS company_logo, GROUP_CONCAT(stack.name SEPARATOR ', ') AS stack_names FROM offer INNER JOIN company ON offer.company_id = company.id INNER JOIN offer_stack ON offer.id = offer_stack.offer_id INNER JOIN stack ON offer_stack.stack_id = stack.id INNER JOIN contract ON offer.contract_id = contract.id INNER JOIN work_condition ON offer.work_condition_id=work_condition.id WHERE offer.id = ? GROUP BY offer.id, company.id",
       [id],
     );
 
@@ -85,7 +85,7 @@ class offerRepository {
 
   async update(offer: Offer) {
     const [result] = await DatabaseClient.query<Result>(
-      "update offer set title = ?, description = ?, city = ?, background = ?, salary = ?, profile = ?,  remote_id = ?, company_id = ?, contract_id = ? where id = ?",
+      "update offer set title = ?, description = ?, city = ?, background = ?, salary = ?, profile = ?,  work_condition_id = ?, company_id = ?, contract_id = ? where id = ?",
       [
         offer.title,
         offer.description,
@@ -93,7 +93,7 @@ class offerRepository {
         offer.background,
         offer.salary,
         offer.profile,
-        offer.remote_id,
+        offer.work_condition_id,
         offer.company_id,
         offer.contract_id,
         offer.id,

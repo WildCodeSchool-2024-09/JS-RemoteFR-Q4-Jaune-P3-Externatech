@@ -3,7 +3,7 @@ import "./Hero.css";
 export default function Hero({
   stacks,
   cities,
-  remoteOptions,
+  work_conditionOptions,
   contracts,
 }: HeroProps) {
   return (
@@ -54,9 +54,9 @@ export default function Hero({
           <option value="" selected hidden>
             Télétravail
           </option>
-          {remoteOptions.map((remote) => (
-            <option key={remote.id} value={remote.name}>
-              {remote.name}
+          {work_conditionOptions.map((work_condition) => (
+            <option key={work_condition.id} value={work_condition.name}>
+              {work_condition.name}
             </option>
           ))}
         </select>
