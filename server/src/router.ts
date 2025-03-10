@@ -17,8 +17,8 @@ import candidate_offerActions from "./modules/candidate_offer/candidate_offerAct
 import companyActions from "./modules/company/companyActions";
 import contractActions from "./modules/contract/contractActions";
 import offerActions from "./modules/offer/offerActions";
-import remoteActions from "./modules/remote/remoteActions";
 import stackActions from "./modules/stack/stackActions";
+import workConditionActions from "./modules/work_condition/workConditionActions";
 
 /* LOGIN ************************************************************************* */
 
@@ -85,7 +85,7 @@ router.get("/api/contracts", contractActions.browse);
 
 /* REMOTE OPTIONS ************************************************************************* */
 
-router.get("/api/remote_options", remoteActions.browse);
+router.get("/api/work_condition_options", workConditionActions.browse);
 
 /* ************************************************************************* */
 

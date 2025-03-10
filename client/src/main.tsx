@@ -30,8 +30,8 @@ import {
   getContracts,
   getOfferDetails,
   getOffersByCompany,
-  getRemoteOptions,
   getStacks,
+  getWorkCondition,
 } from "./services/requests";
 
 /* ************************************************************************* */
@@ -60,8 +60,8 @@ const router = createBrowserRouter([
           const stacks = await getStacks();
           const cities = await getCities();
           const contracts = await getContracts();
-          const remoteOptions = await getRemoteOptions();
-          return { offers, stacks, cities, contracts, remoteOptions };
+          const work_conditionOptions = await getWorkCondition();
+          return { offers, stacks, cities, contracts, work_conditionOptions };
         },
       },
 

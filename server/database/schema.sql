@@ -27,7 +27,7 @@ CREATE TABLE contract (
 );
 
 
-CREATE TABLE remote(
+CREATE TABLE work_condition (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL
 );
@@ -42,8 +42,8 @@ CREATE TABLE offer (
   description TEXT NOT NULL,
   profile TEXT NOT NULL,
   salary INT NOT NULL,
-  remote_id INT UNSIGNED NOT NULL,
-  FOREIGN KEY (remote_id) REFERENCES remote(id),
+  work_condition_id INT UNSIGNED NOT NULL,
+  FOREIGN KEY (work_condition_id) REFERENCES work_condition(id),
   company_id INT UNSIGNED NOT NULL,
   FOREIGN KEY (company_id) REFERENCES company(id),
   contract_id INT UNSIGNED NOT NULL,
@@ -86,12 +86,12 @@ INSERT INTO contract (name) VALUES
 ('Freelance');
 
 
-INSERT INTO remote (name) VALUES
+INSERT INTO work_condition (name) VALUES
 ('sur site'),
 ('télétravail hybride'),
 ('full remote');
 
-INSERT INTO offer (title, city, background, description, profile, salary, remote_id, company_id, contract_id) VALUES
+INSERT INTO offer (title, city, background, description, profile, salary, work_condition_id, company_id, contract_id) VALUES
 
 ('Développeur Fullstack', 
  'Paris', 
