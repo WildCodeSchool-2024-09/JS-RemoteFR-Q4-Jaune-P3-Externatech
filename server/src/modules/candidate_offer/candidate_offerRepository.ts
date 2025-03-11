@@ -14,10 +14,10 @@ type Candidate_offer = {
 };
 
 class Candidate_offerRepository {
-  async readAllCandidatesByCompany(company_id: number) {
+  async readAllCandidatesByCompany(companyID: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT c_o.*, company.id AS company_id, candidate.firstname AS candidate_firstname, candidate.lastname AS candidate_lastname, candidate.email AS candidate_email, offer.title AS offer_title FROM candidate_offer as c_o JOIN candidate ON candidate.id = c_o.candidate_id JOIN offer ON offer.id = offer_id JOIN company ON company.id = offer.company_id WHERE company.id =?",
-      [company_id],
+      [companyID],
     );
     return rows as Candidate_offer[];
   }
