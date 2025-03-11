@@ -10,7 +10,11 @@ function OfferForm({ children, value, onSubmit }: OfferFormProps) {
     const { name, value } = event.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]:
+        ["work_condition_id", "contract_id", "salary"].includes(name) &&
+        value !== ""
+          ? Number(value)
+          : value,
     }));
   };
   const maxLengths = {
@@ -75,11 +79,15 @@ function OfferForm({ children, value, onSubmit }: OfferFormProps) {
         </label>
         <label>
           Le poste est-il en télétravail ? *
-          <select name="remote" value={formData.remote} onChange={handleChange}>
+          <select
+            name="work_condition_id"
+            value={formData.work_condition_id}
+            onChange={handleChange}
+          >
             <option value="">-- Sélectionnez une option --</option>
-            <option value="Présentiel">Présentiel</option>
-            <option value="Hybride">Hybride</option>
-            <option value="Full remote">Full remote</option>
+            <option value="1">Sur site</option>
+            <option value="2">Télétravail hybride</option>
+            <option value="3">Full remote</option>
           </select>
         </label>
 
@@ -93,23 +101,19 @@ function OfferForm({ children, value, onSubmit }: OfferFormProps) {
           />
         </label>
         <label>
-          Quel est le type de contrat que vous proposez ? * lier avec table de
-          jointure
-          <input
-            type="number"
+          Quel est le type de contrat que vous proposez ?
+          <select
             name="contract_id"
             value={formData.contract_id}
             onChange={handleChange}
-          />
-        </label>
-        <label>
-          Ajoutez votre logo d'entreprise *
-          <input
-            type="text"
-            name="logo"
-            value={formData.logo}
-            onChange={handleChange}
-          />
+          >
+            <option value="">-- Sélectionnez une option --</option>
+            <option value="1">CDI</option>
+            <option value="2">CDD</option>
+            <option value="3">Stage</option>
+            <option value="4">Alternance</option>
+            <option value="5">Freelance</option>
+          </select>
         </label>
         <label>
           Ajoutez votre background

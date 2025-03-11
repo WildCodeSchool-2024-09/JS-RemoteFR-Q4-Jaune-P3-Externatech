@@ -4,18 +4,20 @@ import type { Result, Rows } from "../../../database/client";
 
 type Company = {
   id: number;
+  logo: string;
   name: string;
   email: string;
-  hashed_password: string;
   description: string;
+  hashed_password: string;
 };
 
 class CompanyRepository {
   async create(company: Omit<Company, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "insert into company (name, description, email, hashed_password) values (?, ?, ?, ?)",
+      "insert into company (name, logo, description, email, hashed_password) values (?, ?, ?, ?, ?)",
       [
         company.name,
+        company.logo,
         company.description,
         company.email,
         company.hashed_password,
@@ -51,9 +53,10 @@ class CompanyRepository {
 
   async update(company: Company) {
     const [result] = await databaseClient.query<Result>(
-      "update company set name = ?, description = ?, email = ?, hashed_password = ? where id = ?",
+      "update company set name = ?, logo =?, description = ?, email = ?, hashed_password = ? where id = ?",
       [
         company.name,
+        company.logo,
         company.description,
         company.email,
         company.hashed_password,

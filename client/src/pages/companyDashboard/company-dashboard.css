@@ -4,7 +4,16 @@
   justify-content: center;
   margin: 1.2rem;
 }
+
 /* ********************************************* */
+.company-dashboard h1 {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+.company-dashboard img {
+  width: 5rem;
+}
 .general-view {
   display: flex;
   flex-direction: column;
@@ -39,10 +48,25 @@
   }
 }
 
-/* ********************************************* */
 .display {
   display: flex;
   flex-direction: column;
+}
+
+.display button {
+  width: auto;
+  padding: 0.5rem 1rem;
+  align-self: flex-end;
+}
+.display ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  list-style-position: inside;
+  padding-top: 0.5rem;
+}
+.display p {
+  padding: 1rem;
 }
 
 .company-dashboard h2 {
@@ -59,25 +83,12 @@
   height: 0.2rem;
   background-color: var(--tertiary);
 }
-.display p {
-  padding: 1rem;
-}
-
-.card-container {
-  display: flex;
-  flex-direction: column;
-}
 
 .actions {
   display: flex;
   justify-content: end;
   margin: 1rem 0.5rem 1rem 0;
   gap: 1rem;
-}
-.display button {
-  width: auto;
-  padding: 0.5rem 1rem;
-  align-self: flex-end;
 }
 
 .form-offer {
@@ -87,7 +98,7 @@
 
 /****************************************/
 @media screen and (min-width: 768px) {
-  .card-container {
+  .display > ul {
     flex-direction: row;
   }
 }

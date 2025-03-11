@@ -38,6 +38,7 @@ nav {
 .menuDroper {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 2rem;
   position: fixed;
   list-style: none;
@@ -47,6 +48,10 @@ nav {
   top: 7rem;
   right: 0;
   transition: 1s ease;
+  & button {
+    background: none;
+    font-weight: bold;
+  }
 }
 
 .menuDroper > a {
@@ -81,7 +86,12 @@ nav {
     list-style: none;
     margin: 0.5rem 1.5rem 0 0;
     gap: 2rem;
+    align-items: center;
     cursor: pointer;
+    & button {
+      background: none;
+      font-weight: bold;
+    }
   }
 
   .menuDesktop > a {

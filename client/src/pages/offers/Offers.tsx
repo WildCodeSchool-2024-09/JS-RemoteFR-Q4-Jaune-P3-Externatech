@@ -1,18 +1,33 @@
 import { useLoaderData } from "react-router-dom";
-import OfferCard from "../../components/OfferCard";
+import Hero from "../../components/Hero/Hero";
+import OfferCard from "../../components/Offer-card/OfferCard";
 import "./offers.css";
 
 export default function Offers() {
-  const allOffers = useLoaderData() as OfferData[];
+  const { offers, stacks, cities, work_conditionOptions, contracts } =
+    useLoaderData() as {
+      offers: OfferData[];
+      stacks: StackData[];
+      cities: CityData[];
+      work_conditionOptions: Work_conditionData[];
+      contracts: ContractData[];
+    };
 
   return (
     <div className="containerAll">
+      <Hero
+        stacks={stacks}
+        cities={cities}
+        work_conditions={work_conditionOptions}
+        contracts={contracts}
+      />
+
       <div className="containerTop">
         <h2>Les Offres</h2>
-        {<span className="offersCount">{allOffers.length}</span>}
+        <span className="offersCount">{offers.length}</span>
       </div>
       <div className="gradientBar" />
-      {allOffers.map((offer) => (
+      {offers.map((offer) => (
         <OfferCard key={offer.id} offer={offer} />
       ))}
     </div>

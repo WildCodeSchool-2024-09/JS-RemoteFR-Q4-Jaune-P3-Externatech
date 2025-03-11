@@ -9,12 +9,13 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+
 // import { companyLoader } from "./pages/CompanyInformartion/CompanyInformation";
 import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
 
 // Import pages
-import Apply from "./pages/Apply/Apply";
+
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
 import CandidatDashboard from "./pages/candidatDashboard/CandidatDashboard";
 
@@ -25,9 +26,14 @@ import Offers from "./pages/offers/Offers";
 //Import API requests
 import {
   getAllOffers,
-  getCompany,
+  getCandidatesByCompany,
+  getCities,
+  getCompanyAuth,
+  getContracts,
   getOfferDetails,
   getOffersByCompany,
+  getStacks,
+  getWorkCondition,
 } from "./services/requests";
 
 /* ************************************************************************* */
@@ -48,19 +54,25 @@ const router = createBrowserRouter([
         element: <OfferDetails />,
         loader: ({ params }) => getOfferDetails(params.id),
       },
-
       {
-        path: "/Offers",
+        path: "/offers",
         element: <Offers />,
-        loader: getAllOffers,
+        loader: async () => {
+          const offers = await getAllOffers();
+          const stacks = await getStacks();
+          const cities = await getCities();
+          const contracts = await getContracts();
+          const work_conditionOptions = await getWorkCondition();
+          return { offers, stacks, cities, contracts, work_conditionOptions };
+        },
       },
-
       {
-        path: "/companies/dashboard/:id",
+        path: "/companies/dashboard",
         element: <CompanyDasboard />,
-        loader: async ({ params }) => ({
-          company: await getCompany(String(params.id)),
-          offers: await getOffersByCompany(String(params.id)),
+        loader: async () => ({
+          company: await getCompanyAuth(),
+          offers: await getOffersByCompany(),
+          candidatesByCompany: await getCandidatesByCompany(),
         }),
       },
 
@@ -71,20 +83,16 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/companies/:id",
+        path: "/companies/dashboard/information",
         element: <CompanyInformation />,
-        loader: async ({ params }) => {
-          const company = await getCompany(String(params.id));
+        loader: async () => {
+          const company = await getCompanyAuth();
           return company || null;
         },
       },
       {
         path: "/RegisteredOffers",
         element: <RegisteredOffers />,
-      },
-      {
-        path: "/Apply",
-        element: <Apply />,
       },
     ],
   },

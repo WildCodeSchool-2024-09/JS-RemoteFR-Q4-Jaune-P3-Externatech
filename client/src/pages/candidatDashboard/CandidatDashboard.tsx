@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import OfferCard from "../../components/OfferCard";
+import OfferCard from "../../components/Offer-card/OfferCard";
 import "./candidatDashboard.css";
 import { useEffect, useState } from "react";
 

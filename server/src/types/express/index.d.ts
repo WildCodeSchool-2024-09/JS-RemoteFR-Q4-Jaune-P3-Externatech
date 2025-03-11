@@ -9,6 +9,15 @@ declare global {
         password: string;
         isAdmin: boolean;
       };
+      user: {
+        password: string;
+        email: string;
+        id: number;
+        role: string;
+      };
+      company: {
+        id: number;
+      };
     }
   }
 }

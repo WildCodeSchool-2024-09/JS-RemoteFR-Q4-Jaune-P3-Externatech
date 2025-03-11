@@ -1,0 +1,79 @@
+.dialog_login {
+  background: none;
+  margin: 0 auto;
+  border: none;
+  animation: openModal 0.2s linear;
+  top: -1rem;
+
+  & form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-self: center;
+    width: 70vw;
+    height: 80vh;
+    top: 10vh;
+    padding: 1rem;
+    position: relative;
+    z-index: 21;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+    & p {
+      text-align: left;
+    }
+
+    & h2 {
+      margin: 2rem 0;
+    }
+    & .login_buttons {
+      margin-top: 2rem;
+    }
+    & input {
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: var(--tertiary) 1px solid;
+    }
+    & div {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+}
+
+.dialog_login[open]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 19;
+}
+
+.dialog_login:not([open]) {
+  display: none;
+}
+
+@keyframes openModal {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dialog_login .login_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    & button {
+      width: 10rem;
+    }
+  }
+}

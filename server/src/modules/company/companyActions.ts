@@ -14,7 +14,7 @@ const browse: RequestHandler = async (req, res, next) => {
 
 const read: RequestHandler = async (req, res, next) => {
   try {
-    const companyId = Number(req.params.id);
+    const companyId = req.company.id;
     const company = await companyRepository.read(companyId);
 
     if (company == null) {
@@ -31,6 +31,7 @@ const add: RequestHandler = async (req, res, next) => {
   try {
     const newCompany = {
       name: req.body.name,
+      logo: req.body.logo,
       description: req.body.description,
       email: req.body.email,
       hashed_password: req.body.hashed_password,
@@ -61,6 +62,7 @@ const edit: RequestHandler = async (req, res, next) => {
     const company = {
       id: Number(req.params.id),
       name: req.body.name,
+      logo: req.body.logo,
       description: req.body.description,
       email: req.body.email,
       hashed_password: req.body.hashed_password,
