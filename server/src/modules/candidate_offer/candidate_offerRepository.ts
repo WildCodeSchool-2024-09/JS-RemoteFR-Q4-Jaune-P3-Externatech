@@ -13,7 +13,7 @@ type Candidate_offer = {
   offer_title: string;
 };
 
-class Candidate_offerRepository {
+class CandidateOfferRepository {
   async readAllCandidatesByCompany(companyID: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT c_o.*, company.id AS company_id, candidate.firstname AS candidate_firstname, candidate.lastname AS candidate_lastname, candidate.email AS candidate_email, offer.title AS offer_title FROM candidate_offer as c_o JOIN candidate ON candidate.id = c_o.candidate_id JOIN offer ON offer.id = offer_id JOIN company ON company.id = offer.company_id WHERE company.id =?",
@@ -23,4 +23,4 @@ class Candidate_offerRepository {
   }
 }
 
-export default new Candidate_offerRepository();
+export default new CandidateOfferRepository();
