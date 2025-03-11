@@ -69,7 +69,6 @@ interface OfferDataForm {
   salary: number;
   profile: string;
   work_condition_id: number;
-  company_id: number;
   contract_id: number;
 }
 

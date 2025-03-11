@@ -1,10 +1,10 @@
 import type { RequestHandler } from "express";
 
-import CandidateOfferRepository from "./candidate_offerRepository";
+import CandidateOfferRepository from "./candidateOfferRepository";
 
 const browseCandidatesByCompany: RequestHandler = async (req, res, next) => {
   try {
-    const companyID = Number(req.company.id);
+    const companyID = req.company.id;
 
     const candidates =
       await CandidateOfferRepository.readAllCandidatesByCompany(companyID);

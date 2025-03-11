@@ -13,7 +13,7 @@ import formOffer from "./middlewares/formOffer";
 /* *********************************************************************** */
 
 import candidateActions from "./modules/candidate/candidateActions";
-import candidate_offerActions from "./modules/candidate_offer/candidate_offerActions";
+import candidateOfferActions from "./modules/candidate_offer/candidateOfferActions";
 import companyActions from "./modules/company/companyActions";
 import contractActions from "./modules/contract/contractActions";
 import offerActions from "./modules/offer/offerActions";
@@ -27,7 +27,9 @@ router.post("/api/login", authActions.login);
 /* COMPANIES ************************************************************************* */
 
 router.get("/api/companies", companyActions.browse);
-router.get("/api/companies/:id", companyActions.read);
+
+router.get("/api/authcompany", authActions.verifyCompany, companyActions.read);
+
 router.post(
   "/api/companies",
   formCompany.validate,
@@ -57,10 +59,21 @@ router.delete("/api/candidates/:id", candidateActions.destroy);
 /* OFFERS ************************************************************************* */
 
 router.get("/api/offers", offerActions.browse);
-router.get("/api/offers/companies/:id", offerActions.browseByCompany);
+
+router.get(
+  "/api/offers/companies",
+  authActions.verifyCompany,
+  offerActions.browseByCompany,
+);
 router.get("/api/offers/:id", offerActions.read);
-router.post("/api/offers", formOffer.validate, offerActions.add);
-router.put("/api/offers/:id", offerActions.edit);
+router.post(
+  "/api/offers",
+  authActions.verifyCompany,
+  formOffer.validate,
+  offerActions.add,
+);
+router.put("/api/offers/:id", formOffer.validate, offerActions.edit);
+
 router.delete("/api/offers/:id", offerActions.destroy);
 
 /* CANDIDATE_OFFER / APPLICATIONS ************************************************************************* */
@@ -68,7 +81,7 @@ router.delete("/api/offers/:id", offerActions.destroy);
 router.get(
   "/api/candidates_offers",
   authActions.verifyCompany,
-  candidate_offerActions.browseCandidatesByCompany,
+  candidateOfferActions.browseCandidatesByCompany,
 );
 
 /* STACK ************************************************************************* */

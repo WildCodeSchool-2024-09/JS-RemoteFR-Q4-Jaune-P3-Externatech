@@ -90,23 +90,20 @@ const verifyCompany: RequestHandler = async (req, res, next) => {
   }
 
   try {
-    // Récupérer le token qui est à l'intérieur du cookie
     const { auth } = req.cookies;
 
-    // Si il y a pas le cookie on déclenche une erreur
     if (!auth) {
       res.sendStatus(403);
     }
 
-    // Vérifier le token JWT qu'il y a à l'intérieur
     const resultPayload = await jwt.verify(auth, process.env.APP_SECRET);
 
     if (typeof resultPayload !== "object") {
       throw new Error("Token invalid");
     }
+
     req.company = { id: resultPayload.id };
 
-    // Si tout se passe bien => next()
     next();
   } catch (error) {
     next(error);
