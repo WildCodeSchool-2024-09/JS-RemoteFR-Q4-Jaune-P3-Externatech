@@ -3,6 +3,7 @@ import type { RequestHandler } from "express";
 import Joi from "joi";
 
 const offerSchema = Joi.object({
+  id: Joi.any().optional(),
   title: Joi.string().max(255).required().messages({
     "string.max": "Le titre ne peut pas dépasser 255 caractères.",
     "string.empty": "Le titre est obligatoire.",
@@ -47,7 +48,7 @@ const validate: RequestHandler = (req, res, next) => {
   const { error } = offerSchema.validate(req.body);
 
   if (error) {
-    res.json(error.details[0].message);
+    res.sendStatus(400).json(error.details[0].message);
   } else {
     next();
   }

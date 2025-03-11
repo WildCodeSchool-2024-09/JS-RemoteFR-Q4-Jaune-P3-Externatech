@@ -71,7 +71,8 @@ router.post(
   formOffer.validate,
   offerActions.add,
 );
-router.put("/api/offers/:id", offerActions.edit);
+router.put("/api/offers/:id", formOffer.validate, offerActions.edit);
+
 router.delete("/api/offers/:id", offerActions.destroy);
 
 /* ************************************************************************* */
