@@ -11,7 +11,8 @@ function OfferForm({ children, value, onSubmit }: OfferFormProps) {
     setFormData((prev) => ({
       ...prev,
       [name]:
-        ["remote_id", "contract_id", "salary"].includes(name) && value !== ""
+        ["work_condition_id", "contract_id", "salary"].includes(name) &&
+        value !== ""
           ? Number(value)
           : value,
     }));
@@ -79,8 +80,8 @@ function OfferForm({ children, value, onSubmit }: OfferFormProps) {
         <label>
           Le poste est-il en télétravail ? *
           <select
-            name="remote_id"
-            value={formData.remote_id}
+            name="work_condition_id"
+            value={formData.work_condition_id}
             onChange={handleChange}
           >
             <option value="">-- Sélectionnez une option --</option>

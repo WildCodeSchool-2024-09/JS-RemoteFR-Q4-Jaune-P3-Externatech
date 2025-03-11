@@ -14,7 +14,7 @@ const browse: RequestHandler = async (req, res, next) => {
 
 const read: RequestHandler = async (req, res, next) => {
   try {
-    const companyId = req.companyID;
+    const companyId = req.company.id;
     const company = await companyRepository.read(companyId);
 
     if (company == null) {

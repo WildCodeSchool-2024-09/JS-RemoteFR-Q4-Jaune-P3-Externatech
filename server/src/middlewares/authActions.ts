@@ -102,7 +102,7 @@ const verifyCompany: RequestHandler = async (req, res, next) => {
       throw new Error("Token invalid");
     }
 
-    req.companyID = resultPayload.id;
+    req.company = { id: resultPayload.id };
 
     next();
   } catch (error) {

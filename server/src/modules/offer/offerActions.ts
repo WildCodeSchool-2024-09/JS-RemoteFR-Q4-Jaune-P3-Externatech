@@ -13,7 +13,7 @@ const browse: RequestHandler = async (req, res, next) => {
 
 const browseByCompany: RequestHandler = async (req, res, next) => {
   try {
-    const id = req.companyID;
+    const id = req.company.id;
     const offers = await offerRepository.readAllByCompany(id);
 
     res.json(offers);
@@ -56,8 +56,8 @@ const edit: RequestHandler = async (req, res, next) => {
       description: req.body.description,
       salary: req.body.salary,
       profile: req.body.profile,
-      remote_id: req.body.remote_id,
-      company_id: req.companyID,
+      company_id: req.company.id,
+      work_condition_id: req.body.work_condition_id,
       contract_id: req.body.contract_id,
     };
 
@@ -82,8 +82,8 @@ const add: RequestHandler = async (req, res, next) => {
       description: req.body.description,
       salary: req.body.salary,
       profile: req.body.profile,
-      remote_id: req.body.remote_id,
-      company_id: req.companyID,
+      work_condition_id: req.body.work_condition_id,
+      company_id: req.company.id,
       contract_id: req.body.contract_id,
     };
     console.info("newOffer", newOffer);

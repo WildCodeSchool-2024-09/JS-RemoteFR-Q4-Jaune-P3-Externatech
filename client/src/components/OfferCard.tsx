@@ -13,7 +13,7 @@ function OfferCard({ offer }: OfferDataProps) {
         <img src={offer.company_logo} alt="logo" />
         <div className="remote">
           <img src="/icon-home.png" alt="maison" />
-          <p>{offer.remote_name}</p>
+          <p>{offer.work_condition_name}</p>
         </div>
       </div>
       <div className="company-info">

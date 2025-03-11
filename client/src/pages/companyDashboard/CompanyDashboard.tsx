@@ -22,7 +22,7 @@ function CompanyDashboard() {
     description: "",
     salary: 0,
     profile: "",
-    remote_id: 0,
+    work_condition_id: 0,
     contract_id: 0,
   };
 

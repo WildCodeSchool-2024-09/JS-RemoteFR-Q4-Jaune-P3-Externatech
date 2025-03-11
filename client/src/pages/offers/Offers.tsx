@@ -4,12 +4,12 @@ import OfferCard from "../../components/OfferCard";
 import "./offers.css";
 
 export default function Offers() {
-  const { offers, stacks, cities, remoteOptions, contracts } =
+  const { offers, stacks, cities, work_conditionOptions, contracts } =
     useLoaderData() as {
       offers: OfferData[];
       stacks: StackData[];
       cities: CityData[];
-      remoteOptions: RemoteData[];
+      work_conditionOptions: Work_conditionData[];
       contracts: ContractData[];
     };
 
@@ -18,7 +18,7 @@ export default function Offers() {
       <Hero
         stacks={stacks}
         cities={cities}
-        remoteOptions={remoteOptions}
+        work_conditions={work_conditionOptions}
         contracts={contracts}
       />
 
