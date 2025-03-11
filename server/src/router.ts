@@ -60,7 +60,7 @@ router.get("/api/offers", offerActions.browse);
 router.get("/api/offers/companies/:id", offerActions.browseByCompany);
 router.get("/api/offers/:id", offerActions.read);
 router.post("/api/offers", formOffer.validate, offerActions.add);
-router.put("/api/offers/:id", offerActions.edit);
+router.put("/api/offers/:id", formOffer.validate, offerActions.edit);
 router.delete("/api/offers/:id", offerActions.destroy);
 
 /* ************************************************************************* */
