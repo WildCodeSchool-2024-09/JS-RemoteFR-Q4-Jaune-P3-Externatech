@@ -26,13 +26,8 @@ router.post("/api/login", authActions.login);
 /* ************************************************************************* */
 
 router.get("/api/companies", companyActions.browse);
-router.get(
-  "/api/authcompanies",
-  authActions.verifyCompany,
-  companyActions.read,
-);
 
-router.get("/api/companies/:id", companyActions.read);
+router.get("/api/authcompany", authActions.verifyCompany, companyActions.read);
 
 router.post(
   "/api/companies",

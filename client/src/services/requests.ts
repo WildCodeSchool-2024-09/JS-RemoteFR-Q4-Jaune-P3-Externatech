@@ -25,16 +25,9 @@ const getOffersByCompany = () => {
 
 const getCompanyAuth = () => {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/companies`, {
+    .get(`${import.meta.env.VITE_API_URL}/api/authcompany`, {
       withCredentials: true,
     })
-    .then((response) => response.data)
-    .catch((error) => console.error(error));
-};
-
-const getCompany = (id: string | undefined) => {
-  return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/companies/${id}`)
     .then((response) => response.data)
     .catch((error) => console.error(error));
 };
@@ -80,7 +73,6 @@ export {
   getCompanyAuth,
   getOffersByCompany,
   getCompanies,
-  getCompany,
   getRemoteOptions,
   getStacks,
   getCities,
