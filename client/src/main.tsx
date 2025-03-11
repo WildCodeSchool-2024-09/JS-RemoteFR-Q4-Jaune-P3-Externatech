@@ -17,7 +17,7 @@ import OfferDetails from "./pages/OfferDetails/OfferDetails";
 // Import pages
 
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
-import CandidatDashboard from "./pages/candidatDashboard/CandidatDashboard";
+import CandidateDashboard from "./pages/candidateDashboard/CandidateDashboard";
 
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
 import HomePage from "./pages/homepage/HomePage";
@@ -77,8 +77,8 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/candidate/dashboard/",
-        element: <CandidatDashboard />,
+        path: "/candidates/dashboard/",
+        element: <CandidateDashboard />,
         loader: getAllOffers,
       },
 

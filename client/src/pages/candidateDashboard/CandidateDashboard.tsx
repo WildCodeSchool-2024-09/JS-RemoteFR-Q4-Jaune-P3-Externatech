@@ -1,9 +1,9 @@
 import { useLoaderData } from "react-router-dom";
 import OfferCard from "../../components/Offer-card/OfferCard";
-import "./candidatDashboard.css";
+import "./candidatesDashboard.css";
 import { useEffect, useState } from "react";
 
-export default function CandidatDashboard() {
+export default function CandidateDashboard() {
   const offers = useLoaderData() as OfferData[];
 
   const [isSavedOffersCount, setIsSavedOffersCount] = useState<number>(
