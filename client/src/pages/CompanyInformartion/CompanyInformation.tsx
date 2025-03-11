@@ -3,7 +3,6 @@ import "./CompagnyInformation.css";
 
 export default function CompanyInformation() {
   const company = useLoaderData() as CompanyData;
-  console.info(company);
   return (
     <div className="container_CI">
       <h2 className="title_CI">Mes Informations:</h2>
