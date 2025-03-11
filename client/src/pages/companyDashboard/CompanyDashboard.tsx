@@ -9,6 +9,7 @@ function CompanyDashboard() {
     company: CompanyData;
     offers: OfferData[];
   };
+
   const activeOffers =
     offers.length <= 1
       ? `${offers.length} offre active`
@@ -22,13 +23,14 @@ function CompanyDashboard() {
     salary: 0,
     profile: "",
     work_condition_id: 0,
-    company_id: company.id,
     contract_id: 0,
   };
 
   const handleOfferSubmit = (newOffer: OfferDataForm) => {
     axios
-      .post(`${import.meta.env.VITE_API_URL}/api/offers`, newOffer)
+      .post(`${import.meta.env.VITE_API_URL}/api/offers`, newOffer, {
+        withCredentials: true,
+      })
       .catch((error) => {
         console.error("Erreur lors de l'ajout de l'offre :", error);
       });

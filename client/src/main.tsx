@@ -25,7 +25,7 @@ import Offers from "./pages/offers/Offers";
 import {
   getAllOffers,
   getCities,
-  getCompany,
+  getCompanyAuth,
   getContracts,
   getOfferDetails,
   getOffersByCompany,
@@ -63,20 +63,19 @@ const router = createBrowserRouter([
           return { offers, stacks, cities, contracts, work_conditionOptions };
         },
       },
-
       {
-        path: "/companies/dashboard/:id",
+        path: "/companies/dashboard",
         element: <CompanyDasboard />,
-        loader: async ({ params }) => ({
-          company: await getCompany(String(params.id)),
-          offers: await getOffersByCompany(String(params.id)),
+        loader: async () => ({
+          company: await getCompanyAuth(),
+          offers: await getOffersByCompany(),
         }),
       },
       {
-        path: "/companies/:id",
+        path: "/companies/dashboard/information",
         element: <CompanyInformation />,
-        loader: async ({ params }) => {
-          const company = await getCompany(String(params.id));
+        loader: async () => {
+          const company = await getCompanyAuth();
           return company || null;
         },
       },
