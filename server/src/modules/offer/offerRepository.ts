@@ -82,7 +82,7 @@ class offerRepository {
 
   async readAllCities() {
     const [rows] = await DatabaseClient.query<Rows>(
-      "SELECT id, city FROM offer",
+      "SELECT DISTINCT city FROM offer",
     );
     return rows as City[];
   }
