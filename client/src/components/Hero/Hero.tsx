@@ -41,19 +41,19 @@ export default function Hero({
           className="job-search"
         />
 
-<select
-  name="city"
-  value={filters.city}
-  onChange={handleChange}
-  className="filter"
->
-  <option value="">Ville</option>
-  {cities.map((city) => (
-    <option key={city.id} value={city.city}>
-      {city.city}
-    </option>
-  ))}
-</select>
+        <select
+          name="city"
+          value={filters.city}
+          onChange={handleChange}
+          className="filter"
+        >
+          <option value="">Ville</option>
+          {cities.map((city) => (
+            <option key={city.id} value={city.city}>
+              {city.city}
+            </option>
+          ))}
+        </select>
 
         <select
           name="contract"
