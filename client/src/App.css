@@ -95,11 +95,16 @@ button:hover {
   align-items: center;
   justify-content: center;
   background-color: var(--light);
-  color: var(--primary);
+  color: var(--secundary);
+  font-weight: 600;
   padding: 0.5rem 1rem;
   text-align: center;
   border: solid var(--tertiary) 1px;
   border-radius: 5px;
+}
+
+.bold {
+  font-weight: 600;
 }
 
 *:focus {

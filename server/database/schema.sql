@@ -59,8 +59,11 @@ CREATE TABLE offer_stack (
 );
 
 CREATE TABLE candidate_offer (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   candidate_id INT UNSIGNED NOT NULL,
-  offer_id INT UNSIGNED NOT NULL
+  offer_id INT UNSIGNED NOT NULL,
+  FOREIGN KEY (offer_id) REFERENCES offer(id) ON DELETE CASCADE,
+  FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE
 );
 
 INSERT INTO company (name, logo, description, email, hashed_password) VALUES
@@ -155,4 +158,4 @@ INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
 ('Chloé', 'Robert', 'chloe.robert@email.com', '$argon2id$v=19$m=65536,t=3,p=4$1DtTIhD5guZLuRydbuznsg$gpDMWM/PPxi7K4tFvQaz8NADL7n2FAAlOfccNNccboU');
 
 
-
+INSERT INTO candidate_offer (candidate_id, offer_id) VALUES (1,1),(2,1),(3,1),(4,1),(1,2),(2,2);

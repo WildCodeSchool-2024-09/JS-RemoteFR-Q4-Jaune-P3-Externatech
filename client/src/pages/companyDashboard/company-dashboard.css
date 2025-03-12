@@ -63,6 +63,7 @@
   flex-direction: column;
   list-style: none;
   list-style-position: inside;
+  padding-top: 0.5rem;
 }
 .display p {
   padding: 1rem;

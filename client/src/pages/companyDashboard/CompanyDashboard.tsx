@@ -2,18 +2,24 @@ import axios from "axios";
 import { Link, useLoaderData } from "react-router-dom";
 import OfferForm from "./OfferForm";
 import "./company-dashboard.css";
-import OfferCard from "../../components/OfferCard";
+import CandidateCard from "../../components/Candidate-card/CandidateCard";
+import OfferCard from "../../components/Offer-card/OfferCard";
 
 function CompanyDashboard() {
-  const { company, offers } = useLoaderData() as {
+  const { company, offers, candidatesByCompany } = useLoaderData() as {
     company: CompanyData;
     offers: OfferData[];
+    candidatesByCompany: CandidateOfferData[];
   };
-
   const activeOffers =
     offers.length <= 1
       ? `${offers.length} offre active`
       : `${offers.length} offres actives`;
+
+  const activeCandidates =
+    candidatesByCompany.length <= 1
+      ? `${candidatesByCompany.length} candidature`
+      : `${candidatesByCompany.length} candidatures`;
 
   const newOffer = {
     title: "",
@@ -55,7 +61,7 @@ function CompanyDashboard() {
           <div className="box">
             <h3>Mes candidats</h3>
             <ul className="square-list">
-              <li>11 candidatures à examiner</li>
+              <li>{activeCandidates}</li>
               <li>6 candidatures acceptées</li>
             </ul>
           </div>
@@ -70,12 +76,16 @@ function CompanyDashboard() {
       <section className="display">
         <h2>Mes OFFRES</h2>
         <ul>
-          {offers.map((offer) => (
-            <li key={offer.id}>
-              {" "}
-              <OfferCard offer={offer} />
-            </li>
-          ))}
+          {offers.length > 0 ? (
+            offers.map((offer) => (
+              <li key={offer.id}>
+                {" "}
+                <OfferCard offer={offer} />
+              </li>
+            ))
+          ) : (
+            <li>Pas d'offre active</li>
+          )}
         </ul>
         <div className="actions">
           <Link className="colored-box" to="/">
@@ -87,7 +97,15 @@ function CompanyDashboard() {
         </div>
         <h2>Mes CANDIDATS</h2>
         <ul>
-          <li>cards candidats</li>
+          {candidatesByCompany.length > 0 ? (
+            candidatesByCompany.slice(0, 3).map((candidateOffer) => (
+              <li key={candidateOffer.id}>
+                <CandidateCard candidateOffer={candidateOffer} />
+              </li>
+            ))
+          ) : (
+            <li>Pas de candidature en cours</li>
+          )}
         </ul>
         <div className="actions">
           <Link className="colored-box actions" to="/">
