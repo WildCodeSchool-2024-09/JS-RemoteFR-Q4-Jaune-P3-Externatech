@@ -2,11 +2,23 @@ import "./OfferDetails.css";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Apply from "../../components/Apply/Apply";
 
 export default function OfferDetails() {
   const offer = useLoaderData() as OfferData;
 
   const [showModal, setShowModal] = useState(false);
+
+  const [isApplyOpen, setIsApplyOpen] = useState(false);
+  const openApply = () => {
+    setIsApplyOpen(!isApplyOpen);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeApply = () => {
+    setIsApplyOpen(false);
+    document.body.style.overflow = "";
+  };
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -18,6 +30,7 @@ export default function OfferDetails() {
 
   return (
     <main className="all_detail_page">
+      <Apply isOpen={isApplyOpen} onClose={closeApply} />
       <article className="presentation">
         <section className="title_logo">
           <img src={offer.company_logo} alt="logo" className="logo_company" />
@@ -33,9 +46,9 @@ export default function OfferDetails() {
         <h3>Compétences & expertises</h3>
         <p className="skills">{offer.stack_names}</p>
         <section className="buttons">
-          <Link to="/Apply" className="apply">
+          <button type="button" className="apply" onClick={openApply}>
             Postuler
-          </Link>
+          </button>
           <button type="button" className="register" onClick={handleOpenModal}>
             <img
               src="/Logos/Icon_bookmark.png"

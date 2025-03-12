@@ -103,6 +103,8 @@ const verifyCompany: RequestHandler = async (req, res, next) => {
       throw new Error("Token invalid");
     }
     if (resultPayload.role === "company") {
+      console.info("role depuis verify ", resultPayload.role);
+
       req.company = { id: resultPayload.id };
     }
 
@@ -133,7 +135,6 @@ const verifyCandidate: RequestHandler = async (req, res, next) => {
     if (resultPayload.role === "candidate") {
       req.candidate = { id: resultPayload.id };
     }
-
     next();
   } catch (error) {
     next(error);
