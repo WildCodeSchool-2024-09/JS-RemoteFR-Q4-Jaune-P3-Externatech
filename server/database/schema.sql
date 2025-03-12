@@ -50,6 +50,11 @@ CREATE TABLE offer (
   FOREIGN KEY (contract_id) REFERENCES contract(id)
 );
 
+CREATE TABLE application_status (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  name VARCHAR (50) NOT NULL
+);
+
 CREATE TABLE offer_stack (
   offer_id INT UNSIGNED NOT NULL,
   stack_id INT UNSIGNED NOT NULL,
@@ -62,8 +67,10 @@ CREATE TABLE candidate_offer (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   candidate_id INT UNSIGNED NOT NULL,
   offer_id INT UNSIGNED NOT NULL,
+  application_status_id INT UNSIGNED NOT NULL DEFAULT 1,
   FOREIGN KEY (offer_id) REFERENCES offer(id) ON DELETE CASCADE,
-  FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE
+  FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE,
+  FOREIGN KEY (application_status_id) REFERENCES application_status(id) ON DELETE CASCADE
 );
 
 INSERT INTO company (name, logo, description, email, hashed_password) VALUES
@@ -133,6 +140,8 @@ INSERT INTO offer (title, city, background, description, profile, salary, work_c
  2, 
  4);
 
+INSERT INTO application_status (name) VALUES ("en attente"), ("acceptée"), ("rejetée");
+
 INSERT INTO offer_stack VALUES (1,1),(1,2),(2,1),(2,2),(2,3),(3,2),(3,4),(3,5),(4,5),(4,1),(4,4);
 
 INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
@@ -149,3 +158,4 @@ INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
 
 
 INSERT INTO candidate_offer (candidate_id, offer_id) VALUES (1,1),(2,1),(3,1),(4,1),(1,2),(2,2);
+

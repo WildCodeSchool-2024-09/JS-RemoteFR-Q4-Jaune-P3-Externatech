@@ -27,6 +27,34 @@
   flex: 1;
 }
 
+.candidate-card .status {
+  display: flex;
+  /* display: block; */
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--tertiary);
+  color: var(--primary);
+  font-weight: 400;
+  padding: 0.2rem;
+  text-align: center;
+  border: solid var(--tertiary) 1px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+.candidate-card .status.accepted {
+  background-color: var(--secundary);
+  border: none;
+  color: var(--light);
+}
+
+/* tertiary fourth */
+.candidate-card .status.rejected {
+  background-color: var(--fourth);
+  color: var(--light);
+}
+
 @media screen and (min-width: 768px) {
   .candidate-card {
     width: 25rem;

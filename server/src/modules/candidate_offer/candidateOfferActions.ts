@@ -14,4 +14,22 @@ const browseCandidatesByCompany: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browseCandidatesByCompany };
+const editStatus: RequestHandler = async (req, res, next) => {
+  try {
+    const { application_status_id, id } = req.body.updateStatus;
+    const affectedRows = await CandidateOfferRepository.updateStatus({
+      application_status_id,
+      id,
+    });
+
+    if (affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browseCandidatesByCompany, editStatus };
