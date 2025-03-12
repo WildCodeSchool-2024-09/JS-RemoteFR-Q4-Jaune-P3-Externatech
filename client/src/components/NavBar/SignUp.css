@@ -1,0 +1,197 @@
+.dialog_signup {
+  background: none;
+  margin: 0 auto;
+  border: none;
+  animation: openModal 0.2s linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: -1rem;
+  z-index: 20;
+  & .opening_register {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-self: center;
+    width: 70vw;
+    height: 80vh;
+    top: 10vh;
+    padding: 1rem;
+    position: relative;
+    z-index: 21;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    overflow-x: hidden;
+
+    & p {
+      text-align: left;
+    }
+
+    & .space_choice {
+      margin-bottom: 2rem;
+    }
+
+    & h2 {
+      margin: 2rem 0;
+    }
+
+    & label {
+      margin-top: 1rem;
+    }
+
+    & .light-box {
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    & .light-box:active {
+      color: var(--light);
+      background-color: var(--secundary);
+      transform: scale(0.95);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    & .light-box:focus {
+      outline: none;
+      color: var(--light);
+      background-color: var(--secundary);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    & .register_content {
+      display: flex;
+      margin-top: 3rem;
+      gap: 2rem;
+      font-size: .8rem;
+    }
+
+    & input {
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: var(--tertiary) 1px solid;
+      position: relative;
+    }
+    & div {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    & .password_input {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    & .input_password {
+      width: 100%;
+      padding-right: 5rem;
+    }
+
+    & .show_password {
+      position: absolute;
+      right: 20px;
+      top: 112.8%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    & .show_password_2 {
+      position: absolute;
+      right: 20px;
+      top: 126.5%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    & .show_password_3 {
+      position: absolute;
+      right: 20px;
+      top: 140.5%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    & .show_password_4 {
+      position: absolute;
+      right: 20px;
+      top: 154%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    & .password_confirm {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & .password_confirm_input {
+      width: 16.813rem;
+      padding-right: 5rem;
+    }
+    & .register_text {
+      text-align: center;
+    }
+
+    & .register_button {
+      margin-bottom: 2rem;
+    }
+    & .candidate_form {
+      display: flex;
+      flex-direction: column;
+    }
+    & .checkbox {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0 1rem 0;
+    }
+    & .star {
+      color: red;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.dialog_signup[open]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 19;
+}
+
+.dialog_signup:not([open]) {
+  display: none;
+}
+
+@keyframes openModal {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dialog_login .login_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    & button {
+      width: 10rem;
+    }
+  }
+}

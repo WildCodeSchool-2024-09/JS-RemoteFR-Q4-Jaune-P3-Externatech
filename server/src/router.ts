@@ -45,8 +45,8 @@ router.get("/api/candidates", candidateActions.browse);
 router.get("/api/candidates/:id", candidateActions.read);
 router.post(
   "/api/candidates",
-  authActions.hashPassword,
   formCandidate.validate,
+  authActions.hashPassword,
   candidateActions.add,
 );
 router.put(
