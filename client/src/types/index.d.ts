@@ -97,3 +97,10 @@ type HeroProps = {
 interface CandidateOfferProps {
   candidateOffer: Candidate_ByCompanyData;
 }
+interface FilterValues {
+  keyword: string;
+  city: string;
+  contract: string;
+  stack: string;
+  remote: string;
+}

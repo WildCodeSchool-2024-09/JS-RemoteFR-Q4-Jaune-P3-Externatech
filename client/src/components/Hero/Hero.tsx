@@ -9,14 +9,6 @@ interface HeroProps {
   onSearch: (filters: FilterValues) => void;
 }
 
-interface FilterValues {
-  keyword: string;
-  city: string;
-  contract: string;
-  stack: string;
-  remote: string;
-}
-
 export default function Hero({
   stacks,
   cities,
