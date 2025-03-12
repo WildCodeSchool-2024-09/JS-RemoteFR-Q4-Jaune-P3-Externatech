@@ -3,7 +3,7 @@ import Joi from "joi";
 
 const companySchema = Joi.object({
   name: Joi.string().max(100).required().messages({
-    "any.required": "Ce champ est obligatoire",
+    "any.required": "Le nom est obligatoire",
     "string.empty": "Le champ ne peut pas être vide",
   }),
   logo: Joi.string().max(100).required().messages({
@@ -13,6 +13,10 @@ const companySchema = Joi.object({
   description: Joi.string().required().messages({
     "any.required": "Ce champs est obligatoire",
     "string.empty": "Le champ ne peut pas être vide",
+  }),
+  siret: Joi.string().required().messages({
+    "string.empty": "Ce champs doit contenir 14 chiffres",
+    "any.required": "Ce champs est obligatoire",
   }),
   email: Joi.string()
     .min(5)
@@ -25,19 +29,13 @@ const companySchema = Joi.object({
       "any.required": "Le champ est obligatoire",
       "string.email": "L'adresse mail doit être valide",
     }),
-  password: Joi.string()
-    .min(8)
-    .max(100)
-    .required()
-    .pattern(/^[a-zA-Z0-9]{3,30}$/)
-    .label("password")
-    .messages({
-      "string.empty": "Le champ ne peut pas être vide",
-      "string.min": "Une longueur de 8 caractères est demandée",
-      "any.required": "Le champ est obligatoire",
-      "string.pattern":
-        "Le mot de passe doit contenir des majuscules, minuscules et caractères spéciaux",
-    }),
+  password: Joi.string().min(8).max(100).required().label("password").messages({
+    "string.empty": "Le champ ne peut pas être vide",
+    "string.min": "Une longueur de 8 caractères est demandée",
+    "any.required": "Le champ est obligatoire",
+    "string.pattern":
+      "Le mot de passe doit contenir des majuscules, minuscules et caractères spéciaux",
+  }),
   password_confirmation: Joi.any()
     .valid(Joi.ref("password"))
     .required()
@@ -45,13 +43,10 @@ const companySchema = Joi.object({
 });
 
 const validate: RequestHandler = (req, res, next) => {
-  const { error } = companySchema.validate(req.body, { abortEarly: false }); // Validation du corps de la requête avec Joi
+  const { error } = companySchema.validate(req.body);
 
   if (error) {
-    // Si la validation échoue, renvoyer une erreur 400 avec le message d'erreur
-    res.status(400).json({
-      message: error.details.map((detail) => detail.message).join(", "),
-    });
+    res.json(error.details[0].message);
   } else {
     next();
   }

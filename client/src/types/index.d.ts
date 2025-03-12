@@ -87,6 +87,12 @@ type LoginCompanyProps = {
   onClose: () => void;
 };
 
+interface SvgTypes {
+  path: string;
+  width: string;
+  height: string;
+}
+
 interface HeroProps {
   cities: CityData[];
   contracts: ContractData[];

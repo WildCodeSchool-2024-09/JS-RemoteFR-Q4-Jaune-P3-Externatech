@@ -43,6 +43,7 @@ const login: RequestHandler = async (req, res, next) => {
       const payload = {
         id: req.user.id,
         email: req.user.email,
+        role: req.user.role,
       };
 
       if (!process.env.APP_SECRET) {
@@ -54,7 +55,10 @@ const login: RequestHandler = async (req, res, next) => {
       const token = await jwt.sign(payload, process.env.APP_SECRET, {
         expiresIn: "1y",
       });
-      res.cookie("auth", token).send("Utilisateur connecté");
+      res.cookie("auth", token).send({
+        message: "Utilisateur connecté",
+        role: req.user.role,
+      });
     }
   } catch (error) {
     next(error);
