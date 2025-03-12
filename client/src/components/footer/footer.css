@@ -34,9 +34,9 @@ footer div ul li button {
     align-items: center;
   }
   footer div div {
-    width: 4px;
+    width: 2px;
     height: 8rem;
-    background-color: rgba(9, 255, 0, 0.623);
+    background-color: var(--secundary);
   }
 
   footer div ul {
