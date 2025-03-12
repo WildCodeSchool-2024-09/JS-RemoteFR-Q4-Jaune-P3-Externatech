@@ -38,13 +38,6 @@ export default function Login({ isOpen, onClose }: LoginCompanyProps) {
     setCredentials((prev) => ({ ...prev, [name]: value }));
   };
 
-  const controller = new AbortController();
-
-  const timeoutId = setTimeout(() => {
-    controller.abort();
-    console.error("La requête a été annulée après 10 minutes d'attente.");
-  }, 600000);
-
   const handleSubmit: FormEventHandler = async (
     event: React.FormEvent<HTMLFormElement>,
   ) => {
@@ -66,8 +59,6 @@ export default function Login({ isOpen, onClose }: LoginCompanyProps) {
     } catch (err) {
       console.error("Request failed:", err);
       setError("Échec de connexion. Vérifiez vos identifiants.");
-    } finally {
-      clearTimeout(timeoutId);
     }
   };
 
