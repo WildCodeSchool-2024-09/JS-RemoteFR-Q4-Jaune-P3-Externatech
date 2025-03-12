@@ -102,12 +102,18 @@ button:hover {
   border-radius: 5px;
 }
 
-*:focus {
-  outline: none;
+.cancel-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--tertiary);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border-radius: 5px;
 }
 
 *:focus-visible {
-  outline-style: dashed;
   outline-color: var(--outline-color);
   outline-width: 2px;
   outline-offset: 2px;

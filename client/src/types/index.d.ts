@@ -65,3 +65,9 @@ type LoginCompanyProps = {
   isOpen: boolean;
   onClose: () => void;
 };
+
+interface SvgTypes {
+  path: string;
+  width: string;
+  height: string;
+}

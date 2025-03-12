@@ -35,6 +35,7 @@ const add: RequestHandler = async (req, res, next) => {
       description: req.body.description,
       email: req.body.email,
       hashed_password: req.body.hashed_password,
+      siret: req.body.siret,
     };
 
     const insertId = await companyRepository.create(newCompany);
@@ -66,6 +67,7 @@ const edit: RequestHandler = async (req, res, next) => {
       description: req.body.description,
       email: req.body.email,
       hashed_password: req.body.hashed_password,
+      siret: req.body.siret,
     };
 
     const affectedRows = await companyRepository.update(company);

@@ -14,16 +14,20 @@ const getOfferDetails = (id: string | undefined) => {
     .catch((error) => console.error(error));
 };
 
-const getOffersByCompany = (id: string) => {
+const getOffersByCompany = () => {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/offers/companies/${id}`)
+    .get(`${import.meta.env.VITE_API_URL}/api/offers/companies`, {
+      withCredentials: true,
+    })
     .then((response) => response.data)
     .catch((error) => console.error(error));
 };
 
-const getCompany = (id: string | undefined) => {
+const getCompanyAuth = () => {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/companies/${id}`)
+    .get(`${import.meta.env.VITE_API_URL}/api/authcompany`, {
+      withCredentials: true,
+    })
     .then((response) => response.data)
     .catch((error) => console.error(error));
 };
@@ -42,9 +46,32 @@ const getContracts = () => {
     .catch((error) => console.error(error));
 };
 
-const getLanguages = () => {
+const getWorkCondition = () => {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/languages`)
+    .get(`${import.meta.env.VITE_API_URL}/api/work_condition_options`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
+const getStacks = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/stacks`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
+const getCities = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/cities`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
+const getCandidatesByCompany = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/candidates_offers`, {
+      withCredentials: true,
+    })
     .then((response) => response.data)
     .catch((error) => console.error(error));
 };
@@ -52,9 +79,12 @@ const getLanguages = () => {
 export {
   getContracts,
   getOfferDetails,
+  getCompanyAuth,
   getOffersByCompany,
   getCompanies,
-  getCompany,
+  getWorkCondition,
+  getStacks,
+  getCities,
   getAllOffers,
-  getLanguages,
+  getCandidatesByCompany,
 };
