@@ -49,7 +49,6 @@ export default function Login({ isOpen, onClose }: LoginCompanyProps) {
     event: React.FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
-    console.info("Form submitted");
     setError(null);
 
     try {
@@ -63,7 +62,6 @@ export default function Login({ isOpen, onClose }: LoginCompanyProps) {
           } else if (response.data.role === "company") {
             navigate("/companies/dashboard");
           }
-          console.info(response.data.role);
         });
     } catch (err) {
       console.error("Request failed:", err);
