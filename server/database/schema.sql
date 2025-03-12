@@ -1,5 +1,4 @@
 -- SQLBook: Code
-
 CREATE TABLE company (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL,
@@ -18,23 +17,22 @@ CREATE TABLE candidate (
   hashed_password VARCHAR(200) NOT NULL
 );
 
-
 CREATE TABLE stack (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL UNIQUE
 );
-
-
 
 CREATE TABLE contract (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE remote(
+
+CREATE TABLE work_condition (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL
 );
+
 
 
 CREATE TABLE offer (
@@ -45,8 +43,8 @@ CREATE TABLE offer (
   description TEXT NOT NULL,
   profile TEXT NOT NULL,
   salary INT NOT NULL,
-  remote_id INT UNSIGNED NOT NULL,
-  FOREIGN KEY (remote_id) REFERENCES remote(id),
+  work_condition_id INT UNSIGNED NOT NULL,
+  FOREIGN KEY (work_condition_id) REFERENCES work_condition(id),
   company_id INT UNSIGNED NOT NULL,
   FOREIGN KEY (company_id) REFERENCES company(id),
   contract_id INT UNSIGNED NOT NULL,
@@ -62,8 +60,11 @@ CREATE TABLE offer_stack (
 );
 
 CREATE TABLE candidate_offer (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   candidate_id INT UNSIGNED NOT NULL,
-  offer_id INT UNSIGNED NOT NULL
+  offer_id INT UNSIGNED NOT NULL,
+  FOREIGN KEY (offer_id) REFERENCES offer(id) ON DELETE CASCADE,
+  FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE
 );
 
 INSERT INTO company (name, logo, description, email, hashed_password, siret) VALUES
@@ -78,7 +79,6 @@ INSERT INTO company (name, logo, description, email, hashed_password, siret) VAL
 
 INSERT INTO stack (name) VALUES ('JavaScript'), ('Python'), ('Java'), ('C#'), ('Ruby');
 
-
 INSERT INTO contract (name) VALUES
 ('CDI'),
 ('CDD'),
@@ -86,12 +86,14 @@ INSERT INTO contract (name) VALUES
 ('Alternance'),
 ('Freelance');
 
-INSERT INTO remote (name) VALUES
+
+INSERT INTO work_condition (name) VALUES
 ('sur site'),
 ('télétravail hybride'),
 ('full remote');
 
-INSERT INTO offer (title, city, background, description, profile, salary, remote_id, company_id, contract_id) VALUES
+INSERT INTO offer (title, city, background, description, profile, salary, work_condition_id, company_id, contract_id) VALUES
+
 ('Développeur Fullstack', 
  'Paris', 
  'https://img.freepik.com/photos-gratuite/espace-travail-ecran-ordinateur-ordinateur-portable_23-2148821901.jpg?t=st=1740582397~exp=1740585997~hmac=7e34d7b17961b37b532ffca3cccae3494295d3fb30927bb0620e862526051984&w=740', 
@@ -101,8 +103,6 @@ INSERT INTO offer (title, city, background, description, profile, salary, remote
  2, 
  1, 
  1),
-
-
 
 ('Ingénieur Data', 
  'Lyon', 
@@ -149,3 +149,4 @@ INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
 ('Chloé', 'Robert', 'chloe.robert@email.com', '$argon2id$v=19$m=65536,t=3,p=4$1DtTIhD5guZLuRydbuznsg$gpDMWM/PPxi7K4tFvQaz8NADL7n2FAAlOfccNNccboU');
 
 
+INSERT INTO candidate_offer (candidate_id, offer_id) VALUES (1,1),(2,1),(3,1),(4,1),(1,2),(2,2);

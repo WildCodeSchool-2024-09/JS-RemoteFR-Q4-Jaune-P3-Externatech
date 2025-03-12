@@ -13,12 +13,21 @@ const browse: RequestHandler = async (req, res, next) => {
 
 const browseByCompany: RequestHandler = async (req, res, next) => {
   try {
-    const id = Number(req.params.id);
+    const id = req.company.id;
     const offers = await offerRepository.readAllByCompany(id);
 
     res.json(offers);
   } catch (err) {
     next(err);
+  }
+};
+
+const browseCity: RequestHandler = async (req, res, next) => {
+  try {
+    const cities = await offerRepository.readAllCities();
+    res.json(cities);
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -47,8 +56,8 @@ const edit: RequestHandler = async (req, res, next) => {
       description: req.body.description,
       salary: req.body.salary,
       profile: req.body.profile,
-      remote_id: req.body.remote_id,
-      company_id: req.body.company_id,
+      company_id: req.company.id,
+      work_condition_id: req.body.work_condition_id,
       contract_id: req.body.contract_id,
     };
 
@@ -66,7 +75,17 @@ const edit: RequestHandler = async (req, res, next) => {
 
 const add: RequestHandler = async (req, res, next) => {
   try {
-    const newOffer = req.body;
+    const newOffer = {
+      title: req.body.title,
+      city: req.body.city,
+      background: req.body.background,
+      description: req.body.description,
+      salary: req.body.salary,
+      profile: req.body.profile,
+      work_condition_id: req.body.work_condition_id,
+      company_id: req.company.id,
+      contract_id: req.body.contract_id,
+    };
     console.info("newOffer", newOffer);
     const insertId = await offerRepository.create(newOffer);
 
@@ -88,4 +107,12 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, browseByCompany, read, add, edit, destroy };
+export default {
+  browse,
+  browseByCompany,
+  read,
+  add,
+  edit,
+  destroy,
+  browseCity,
+};

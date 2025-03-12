@@ -1,11 +1,9 @@
 import { useState } from "react";
 import "./companyNavbar.css";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function companyNavbar() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const { id } = useParams();
 
   const burgerClose = () => {
     return <p className="close">✖</p>;
@@ -34,7 +32,7 @@ export default function companyNavbar() {
         </button>
         {isOpen && (
           <ul className="menu_Droper">
-            <Link to={`/companies/dashboard/${id}`} className="dashboard_link">
+            <Link to={"/companies/dashboard"} className="dashboard_link">
               Dashboard
             </Link>
             <Link to="#">Mes offres</Link>
@@ -45,7 +43,7 @@ export default function companyNavbar() {
       </div>
 
       <ul className="menu_Desktop">
-        <Link to={`/companies/dashboard/${id}`}>Dashboard</Link>
+        <Link to={"/companies/dashboard"}>Dashboard</Link>
         <Link to="#">Mes offres</Link>
         <Link to="#">Mes candidats</Link>
         <Link to="#">Se connecter</Link>

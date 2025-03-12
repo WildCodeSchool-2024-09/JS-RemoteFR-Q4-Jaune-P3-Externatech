@@ -1,3 +1,14 @@
+interface CandidateOfferData {
+  id: number;
+  candidate_id: number;
+  offer_id: number;
+  candidate_firstname: string;
+  candidate_lastname: string;
+  candidate_email: string;
+  company_id: number;
+  offer_title: string;
+}
+
 interface CompanyData {
   id: number;
   name: string;
@@ -12,12 +23,22 @@ interface CompanyData {
   siret: string;
 }
 
-interface LanguageType {
+interface StackData {
   name: string;
   id: number;
 }
 
-interface ContractType {
+interface CityData {
+  city: string;
+  id: number;
+}
+
+interface ContractData {
+  id: number;
+  name: string;
+}
+
+interface Work_conditionData {
   id: number;
   name: string;
 }
@@ -34,7 +55,7 @@ interface OfferData {
   company_id: number;
   contract_id: number;
   contract_name: string;
-  remote_name: string;
+  work_condition_name: string;
   company_name: string;
   company_description: string;
   stack_names: string;
@@ -47,8 +68,7 @@ interface OfferDataForm {
   description: string;
   salary: number;
   profile: string;
-  remote_id: number;
-  company_id: number;
+  work_condition_id: number;
   contract_id: number;
 }
 
@@ -61,6 +81,7 @@ interface OfferFormProps {
   value: OfferDataForm;
   onSubmit: (offer: OfferDataForm) => void;
 }
+
 type LoginCompanyProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -70,4 +91,15 @@ interface SvgTypes {
   path: string;
   width: string;
   height: string;
+}
+
+type HeroProps = {
+  stacks: StackData[];
+  cities: CityData[];
+  work_conditions: work_conditionData[];
+  contracts: ContractData[];
+};
+
+interface CandidateOfferProps {
+  candidateOffer: Candidate_ByCompanyData;
 }

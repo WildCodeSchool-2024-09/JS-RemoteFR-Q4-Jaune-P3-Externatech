@@ -15,6 +15,9 @@ declare global {
         id: number;
         role: string;
       };
+      company: {
+        id: number;
+      };
     }
   }
 }
