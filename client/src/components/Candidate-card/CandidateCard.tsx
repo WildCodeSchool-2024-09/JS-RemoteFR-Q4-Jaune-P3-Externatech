@@ -1,13 +1,15 @@
+import { useRevalidator } from "react-router-dom";
 import "./candidate-card.css";
 import axios from "axios";
 
 export default function CandidateCard({ candidateOffer }: CandidateOfferProps) {
-  console.info(candidateOffer);
+  const { revalidate } = useRevalidator();
 
   const handleClickStatus = (status: number) => {
     const updateStatus = {
-      id: candidateOffer.offer_id,
       application_status_id: status,
+      id: candidateOffer.id,
+      candidate_id: candidateOffer.candidate_id,
     };
     axios
       .post(
@@ -17,6 +19,9 @@ export default function CandidateCard({ candidateOffer }: CandidateOfferProps) {
           withCredentials: true,
         },
       )
+      .then(() => {
+        revalidate();
+      })
       .catch((error) => {
         console.error("Erreur lors du changement de :", error);
       });

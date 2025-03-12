@@ -22,7 +22,7 @@ type UpdateStatus = {
 class CandidateOfferRepository {
   async readAllCandidatesByCompany(companyID: number) {
     const [rows] = await DatabaseClient.query<Rows>(
-      "SELECT c_o.*, company.id AS company_id, candidate.firstname AS candidate_firstname, candidate.lastname AS candidate_lastname, candidate.email AS candidate_email, offer.title AS offer_title, application_status.name AS status FROM candidate_offer as c_o JOIN candidate ON candidate.id = c_o.candidate_id JOIN offer ON offer.id = offer_id JOIN company ON company.id = offer.company_id JOIN application_status ON application_status.id = application_status_id WHERE company.id =?",
+      "SELECT c_o.*, company.id AS company_id, candidate.firstname AS candidate_firstname, candidate.lastname AS candidate_lastname, candidate.email AS candidate_email, offer.title AS offer_title, application_status.name AS status FROM candidate_offer as c_o JOIN candidate ON candidate.id = c_o.candidate_id JOIN offer ON offer.id = offer_id JOIN company ON company.id = offer.company_id JOIN application_status ON application_status.id = application_status_id WHERE company.id =? ORDER BY c_o.id",
       [companyID],
     );
     return rows as Candidate_offer[];
