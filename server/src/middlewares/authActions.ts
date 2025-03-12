@@ -43,6 +43,7 @@ const login: RequestHandler = async (req, res, next) => {
       const payload = {
         id: req.user.id,
         email: req.user.email,
+        role: req.user.role,
       };
 
       if (!process.env.APP_SECRET) {
@@ -101,8 +102,9 @@ const verifyCompany: RequestHandler = async (req, res, next) => {
     if (typeof resultPayload !== "object") {
       throw new Error("Token invalid");
     }
-
-    req.company = { id: resultPayload.id };
+    if (resultPayload.role === "company") {
+      req.company = { id: resultPayload.id };
+    }
 
     next();
   } catch (error) {
@@ -110,4 +112,32 @@ const verifyCompany: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { login, hashPassword, verifyCompany };
+const verifyCandidate: RequestHandler = async (req, res, next) => {
+  if (!process.env.APP_SECRET) {
+    throw new Error("Vous n'avez pas configuré votre APP SECRET dans le .env");
+  }
+
+  try {
+    const { auth } = req.cookies;
+
+    if (!auth) {
+      res.sendStatus(403);
+    }
+
+    const resultPayload = await jwt.verify(auth, process.env.APP_SECRET);
+
+    if (typeof resultPayload !== "object") {
+      throw new Error("Token invalid");
+    }
+
+    if (resultPayload.role === "candidate") {
+      req.candidate = { id: resultPayload.id };
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default { login, hashPassword, verifyCandidate, verifyCompany };
