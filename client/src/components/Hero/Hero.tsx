@@ -1,14 +1,6 @@
 import { useState } from "react";
 import "./Hero.css";
 
-interface HeroProps {
-  stacks: StackData[];
-  cities: CityData[];
-  work_conditions: Work_conditionData[];
-  contracts: ContractData[];
-  onSearch: (filters: FilterValues) => void;
-}
-
 export default function Hero({
   stacks,
   cities,

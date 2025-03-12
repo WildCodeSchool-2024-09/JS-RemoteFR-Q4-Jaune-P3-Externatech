@@ -87,16 +87,18 @@ type LoginCompanyProps = {
   onClose: () => void;
 };
 
-type HeroProps = {
-  stacks: StackData[];
+interface HeroProps {
   cities: CityData[];
-  work_conditions: work_conditionData[];
   contracts: ContractData[];
-};
+  onSearch: (filters: FilterValues) => void;
+  stacks: StackData[];
+  work_conditions: Work_conditionData[];
+}
 
 interface CandidateOfferProps {
   candidateOffer: Candidate_ByCompanyData;
 }
+
 interface FilterValues {
   keyword: string;
   city: string;
