@@ -73,7 +73,7 @@ export default function OfferDetails() {
         <p>
           <b>Descriptif du poste</b>
         </p>
-        <p>{offer.offer_description}</p>
+        <p>{offer.description}</p>
       </article>
       <article className="the_company">
         <section className="title_company">

@@ -6,12 +6,16 @@
 }
 
 .containerTop {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
 .offersCount {
+  margin-left: 1rem;
   width: 25px;
   height: 25px;
   display: flex;
@@ -21,4 +25,35 @@
   color: var(--light);
   border-radius: 50%;
   background-color: var(--secundary);
+}
+
+.offerGradientBar {
+  width: 20rem;
+  height: 0.5rem;
+  background: linear-gradient(to left, var(--secundary), var(--primary));
+}
+
+.resultSearche {
+  margin-top: 2rem;
+}
+
+.no-offers {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #888;
+  margin-bottom: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .resultSearche {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .offerGradientBar {
+    width: 60rem;
+  }
 }

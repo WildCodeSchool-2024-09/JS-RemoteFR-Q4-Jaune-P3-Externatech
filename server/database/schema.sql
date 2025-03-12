@@ -73,7 +73,7 @@ INSERT INTO company (name, logo, description, email, hashed_password) VALUES
 ('EcoSolutions','https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Solutions technologiques pour un monde plus vert.', 'contact@ecosolutions.com', '$argon2id$v=19$m=65536,t=3,p=4$SaZLVtpjmr3qEFI9wrOZ3A$KxZZLhQy0mbm9qLiZ7r1QrdkFYy0cCaB7Y5Ka4P6INM'),
 ('AI Dynamics', 'https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Développement d\'intelligences artificielles avancées.', 'contact@aidynamics.com', '$argon2id$v=19$m=65536,t=3,p=4$n40qO5lYLuI8SuBZLu3f/w$MV3TsEHporSTYiP/GcIrFq3877pCGvBQQV2XIN0iqB8');
 
-INSERT INTO stack (name) VALUES ('JavaScript'), ('Python'), ('Java'), ('C#'), ('Ruby');
+INSERT INTO stack (name) VALUES ('JavaScript'), ('Python'), ('Swift'), ('C#'), ('Ruby');
 
 INSERT INTO contract (name) VALUES
 ('CDI'),
@@ -92,7 +92,7 @@ INSERT INTO offer (title, city, background, description, profile, salary, work_c
 
 ('Développeur Fullstack', 
  'Paris', 
- 'https://img.freepik.com/photos-gratuite/espace-travail-ecran-ordinateur-ordinateur-portable_23-2148821901.jpg?t=st=1740582397~exp=1740585997~hmac=7e34d7b17961b37b532ffca3cccae3494295d3fb30927bb0620e862526051984&w=740', 
+ 'https://img.freepik.com/photos-gratuite/mise-plat-du-poste-travail-espace-copie-ordinateur-portable_23-2148430879.jpg?t=st=1741708462~exp=1741712062~hmac=fc3ef3ceba416d8f6a8456900ea74ac435386eed51bef95986547d07996280e3&w=1380', 
  'Nous recherchons un développeur Fullstack pour renforcer notre équipe sur des projets innovants.', 
  'Développeur Fullstack avec une expérience en JavaScript et Node.js, capable de travailler en équipe et de s’adapter à un environnement agile.', 
  40000,  
@@ -100,9 +100,19 @@ INSERT INTO offer (title, city, background, description, profile, salary, work_c
  1, 
  1),
 
+ ('Développeur Frontend', 
+ 'Paris', 
+ 'https://img.freepik.com/photos-gratuite/personne-devant-ordinateur-travaillant-html_23-2150040428.jpg?t=st=1741708989~exp=1741712589~hmac=ec2000f4f1b2aa008a5d3c62eb35f78f7f19b00e4311ee58148b1703b6dcc41e&w=1060', 
+ 'Nous recherchons un développeur Fullstack pour renforcer notre équipe sur des projets innovants.', 
+ 'Développeur Fullstack avec une expérience en JavaScript et Node.js, capable de travailler en équipe et de s’adapter à un environnement agile.', 
+ 30000,  
+ 1, 
+ 1, 
+ 2),
+
 ('Ingénieur Data', 
  'Lyon', 
- 'https://img.freepik.com/photos-gratuite/espace-travail-ecran-ordinateur-ordinateur-portable_23-2148821901.jpg?t=st=1740582397~exp=1740585997~hmac=7e34d7b17961b37b532ffca3cccae3494295d3fb30927bb0620e862526051984&w=740', 
+ 'https://img.freepik.com/photos-gratuite/lunettes-sont-posees-ordinateur-portable-reflechissent-lumiere-ecran-dans-noir_169016-52267.jpg?t=st=1741708696~exp=1741712296~hmac=05992cc6a4a9248b26b2aadd39d8eeaac0276ba59c9b6866d258b34c8013b788&w=996', 
  'Rejoignez notre équipe Data pour analyser et structurer des ensembles de données complexes.',  
  'Ingénieur spécialisé en Data Science, capable de manipuler des grands ensembles de données et d’optimiser leur exploitation.', 
  45000,  
@@ -122,7 +132,7 @@ INSERT INTO offer (title, city, background, description, profile, salary, work_c
 
 ('Alternant DevOps', 
  'Nantes', 
- 'https://img.freepik.com/photos-gratuite/espace-travail-ecran-ordinateur-ordinateur-portable_23-2148821901.jpg?t=st=1740582397~exp=1740585997~hmac=7e34d7b17961b37b532ffca3cccae3494295d3fb30927bb0620e862526051984&w=740', 
+ 'https://img.freepik.com/free-photo/representation-user-experience-interface-design_23-2150169847.jpg?t=st=1741707411~exp=1741711011~hmac=e4190a77aa42af5b70cbefa9097854c72163a471c9a61e777670eb3e828d5c90&w=2000', 
  'Nous cherchons un alternant pour nous aider à automatiser et optimiser notre infrastructure cloud.',  
  'Étudiant en DevOps passionné par l’automatisation, souhaitant approfondir ses compétences en CI/CD et cloud computing.', 
  22000,  
@@ -130,7 +140,7 @@ INSERT INTO offer (title, city, background, description, profile, salary, work_c
  2, 
  4);
 
-INSERT INTO offer_stack VALUES (1,1),(1,2),(2,1),(2,2),(2,3),(3,2),(3,4),(3,5),(4,5),(4,1),(4,4);
+INSERT INTO offer_stack VALUES (1,1),(1,2),(2,1),(2,2),(2,3),(3,2),(3,4),(3,5),(4,5),(4,1),(4,4), (5,4), (5,5);
 
 INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
 

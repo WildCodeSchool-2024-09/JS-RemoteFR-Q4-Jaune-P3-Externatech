@@ -52,7 +52,20 @@ class offerRepository {
 
   async readAll() {
     const [rows] = await DatabaseClient.query<Rows>(
-      "select offer.*, company.name AS company_name, company.logo AS company_logo, contract.name AS contract_name, work_condition.name AS work_condition_name from offer JOIN company ON offer.company_id = company.id JOIN contract ON offer.contract_id = contract.id JOIN work_condition ON offer.work_condition_id = work_condition.id",
+      `SELECT 
+      offer.*, 
+      company.name AS company_name, 
+      company.logo AS company_logo, 
+      contract.name AS contract_name, 
+      work_condition.name AS work_condition_name,
+      GROUP_CONCAT(stack.name ORDER BY stack.name SEPARATOR ', ') AS stack_names
+    FROM offer
+    JOIN company ON offer.company_id = company.id
+    JOIN contract ON offer.contract_id = contract.id
+    JOIN work_condition ON offer.work_condition_id = work_condition.id
+    LEFT JOIN offer_stack ON offer.id = offer_stack.offer_id
+    LEFT JOIN stack ON offer_stack.stack_id = stack.id
+    GROUP BY offer.id`,
     );
 
     return rows as Offer[];

@@ -38,7 +38,7 @@ interface OfferData {
   city: string;
   company_logo: string;
   background: string;
-  offer_description: string;
+  description: string;
   salary: number;
   profile: string;
   company_id: number;
