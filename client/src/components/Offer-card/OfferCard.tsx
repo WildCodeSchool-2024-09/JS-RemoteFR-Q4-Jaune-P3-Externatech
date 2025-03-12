@@ -24,18 +24,14 @@ function OfferCard({ offer }: OfferDataProps) {
           </li>
           <li>{offer.city}</li>
           <li>{offer.contract_name}</li>
+          <li>{offer.stack_names ? offer.stack_names : "No data"}</li>
         </ul>
       </div>
       <div className="actions-buttons">
-        {isOnOffersPage ? (
-          <Link to={`/OfferDetails/${offer.id}`} className="light-box centered">
-            VOIR LES OFFRES
-          </Link>
-        ) : (
-          <Link to={`/OfferDetails/${offer.id}`} className="light-box">
-            VOIR L'OFFRE
-          </Link>
-        )}
+        <Link to={`/OfferDetails/${offer.id}`} className="light-box centered">
+          VOIR L'OFFRE
+        </Link>
+
         {isOnOffersPage ? null : (
           <Link to="/" className="light-box">
             VOIR LES CANDIDATURES
