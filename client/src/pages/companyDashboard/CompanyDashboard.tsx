@@ -37,6 +37,7 @@ function CompanyDashboard() {
       .post(`${import.meta.env.VITE_API_URL}/api/offers`, newOffer, {
         withCredentials: true,
       })
+
       .catch((error) => {
         console.error("Erreur lors de l'ajout de l'offre :", error);
       });
