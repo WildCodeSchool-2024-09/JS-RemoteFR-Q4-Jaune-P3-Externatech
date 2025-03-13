@@ -12,7 +12,7 @@ export default function CandidateCard({ candidateOffer }: CandidateOfferProps) {
       candidate_id: candidateOffer.candidate_id,
     };
     axios
-      .post(
+      .put(
         `${import.meta.env.VITE_API_URL}/api/candidates_offers`,
         { updateStatus },
         {

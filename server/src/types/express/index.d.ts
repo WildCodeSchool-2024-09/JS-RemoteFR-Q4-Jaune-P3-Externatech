@@ -18,6 +18,9 @@ declare global {
       company: {
         id: number;
       };
+      candidate: {
+        id: number;
+      };
     }
   }
 }

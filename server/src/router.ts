@@ -83,10 +83,15 @@ router.get(
   authActions.verifyCompany,
   candidateOfferActions.browseCandidatesByCompany,
 );
-router.post(
+router.put(
   "/api/candidates_offers",
   authActions.verifyCompany,
   candidateOfferActions.editStatus,
+);
+router.post(
+  "/api/candidates_offers",
+  authActions.verifyCandidate,
+  candidateOfferActions.add,
 );
 
 /* STACK ************************************************************************* */

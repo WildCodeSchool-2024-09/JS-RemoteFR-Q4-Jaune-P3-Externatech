@@ -21,18 +21,20 @@ nav {
 }
 
 .burgerContainer {
-  z-index: 10;
+  z-index: 2;
 }
 
 .burgerButton {
   cursor: pointer;
+  background: none;
   border: none;
-  background-color: var(--light);
+  z-index: 1;
 }
 
 .close,
 .open {
   font-size: 2rem;
+  z-index: 1;
 }
 
 .menuDroper {

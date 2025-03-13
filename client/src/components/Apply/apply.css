@@ -1,0 +1,86 @@
+.dialog_apply {
+  background: none;
+  margin: 0 auto;
+  border: none;
+  animation: openModal 0.2s linear;
+  position: fixed;
+  top: 2rem;
+  z-index: 21;
+
+  & form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-self: center;
+    width: 70vw;
+    height: 50vh;
+    top: 10vh;
+    padding: 3rem 1.4rem;
+    position: relative;
+    z-index: 21;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+    & h2 {
+      text-align: center;
+      margin: 1rem;
+    }
+    & h3 {
+      text-align: left;
+
+      margin: 0;
+    }
+    & input {
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: var(--tertiary) 1px solid;
+    }
+    & button {
+      width: 100%;
+      margin-top: 0.8rem;
+    }
+
+    & .colored_box {
+      z-index: 10;
+    }
+  }
+}
+
+.dialog_apply[open]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 20;
+}
+
+.dialog_apply:not([open]) {
+  display: none;
+}
+
+@keyframes openModal {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dialog_apply div {
+    display: flex;
+    width: 20vw;
+    gap: 1rem;
+    flex-direction: row;
+    align-self: center;
+    & button {
+      width: 10rem;
+    }
+  }
+}
