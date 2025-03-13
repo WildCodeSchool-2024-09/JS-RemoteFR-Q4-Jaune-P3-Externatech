@@ -51,8 +51,9 @@ export default function Login({ isOpen, onClose }: LoginCompanyProps) {
         })
         .then((response) => {
           if (response.data.role === "candidate") {
-            navigate("/candidates/dashboard");
+            onClose();
           } else if (response.data.role === "company") {
+            onClose();
             navigate("/companies/dashboard");
           }
         });
