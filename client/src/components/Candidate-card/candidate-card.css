@@ -29,7 +29,6 @@
 
 .candidate-card .status {
   display: flex;
-  /* display: block; */
   width: fit-content;
   align-items: center;
   justify-content: center;
