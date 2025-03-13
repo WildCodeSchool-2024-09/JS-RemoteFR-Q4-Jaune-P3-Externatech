@@ -74,7 +74,11 @@ router.post(
 );
 router.put("/api/offers/:id", formOffer.validate, offerActions.edit);
 
-router.delete("/api/offers/:id", offerActions.destroy);
+router.delete(
+  "/api/offers/:id",
+  authActions.verifyCompany,
+  offerActions.destroy,
+);
 
 /* CANDIDATE_OFFER / APPLICATIONS ************************************************************************* */
 
