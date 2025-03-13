@@ -38,10 +38,9 @@ export default function Apply({ isOpen, onClose }: LoginCompanyProps) {
   };
 
   return (
-    <dialog className="dialog_login" open={isOpen}>
+    <dialog className="dialog_apply" open={isOpen}>
       <form onSubmit={handleSubmitApply}>
-        <h2>Postuler</h2>
-
+        <h2>Je postule ! </h2>
         <h3>Veuillez inserer votre CV : </h3>
         <input
           type="file"
@@ -51,12 +50,14 @@ export default function Apply({ isOpen, onClose }: LoginCompanyProps) {
           required
         />
 
-        <button className="colored-box " type="submit">
-          Postuler
-        </button>
-        <button className="light-box" type="button" onClick={onClose}>
-          Annuler
-        </button>
+        <div>
+          <button className="colored-box " type="submit">
+            Postuler
+          </button>
+          <button className="light-box" type="button" onClick={onClose}>
+            Annuler
+          </button>
+        </div>
       </form>
     </dialog>
   );
