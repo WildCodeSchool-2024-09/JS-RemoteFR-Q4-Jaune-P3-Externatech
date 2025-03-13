@@ -1,8 +1,8 @@
 .offer-card {
   display: flex;
   flex-direction: column;
-  width: 95%;
-  height: 50%;
+  width: 90vw;
+  height: 60vh;
   margin: 1rem auto;
   border: solid 1px var(--tertiary);
 }
@@ -55,26 +55,39 @@
   position: relative;
   margin-left: 1rem;
   flex: 1;
-}
-
-.company-info h2 {
-  font-size: 1rem;
-  padding: 1rem 0 0 0;
-  font-weight: 900;
-  margin: 0;
-  font-family: "Verdana", sans-serif;
-}
-
-.company-info h2::after {
-  display: none;
-}
-
-.company-info li {
-  padding-top: 0.5rem;
-}
-
-.company-info li::before {
-  content: none;
+  & h3 {
+    font-size: 1rem;
+    padding: 1rem 0 0 0;
+    font-weight: 900;
+    margin: 0;
+    font-family: "Verdana", sans-serif;
+  }
+  & h3::after {
+    display: none;
+  }
+  & ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    list-style-position: inside;
+    padding-top: 0.2rem;
+    gap: 0.1rem;
+  }
+  & li {
+    padding-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+  & li:last-of-type {
+    background-color: var(--tertiary);
+    display: flex;
+    width: fit-content;
+    border-radius: 5px;
+    padding: 0.2rem;
+    margin-left: -0.2rem;
+  }
+  & li::before {
+    content: none;
+  }
 }
 
 /*************************************************/
@@ -86,7 +99,6 @@
 }
 
 .centered {
-  display: block;
   margin-left: auto;
   margin-right: auto;
   text-align: center;

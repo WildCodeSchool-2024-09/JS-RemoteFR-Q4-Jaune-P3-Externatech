@@ -4,7 +4,7 @@ import "./offer-card.css";
 function OfferCard({ offer }: OfferDataProps) {
   const location = useLocation();
 
-  const isOnOffersPage = location.pathname === "/Offers/" || "/Offers";
+  const isOnOffersPage = location.pathname === "/offers/";
 
   return (
     <article className="offer-card">
@@ -17,7 +17,7 @@ function OfferCard({ offer }: OfferDataProps) {
         </div>
       </div>
       <div className="company-info">
-        <h2>{offer.title}</h2>
+        <h3>{offer.title}</h3>
         <ul>
           <li>
             <strong>{offer.company_name}</strong>
@@ -32,7 +32,9 @@ function OfferCard({ offer }: OfferDataProps) {
           VOIR L'OFFRE
         </Link>
 
-        {isOnOffersPage ? null : (
+        {isOnOffersPage ? (
+          ""
+        ) : (
           <Link to="/" className="light-box">
             VOIR LES CANDIDATURES
           </Link>
