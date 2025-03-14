@@ -25,6 +25,7 @@ import Offers from "./pages/offers/Offers";
 //Import API requests
 import {
   getAllOffers,
+  getApplyByCandidate,
   getCandidatesByCompany,
   getCities,
   getCompanyAuth,
@@ -33,7 +34,6 @@ import {
   getOffersByCompany,
   getStacks,
   getWorkCondition,
-  getApplyByCandidate,
 } from "./services/requests";
 
 /* ************************************************************************* */
