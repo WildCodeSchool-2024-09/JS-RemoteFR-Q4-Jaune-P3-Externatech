@@ -1,0 +1,21 @@
+.company-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80vw;
+  height: 15vh;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border: solid 1px var(--tertiary);
+  border-radius: 5px;
+  & img {
+    width: 5rem;
+    object-fit: contain;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .company-card {
+    width: 15rem;
+  }
+}

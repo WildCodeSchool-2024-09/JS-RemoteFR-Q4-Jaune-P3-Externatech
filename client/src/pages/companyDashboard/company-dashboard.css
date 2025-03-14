@@ -51,25 +51,22 @@
 .display {
   display: flex;
   flex-direction: column;
-}
-
-.display button {
-  width: auto;
-  padding: 0.5rem 1rem;
-  align-self: flex-end;
-}
-
-.display ul {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  list-style-position: inside;
-  padding-top: 0.5rem;
-  gap: 1rem;
-}
-
-.display p {
-  padding: 1rem;
+  & button {
+    display: flex;
+    width: auto;
+    padding: 0.5rem 1rem;
+    align-self: flex-end;
+  }
+  & ul {
+    display: flex;
+    list-style: none;
+    list-style-position: inside;
+    padding-top: 0.5rem;
+    gap: 1rem;
+  }
+  & p {
+    padding: 1rem;
+  }
 }
 
 .company-dashboard h2 {
@@ -98,10 +95,4 @@
   display: flex;
   flex-direction: column;
 }
-
 /****************************************/
-@media screen and (min-width: 768px) {
-  .display > ul {
-    flex-direction: row;
-  }
-}

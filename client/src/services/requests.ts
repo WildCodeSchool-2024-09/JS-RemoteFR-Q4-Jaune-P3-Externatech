@@ -1,5 +1,12 @@
 import axios from "axios";
 
+const getAllCompanies = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/companies`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
 const getAllOffers = () => {
   return axios
     .get(`${import.meta.env.VITE_API_URL}/api/offers`)
@@ -86,6 +93,7 @@ const getApplyByCandidate = () => {
 };
 
 export {
+  getAllCompanies,
   getContracts,
   getOfferDetails,
   getCompanyAuth,

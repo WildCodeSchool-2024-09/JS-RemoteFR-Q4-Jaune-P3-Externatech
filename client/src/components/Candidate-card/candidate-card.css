@@ -1,7 +1,8 @@
 .candidate-card {
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 85vw;
+  height: 60vh;
   margin: 1rem auto;
   padding: 0.5rem;
   border: solid 1px var(--tertiary);
