@@ -72,7 +72,7 @@ export default function Hero({
           className="filter"
         >
           <option value="">Ville</option>
-          {cities?.map((city) => (
+          {cities.map((city) => (
             <option key={city.id} value={city.city}>
               {city.city}
             </option>
@@ -86,7 +86,7 @@ export default function Hero({
           className="filter"
         >
           <option value="">Type de job (CDI, Stage, Alternance)</option>
-          {contracts?.map((contract) => (
+          {contracts.map((contract) => (
             <option key={contract.id} value={contract.name}>
               {contract.name}
             </option>
@@ -100,7 +100,7 @@ export default function Hero({
           className="filter"
         >
           <option value="">Environnement technique</option>
-          {stacks?.map((stack) => (
+          {stacks.map((stack) => (
             <option key={stack.id} value={stack.name}>
               {stack.name}
             </option>
@@ -114,7 +114,7 @@ export default function Hero({
           className="filter"
         >
           <option value="">Télétravail</option>
-          {work_conditions?.map((work_condition) => (
+          {work_conditions.map((work_condition) => (
             <option key={work_condition.id} value={work_condition.name}>
               {work_condition.name}
             </option>
