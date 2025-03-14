@@ -97,6 +97,11 @@ router.post(
   authActions.verifyCandidate,
   candidateOfferActions.add,
 );
+router.get(
+  "/api/candidates_offers/candidates",
+  authActions.verifyCandidate,
+  candidateOfferActions.browseCandidatesOffersByCandidate,
+);
 
 /* STACK ************************************************************************* */
 

@@ -5,7 +5,6 @@ function OfferCard({ offer }: OfferDataProps) {
   const location = useLocation();
   const { revalidate } = useRevalidator();
 
-  // const isOnOffersPage = location.pathname === "/offers";
   const isOnCompanyDashboardPage = location.pathname.startsWith(
     "/companies/dashboard",
   );

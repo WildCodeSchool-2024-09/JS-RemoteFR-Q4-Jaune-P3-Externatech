@@ -14,6 +14,24 @@ const browseCandidatesByCompany: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseCandidatesOffersByCandidate: RequestHandler = async (
+  req,
+  res,
+  next,
+) => {
+  try {
+    const candidateID = req.candidate.id;
+
+    const candidateOffers =
+      await CandidateOfferRepository.readAllCandidateOffersByCandidate(
+        candidateID,
+      );
+    res.json(candidateOffers);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const editStatus: RequestHandler = async (req, res, next) => {
   try {
     const { application_status_id, id } = req.body.updateStatus;
@@ -46,4 +64,9 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browseCandidatesByCompany, editStatus, add };
+export default {
+  browseCandidatesByCompany,
+  browseCandidatesOffersByCandidate,
+  editStatus,
+  add,
+};
