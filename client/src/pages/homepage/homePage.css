@@ -14,11 +14,39 @@
 }
 
 #h1Header {
-  width: 70%;
+  font-size: 2rem;
   text-align: center;
 }
 
 #pHeader {
+  text-align: center;
+}
+
+/* .search-bar {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  width: 12rem;
+  margin-top: 1rem;
+} */
+
+.input-homepage {
+  width: 12rem;
+  height: 2rem;
+  text-indent: 15px;
+}
+
+.colored-box-homepage {
+  background-color: var(--secundary);
+  color: var(--light);
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+.colored-box-homepage-business {
+  background-color: var(--secundary);
+  color: var(--light);
+  padding: 0.25rem .5rem;
   text-align: center;
 }
 
@@ -29,10 +57,92 @@
 #infoHeader p {
   font-size: 1rem;
 }
+h2 {
+  font-size: 1rem;
+}
 
 .gradientBar {
-  width: 20rem;
+  width: 100%;
   height: 0.5rem;
   background: linear-gradient(to left, var(--secundary), var(--primary));
-  margin-left: 0.5rem;
+  margin-left: 1.5rem;
+  margin-right: 1rem;
+}
+
+.lastOffers {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+}
+
+.greyBlock {
+  background-image: url("../public/JoinUs4M.webp");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+}
+
+.businessPartners {
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .headerHomepage {
+    display: flex;
+    align-items: center;
+    align-items: flex-start;
+    padding-left: 4rem;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+  }
+
+  .input-homepage {
+    width: 30rem;
+    height: 3rem;
+    text-indent: 15px;
+  }
+
+  .colored-box-homepage {
+    position: absolute;
+    margin-left: 20.7rem;
+    background-color: var(--secundary);
+    color: var(--light);
+    padding: 0.5rem 1rem;
+    text-align: center;
+  }
+
+  .colored-box-homepage-business {
+    background-color: var(--secundary);
+    color: var(--light);
+    padding: 0.5rem 1rem;
+    text-align: center;
+  }
+
+  .greyBlock {
+    background-image: url("../public/JoinUs4.webp");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .why-join-us {
+    font-size: 2rem;
+  }
 }

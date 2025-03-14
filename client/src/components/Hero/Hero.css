@@ -47,10 +47,8 @@ h2 > span {
   transform: scale(0.98);
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .hero-container {
-    background-image: url("../../public/Hero_background.webp");
-    width: 100%;
     justify-content: flex-start;
   }
 

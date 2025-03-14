@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./Hero.css";
 
 export default function Hero({
@@ -8,6 +9,8 @@ export default function Hero({
   contracts,
   onSearch,
 }: HeroProps) {
+  const location = useLocation();
+
   const [filters, setFilters] = useState<FilterValues>({
     keyword: "",
     city: "",
@@ -15,6 +18,20 @@ export default function Hero({
     stack: "",
     remote: "",
   });
+
+  useEffect(() => {
+    if (location?.state?.searchValue) {
+      const newKeyword = location.state.searchValue;
+      setFilters((prev) => {
+        const newFilters = {
+          ...prev,
+          keyword: newKeyword,
+        };
+        onSearch(newFilters); // Appelez onSearch avec les nouveaux filtres
+        return newFilters;
+      });
+    }
+  }, [location.state, onSearch]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -24,6 +41,12 @@ export default function Hero({
 
   const handleSearch = () => {
     onSearch(filters);
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
   };
 
   return (
@@ -37,6 +60,7 @@ export default function Hero({
           name="keyword"
           value={filters.keyword}
           onChange={handleChange}
+          onKeyPress={handleKeyPress}
           placeholder="Recherchez un emploi..."
           className="job-search"
         />
@@ -48,7 +72,7 @@ export default function Hero({
           className="filter"
         >
           <option value="">Ville</option>
-          {cities.map((city) => (
+          {cities?.map((city) => (
             <option key={city.id} value={city.city}>
               {city.city}
             </option>
@@ -62,7 +86,7 @@ export default function Hero({
           className="filter"
         >
           <option value="">Type de job (CDI, Stage, Alternance)</option>
-          {contracts.map((contract) => (
+          {contracts?.map((contract) => (
             <option key={contract.id} value={contract.name}>
               {contract.name}
             </option>
@@ -76,7 +100,7 @@ export default function Hero({
           className="filter"
         >
           <option value="">Environnement technique</option>
-          {stacks.map((stack) => (
+          {stacks?.map((stack) => (
             <option key={stack.id} value={stack.name}>
               {stack.name}
             </option>
@@ -90,7 +114,7 @@ export default function Hero({
           className="filter"
         >
           <option value="">Télétravail</option>
-          {work_conditions.map((work_condition) => (
+          {work_conditions?.map((work_condition) => (
             <option key={work_condition.id} value={work_condition.name}>
               {work_condition.name}
             </option>
