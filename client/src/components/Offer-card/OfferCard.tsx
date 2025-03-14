@@ -5,8 +5,10 @@ function OfferCard({ offer }: OfferDataProps) {
   const location = useLocation();
   const { revalidate } = useRevalidator();
 
-  const isOnOffersPage =
-    location.pathname === "/offers" || location.pathname === "/offers/";
+  // const isOnOffersPage = location.pathname === "/offers";
+  const isOnCompanyDashboardPage = location.pathname.startsWith(
+    "/companies/dashboard",
+  );
 
   const deleteOffer = (id: number) => {
     if (window.confirm("Voulez-vous vraiment supprimer cette offre ?")) {
@@ -49,15 +51,15 @@ function OfferCard({ offer }: OfferDataProps) {
           VOIR L'OFFRE
         </Link>
 
-        {isOnOffersPage ? null : (
+        {isOnCompanyDashboardPage ? (
           <button
             type="button"
             onClick={() => deleteOffer(offer.id)}
             className="light-box"
           >
-            SUPPRIMER L'OFFRE
+            SUPPRIMER
           </button>
-        )}
+        ) : null}
       </div>
     </article>
   );
