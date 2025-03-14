@@ -1,6 +1,9 @@
+import CompanyCard from "../../components/company-card/CompanyCard";
 import "./homePage.css";
+import { useLoaderData } from "react-router-dom";
 
 export default function HomePage() {
+  const allCompanies = useLoaderData() as CompanyData[];
   return (
     <>
       <header className="headerHomepage">
@@ -11,7 +14,7 @@ export default function HomePage() {
           Trouver un job
         </button>
       </header>
-      <section>
+      <section className="home-page">
         <h2>Nos dernières OFFRES</h2>
         <div className="gradientBar" />
       </section>
@@ -19,8 +22,15 @@ export default function HomePage() {
         <h2>Pourquoi nous REJOINDRE</h2>
         <button type="button">QU'ATTENDEZ-VOUS ?</button>
       </section>
-      <section>
+      <section className="home-page">
         <h2>Ils nous font CONFIANCE</h2>
+        <ul className="scroll-card-container">
+          {allCompanies.map((company) => (
+            <li key={company.id}>
+              <CompanyCard company={company} />
+            </li>
+          ))}
+        </ul>
         <div className="gradientBar" />
       </section>
     </>

@@ -43,7 +43,7 @@ export default function NavBar() {
         </button>
         {isOpen && (
           <ul className="menuDroper">
-            <Link to="#">Les entreprises</Link>
+            <Link to="/companies">Les entreprises</Link>
             <Link to="/offers">Les offres</Link>
             <button type="button" onClick={openModal}>
               Espace entreprise
@@ -56,7 +56,7 @@ export default function NavBar() {
       </div>
 
       <ul className="menuDesktop">
-        <Link to="#">Les entreprises</Link>
+        <Link to="/companies">Les entreprises</Link>
 
         <Link to="/offers">Les offres</Link>
         <button type="button" onClick={openModal}>
