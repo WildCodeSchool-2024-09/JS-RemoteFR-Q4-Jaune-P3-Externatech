@@ -50,6 +50,33 @@ class CandidateOfferRepository {
     );
     return rows as Candidate_offer[];
   }
+  async readAllCandidateOffersByCandidate(candidateID: number) {
+    const [rows] = await DatabaseClient.query<Rows>(
+      `SELECT 
+      c_o.*, 
+      company.name AS company_name, 
+      candidate.firstname AS candidate_firstname,
+      company.logo AS company_logo, 
+      offer.title AS offer_title,
+      application_status.name AS status,
+      contract.name as contract_name,
+      work_condition.name as work_condition_name,
+      offer.background as background,
+      offer.city as offer_city
+    FROM candidate_offer AS c_o
+    JOIN candidate ON candidate.id = c_o.candidate_id
+    JOIN offer ON offer.id = c_o.offer_id  
+    JOIN contract ON contract.id = offer.contract_id
+    JOIN company ON company.id = offer.company_id 
+    JOIN work_condition ON work_condition.id = offer.work_condition_id
+    JOIN application_status ON application_status.id = application_status_id
+   
+    WHERE candidate.id = ?
+    ORDER BY c_o.id`,
+      [candidateID],
+    );
+    return rows as Candidate_offer[];
+  }
 
   async updateStatus({ application_status_id, id }: UpdateStatus) {
     const [result] = await DatabaseClient.query<Result>(

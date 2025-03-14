@@ -76,6 +76,15 @@ const getCandidatesByCompany = () => {
     .catch((error) => console.error(error));
 };
 
+const getApplyByCandidate = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/candidates_offers/candidates`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
 export {
   getContracts,
   getOfferDetails,
@@ -87,4 +96,5 @@ export {
   getCities,
   getAllOffers,
   getCandidatesByCompany,
+  getApplyByCandidate,
 };
