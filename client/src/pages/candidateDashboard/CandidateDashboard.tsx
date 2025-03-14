@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import OfferCard from "../../components/Offer-card/OfferCard";
-import "./candidatesDashboard.css";
+import "./candidateDashboard.css";
 import { useEffect, useState } from "react";
 
 export default function CandidateDashboard() {
@@ -9,20 +9,10 @@ export default function CandidateDashboard() {
   const [isSavedOffersCount, setIsSavedOffersCount] = useState<number>(
     offers.length,
   );
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [updatedDate, setUpdatedDate] = useState<string>("12/02/2025");
 
   useEffect(() => {
     setIsSavedOffersCount(offers.length);
   }, [offers]);
-
-  const handleEditClick = () => {
-    setIsEditing(!isEditing);
-  };
-
-  const handleSaveClick = () => {
-    setIsEditing(false);
-  };
 
   return (
     <>
@@ -35,29 +25,10 @@ export default function CandidateDashboard() {
             <div className="box">
               <h3 className="titleBox">
                 Mes infos
-                <button type="button" onClick={handleEditClick}>
+                <button type="button" className="button">
                   Modifier
                 </button>
               </h3>
-
-              <ul className="square-list">
-                <li className="text">
-                  {isEditing ? (
-                    <input
-                      type="text"
-                      value={updatedDate}
-                      onChange={(e) => setUpdatedDate(e.target.value)}
-                    />
-                  ) : (
-                    `dernière actualisation le ${updatedDate}`
-                  )}
-                </li>
-              </ul>
-              {isEditing && (
-                <button type="button" onClick={handleSaveClick}>
-                  Sauvegarder
-                </button>
-              )}
             </div>
             <div className="box">
               <h3 className="titleBox">Mes offres sauvegardées</h3>

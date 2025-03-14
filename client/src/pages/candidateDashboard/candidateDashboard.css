@@ -50,3 +50,7 @@
 .text {
   font-size: 0.8rem;
 }
+
+.button {
+  background-color: black;
+}
