@@ -10,7 +10,7 @@ export default function CandidateDashboard() {
   return (
     <>
       <header className="headerCandidat">
-        <h1>Bienvenue NARUTO </h1>
+        <h1>Bienvenue </h1>
       </header>
       <main className="candidatDashboard">
         <div className="apply">

@@ -5,7 +5,8 @@ function OfferCard({ offer }: OfferDataProps) {
   const location = useLocation();
   const { revalidate } = useRevalidator();
 
-  const isOnOffersPage = location.pathname === "/offers";
+  const isOnOffersPage =
+    location.pathname === "/offers" || "/candidates/dashboard";
 
   const deleteOffer = (id: number) => {
     if (window.confirm("Voulez-vous vraiment supprimer cette offre ?")) {

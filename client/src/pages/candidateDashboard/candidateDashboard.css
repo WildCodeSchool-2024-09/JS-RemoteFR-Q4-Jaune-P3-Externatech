@@ -16,6 +16,9 @@
   justify-content: center;
   margin: 1.4rem;
 
+  & li {
+    list-style: none;
+  }
   & div {
     margin-left: 1rem;
   }
@@ -28,9 +31,6 @@
   background: none;
   display: flex;
   justify-content: space-between;
-  /* justify-content: center;
-    align-items: center; */
-  /* gap: 0.5rem; */
   margin-bottom: 1rem;
   padding: 1rem;
 }
