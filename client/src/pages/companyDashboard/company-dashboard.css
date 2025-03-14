@@ -96,26 +96,3 @@
   flex-direction: column;
 }
 /****************************************/
-
-.scroll-card-container {
-  display: flex;
-  flex-direction: row;
-  max-width: 100%;
-  overflow: hidden;
-  gap: 2rem;
-  margin-bottom: 1rem;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-}
-.scroll-card-container::-webkit-scrollbar {
-  height: 8px;
-}
-
-.scroll-card-container::-webkit-scrollbar-track {
-  background: var(--tertiary);
-}
-
-.scroll-card-container::-webkit-scrollbar-thumb {
-  background: var(--secundary);
-  border-radius: 4px;
-}

@@ -36,3 +36,19 @@
   background: linear-gradient(to left, var(--secundary), var(--primary));
   margin-left: 0.5rem;
 }
+
+.home-page-offers {
+  ul {
+    list-style: none;
+  }
+}
+
+.home-page-companies {
+  ul {
+    display: flex;
+    list-style: none;
+    list-style-position: inside;
+    padding-top: 0.5rem;
+    gap: 1rem;
+  }
+}
