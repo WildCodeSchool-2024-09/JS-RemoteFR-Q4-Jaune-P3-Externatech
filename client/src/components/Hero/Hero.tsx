@@ -27,7 +27,7 @@ export default function Hero({
           ...prev,
           keyword: newKeyword,
         };
-        onSearch(newFilters); // Appelez onSearch avec les nouveaux filtres
+        onSearch(newFilters);
         return newFilters;
       });
     }

@@ -22,13 +22,13 @@
   text-align: center;
 }
 
-/* .search-bar {
+.search-bar {
   display: flex;
   flex-direction: column;
   gap: .8rem;
   width: 12rem;
   margin-top: 1rem;
-} */
+}
 
 .input-homepage {
   width: 12rem;
@@ -102,11 +102,6 @@ h2 {
     padding-left: 4rem;
   }
 
-  .search-bar {
-    display: flex;
-    align-items: center;
-  }
-
   .input-homepage {
     width: 30rem;
     height: 3rem;
@@ -115,6 +110,7 @@ h2 {
 
   .colored-box-homepage {
     position: absolute;
+    margin-top: 0.3rem;
     margin-left: 20.7rem;
     background-color: var(--secundary);
     color: var(--light);
