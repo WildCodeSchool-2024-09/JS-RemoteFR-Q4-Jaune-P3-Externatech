@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./Hero.css";
 
 export default function Hero({
@@ -8,6 +9,8 @@ export default function Hero({
   contracts,
   onSearch,
 }: HeroProps) {
+  const location = useLocation();
+
   const [filters, setFilters] = useState<FilterValues>({
     keyword: "",
     city: "",
@@ -15,6 +18,20 @@ export default function Hero({
     stack: "",
     remote: "",
   });
+
+  useEffect(() => {
+    if (location?.state?.searchValue) {
+      const newKeyword = location.state.searchValue;
+      setFilters((prev) => {
+        const newFilters = {
+          ...prev,
+          keyword: newKeyword,
+        };
+        onSearch(newFilters);
+        return newFilters;
+      });
+    }
+  }, [location.state, onSearch]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -24,6 +41,12 @@ export default function Hero({
 
   const handleSearch = () => {
     onSearch(filters);
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
   };
 
   return (
@@ -37,6 +60,7 @@ export default function Hero({
           name="keyword"
           value={filters.keyword}
           onChange={handleChange}
+          onKeyPress={handleKeyPress}
           placeholder="Recherchez un emploi..."
           className="job-search"
         />
