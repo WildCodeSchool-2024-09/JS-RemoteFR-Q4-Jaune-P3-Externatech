@@ -14,4 +14,36 @@ const browseCandidatesByCompany: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browseCandidatesByCompany };
+const editStatus: RequestHandler = async (req, res, next) => {
+  try {
+    const { application_status_id, id } = req.body.updateStatus;
+    const affectedRows = await CandidateOfferRepository.updateStatus({
+      application_status_id,
+      id,
+    });
+
+    if (affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+const add: RequestHandler = async (req, res, next) => {
+  try {
+    const newCandidateOffer = {
+      candidate_id: req.candidate.id,
+      offer_id: req.body.offer_id,
+      resume: req.body.resume,
+    };
+    const insertId = await CandidateOfferRepository.create(newCandidateOffer);
+
+    res.status(201).json({ insertId });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browseCandidatesByCompany, editStatus, add };

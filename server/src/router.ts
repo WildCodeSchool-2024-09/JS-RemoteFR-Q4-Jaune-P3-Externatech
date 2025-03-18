@@ -45,8 +45,8 @@ router.get("/api/candidates", candidateActions.browse);
 router.get("/api/candidates/:id", candidateActions.read);
 router.post(
   "/api/candidates",
-  authActions.hashPassword,
   formCandidate.validate,
+  authActions.hashPassword,
   candidateActions.add,
 );
 router.put(
@@ -74,7 +74,11 @@ router.post(
 );
 router.put("/api/offers/:id", formOffer.validate, offerActions.edit);
 
-router.delete("/api/offers/:id", offerActions.destroy);
+router.delete(
+  "/api/offers/:id",
+  authActions.verifyCompany,
+  offerActions.destroy,
+);
 
 /* CANDIDATE_OFFER / APPLICATIONS ************************************************************************* */
 
@@ -82,6 +86,16 @@ router.get(
   "/api/candidates_offers",
   authActions.verifyCompany,
   candidateOfferActions.browseCandidatesByCompany,
+);
+router.put(
+  "/api/candidates_offers",
+  authActions.verifyCompany,
+  candidateOfferActions.editStatus,
+);
+router.post(
+  "/api/candidates_offers",
+  authActions.verifyCandidate,
+  candidateOfferActions.add,
 );
 
 /* STACK ************************************************************************* */

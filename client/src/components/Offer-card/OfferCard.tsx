@@ -1,10 +1,26 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useRevalidator } from "react-router-dom";
 import "./offer-card.css";
-
+import axios from "axios";
 function OfferCard({ offer }: OfferDataProps) {
   const location = useLocation();
+  const { revalidate } = useRevalidator();
 
-  const isOnOffersPage = location.pathname === "/Offers/" || "/Offers";
+  const isOnOffersPage = location.pathname === "/offers";
+
+  const deleteOffer = (id: number) => {
+    if (window.confirm("Voulez-vous vraiment supprimer cette offre ?")) {
+      axios
+        .delete(`${import.meta.env.VITE_API_URL}/api/offers/${id}`, {
+          withCredentials: true,
+        })
+        .then(() => {
+          revalidate();
+        })
+        .catch((error) => {
+          console.error("Erreur lors de l'ajout de l'offre :", error);
+        });
+    }
+  };
 
   return (
     <article className="offer-card">
@@ -33,9 +49,13 @@ function OfferCard({ offer }: OfferDataProps) {
         </Link>
 
         {isOnOffersPage ? null : (
-          <Link to="/" className="light-box">
-            VOIR LES CANDIDATURES
-          </Link>
+          <button
+            type="button"
+            onClick={() => deleteOffer(offer.id)}
+            className="light-box"
+          >
+            SUPPRIMER L'OFFRE
+          </button>
         )}
       </div>
     </article>

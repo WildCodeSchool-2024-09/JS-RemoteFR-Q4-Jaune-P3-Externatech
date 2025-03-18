@@ -4,6 +4,11 @@
   border: none;
   animation: openModal 0.2s linear;
   top: -1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 20;
 
   & form {
     display: flex;
@@ -28,17 +33,64 @@
       margin: 2rem 0;
     }
     & .login_buttons {
-      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      margin: 2rem 0 0 0;
     }
+
+    & .colored-box {
+      width: 16.8rem;
+    }
+
+    & .cancel-box {
+      width: 16.8rem;
+    }
+
+    & .register_content {
+      display: flex;
+      margin-top: 3rem;
+      gap: 2rem;
+      font-size: .8rem;
+    }
+
+    & .register_button {
+      background: none;
+      font-weight: bold;
+      color: var(--secundary);
+      cursor: pointer;
+    }
+
     & input {
       padding: 0.6rem;
       border-radius: 8px;
       border: var(--tertiary) 1px solid;
+      position: relative;
     }
     & div {
       display: flex;
       flex-direction: column;
       gap: 1rem;
+    }
+
+    & .password_input {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    & .input_password {
+      width: 100%;
+      padding-right: 5rem;
+    }
+
+    & .show_password {
+      position: absolute;
+      right: 20px;
+      top: 34.5%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
     }
   }
 }

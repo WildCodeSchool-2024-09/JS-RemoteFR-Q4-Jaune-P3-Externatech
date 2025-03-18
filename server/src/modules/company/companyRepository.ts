@@ -9,18 +9,20 @@ type Company = {
   email: string;
   description: string;
   hashed_password: string;
+  siret: string;
 };
 
 class CompanyRepository {
   async create(company: Omit<Company, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "insert into company (name, logo, description, email, hashed_password) values (?, ?, ?, ?, ?)",
+      "insert into company (name, logo, description, email, hashed_password, siret) values (?, ?, ?, ?, ?, ?)",
       [
         company.name,
         company.logo,
         company.description,
         company.email,
         company.hashed_password,
+        company.siret,
       ],
     );
 
@@ -53,13 +55,14 @@ class CompanyRepository {
 
   async update(company: Company) {
     const [result] = await databaseClient.query<Result>(
-      "update company set name = ?, logo =?, description = ?, email = ?, hashed_password = ? where id = ?",
+      "update company set name = ?, logo =?, description = ?, email = ?, hashed_password = ?, siret = ?  where id = ?",
       [
         company.name,
         company.logo,
         company.description,
         company.email,
         company.hashed_password,
+        company.siret,
         company.id,
       ],
     );

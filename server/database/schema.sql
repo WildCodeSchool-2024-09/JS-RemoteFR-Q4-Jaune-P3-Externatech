@@ -5,7 +5,8 @@ CREATE TABLE company (
   logo TEXT NOT NULL,
   description TEXT NOT NULL, 
   email VARCHAR(100) NOT NULL UNIQUE,
-  hashed_password VARCHAR(200) NOT NULL
+  hashed_password VARCHAR(200) NOT NULL,
+  siret VARCHAR(14) NOT NULL
 );
 
 CREATE TABLE candidate (
@@ -50,6 +51,11 @@ CREATE TABLE offer (
   FOREIGN KEY (contract_id) REFERENCES contract(id)
 );
 
+CREATE TABLE application_status (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  name VARCHAR (50) NOT NULL
+);
+
 CREATE TABLE offer_stack (
   offer_id INT UNSIGNED NOT NULL,
   stack_id INT UNSIGNED NOT NULL,
@@ -62,19 +68,22 @@ CREATE TABLE candidate_offer (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   candidate_id INT UNSIGNED NOT NULL,
   offer_id INT UNSIGNED NOT NULL,
+  application_status_id INT UNSIGNED NOT NULL DEFAULT 1,
+  resume TEXT NULL,
   FOREIGN KEY (offer_id) REFERENCES offer(id) ON DELETE CASCADE,
-  FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE
+  FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE,
+  FOREIGN KEY (application_status_id) REFERENCES application_status(id) ON DELETE CASCADE
 );
 
-INSERT INTO company (name, logo, description, email, hashed_password) VALUES
-('Tech Innov', '/logo-500-(1).png', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.', 'contact@techinnov.com', '$argon2id$v=19$m=65536,t=3,p=4$tYykqjuRhLqF+J/VKx25sw$uf2YOEwp4c/5hCzLXizfewLN3UAdLWpqCS3LTmF/fJM'),
-('Green Future', '/logo-500-(2).png', 'Entreprise dédiée aux solutions écologiques et durables.', 'contact@greenfuture.com', '$argon2id$v=19$m=65536,t=3,p=4$mhjsza6PK0G8kI7LaJm2gQ$bX5kYl/Xz2Jb2716RdRHoP8+LWCnXKfjyc9SsusFk3Y'),
-('DataCorp', '/logo-500-(4).png', 'Société experte en analyse de données et business intelligence.', 'contact@datacorp.com', '$argon2id$v=19$m=65536,t=3,p=4$dnPMkZ69DvtnaT5rC2wkuQ$GxkOezr8jaouUpRu+YRkZl3z43jgUFt2m27LHbkI3E4'),
-('DevStudio', '/logo-500-(6).png', 'Agence de développement web et mobile sur mesure.', 'contact@devstudio.com', '$argon2id$v=19$m=65536,t=3,p=4$M1x4Uer4552/q2y3+BLVTA$Ueiv0XwGr22wRnOTOCuRFYrU9herwsjiiqMOUdy/mDU'),
-('CyberSecure','https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Entreprise spécialisée en cybersécurité et protection des données.', 'contact@cybersecure.com', '$argon2id$v=19$m=65536,t=3,p=4$IcK0QfINDCvq4nZM88oSMA$H8oOOVuK/Bb1+VbhTs54khT1U5HuTG7v12paRAQcN8A'),
-('HealthTech', 'https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Société innovante dans le domaine de la santé numérique.', 'contact@healthtech.com', '$argon2id$v=19$m=65536,t=3,p=4$gL4ldMUzAu9kJIDtqWjRtw$JFjh2pQZO7DiIIichNhrbpG3Fvi9phstBKs6XqRKf+8'),
-('EcoSolutions','https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Solutions technologiques pour un monde plus vert.', 'contact@ecosolutions.com', '$argon2id$v=19$m=65536,t=3,p=4$SaZLVtpjmr3qEFI9wrOZ3A$KxZZLhQy0mbm9qLiZ7r1QrdkFYy0cCaB7Y5Ka4P6INM'),
-('AI Dynamics', 'https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Développement d\'intelligences artificielles avancées.', 'contact@aidynamics.com', '$argon2id$v=19$m=65536,t=3,p=4$n40qO5lYLuI8SuBZLu3f/w$MV3TsEHporSTYiP/GcIrFq3877pCGvBQQV2XIN0iqB8');
+INSERT INTO company (name, logo, description, email, hashed_password, siret) VALUES
+('Tech Innov', '/logo-500-(1).png', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.', 'contact@techinnov.com', '$argon2id$v=19$m=65536,t=3,p=4$tYykqjuRhLqF+J/VKx25sw$uf2YOEwp4c/5hCzLXizfewLN3UAdLWpqCS3LTmF/fJM', "12345678901234"),
+('Green Future', '/logo-500-(2).png', 'Entreprise dédiée aux solutions écologiques et durables.', 'contact@greenfuture.com', '$argon2id$v=19$m=65536,t=3,p=4$mhjsza6PK0G8kI7LaJm2gQ$bX5kYl/Xz2Jb2716RdRHoP8+LWCnXKfjyc9SsusFk3Y', "98765432109876"),
+('DataCorp', '/logo-500-(4).png', 'Société experte en analyse de données et business intelligence.', 'contact@datacorp.com', '$argon2id$v=19$m=65536,t=3,p=4$dnPMkZ69DvtnaT5rC2wkuQ$GxkOezr8jaouUpRu+YRkZl3z43jgUFt2m27LHbkI3E4', "54321678901234"),
+('DevStudio', '/logo-500-(6).png', 'Agence de développement web et mobile sur mesure.', 'contact@devstudio.com', '$argon2id$v=19$m=65536,t=3,p=4$M1x4Uer4552/q2y3+BLVTA$Ueiv0XwGr22wRnOTOCuRFYrU9herwsjiiqMOUdy/mDU', "13579246801357"),
+('CyberSecure','https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Entreprise spécialisée en cybersécurité et protection des données.', 'contact@cybersecure.com', '$argon2id$v=19$m=65536,t=3,p=4$IcK0QfINDCvq4nZM88oSMA$H8oOOVuK/Bb1+VbhTs54khT1U5HuTG7v12paRAQcN8A', "24681357902468"),
+('HealthTech', 'https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Société innovante dans le domaine de la santé numérique.', 'contact@healthtech.com', '$argon2id$v=19$m=65536,t=3,p=4$gL4ldMUzAu9kJIDtqWjRtw$JFjh2pQZO7DiIIichNhrbpG3Fvi9phstBKs6XqRKf+8', "75315946803571"),
+('EcoSolutions','https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Solutions technologiques pour un monde plus vert.', 'contact@ecosolutions.com', '$argon2id$v=19$m=65536,t=3,p=4$SaZLVtpjmr3qEFI9wrOZ3A$KxZZLhQy0mbm9qLiZ7r1QrdkFYy0cCaB7Y5Ka4P6INM', "86420975308642"),
+('AI Dynamics', 'https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Développement d\'intelligences artificielles avancées.', 'contact@aidynamics.com', '$argon2id$v=19$m=65536,t=3,p=4$n40qO5lYLuI8SuBZLu3f/w$MV3TsEHporSTYiP/GcIrFq3877pCGvBQQV2XIN0iqB8', "11223344556677");
 
 INSERT INTO stack (name) VALUES ('JavaScript'), ('Python'), ('Swift'), ('C#'), ('Ruby');
 
@@ -143,6 +152,9 @@ INSERT INTO offer (title, city, background, description, profile, salary, work_c
  2, 
  4);
 
+
+INSERT INTO application_status (name) VALUES ("en attente"), ("acceptée"), ("rejetée");
+
 INSERT INTO offer_stack VALUES (1,1),(1,2),(2,1),(2,2),(2,3),(3,2),(3,4),(3,5),(4,5),(4,1),(4,4), (5,4), (5,5);
 
 INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
@@ -158,4 +170,11 @@ INSERT INTO candidate (firstname, lastname, email, hashed_password) VALUES
 ('Chloé', 'Robert', 'chloe.robert@email.com', '$argon2id$v=19$m=65536,t=3,p=4$1DtTIhD5guZLuRydbuznsg$gpDMWM/PPxi7K4tFvQaz8NADL7n2FAAlOfccNNccboU');
 
 
-INSERT INTO candidate_offer (candidate_id, offer_id) VALUES (1,1),(2,1),(3,1),(4,1),(1,2),(2,2);
+INSERT INTO candidate_offer (candidate_id, offer_id, resume) 
+VALUES 
+(1, 1, 'CV_Candidat1.pdf'), 
+(2, 1, 'CV_Candidat2.pdf'), 
+(3, 1, 'CV_Candidat3.pdf'), 
+(4, 1, 'CV_Candidat4.pdf'), 
+(1, 2, 'CV_Candidat1.pdf'), 
+(2, 2, 'CV_Candidat2.pdf');
