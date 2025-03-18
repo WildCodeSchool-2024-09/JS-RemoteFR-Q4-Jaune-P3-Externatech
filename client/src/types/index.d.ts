@@ -75,6 +75,9 @@ interface OfferDataForm {
 interface OfferDataProps {
   offer: OfferData;
 }
+interface CompanyDataProps {
+  company: CompanyData;
+}
 
 interface OfferFormProps {
   children: ReactNode;

@@ -1,16 +1,16 @@
 .offer-card {
   display: flex;
   flex-direction: column;
-  width: 95%;
-  height: 50%;
+  width: 90vw;
+  height: 65vh;
   margin: 1rem auto;
   border: solid 1px var(--tertiary);
 }
 
 .offer-card > img {
   object-fit: cover;
-  aspect-ratio: 3 / 1;
-  width: 100%;
+  min-width: 100%;
+  max-height: 20vh;
 }
 
 .offer-card > div:first-of-type {
@@ -21,7 +21,8 @@
 /*************************************************/
 .header-card {
   display: flex;
-  margin-top: -3rem;
+  position: relative;
+  top: -2rem;
   justify-content: space-between;
   align-items: end;
   margin-left: 1rem;
@@ -53,28 +54,41 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  top: -1rem;
   margin-left: 1rem;
   flex: 1;
-}
-
-.company-info h2 {
-  font-size: 1rem;
-  padding: 1rem 0 0 0;
-  font-weight: 900;
-  margin: 0;
-  font-family: "Verdana", sans-serif;
-}
-
-.company-info h2::after {
-  display: none;
-}
-
-.company-info li {
-  padding-top: 0.5rem;
-}
-
-.company-info li::before {
-  content: none;
+  & h3 {
+    font-size: 1rem;
+    font-weight: 900;
+    margin: 0;
+    font-family: "Verdana", sans-serif;
+  }
+  & h3::after {
+    display: none;
+  }
+  & ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    list-style-position: inside;
+    padding-top: 0.2rem;
+    gap: 0.1rem;
+  }
+  & li {
+    padding-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+  & li:last-of-type {
+    background-color: var(--tertiary);
+    display: flex;
+    width: fit-content;
+    border-radius: 5px;
+    padding: 0.2rem;
+    margin-left: -0.2rem;
+  }
+  & li::before {
+    content: none;
+  }
 }
 
 /*************************************************/
@@ -83,10 +97,10 @@
   margin: 0.5rem;
   gap: 1rem;
   position: relative;
+  bottom: 0;
 }
 
 .centered {
-  display: block;
   margin-left: auto;
   margin-right: auto;
   text-align: center;

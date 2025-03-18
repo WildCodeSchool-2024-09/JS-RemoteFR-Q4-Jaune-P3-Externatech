@@ -1,5 +1,12 @@
 import axios from "axios";
 
+const getAllCompanies = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/companies`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
 const getAllOffers = () => {
   return axios
     .get(`${import.meta.env.VITE_API_URL}/api/offers`)
@@ -76,7 +83,17 @@ const getCandidatesByCompany = () => {
     .catch((error) => console.error(error));
 };
 
+const getApplyByCandidate = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/candidates_offers/candidates`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
 export {
+  getAllCompanies,
   getContracts,
   getOfferDetails,
   getCompanyAuth,
@@ -87,4 +104,5 @@ export {
   getCities,
   getAllOffers,
   getCandidatesByCompany,
+  getApplyByCandidate,
 };

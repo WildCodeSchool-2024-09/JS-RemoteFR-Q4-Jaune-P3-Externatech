@@ -72,10 +72,6 @@ nav {
     object-fit: contain;
   }
 
-  /* .menuDesktop {
-      display: block;
-    } */
-
   .menu_Desktop {
     display: flex;
     list-style: none;

@@ -142,3 +142,19 @@ h2 {
     font-size: 2rem;
   }
 }
+
+.home-page-offers {
+  ul {
+    list-style: none;
+  }
+}
+
+.home-page-companies {
+  ul {
+    display: flex;
+    list-style: none;
+    list-style-position: inside;
+    padding-top: 0.5rem;
+    gap: 1rem;
+  }
+}

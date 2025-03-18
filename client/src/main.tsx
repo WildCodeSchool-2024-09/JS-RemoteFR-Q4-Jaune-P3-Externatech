@@ -10,20 +10,21 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // Import the main app component
 import App from "./App";
 
-// import { companyLoader } from "./pages/CompanyInformartion/CompanyInformation";
+// Import pages
 import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
-
-// Import pages
-
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
+import CandidateDashboard from "./pages/candidateDashboard/CandidateDashboard";
+import Companies from "./pages/companies/Companies";
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
 import HomePage from "./pages/homepage/HomePage";
 import Offers from "./pages/offers/Offers";
 
 //Import API requests
 import {
+  getAllCompanies,
   getAllOffers,
+  getApplyByCandidate,
   getCandidatesByCompany,
   getCities,
   getCompanyAuth,
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+        loader: async () => ({
+          companies: await getAllCompanies(),
+          offers: await getAllOffers(),
+        }),
       },
 
       {
@@ -65,6 +70,11 @@ const router = createBrowserRouter([
         },
       },
       {
+        path: "/companies",
+        element: <Companies />,
+        loader: getAllCompanies,
+      },
+      {
         path: "/companies/dashboard",
         element: <CompanyDasboard />,
         loader: async () => ({
@@ -72,6 +82,11 @@ const router = createBrowserRouter([
           offers: await getOffersByCompany(),
           candidatesByCompany: await getCandidatesByCompany(),
         }),
+      },
+      {
+        path: "/candidates/dashboard/",
+        element: <CandidateDashboard />,
+        loader: getApplyByCandidate,
       },
       {
         path: "/companies/dashboard/information",

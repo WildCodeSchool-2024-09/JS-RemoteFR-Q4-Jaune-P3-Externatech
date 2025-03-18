@@ -1,11 +1,19 @@
+import CompanyCard from "../../components/company-card/CompanyCard";
 import "./homePage.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import OfferCard from "../../components/Offer-card/OfferCard";
 
 export default function HomePage() {
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
+
+  const { companies, offers } = useLoaderData() as {
+    companies: CompanyData[];
+    offers: OfferData[];
+  };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -45,9 +53,21 @@ export default function HomePage() {
           </button>
         </div>
       </header>
-      <section className="lastOffers">
+      <section className="home-page-offers">
         <h2>Nos dernières OFFRES</h2>
         <div className="gradientBar" />
+        <ul className="scroll-card-container">
+          {offers.length > 0 ? (
+            offers.map((offer) => (
+              <li key={offer.id}>
+                {" "}
+                <OfferCard offer={offer} />
+              </li>
+            ))
+          ) : (
+            <li>Pas d'offre active</li>
+          )}
+        </ul>
       </section>
       <section className="greyBlock">
         <h2 className="why-join-us">Pourquoi nous rejoindre ?</h2>
@@ -57,8 +77,15 @@ export default function HomePage() {
           </button>
         </Link>
       </section>
-      <section className="businessPartners">
+      <section className="home-page-companies">
         <h2>Ils nous font CONFIANCE</h2>
+        <ul className="scroll-card-container">
+          {companies.map((company) => (
+            <li key={company.id}>
+              <CompanyCard company={company} />
+            </li>
+          ))}
+        </ul>
         <div className="gradientBar" />
       </section>
     </>
