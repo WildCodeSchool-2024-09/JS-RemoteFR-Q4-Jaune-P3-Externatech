@@ -4,6 +4,7 @@ const authContext = createContext<AuthProps | null>(null);
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [role, setRole] = useState(localStorage.getItem("role") || "anonymous");
+  const [id, setId] = useState(Number(localStorage.getItem("id")) || -1);
 
   useEffect(() => {
     if (role) {
@@ -11,8 +12,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }, [role]);
 
+  useEffect(() => {
+    if (id) {
+      localStorage.setItem("id", id.toString());
+    }
+  }, [id]);
+
   return (
-    <authContext.Provider value={{ role, setRole }}>
+    <authContext.Provider value={{ role, setRole, id, setId }}>
       {children}
     </authContext.Provider>
   );

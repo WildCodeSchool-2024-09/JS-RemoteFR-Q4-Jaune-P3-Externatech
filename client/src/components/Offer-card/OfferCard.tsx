@@ -1,13 +1,25 @@
-import { Link, useLocation, useRevalidator } from "react-router-dom";
+import { useState } from "react";
+import { Link, useRevalidator } from "react-router-dom";
 import "./offer-card.css";
 import axios from "axios";
+import { useAuth } from "../../services/AuthContext";
+import Apply from "../Apply/Apply";
+
 function OfferCard({ offer }: OfferDataProps) {
-  const location = useLocation();
+  const { role } = useAuth();
+
   const { revalidate } = useRevalidator();
 
-  const isOnCompanyDashboardPage = location.pathname.startsWith(
-    "/companies/dashboard",
-  );
+  const [isApplyOpen, setIsApplyOpen] = useState(false);
+  const openApply = () => {
+    setIsApplyOpen(!isApplyOpen);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeApply = () => {
+    setIsApplyOpen(false);
+    document.body.style.overflow = "";
+  };
 
   const deleteOffer = (id: number) => {
     if (window.confirm("Voulez-vous vraiment supprimer cette offre ?")) {
@@ -46,11 +58,18 @@ function OfferCard({ offer }: OfferDataProps) {
         </ul>
       </div>
       <div className="actions-buttons">
+        {role === "candidate" ? (
+          <>
+            <Apply isOpen={isApplyOpen} onClose={closeApply} />
+            <button type="button" onClick={openApply} className="light-box">
+              POSTULER
+            </button>
+          </>
+        ) : null}
         <Link to={`/OfferDetails/${offer.id}`} className="light-box centered">
           VOIR L'OFFRE
         </Link>
-
-        {isOnCompanyDashboardPage ? (
+        {role === "company" ? (
           <button
             type="button"
             onClick={() => deleteOffer(offer.id)}

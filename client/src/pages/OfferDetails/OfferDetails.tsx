@@ -1,11 +1,15 @@
 import "./OfferDetails.css";
+import axios from "axios";
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useRevalidator } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Apply from "../../components/Apply/Apply";
+import { useAuth } from "../../services/AuthContext";
 
 export default function OfferDetails() {
   const offer = useLoaderData() as OfferData;
+  const { role, id } = useAuth();
+  const { revalidate } = useRevalidator();
 
   const [showModal, setShowModal] = useState(false);
 
@@ -28,6 +32,21 @@ export default function OfferDetails() {
     setShowModal(false);
   };
 
+  const deleteOffer = (id: number) => {
+    if (window.confirm("Voulez-vous vraiment supprimer cette offre ?")) {
+      axios
+        .delete(`${import.meta.env.VITE_API_URL}/api/offers/${id}`, {
+          withCredentials: true,
+        })
+        .then(() => {
+          revalidate();
+        })
+        .catch((error) => {
+          console.error("Erreur lors de l'ajout de l'offre :", error);
+        });
+    }
+  };
+
   return (
     <main className="all_detail_page">
       <Apply isOpen={isApplyOpen} onClose={closeApply} />
@@ -46,17 +65,33 @@ export default function OfferDetails() {
         <h3>Compétences & expertises</h3>
         <p className="skills">{offer.stack_names}</p>
         <section className="buttons">
-          <button type="button" className="apply" onClick={openApply}>
-            Postuler
-          </button>
-          <button type="button" className="register" onClick={handleOpenModal}>
-            <img
-              src="/Logos/Icon_bookmark.png"
-              alt="bookmark"
-              className="bookmark"
-            />
-            Enregistrer
-          </button>
+          {role === "candidate" ? (
+            <>
+              <button type="button" className="apply" onClick={openApply}>
+                Postuler
+              </button>
+              <button
+                type="button"
+                className="register"
+                onClick={handleOpenModal}
+              >
+                <img
+                  src="/Logos/Icon_bookmark.png"
+                  alt="bookmark"
+                  className="bookmark"
+                />
+                Enregistrer
+              </button>
+            </>
+          ) : null}
+          {role === "company" && id === offer.company_id ? (
+            <>
+              <button type="button">Voir les candidatures</button>
+              <button type="button" onClick={() => deleteOffer(offer.id)}>
+                SUPPRIMER
+              </button>
+            </>
+          ) : null}
         </section>
       </article>
 

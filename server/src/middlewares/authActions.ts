@@ -58,6 +58,7 @@ const login: RequestHandler = async (req, res, next) => {
       res.cookie("auth", token).send({
         message: "Utilisateur connecté",
         role: req.user.role,
+        id: req.user.id,
       });
     }
   } catch (error) {

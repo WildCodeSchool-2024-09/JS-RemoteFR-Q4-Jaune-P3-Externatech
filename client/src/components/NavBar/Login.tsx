@@ -27,7 +27,7 @@ export default function Login({ isOpen, onClose }: LoginCompanyProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
-  const { setRole } = useAuth();
+  const { setRole, setId } = useAuth();
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
@@ -52,6 +52,7 @@ export default function Login({ isOpen, onClose }: LoginCompanyProps) {
         })
         .then((response) => {
           setRole(response.data.role);
+          setId(Number(response.data.id));
           if (response.data.role === "candidate") {
             onClose();
             navigate("/candidates/dashboard");

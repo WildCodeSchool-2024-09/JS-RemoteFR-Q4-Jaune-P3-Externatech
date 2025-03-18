@@ -5,6 +5,8 @@ interface AuthProviderProps {
 interface AuthProps {
   role: string;
   setRole: (role: string) => void;
+  id: number;
+  setId: (id: number) => void;
 }
 
 interface CandidateOfferData {
