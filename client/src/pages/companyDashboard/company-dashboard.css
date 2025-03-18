@@ -33,6 +33,7 @@
   border: 1px var(--tertiary) solid;
   overflow: hidden;
   min-width: 40%;
+  width: 100%;
 }
 
 .box h3 {
@@ -46,6 +47,16 @@
   & li {
     margin: 0.4rem;
   }
+}
+
+.light-box-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light);
+  text-align: center;
+  border: solid var(--tertiary) 1px;
+  border-radius: 5px;
 }
 
 .display {

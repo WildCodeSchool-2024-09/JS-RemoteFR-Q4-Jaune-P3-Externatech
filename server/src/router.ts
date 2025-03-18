@@ -36,7 +36,12 @@ router.post(
   authActions.hashPassword,
   companyActions.add,
 );
-router.put("/api/companies/:id", formCompany.validate, companyActions.edit);
+router.put(
+  "/api/companies",
+  authActions.verifyCompany,
+  formCompany.validateUpdate,
+  companyActions.edit,
+);
 router.delete("/api/companies/:id", companyActions.destroy);
 
 /* CANDIDATES ************************************************************************* */
