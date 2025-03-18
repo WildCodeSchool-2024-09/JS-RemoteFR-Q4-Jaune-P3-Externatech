@@ -1,3 +1,12 @@
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+interface AuthProps {
+  role: string;
+  setRole: (role: string) => void;
+}
+
 interface CandidateOfferData {
   id: number;
   candidate_id: number;

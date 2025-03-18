@@ -1,8 +1,56 @@
 import { useState } from "react";
 import "./navBar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../services/AuthContext";
 import Login from "./Login";
+
 export default function NavBar() {
+  const navigate = useNavigate();
+  const { role, setRole } = useAuth();
+
+  const disconnet = () => {
+    setRole("anonymous");
+    navigate("/");
+  };
+
+  const links = [
+    {
+      name: "Accueil",
+      path: "/",
+      role: ["anonymous", "company", "candidate"],
+    },
+    {
+      name: "Les entreprises",
+      path: "/companies",
+      role: ["anonymous", "company", "candidate"],
+    },
+    {
+      name: "Les offres",
+      path: "/offers",
+      role: ["anonymous", "company", "candidate"],
+    },
+    {
+      name: "Mon dashboard",
+      path: "/companies/dashboard",
+      role: ["company"],
+    },
+    {
+      name: "Mes infos",
+      path: "/companies/dashboard/information",
+      role: ["company"],
+    },
+    {
+      name: "Mon dashboard",
+      path: "/candidates/dashboard",
+      role: ["candidate"],
+    },
+    {
+      name: "Mes offres enregistrées",
+      path: "/candidates/registered-offers",
+      role: ["candidate"],
+    },
+  ];
+
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -43,29 +91,55 @@ export default function NavBar() {
         </button>
         {isOpen && (
           <ul className="menuDroper">
-            <Link to="/companies">Les entreprises</Link>
-            <Link to="/offers">Les offres</Link>
-            <button type="button" onClick={openModal}>
-              Espace entreprise
-            </button>{" "}
-            <button type="button" onClick={openModal}>
-              Se connecter
-            </button>
+            {links
+              .filter((link) => link.role.includes(role))
+              .map((link) => (
+                <li key={link.name}>
+                  <Link to={link.path}>{link.name}</Link>
+                </li>
+              ))}
+
+            {role !== "anonymous" ? (
+              <button type="button" onClick={disconnet}>
+                Se déconnecter
+              </button>
+            ) : (
+              <>
+                <button type="button" onClick={openModal}>
+                  Espace entreprise
+                </button>
+                <button type="button" onClick={openModal}>
+                  Se connecter
+                </button>
+              </>
+            )}
           </ul>
         )}
       </div>
 
       <ul className="menuDesktop">
-        <Link to="/companies">Les entreprises</Link>
+        {links
+          .filter((link) => link.role.includes(role))
+          .map((link) => (
+            <li key={link.name}>
+              <Link to={link.path}>{link.name}</Link>
+            </li>
+          ))}
 
-        <Link to="/offers">Les offres</Link>
-        <button type="button" onClick={openModal}>
-          Espace entreprise
-        </button>
-
-        <button type="button" onClick={openModal}>
-          Se connecter
-        </button>
+        {role !== "anonymous" ? (
+          <button type="button" onClick={disconnet}>
+            Se déconnecter
+          </button>
+        ) : (
+          <>
+            <button type="button" onClick={openModal}>
+              Espace entreprise
+            </button>
+            <button type="button" onClick={openModal}>
+              Se connecter
+            </button>
+          </>
+        )}
       </ul>
       <Login isOpen={isModalOpen} onClose={closeModal} />
     </nav>
