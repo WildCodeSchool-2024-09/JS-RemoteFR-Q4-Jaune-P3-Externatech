@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import { useRevalidator } from "react-router-dom";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 
-import "./CompagnyInformation.css";
+import "./CompanyInformations.css";
 
 export default function CompanyInformation() {
   const { revalidate } = useRevalidator();

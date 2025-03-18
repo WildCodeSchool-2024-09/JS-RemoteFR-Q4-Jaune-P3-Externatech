@@ -77,7 +77,7 @@ const companyUpdateSchema = Joi.object({
   }),
   siret: Joi.string().min(14).max(14).required().messages({
     "string.empty": "Ce champ doit contenir 14 chiffres",
-    "any.required": "Ce champ est obligatoire",
+    "any.required": "Le siret est obligatoire",
   }),
   size: Joi.string().required().messages({
     "any.required": "Ce champ est obligatoire",
@@ -99,7 +99,7 @@ const companyUpdateSchema = Joi.object({
       "string.email": "L'adresse mail doit être valide",
     }),
   description: Joi.string().required().messages({
-    "any.required": "Ce champ est obligatoire",
+    "any.required": "La description est obligatoire",
     "string.empty": "Le champ ne peut pas être vide",
   }),
 });
