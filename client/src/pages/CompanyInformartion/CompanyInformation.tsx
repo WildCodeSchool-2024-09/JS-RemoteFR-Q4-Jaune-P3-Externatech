@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { useRevalidator } from "react-router-dom";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 
 import "./CompagnyInformation.css";
 
@@ -49,16 +50,36 @@ export default function CompanyInformation() {
         },
       );
       console.info("Données mises à jour avec succès !");
+      toast.success("Données mises à jour avec succès !", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
       revalidate();
     } catch (error) {
       console.error("Erreur lors de la modification :", error);
+      toast.error("Erreur lors de la modification. Veuillez réessayer.", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   };
 
   const renderEditableForm = () => {
     return (
       <form onSubmit={handleSubmit}>
-        <h2 className="title_CI">Modification de vos informations : </h2>
+        <h2 className="title_CI">
+          Mes <strong>MODIFICATIONS</strong>
+        </h2>
 
         <section>
           <label htmlFor="company-name-update">Nom de l'entreprise:</label>
@@ -146,7 +167,20 @@ export default function CompanyInformation() {
             onChange={handleInputChange}
           />
 
-          <input type="submit" value="Enregistrer" />
+          <input type="submit" value="Enregistrer" className="colored-box" />
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+          />
           <button
             type="button"
             className="light-box"
@@ -159,19 +193,13 @@ export default function CompanyInformation() {
     );
   };
 
-  // <button
-  //           type="submit"
-  //           className="light-box"
-  //           onClick={() => setIsEditing(false)}
-  //         >
-  //           Enregistrer les modifications
-  //         </button>
-
   return (
-    <div className="container_CI">
+    <main className="container_CI">
       {!isEditing ? (
         <section>
-          <h2 className="title_CI">Mes Informations:</h2>
+          <h2 className="title_CI">
+            Mes <strong>INFORMATIONS</strong>
+          </h2>
 
           <p>Nom de l'entreprise:</p>
           <p className="form_CI">{company.name}</p>
@@ -214,6 +242,6 @@ export default function CompanyInformation() {
       ) : (
         renderEditableForm()
       )}
-    </div>
+    </main>
   );
 }
