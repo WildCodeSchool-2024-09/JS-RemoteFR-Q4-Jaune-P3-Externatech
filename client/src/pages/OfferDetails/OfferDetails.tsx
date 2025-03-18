@@ -1,7 +1,7 @@
 import "./OfferDetails.css";
 import axios from "axios";
 import { useState } from "react";
-import { useLoaderData, useRevalidator } from "react-router-dom";
+import { useLoaderData, useNavigate, useRevalidator } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Apply from "../../components/Apply/Apply";
 import { useAuth } from "../../services/AuthContext";
@@ -10,6 +10,7 @@ export default function OfferDetails() {
   const offer = useLoaderData() as OfferData;
   const { role, id } = useAuth();
   const { revalidate } = useRevalidator();
+  const navigate = useNavigate();
 
   const [showModal, setShowModal] = useState(false);
 
@@ -87,7 +88,13 @@ export default function OfferDetails() {
           {role === "company" && id === offer.company_id ? (
             <>
               <button type="button">Voir les candidatures</button>
-              <button type="button" onClick={() => deleteOffer(offer.id)}>
+              <button
+                type="button"
+                onClick={async () => {
+                  await deleteOffer(offer.id);
+                  navigate(-1);
+                }}
+              >
                 SUPPRIMER
               </button>
             </>
