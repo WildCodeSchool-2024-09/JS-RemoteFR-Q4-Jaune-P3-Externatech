@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import SvgIcons from "../SvgIcons";
 import SignUp from "./SignUp";
 import "./login.css";
+import { useAuth } from "../../services/AuthContext";
 
 const icon = {
   visible: {
@@ -26,7 +27,7 @@ export default function Login({ isOpen, onClose }: LoginCompanyProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
-
+  const { setRole } = useAuth();
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
@@ -50,6 +51,7 @@ export default function Login({ isOpen, onClose }: LoginCompanyProps) {
           withCredentials: true,
         })
         .then((response) => {
+          setRole(response.data.role);
           if (response.data.role === "candidate") {
             onClose();
             navigate("/candidates/dashboard");
