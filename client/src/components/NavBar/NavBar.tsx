@@ -8,7 +8,7 @@ export default function NavBar() {
   const navigate = useNavigate();
   const { role, setRole } = useAuth();
 
-  const disconnet = () => {
+  const disconnect = () => {
     setRole("anonymous");
     navigate("/");
   };
@@ -100,7 +100,7 @@ export default function NavBar() {
               ))}
 
             {role !== "anonymous" ? (
-              <button type="button" onClick={disconnet}>
+              <button type="button" onClick={disconnect}>
                 Se déconnecter
               </button>
             ) : (
@@ -127,7 +127,7 @@ export default function NavBar() {
           ))}
 
         {role !== "anonymous" ? (
-          <button type="button" onClick={disconnet}>
+          <button type="button" onClick={disconnect}>
             Se déconnecter
           </button>
         ) : (
