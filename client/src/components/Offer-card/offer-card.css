@@ -91,6 +91,15 @@
   }
 }
 
+.status {
+  border: 3px solid black;
+  border-radius: 50px;
+  width: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /*************************************************/
 .offer-card .actions-buttons {
   display: flex;

@@ -59,6 +59,7 @@ interface OfferData {
   company_name: string;
   company_description: string;
   stack_names: string;
+  status: string;
 }
 
 interface OfferDataForm {

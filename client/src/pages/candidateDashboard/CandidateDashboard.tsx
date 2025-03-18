@@ -6,7 +6,7 @@ import "./candidateDashboard.css";
 
 export default function CandidateDashboard() {
   const applies = useLoaderData() as OfferData[];
-  console.info(applies);
+
   return (
     <>
       <header className="headerCandidat">
