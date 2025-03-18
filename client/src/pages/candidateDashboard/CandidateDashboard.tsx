@@ -19,9 +19,7 @@ export default function CandidateDashboard() {
         </div>
         <div className="gradientBar" />
         {applies.map((apply) => (
-          <>
-            <OfferCard key={apply.id} offer={apply} />
-          </>
+          <OfferCard key={apply.id} offer={apply} />
         ))}
       </main>
     </>
