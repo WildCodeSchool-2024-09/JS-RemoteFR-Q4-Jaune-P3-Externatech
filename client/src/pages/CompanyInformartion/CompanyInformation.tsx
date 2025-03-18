@@ -1,12 +1,29 @@
 import axios from "axios";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { useRevalidator } from "react-router-dom";
+
 import "./CompagnyInformation.css";
 
 export default function CompanyInformation() {
+  const { revalidate } = useRevalidator();
+
   const company = useLoaderData() as CompanyData;
 
-  const [updatedCompany, setUpdatedCompany] = useState<CompanyData>(company);
+  const companyToUpdate = {
+    name: company.name,
+    logo: company.logo,
+    description: company.description,
+    email: company.email,
+    siret: company.siret,
+    address: company.address,
+    postalCode: company.postalCode,
+    city: company.city,
+    size: company.size,
+    website: company.website,
+  };
+
+  const [updatedCompany, setUpdatedCompany] = useState(companyToUpdate);
   const [isEditing, setIsEditing] = useState(false);
 
   const handleInputChange = (
@@ -28,13 +45,11 @@ export default function CompanyInformation() {
         `${import.meta.env.VITE_API_URL}/api/companies`,
         updatedCompany,
         {
-          headers: {
-            "Content-Type": "application/json", // Assure-toi que le type de contenu est bien JSON
-          },
           withCredentials: true,
         },
       );
       console.info("Données mises à jour avec succès !");
+      revalidate();
     } catch (error) {
       console.error("Erreur lors de la modification :", error);
     }
@@ -43,18 +58,23 @@ export default function CompanyInformation() {
   const renderEditableForm = () => {
     return (
       <form onSubmit={handleSubmit}>
+        <h2 className="title_CI">Modification de vos informations : </h2>
+
         <section>
-          <img
-            className="form_CI logo"
-            src={updatedCompany.logo}
-            alt={`logo de l'entreprise ${updatedCompany.name}`}
-          />
           <label htmlFor="company-name-update">Nom de l'entreprise:</label>
           <input
             className="form_CI"
             type="text"
             name="name"
             value={updatedCompany.name}
+            onChange={handleInputChange}
+          />
+          <label htmlFor="company-logo-update">Logo de l'entreprise:</label>
+          <input
+            className="form_CI"
+            type="text"
+            name="logo"
+            value={updatedCompany.logo}
             onChange={handleInputChange}
           />
           <label htmlFor="company-adress-update">Rue:</label>
@@ -125,26 +145,42 @@ export default function CompanyInformation() {
             value={updatedCompany.description}
             onChange={handleInputChange}
           />
-          <button type="submit" className="light-box">
-            Enregistrer les modifications
+
+          <input type="submit" value="Enregistrer" />
+          <button
+            type="button"
+            className="light-box"
+            onClick={() => setIsEditing(!isEditing)}
+          >
+            Retour
           </button>
         </section>
       </form>
     );
   };
 
+  // <button
+  //           type="submit"
+  //           className="light-box"
+  //           onClick={() => setIsEditing(false)}
+  //         >
+  //           Enregistrer les modifications
+  //         </button>
+
   return (
     <div className="container_CI">
-      <h2 className="title_CI">Mes Informations:</h2>
       {!isEditing ? (
         <section>
+          <h2 className="title_CI">Mes Informations:</h2>
+
+          <p>Nom de l'entreprise:</p>
+          <p className="form_CI">{company.name}</p>
+          <p>Logo de l'entreprise:</p>
           <img
             className="form_CI logo"
             src={company.logo}
             alt={`logo de l'entreprise ${company.name}`}
           />
-          <p>Nom de l'entreprise:</p>
-          <p className="form_CI">{company.name}</p>
           <p>Rue:</p>
           <p className="form_CI">{company.address}</p>
           <p>Code postal:</p>

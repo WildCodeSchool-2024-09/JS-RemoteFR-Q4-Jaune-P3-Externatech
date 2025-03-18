@@ -15,12 +15,13 @@
   }
 
   & .form_CI {
-    border: 1px solid #79be7b;
+    border: 1px solid var(--tertiary);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
     height: 2rem;
     margin-bottom: 1rem;
     max-width: 50rem;
     height: auto;
-    padding-left: 0.3rem;
   }
   & .form_CI.logo {
     display: flex;
