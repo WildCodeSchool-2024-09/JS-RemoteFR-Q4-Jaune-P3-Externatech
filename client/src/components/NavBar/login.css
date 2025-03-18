@@ -75,22 +75,30 @@
     & .password_input {
       display: flex;
       flex-direction: row;
-      align-items: center;
-    }
-
-    & .input_password {
+      align-items: stretch; /* Assure que les éléments ont la même hauteur */
       width: 100%;
-      padding-right: 5rem;
-    }
+      margin: 0;
+      border: var(--tertiary) 1px solid; /* Applique une seule bordure autour du conteneur */
+      border-radius: 8px; /* Arrondi les coins du conteneur */
+      overflow: hidden; /* Masque toute coupure interne entre les éléments */
 
-    & .show_password {
-      position: absolute;
-      right: 20px;
-      top: 34.5%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      cursor: pointer;
+      & .input_password {
+        flex: 1; /* Prend tout l'espace disponible */
+        border: none; /* Supprime la bordure de l'input */
+        padding: 0.6rem; /* Ajuste le padding pour correspondre au style général */
+        font-size: inherit;
+      }
+
+      & .show_password {
+        display: flex;
+        background: none;
+        justify-content: center;
+        align-items: center;
+        border: none; /* Supprime la bordure du bouton */
+        cursor: pointer;
+        padding: 0.5rem;
+        font-size: inherit;
+      }
     }
   }
 }

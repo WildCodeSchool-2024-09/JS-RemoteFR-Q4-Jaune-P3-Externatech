@@ -74,7 +74,9 @@ export default function Login({ isOpen, onClose }: LoginCompanyProps) {
         <form onSubmit={handleSubmit}>
           <h2>Connexion</h2>
 
-          <p>Email</p>
+          <label htmlFor="email-login">
+            Email<span>*</span>
+          </label>
           <input
             type="email"
             name="email"
@@ -82,7 +84,9 @@ export default function Login({ isOpen, onClose }: LoginCompanyProps) {
             onChange={handleChange}
             required
           />
-          <p>Mot de passe</p>
+          <label htmlFor="password_login">
+            Mot de passe<span className="star">*</span>
+          </label>
           <div className="password_input">
             <input
               className="input_password"

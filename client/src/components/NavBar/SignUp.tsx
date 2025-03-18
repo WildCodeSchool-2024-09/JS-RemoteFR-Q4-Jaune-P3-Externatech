@@ -209,8 +209,6 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
                   placeholder="Votre mot de passe"
                   required
                 />
-                {credentials.password.length >= 8 ? "✅" : "❌"}{" "}
-                {`Longueur : ${credentials.password.length} >= 8`}
                 <button
                   type="button"
                   onClick={togglePassword}
@@ -223,44 +221,43 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
                   />
                 </button>
               </div>
+              {credentials.password.length >= 8 ? "✅" : "❌"}{" "}
+              {`Longueur : ${credentials.password.length} >= 8`}
+              <label htmlFor="confirmPassword">
+                Confirmez votre mot de passe<span className="star"> *</span>
+              </label>
               <div className="password_input">
-                <label htmlFor="confirmPassword">
-                  Confirmez votre mot de passe<span className="star"> *</span>
-                </label>
-                <div className="password_confirm">
-                  <input
-                    className="password_confirm_input"
-                    type={confirmPassword ? "text" : "password"}
-                    id="password_confirmation"
-                    name="password_confirmation"
-                    value={credentials.password_confirmation}
-                    onChange={handleChange}
-                    placeholder="Confirmez votre mot de passe"
-                    required
+                <input
+                  className="input_password"
+                  type={confirmPassword ? "text" : "password"}
+                  id="password_confirmation"
+                  name="password_confirmation"
+                  value={credentials.password_confirmation}
+                  onChange={handleChange}
+                  placeholder="Confirmez votre mot de passe"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={toggleConfirmPassword}
+                  className="show_password"
+                >
+                  <SvgIcons
+                    path={showIconConfirmPassword.path}
+                    height={showIconConfirmPassword.height}
+                    width={showIconConfirmPassword.width}
                   />
-                  {credentials.password ===
-                  credentials.password_confirmation ? (
-                    <span style={{ color: "green" }}>
-                      ✅ Les mots de passe correspondent
-                    </span>
-                  ) : (
-                    <span style={{ color: "red" }}>
-                      ❌ Les mots de passe ne correspondent pas
-                    </span>
-                  )}
-                  <button
-                    type="button"
-                    onClick={toggleConfirmPassword}
-                    className="show_password_2"
-                  >
-                    <SvgIcons
-                      path={showIconConfirmPassword.path}
-                      height={showIconConfirmPassword.height}
-                      width={showIconConfirmPassword.width}
-                    />
-                  </button>
-                </div>
+                </button>
               </div>
+              {credentials.password === credentials.password_confirmation ? (
+                <span style={{ color: "green" }}>
+                  ✅ Les mots de passe correspondent
+                </span>
+              ) : (
+                <span style={{ color: "red" }}>
+                  ❌ Les mots de passe ne correspondent pas
+                </span>
+              )}
               <label htmlFor="checkbox" className="checkbox">
                 <input
                   type="checkbox"
@@ -292,7 +289,6 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
                 placeholder="Nom de l'entreprise"
                 required
               />
-
               <label htmlFor="siret">
                 Numéro SIRET<span className="star"> *</span>
               </label>
@@ -354,12 +350,10 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
                   placeholder="Votre mot de passe"
                   required
                 />
-                {credentials.password.length >= 8 ? "✅" : "❌"}{" "}
-                {`Longueur : ${credentials.password.length} >= 8`}
                 <button
                   type="button"
                   onClick={togglePassword}
-                  className="show_password_3"
+                  className="show_password"
                 >
                   <SvgIcons
                     path={showIconPassword.path}
@@ -368,44 +362,43 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
                   />
                 </button>
               </div>
+              {credentials.password.length >= 8 ? "✅" : "❌"}{" "}
+              {`Longueur : ${credentials.password.length} >= 8`}
+              <label htmlFor="confirmPassword">
+                Confirmez votre mot de passe<span className="star"> *</span>:
+              </label>
               <div className="password_input">
-                <label htmlFor="confirmPassword">
-                  Confirmez votre mot de passe<span className="star"> *</span>:
-                </label>
-                <div className="password_confirm">
-                  <input
-                    className="password_confirm_input"
-                    type={confirmPassword ? "text" : "password"}
-                    id="password_confirmation"
-                    name="password_confirmation"
-                    value={credentials.password_confirmation}
-                    onChange={handleChange}
-                    placeholder="Confirmez votre mot de passe"
-                    required
+                <input
+                  className="input_password"
+                  type={confirmPassword ? "text" : "password"}
+                  id="password_confirmation"
+                  name="password_confirmation"
+                  value={credentials.password_confirmation}
+                  onChange={handleChange}
+                  placeholder="Confirmez votre mot de passe"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={toggleConfirmPassword}
+                  className="show_password"
+                >
+                  <SvgIcons
+                    path={showIconConfirmPassword.path}
+                    height={showIconConfirmPassword.height}
+                    width={showIconConfirmPassword.width}
                   />
-                  {credentials.password ===
-                  credentials.password_confirmation ? (
-                    <span style={{ color: "green" }}>
-                      ✅ Les mots de passe correspondent
-                    </span>
-                  ) : (
-                    <span style={{ color: "red" }}>
-                      ❌ Les mots de passe ne correspondent pas
-                    </span>
-                  )}
-                  <button
-                    type="button"
-                    onClick={toggleConfirmPassword}
-                    className="show_password_4"
-                  >
-                    <SvgIcons
-                      path={showIconConfirmPassword.path}
-                      height={showIconConfirmPassword.height}
-                      width={showIconConfirmPassword.width}
-                    />
-                  </button>
-                </div>
+                </button>
               </div>
+              {credentials.password === credentials.password_confirmation ? (
+                <span style={{ color: "green" }}>
+                  ✅ Les mots de passe correspondent
+                </span>
+              ) : (
+                <span style={{ color: "red" }}>
+                  ❌ Les mots de passe ne correspondent pas
+                </span>
+              )}
               <label htmlFor="checkbox" className="checkbox">
                 <input
                   type="checkbox"
