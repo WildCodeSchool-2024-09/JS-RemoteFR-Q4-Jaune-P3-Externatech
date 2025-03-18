@@ -75,17 +75,17 @@
     & .password_input {
       display: flex;
       flex-direction: row;
-      align-items: stretch; /* Assure que les éléments ont la même hauteur */
+      align-items: stretch;
       width: 100%;
       margin: 0;
-      border: var(--tertiary) 1px solid; /* Applique une seule bordure autour du conteneur */
-      border-radius: 8px; /* Arrondi les coins du conteneur */
-      overflow: hidden; /* Masque toute coupure interne entre les éléments */
+      border: var(--tertiary) 1px solid;
+      border-radius: 8px;
+      overflow: hidden;
 
       & .input_password {
-        flex: 1; /* Prend tout l'espace disponible */
-        border: none; /* Supprime la bordure de l'input */
-        padding: 0.6rem; /* Ajuste le padding pour correspondre au style général */
+        flex: 1;
+        border: none;
+        padding: 0.6rem;
         font-size: inherit;
       }
 
@@ -94,7 +94,7 @@
         background: none;
         justify-content: center;
         align-items: center;
-        border: none; /* Supprime la bordure du bouton */
+        border: none;
         cursor: pointer;
         padding: 0.5rem;
         font-size: inherit;
