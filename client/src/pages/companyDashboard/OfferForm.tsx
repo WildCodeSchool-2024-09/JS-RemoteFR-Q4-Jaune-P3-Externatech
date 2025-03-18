@@ -1,6 +1,6 @@
 import "./offerForm.css";
+import { useEffect, useState } from "react";
 
-import { useState } from "react";
 function OfferForm({
   children,
   value,
@@ -22,6 +22,18 @@ function OfferForm({
           : value,
     }));
   };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    onSubmit(formData);
+  };
+
+  useEffect(() => {
+    if (errorMessage === "") {
+      setFormData(value);
+    }
+  }, [errorMessage, value]);
+
   const maxLengths = {
     title: 250,
     city: 250,
@@ -29,13 +41,7 @@ function OfferForm({
 
   return (
     <>
-      <form
-        className="form-offer"
-        onSubmit={(event) => {
-          event.preventDefault();
-          onSubmit(formData);
-        }}
-      >
+      <form className="form-offer" onSubmit={handleSubmit}>
         <p> * champs obligatoires </p>
 
         <label>

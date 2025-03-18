@@ -1,8 +1,7 @@
 import axios from "axios";
-import { Link, useLoaderData } from "react-router-dom";
 import { useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 import { Bounce, ToastContainer, toast } from "react-toastify";
-import { useRevalidator } from "react-router-dom";
 
 import OfferForm from "./OfferForm";
 import "./company-dashboard.css";
@@ -11,7 +10,6 @@ import OfferCard from "../../components/Offer-card/OfferCard";
 
 function CompanyDashboard() {
   const [errorMessage, setErrorMessage] = useState("");
-  const { revalidate } = useRevalidator();
 
   const { company, offers, candidatesByCompany } = useLoaderData() as {
     company: CompanyData;
@@ -55,11 +53,19 @@ function CompanyDashboard() {
         theme: "light",
         transition: Bounce,
       });
-      revalidate();
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Erreur lors de l'ajout de l'offre :", error);
         setErrorMessage(error.response?.data.error);
+        toast.error("Erreur lors de l'ajout de l'offre !", {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
       } else {
         console.error("Une erreur inattendue s'est produite :", error);
         setErrorMessage("Une erreur inattendue s'est produite.");

@@ -15,8 +15,8 @@ const offerSchema = Joi.object({
     "any.required": "La ville est obligatoire.",
   }),
   background: Joi.string().required().messages({
-    "string.empty": "L'image de fond est obligatoire.",
-    "any.required": "L'image de fond est obligatoire.",
+    "string.empty": "Le background est obligatoire.",
+    "any.required": "Le background est obligatoire.",
   }),
   description: Joi.string().required().messages({
     "string.empty": "La description est obligatoire.",
