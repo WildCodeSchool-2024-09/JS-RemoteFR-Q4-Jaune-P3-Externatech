@@ -95,9 +95,7 @@
   border: 3px solid black;
   border-radius: 50px;
   width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 
 /*************************************************/
