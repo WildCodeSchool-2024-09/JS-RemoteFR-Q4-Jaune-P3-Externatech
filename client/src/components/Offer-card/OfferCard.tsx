@@ -36,9 +36,7 @@ function OfferCard({ offer }: OfferDataProps) {
       </div>
       <div className="company-info">
         <h3>{offer.title}</h3>
-        <div className="status">
-          <p>{offer.status}</p>
-        </div>
+        <p className="status">{offer.status}</p>
         <ul>
           <li>
             <strong>{offer.company_name}</strong>
