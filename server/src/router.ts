@@ -24,6 +24,10 @@ import workConditionActions from "./modules/work_condition/workConditionActions"
 
 router.post("/api/login", authActions.login);
 
+/* LOGOUT ************************************************************************* */
+
+router.post("/api/logout", authActions.logout);
+
 /* COMPANIES ************************************************************************* */
 
 router.get("/api/companies", companyActions.browse);

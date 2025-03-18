@@ -8,9 +8,15 @@ export default function NavBar() {
   const navigate = useNavigate();
   const { role, setRole } = useAuth();
 
-  const disconnect = () => {
-    setRole("anonymous");
-    navigate("/");
+  const logout = async () => {
+    try {
+      await fetch("/api/logout", { method: "POST", credentials: "include" });
+      setRole("anonymous");
+      document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      navigate("/");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
 
   const links = [
@@ -100,7 +106,7 @@ export default function NavBar() {
               ))}
 
             {role !== "anonymous" ? (
-              <button type="button" onClick={disconnect}>
+              <button type="button" onClick={logout}>
                 Se déconnecter
               </button>
             ) : (
@@ -127,7 +133,7 @@ export default function NavBar() {
           ))}
 
         {role !== "anonymous" ? (
-          <button type="button" onClick={disconnect}>
+          <button type="button" onClick={logout}>
             Se déconnecter
           </button>
         ) : (
