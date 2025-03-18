@@ -1,7 +1,12 @@
 import "./offerForm.css";
 
 import { useState } from "react";
-function OfferForm({ children, value, onSubmit }: OfferFormProps) {
+function OfferForm({
+  children,
+  value,
+  errorMessage,
+  onSubmit,
+}: OfferFormProps) {
   const [formData, setFormData] = useState(value);
 
   const handleChange = (
@@ -124,7 +129,7 @@ function OfferForm({ children, value, onSubmit }: OfferFormProps) {
             onChange={handleChange}
           />
         </label>
-
+        <p className="errorMessage">{errorMessage}</p>
         <button className="colored-box" type="submit">
           {children}
         </button>

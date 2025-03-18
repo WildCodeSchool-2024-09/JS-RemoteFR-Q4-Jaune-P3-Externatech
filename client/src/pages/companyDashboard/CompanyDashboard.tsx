@@ -1,11 +1,18 @@
 import axios from "axios";
 import { Link, useLoaderData } from "react-router-dom";
+import { useState } from "react";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import { useRevalidator } from "react-router-dom";
+
 import OfferForm from "./OfferForm";
 import "./company-dashboard.css";
 import CandidateCard from "../../components/Candidate-card/CandidateCard";
 import OfferCard from "../../components/Offer-card/OfferCard";
 
 function CompanyDashboard() {
+  const [errorMessage, setErrorMessage] = useState("");
+  const { revalidate } = useRevalidator();
+
   const { company, offers, candidatesByCompany } = useLoaderData() as {
     company: CompanyData;
     offers: OfferData[];
@@ -32,14 +39,32 @@ function CompanyDashboard() {
     contract_id: 0,
   };
 
-  const handleOfferSubmit = (newOffer: OfferDataForm) => {
-    axios
-      .post(`${import.meta.env.VITE_API_URL}/api/offers`, newOffer, {
+  const handleOfferSubmit = async (newOffer: OfferDataForm) => {
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/offers`, newOffer, {
         withCredentials: true,
-      })
-      .catch((error) => {
-        console.error("Erreur lors de l'ajout de l'offre :", error);
       });
+      setErrorMessage("");
+      console.info("Offre ajoutée avec succès !");
+      toast.success("Offre ajoutée avec succès !", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
+      revalidate();
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("Erreur lors de l'ajout de l'offre :", error);
+        setErrorMessage(error.response?.data.error);
+      } else {
+        console.error("Une erreur inattendue s'est produite :", error);
+        setErrorMessage("Une erreur inattendue s'est produite.");
+      }
+    }
   };
 
   return (
@@ -48,7 +73,6 @@ function CompanyDashboard() {
         Bienvenue {company.name}
         <img src={company.logo} alt={`logo de ${company.name}`} />
       </h1>
-
       <section className="general-view">
         <div className="top">
           <div className="box">
@@ -117,9 +141,26 @@ function CompanyDashboard() {
         </div>
       </section>
       <h2>Créer une OFFRE</h2>
-      <OfferForm value={newOffer} onSubmit={handleOfferSubmit}>
+      <OfferForm
+        value={newOffer}
+        errorMessage={errorMessage}
+        onSubmit={handleOfferSubmit}
+      >
         AJOUTER UNE OFFRE
       </OfferForm>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />{" "}
     </main>
   );
 }

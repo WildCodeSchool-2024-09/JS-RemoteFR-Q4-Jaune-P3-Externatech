@@ -59,6 +59,7 @@ interface OfferData {
   company_name: string;
   company_description: string;
   stack_names: string;
+  status: string;
 }
 
 interface OfferDataForm {
@@ -82,6 +83,7 @@ interface CompanyDataProps {
 interface OfferFormProps {
   children: ReactNode;
   value: OfferDataForm;
+  errorMessage: string;
   onSubmit: (offer: OfferDataForm) => void;
 }
 

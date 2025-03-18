@@ -4,7 +4,6 @@
   & p {
     margin-bottom: 1rem;
     font-size: 0.8rem;
-    color: var(--fourth);
   }
   & img {
     max-height: 18vh;
@@ -31,4 +30,10 @@
 .company-dashboard form button {
   width: 38vw;
   align-self: flex-end;
+}
+
+.errorMessage {
+  color: var(--message-error);
+  font-size: 0.8rem;
+  padding: 1rem 0;
 }
