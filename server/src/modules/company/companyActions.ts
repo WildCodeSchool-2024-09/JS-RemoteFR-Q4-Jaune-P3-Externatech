@@ -60,17 +60,21 @@ const destroy: RequestHandler = async (req, res, next) => {
 
 const edit: RequestHandler = async (req, res, next) => {
   try {
-    const company = {
-      id: Number(req.params.id),
+    const editCompany = {
+      id: req.company.id,
       name: req.body.name,
       logo: req.body.logo,
       description: req.body.description,
       email: req.body.email,
-      hashed_password: req.body.hashed_password,
       siret: req.body.siret,
+      address: req.body.address,
+      postalCode: req.body.postalCode,
+      city: req.body.city,
+      size: req.body.size,
+      website: req.body.website,
     };
 
-    const affectedRows = await companyRepository.update(company);
+    const affectedRows = await companyRepository.update(editCompany);
 
     if (affectedRows === 0) {
       res.sendStatus(404);

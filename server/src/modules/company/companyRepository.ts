@@ -10,6 +10,25 @@ type Company = {
   description: string;
   hashed_password: string;
   siret: string;
+  address?: string;
+  postalCode?: string;
+  city?: string;
+  size?: string;
+  website?: string;
+};
+
+type editCompany = {
+  id: number;
+  logo: string;
+  name: string;
+  email: string;
+  description: string;
+  siret: string;
+  address: string;
+  postalCode: string;
+  city: string;
+  size: string;
+  website: string;
 };
 
 class CompanyRepository {
@@ -53,17 +72,21 @@ class CompanyRepository {
     return rows as Company[];
   }
 
-  async update(company: Company) {
+  async update(editCompany: editCompany) {
     const [result] = await databaseClient.query<Result>(
-      "update company set name = ?, logo =?, description = ?, email = ?, hashed_password = ?, siret = ?  where id = ?",
+      "update company set name = ?, logo =?, description = ?, email = ?, siret = ?, address = ?, postalCode = ?, city = ?, size = ?, website = ?  where id = ?",
       [
-        company.name,
-        company.logo,
-        company.description,
-        company.email,
-        company.hashed_password,
-        company.siret,
-        company.id,
+        editCompany.name,
+        editCompany.logo,
+        editCompany.description,
+        editCompany.email,
+        editCompany.siret,
+        editCompany.address,
+        editCompany.postalCode,
+        editCompany.city,
+        editCompany.size,
+        editCompany.website,
+        editCompany.id,
       ],
     );
 

@@ -91,6 +91,13 @@
   }
 }
 
+.status {
+  border: 3px solid black;
+  border-radius: 50px;
+  width: 30%;
+  text-align: center;
+}
+
 /*************************************************/
 .offer-card .actions-buttons {
   display: flex;

@@ -66,12 +66,14 @@ function CompanyDashboard() {
             </ul>
           </div>
         </div>
-        <div className="box">
-          <h3>Mes infos</h3>
-          <ul className="square-list">
-            <li>dernière actualisation le 12/02/2025</li>
-          </ul>
-        </div>
+        <Link className="light-box-link" to="/companies/dashboard/information">
+          <div className="box">
+            <h3>Mes infos</h3>
+            <ul className="square-list">
+              <li>dernière actualisation le 12/02/2025</li>
+            </ul>
+          </div>
+        </Link>
       </section>
       <section className="display">
         <h2>Mes OFFRES</h2>
@@ -111,7 +113,7 @@ function CompanyDashboard() {
           <Link className="colored-box" to="/">
             MODIFIER
           </Link>
-          <Link className="light-box" to={`/companies/${company.id}`}>
+          <Link className="light-box" to="/companies/dashboard/information">
             VOIR TOUTES MES INFOS
           </Link>
         </div>
