@@ -4,10 +4,13 @@ import "./offer-card.css";
 import axios from "axios";
 import { useAuth } from "../../services/AuthContext";
 import Apply from "../Apply/Apply";
+import Login from "../NavBar/Login";
 
 function OfferCard({ offer }: OfferDataProps) {
   const { role } = useAuth();
-
+  const isOnCompanyDashboardPage = location.pathname.startsWith(
+    "/companies/dashboard",
+  );
   const { revalidate } = useRevalidator();
 
   const [isApplyOpen, setIsApplyOpen] = useState(false);
@@ -19,6 +22,25 @@ function OfferCard({ offer }: OfferDataProps) {
   const closeApply = () => {
     setIsApplyOpen(false);
     document.body.style.overflow = "";
+  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(!isModalOpen);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = "";
+  };
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   const deleteOffer = (id: number) => {
@@ -64,12 +86,56 @@ function OfferCard({ offer }: OfferDataProps) {
             <button type="button" onClick={openApply} className="light-box">
               POSTULER
             </button>
+            <button
+              type="button"
+              className="register"
+              onClick={handleOpenModal}
+            >
+              <img
+                src="/Logos/Icon_bookmark.png"
+                alt="bookmark"
+                className="bookmark"
+              />
+            </button>
           </>
         ) : null}
+        {role === "anonymous" ? (
+          <>
+            <Login isOpen={isModalOpen} onClose={closeModal} />
+            <button type="button" className="apply" onClick={openModal}>
+              Postuler
+            </button>
+            <button type="button" className="register" onClick={openModal}>
+              <img
+                src="/Logos/Icon_bookmark.png"
+                alt="bookmark"
+                className="bookmark"
+              />
+            </button>
+          </>
+        ) : null}
+        {showModal && (
+          <section className="modal">
+            <section className="modal-content">
+              <h2>Succès</h2>
+              <p className="registered_p">Cette offre a été enregistrée !</p>
+              <Link to="/RegisteredOffers" className="registered_offers">
+                Voir mes offres enregistrées
+              </Link>
+              <button
+                type="button"
+                className="close_button"
+                onClick={handleCloseModal}
+              >
+                Fermer
+              </button>
+            </section>
+          </section>
+        )}
         <Link to={`/OfferDetails/${offer.id}`} className="light-box centered">
           VOIR L'OFFRE
         </Link>
-        {role === "company" ? (
+        {role === "company" && isOnCompanyDashboardPage ? (
           <button
             type="button"
             onClick={() => deleteOffer(offer.id)}
