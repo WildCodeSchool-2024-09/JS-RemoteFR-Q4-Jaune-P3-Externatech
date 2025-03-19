@@ -1,7 +1,6 @@
 import "./OfferDetails.css";
-import axios from "axios";
 import { useState } from "react";
-import { useLoaderData, useNavigate, useRevalidator } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Apply from "../../components/Apply/Apply";
 import Login from "../../components/NavBar/Login";
@@ -9,9 +8,7 @@ import { useAuth } from "../../services/AuthContext";
 
 export default function OfferDetails() {
   const offer = useLoaderData() as OfferData;
-  const { role, id } = useAuth();
-  const { revalidate } = useRevalidator();
-  const navigate = useNavigate();
+  const { role } = useAuth();
 
   const [showModal, setShowModal] = useState(false);
 
@@ -43,21 +40,6 @@ export default function OfferDetails() {
 
   const handleCloseModal = () => {
     setShowModal(false);
-  };
-
-  const deleteOffer = (id: number) => {
-    if (window.confirm("Voulez-vous vraiment supprimer cette offre ?")) {
-      axios
-        .delete(`${import.meta.env.VITE_API_URL}/api/offers/${id}`, {
-          withCredentials: true,
-        })
-        .then(() => {
-          revalidate();
-        })
-        .catch((error) => {
-          console.error("Erreur lors de l'ajout de l'offre :", error);
-        });
-    }
   };
 
   return (
@@ -110,20 +92,6 @@ export default function OfferDetails() {
                   className="bookmark"
                 />
                 Enregistrer
-              </button>
-            </>
-          ) : null}
-          {role === "company" && id === offer.company_id ? (
-            <>
-              <button type="button">Voir les candidatures</button>
-              <button
-                type="button"
-                onClick={async () => {
-                  await deleteOffer(offer.id);
-                  navigate(-1);
-                }}
-              >
-                SUPPRIMER
               </button>
             </>
           ) : null}
