@@ -65,6 +65,14 @@ const login: RequestHandler = async (req, res, next) => {
   }
 };
 
+const logout: RequestHandler = async (req, res, next) => {
+  try {
+    res.clearCookie("auth").send("Cookies supprimés");
+  } catch (error) {
+    next(error);
+  }
+};
+
 const hashingOptions = {
   type: argon2.argon2id,
   memoryCost: 19 * 2 ** 10,
@@ -142,4 +150,4 @@ const verifyCandidate: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { login, hashPassword, verifyCandidate, verifyCompany };
+export default { login, logout, hashPassword, verifyCandidate, verifyCompany };

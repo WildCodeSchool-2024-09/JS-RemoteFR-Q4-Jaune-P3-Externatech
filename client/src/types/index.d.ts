@@ -92,6 +92,7 @@ interface CompanyDataProps {
 interface OfferFormProps {
   children: ReactNode;
   value: OfferDataForm;
+  errorMessage: string;
   onSubmit: (offer: OfferDataForm) => void;
 }
 

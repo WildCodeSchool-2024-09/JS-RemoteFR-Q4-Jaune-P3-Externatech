@@ -3,11 +3,25 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Apply from "../../components/Apply/Apply";
+import Login from "../../components/NavBar/Login";
+import { useAuth } from "../../services/AuthContext";
 
 export default function OfferDetails() {
   const offer = useLoaderData() as OfferData;
+  const { role } = useAuth();
 
   const [showModal, setShowModal] = useState(false);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(!isModalOpen);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = "";
+  };
 
   const [isApplyOpen, setIsApplyOpen] = useState(false);
   const openApply = () => {
@@ -46,17 +60,41 @@ export default function OfferDetails() {
         <h3>Compétences & expertises</h3>
         <p className="skills">{offer.stack_names}</p>
         <section className="buttons">
-          <button type="button" className="apply" onClick={openApply}>
-            Postuler
-          </button>
-          <button type="button" className="register" onClick={handleOpenModal}>
-            <img
-              src="/Logos/Icon_bookmark.png"
-              alt="bookmark"
-              className="bookmark"
-            />
-            Enregistrer
-          </button>
+          {role === "anonymous" ? (
+            <>
+              <Login isOpen={isModalOpen} onClose={closeModal} />
+              <button type="button" className="apply" onClick={openModal}>
+                Postuler
+              </button>
+              <button type="button" className="register" onClick={openModal}>
+                <img
+                  src="/Logos/Icon_bookmark.png"
+                  alt="bookmark"
+                  className="bookmark"
+                />
+                Enregistrer
+              </button>
+            </>
+          ) : null}
+          {role === "candidate" ? (
+            <>
+              <button type="button" className="apply" onClick={openApply}>
+                Postuler
+              </button>
+              <button
+                type="button"
+                className="register"
+                onClick={handleOpenModal}
+              >
+                <img
+                  src="/Logos/Icon_bookmark.png"
+                  alt="bookmark"
+                  className="bookmark"
+                />
+                Enregistrer
+              </button>
+            </>
+          ) : null}
         </section>
       </article>
 
