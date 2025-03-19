@@ -1,0 +1,59 @@
+.titleMl {
+  background-color: var(--secundary);
+  text-align: center;
+  font-size: 2rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: lighter;
+}
+
+.Bar-Legal {
+  width: 50%;
+  height: 1px;
+  background-color: var(--secundary);
+}
+
+.titleMlh3 {
+  margin-top: 1.5rem;
+  padding: 1rem;
+}
+
+.List-Legal {
+  margin: 1rem;
+  gap: 1rem;
+  list-style: none;
+  text-align: center;
+}
+
+.List-Legal > li {
+  margin: .5rem;
+}
+
+.articleMl {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Team-Legal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .titleMl {
+    padding: 1rem;
+  }
+
+  .Bar-Legal {
+    width: 10%;
+    height: 1px;
+    background-color: var(--secundary);
+    margin-bottom: 2rem;
+  }
+}

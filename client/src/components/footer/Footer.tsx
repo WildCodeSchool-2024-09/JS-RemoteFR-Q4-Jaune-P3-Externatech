@@ -35,13 +35,13 @@ export default function Footer() {
         <div />
         <ul>
           <li>
-            <Link to="/">Conditions générales</Link>
+            <Link to="/GeneralConditions">Conditions générales</Link>
           </li>
           <li>
-            <Link to="/">Mentions légales</Link>
+            <Link to="/LegalInformations">Mentions légales</Link>
           </li>
           <li>
-            <Link to="/">Politique de protection des données</Link>
+            <Link to="/">Besoin d'aide ?</Link>
           </li>
         </ul>
       </div>

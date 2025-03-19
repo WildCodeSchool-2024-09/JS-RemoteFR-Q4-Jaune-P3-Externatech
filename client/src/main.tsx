@@ -13,6 +13,8 @@ import { AuthProvider } from "./services/AuthContext";
 
 // Import pages
 import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
+import GeneralConditions from "./pages/GeneralConditions/GeneralConditions";
+import LegalInformations from "./pages/LegalInformations/LegalInformations";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
 import CandidateDashboard from "./pages/candidateDashboard/CandidateDashboard";
@@ -100,6 +102,15 @@ const router = createBrowserRouter([
       {
         path: "/candidates/registered-offers",
         element: <RegisteredOffers />,
+      },
+
+      {
+        path: "/LegalInformations",
+        element: <LegalInformations />,
+      },
+      {
+        path: "/GeneralConditions",
+        element: <GeneralConditions />,
       },
     ],
   },
