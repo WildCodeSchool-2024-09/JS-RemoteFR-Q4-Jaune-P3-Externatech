@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import "./navBar.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,15 +9,12 @@ export default function NavBar() {
   const navigate = useNavigate();
   const { role, setRole } = useAuth();
 
-  const logout = async () => {
-    try {
-      await fetch("/api/logout", { method: "POST", credentials: "include" });
-      setRole("anonymous");
-      document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      navigate("/");
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
+  const logout = () => {
+    axios
+      .get("http://localhost:3310/api/logout", { withCredentials: true })
+      .then(() => setRole("anonymous"))
+      .catch((error) => console.error(error));
+    navigate("/");
   };
 
   const links = [

@@ -65,15 +65,12 @@ const login: RequestHandler = async (req, res, next) => {
   }
 };
 
-const logout: RequestHandler = (req, res) => {
-  res.clearCookie("auth", {
-    httpOnly: true,
-    secure: true,
-    sameSite: "strict",
-    path: "/",
-  });
-
-  res.send({ message: "Déconnexion réussie" });
+const logout: RequestHandler = async (req, res, next) => {
+  try {
+    res.clearCookie("auth").send("Cookies supprimés");
+  } catch (error) {
+    next(error);
+  }
 };
 
 const hashingOptions = {

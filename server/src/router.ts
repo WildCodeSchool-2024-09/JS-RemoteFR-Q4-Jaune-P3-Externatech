@@ -26,7 +26,7 @@ router.post("/api/login", authActions.login);
 
 /* LOGOUT ************************************************************************* */
 
-router.post("/api/logout", authActions.logout);
+router.get("/api/logout", authActions.logout);
 
 /* COMPANIES ************************************************************************* */
 
