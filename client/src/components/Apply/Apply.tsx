@@ -27,7 +27,6 @@ export default function Apply({ isOpen, onClose }: LoginCompanyProps) {
       );
 
       setErrorMessage("");
-      console.info("Candidature effectuée avec succès !");
       toast.success("Offre ajoutée avec succès !", {
         position: "bottom-center",
         autoClose: 2000,
@@ -54,7 +53,6 @@ export default function Apply({ isOpen, onClose }: LoginCompanyProps) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setCandidateOffer((prev) => ({ ...prev, [name]: value }));
-    console.info(candidateOffer);
   };
 
   return (
