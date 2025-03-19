@@ -15,8 +15,8 @@ const offerSchema = Joi.object({
     "any.required": "La ville est obligatoire.",
   }),
   background: Joi.string().required().messages({
-    "string.empty": "L'image de fond est obligatoire.",
-    "any.required": "L'image de fond est obligatoire.",
+    "string.empty": "Le background est obligatoire.",
+    "any.required": "Le background est obligatoire.",
   }),
   description: Joi.string().required().messages({
     "string.empty": "La description est obligatoire.",
@@ -34,13 +34,16 @@ const offerSchema = Joi.object({
   }),
 
   work_condition_id: Joi.number().integer().positive().required().messages({
-    "number.base": "L'ID de l'entreprise doit être un nombre.",
-    "any.required": "Le type de télétravail est obligatoire.",
+    "number.positive":
+      "Le champ concernant le télétravail doit être séléctionné.",
+    "number.base": "Le champ concernant le télétravail doit être séléctionné.",
+    "any.required": "Le champ concernant le télétravail doit être séléctionné.",
   }),
 
   contract_id: Joi.number().integer().positive().required().messages({
-    "string.empty": "Les exigences sont obligatoires.",
-    "any.required": "Les exigences sont obligatoires.",
+    "number.positive": "Le type de contrat doit être selectionné.",
+    "number.base": "Le type de contrat doit être selectionné.",
+    "any.required": "Le type de contrat est obligatoire.",
   }),
 });
 
@@ -48,7 +51,7 @@ const validate: RequestHandler = (req, res, next) => {
   const { error } = offerSchema.validate(req.body);
 
   if (error) {
-    res.sendStatus(400).json(error.details[0].message);
+    res.status(400).json({ error: error.details[0].message });
   } else {
     next();
   }
