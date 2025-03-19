@@ -11,7 +11,9 @@ export default function NavBar() {
 
   const logout = () => {
     axios
-      .get("http://localhost:3310/api/logout", { withCredentials: true })
+      .get(`${import.meta.env.VITE_API_URL}/api/logout`, {
+        withCredentials: true,
+      })
       .then(() => setRole("anonymous"))
       .catch((error) => console.error(error));
     navigate("/");
