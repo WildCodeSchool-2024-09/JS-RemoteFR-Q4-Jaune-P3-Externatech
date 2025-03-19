@@ -6,6 +6,7 @@ const router = express.Router();
 /* ************************************************************************* */
 
 import authActions from "./middlewares/authActions";
+import formApply from "./middlewares/formApply";
 import formCandidate from "./middlewares/formCandidate";
 import formCompany from "./middlewares/formCompany";
 import formOffer from "./middlewares/formOffer";
@@ -85,7 +86,7 @@ router.delete(
   offerActions.destroy,
 );
 
-/* CANDIDATE_OFFER / APPLICATIONS ************************************************************************* */
+/* CANDIDATE_OFFER / APPLY ************************************************************************* */
 
 router.get(
   "/api/candidates_offers",
@@ -100,6 +101,7 @@ router.put(
 router.post(
   "/api/candidates_offers",
   authActions.verifyCandidate,
+  formApply.validate,
   candidateOfferActions.add,
 );
 router.get(
