@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import "./navBar.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,8 +9,13 @@ export default function NavBar() {
   const navigate = useNavigate();
   const { role, setRole } = useAuth();
 
-  const disconnect = () => {
-    setRole("anonymous");
+  const logout = () => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/api/logout`, {
+        withCredentials: true,
+      })
+      .then(() => setRole("anonymous"))
+      .catch((error) => console.error(error));
     navigate("/");
   };
 
@@ -100,7 +106,7 @@ export default function NavBar() {
               ))}
 
             {role !== "anonymous" ? (
-              <button type="button" onClick={disconnect}>
+              <button type="button" onClick={logout}>
                 Se déconnecter
               </button>
             ) : (
@@ -127,7 +133,7 @@ export default function NavBar() {
           ))}
 
         {role !== "anonymous" ? (
-          <button type="button" onClick={disconnect}>
+          <button type="button" onClick={logout}>
             Se déconnecter
           </button>
         ) : (
