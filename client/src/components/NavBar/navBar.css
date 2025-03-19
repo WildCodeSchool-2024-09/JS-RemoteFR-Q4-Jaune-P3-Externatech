@@ -28,39 +28,84 @@ nav {
   cursor: pointer;
   background: none;
   border: none;
-  z-index: 1;
+  z-index: 1000;
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.burgerButton:hover {
+  transform: scale(1.1);
 }
 
 .close,
 .open {
   font-size: 2rem;
-  z-index: 1;
+  z-index: 3;
+  transform-origin: center;
 }
 
 .menuDroper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2rem;
+  justify-content: center;
+  gap: 5rem;
   position: fixed;
   list-style: none;
   background-color: var(--secundary);
   padding: 0.5rem;
+  margin: 0;
   border-radius: 0 0 0 8px;
-  top: 7rem;
+  top: 0;
+  bottom: 0;
   right: 0;
-  transition: 1s ease;
-  & button {
-    background: none;
-    font-weight: bold;
-  }
+  min-height: 100vh;
+  width: 100%;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
 }
 
-.menuDroper > a {
+.menuDroper.open {
+  transform: translateX(0);
+}
+
+.menuDroper > li > a,
+.menuDroper > li > button,
+.menuDroper > button {
+  position: relative;
   color: var(--primary);
   gap: 1rem;
   cursor: pointer;
+  display: block;
+  padding-left: 7rem;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+}
+
+.menuDroper > li > a:hover,
+.menuDroper > li > a.active,
+.menuDroper > li > button:hover,
+.menuDroper > li > button.active,
+.menuDroper > button:hover,
+.menuDroper > button.active {
   font-weight: bold;
+}
+
+.menuDroper > li > a.active::before,
+.menuDroper > li > button.active::before,
+.menuDroper > button.active::before {
+  content: "▶";
+  position: relative;
+  left: -1rem;
+  transition: opacity 0.3s ease;
 }
 
 .menuDesktop {
