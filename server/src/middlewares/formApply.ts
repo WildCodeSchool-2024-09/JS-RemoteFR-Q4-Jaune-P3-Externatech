@@ -3,25 +3,22 @@ import Joi from "joi";
 
 const applySchema = Joi.object({
   offer_id: Joi.number().integer().positive().required().messages({
-    "number.base": "L'offre doit être selectionnée.",
-    "number.integer": "L'offre doit être selectionnée.",
-    "number.positive": "L'offre doit être selectionnée.",
-    "any.required": "L'offre doit être selectionnée",
+    "number.base": "L'offre doit être selectionnée.1",
+    "number.integer": "L'offre doit être selectionnée.2",
+    "number.positive": "L'offre doit être selectionnée.3",
+    "any.required": "L'offre doit être selectionnée4",
   }),
-  resume: Joi.string()
-    .pattern(/\.(pdf|jpg)$/i)
-    .required()
-    .messages({
-      "string.pattern.base": "Le CV doit être un fichier PDF ou JPG.",
-      "string.empty": "Le CV est obligatoire.",
-      "any.required": "Le CV est obligatoire.",
-    }),
+  resume: Joi.any().required().messages({
+    "any.required": "Le CV est obligatoire.",
+  }),
 });
 const validate: RequestHandler = (req, res, next) => {
-  const { error } = applySchema.validate(req.body);
+  const { offer_id } = req.body;
+  const { file } = req;
+  const validation = applySchema.validate({ offer_id, resume: file });
 
-  if (error) {
-    res.status(400).json({ error: error.details[0].message });
+  if (validation.error) {
+    res.status(400).json({ error: validation.error.details[0].message });
   } else {
     next();
   }
