@@ -13,10 +13,13 @@ import { AuthProvider } from "./services/AuthContext";
 
 // Import pages
 import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
+import GeneralConditions from "./pages/GeneralConditions/GeneralConditions";
+import LegalInformations from "./pages/LegalInformations/LegalInformations";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
 import CandidateDashboard from "./pages/candidateDashboard/CandidateDashboard";
 import Companies from "./pages/companies/Companies";
+import CompanyApplies from "./pages/companyApplies/CompanyApplies";
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
 import HomePage from "./pages/homepage/HomePage";
 import Offers from "./pages/offers/Offers";
@@ -27,6 +30,7 @@ import {
   getAllOffers,
   getApplyByCandidate,
   getCandidatesByCompany,
+  getCandidatesByOffer,
   getCities,
   getCompanyAuth,
   getContracts,
@@ -98,8 +102,25 @@ const router = createBrowserRouter([
         },
       },
       {
+        path: "/companies/dashboard/candidates-offers/:offerId",
+        element: <CompanyApplies />,
+        loader: async ({ params }) => {
+          const applies = await getCandidatesByOffer(params.offerId);
+          return applies || null;
+        },
+      },
+      {
         path: "/candidates/registered-offers",
         element: <RegisteredOffers />,
+      },
+
+      {
+        path: "/LegalInformations",
+        element: <LegalInformations />,
+      },
+      {
+        path: "/GeneralConditions",
+        element: <GeneralConditions />,
       },
     ],
   },

@@ -56,11 +56,7 @@ export default function CandidateCard({ candidateOffer }: CandidateOfferProps) {
 
         <h3 className="colored-box">{candidateOffer.offer_title}</h3>
         <p className={displayStatus()}>{candidateOffer.status}</p>
-        <img
-          src={`http://localhost:3310/uploads/${candidateOffer.resume}`}
-          alt=""
-        />
-        <section className="actions">
+        <section className="candidate-actions">
           <button type="button" className="light-box">
             VOIR LE PROFIL
           </button>
