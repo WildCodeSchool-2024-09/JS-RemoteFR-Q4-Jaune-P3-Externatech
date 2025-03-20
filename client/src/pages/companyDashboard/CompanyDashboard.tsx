@@ -14,9 +14,7 @@ function CompanyDashboard() {
     offers: OfferData[];
     candidatesByCompany: CandidateOfferData[];
   };
-
-  const [errorMessage, setErrorMessage] = useState("");
-
+  /***************DYNAMICS DATAS ********************** */
   const activeOffers =
     offers.length <= 1
       ? `${offers.length} offre active`
@@ -26,6 +24,32 @@ function CompanyDashboard() {
     candidatesByCompany.length <= 1
       ? `${candidatesByCompany.length} candidature`
       : `${candidatesByCompany.length} candidatures`;
+
+  let countAcceptedApplies = 0;
+  for (const apply of candidatesByCompany) {
+    if (apply.status === "acceptée") {
+      countAcceptedApplies += 1;
+    }
+  }
+  const acceptedApplies =
+    countAcceptedApplies <= 1
+      ? `${countAcceptedApplies} candidature acceptée`
+      : `${countAcceptedApplies} candidatures acceptées`;
+
+  const date = new Date(company.updated_at);
+  const formattedDate = new Intl.DateTimeFormat("fr-FR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  })
+    .format(date)
+    .replace(",", " à");
+
+  /*****************ADD OFFERS ************************ */
+  const [errorMessage, setErrorMessage] = useState("");
 
   const newOffer = {
     title: "",
@@ -73,7 +97,7 @@ function CompanyDashboard() {
       }
     }
   };
-
+  /***************************************************************** */
   return (
     <main className="company-dashboard">
       <h1>
@@ -86,14 +110,13 @@ function CompanyDashboard() {
             <h3>Mes offres</h3>
             <ul className="square-list">
               <li>{activeOffers}</li>
-              <li>12 offres archivées</li>
             </ul>
           </div>
           <div className="box">
             <h3>Mes candidats</h3>
             <ul className="square-list">
               <li>{activeCandidates}</li>
-              <li>6 candidatures acceptées</li>
+              <li>{acceptedApplies}</li>
             </ul>
           </div>
         </div>
@@ -101,7 +124,7 @@ function CompanyDashboard() {
           <div className="box">
             <h3>Mes infos</h3>
             <ul className="square-list">
-              <li>dernière actualisation le 12/02/2025</li>
+              <li>dernière actualisation le {formattedDate}</li>
             </ul>
           </div>
         </Link>
