@@ -70,7 +70,7 @@ function OfferCard({ offer }: OfferDataProps) {
       </div>
       <div className="company-info">
         <h3>{offer.title}</h3>
-        <p className="status">{offer.status}</p>
+        {role === "candidate" ? <p className="status">{offer.status}</p> : null}
         <ul>
           <li>
             <strong>{offer.company_name}</strong>

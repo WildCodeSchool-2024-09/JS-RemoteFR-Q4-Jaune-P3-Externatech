@@ -9,13 +9,14 @@ import CandidateCard from "../../components/Candidate-card/CandidateCard";
 import OfferCard from "../../components/Offer-card/OfferCard";
 
 function CompanyDashboard() {
-  const [errorMessage, setErrorMessage] = useState("");
-
   const { company, offers, candidatesByCompany } = useLoaderData() as {
     company: CompanyData;
     offers: OfferData[];
     candidatesByCompany: CandidateOfferData[];
   };
+
+  const [errorMessage, setErrorMessage] = useState("");
+
   const activeOffers =
     offers.length <= 1
       ? `${offers.length} offre active`
@@ -113,6 +114,12 @@ function CompanyDashboard() {
               <li key={offer.id}>
                 {" "}
                 <OfferCard offer={offer} />
+                <Link
+                  className="colored-box link-to-applies"
+                  to={`/companies/dashboard/candidates-offers/${offer.id}`}
+                >
+                  voir les candidatures
+                </Link>
               </li>
             ))
           ) : (
@@ -120,9 +127,9 @@ function CompanyDashboard() {
           )}
         </ul>
         <div className="actions">
-          <Link className="light-box" to="/">
+          <a className="light-box" href="#add-offer">
             AJOUTER UNE OFFRE
-          </Link>
+          </a>
         </div>
         <h2>Mes CANDIDATS</h2>
         <ul className="scroll-card-container">
@@ -148,7 +155,7 @@ function CompanyDashboard() {
           </Link>
         </div>
       </section>
-      <h2>Créer une OFFRE</h2>
+      <h2 id="add-offer">Créer une OFFRE</h2>
       <OfferForm
         value={newOffer}
         errorMessage={errorMessage}

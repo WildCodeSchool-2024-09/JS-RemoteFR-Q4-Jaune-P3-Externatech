@@ -96,6 +96,11 @@ router.get(
   authActions.verifyCompany,
   candidateOfferActions.browseCandidatesByCompany,
 );
+router.get(
+  "/api/candidates_offers/:offerId",
+  authActions.verifyCompany,
+  candidateOfferActions.browseCandidatesByOffer,
+);
 router.put(
   "/api/candidates_offers",
   authActions.verifyCompany,
