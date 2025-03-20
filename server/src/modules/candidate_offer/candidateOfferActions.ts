@@ -50,7 +50,6 @@ const editStatus: RequestHandler = async (req, res, next) => {
   }
 };
 const add: RequestHandler = async (req, res, next) => {
-  console.info(req);
   try {
     const newCandidateOffer = {
       candidate_id: req.candidate.id,

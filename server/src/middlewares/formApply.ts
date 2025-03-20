@@ -3,10 +3,10 @@ import Joi from "joi";
 
 const applySchema = Joi.object({
   offer_id: Joi.number().integer().positive().required().messages({
-    "number.base": "L'offre doit être selectionnée.1",
-    "number.integer": "L'offre doit être selectionnée.2",
-    "number.positive": "L'offre doit être selectionnée.3",
-    "any.required": "L'offre doit être selectionnée4",
+    "number.base": "L'offre doit être selectionnée.",
+    "number.integer": "L'offre doit être selectionnée.",
+    "number.positive": "L'offre doit être selectionnée.",
+    "any.required": "L'offre doit être selectionnée",
   }),
   resume: Joi.any().required().messages({
     "any.required": "Le CV est obligatoire.",
