@@ -4,55 +4,55 @@
   width: 85vw;
   height: 60vh;
   margin: 1rem auto;
-  padding: 0.5rem;
+  padding: 1rem;
   border: solid 1px var(--tertiary);
-}
-.candidate-card p {
-  padding-left: 0;
-}
-.candidate-card .identity {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.candidate-card .actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.candidate-card .actions button:first-child {
-  width: 100%;
-}
-
-.candidate-card .actions button:not(:first-child) {
-  flex: 1;
-}
-
-.candidate-card .status {
-  display: flex;
-  width: fit-content;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--tertiary);
-  color: var(--primary);
-  font-weight: 400;
-  padding: 0.2rem;
-  text-align: center;
-  border: solid var(--tertiary) 1px;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  margin-top: 1rem;
-}
-.candidate-card .status.accepted {
-  background-color: var(--secundary);
-  border: none;
-  color: var(--light);
-}
-
-/* tertiary fourth */
-.candidate-card .status.rejected {
-  background-color: var(--fourth);
-  color: var(--light);
+  & p {
+    padding: 0.5rem 0 1rem 0;
+    font-size: 0.9rem;
+  }
+  & img {
+    width: 5rem;
+  }
+  & .identity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  & .candidate-actions {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0.5rem 1rem 0;
+    gap: 1rem;
+  }
+  & .candidate-actions button:first-child {
+    width: 100%;
+  }
+  & .candidate-actions button:not(:first-child) {
+    flex: 1;
+  }
+  & .status {
+    width: fit-content;
+    background-color: var(--tertiary);
+    color: var(--primary);
+    font-weight: 400;
+    padding: 0.2rem;
+    text-align: center;
+    border: solid var(--tertiary) 1px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    margin: 1rem 0;
+  }
+  & .status.accepted {
+    background-color: var(--secundary);
+    border: none;
+    color: var(--light);
+  }
+  & .status.rejected {
+    background-color: var(--fourth);
+    color: var(--light);
+  }
 }
 
 @media screen and (min-width: 768px) {

@@ -19,6 +19,7 @@ import OfferDetails from "./pages/OfferDetails/OfferDetails";
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
 import CandidateDashboard from "./pages/candidateDashboard/CandidateDashboard";
 import Companies from "./pages/companies/Companies";
+import CompanyApplies from "./pages/companyApplies/CompanyApplies";
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
 import HomePage from "./pages/homepage/HomePage";
 import Offers from "./pages/offers/Offers";
@@ -29,6 +30,7 @@ import {
   getAllOffers,
   getApplyByCandidate,
   getCandidatesByCompany,
+  getCandidatesByOffer,
   getCities,
   getCompanyAuth,
   getContracts,
@@ -97,6 +99,14 @@ const router = createBrowserRouter([
         loader: async () => {
           const company = await getCompanyAuth();
           return company || null;
+        },
+      },
+      {
+        path: "/companies/dashboard/candidates-offers/:offerId",
+        element: <CompanyApplies />,
+        loader: async ({ params }) => {
+          const applies = await getCandidatesByOffer(params.offerId);
+          return applies || null;
         },
       },
       {
