@@ -20,7 +20,7 @@ type New_Candidate_offer = {
   id: number;
   candidate_id: number;
   offer_id: number;
-  resume: string;
+  resume: string | undefined;
 };
 
 type UpdateStatus = {

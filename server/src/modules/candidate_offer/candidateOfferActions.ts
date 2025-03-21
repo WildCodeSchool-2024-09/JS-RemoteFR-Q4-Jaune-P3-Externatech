@@ -66,7 +66,7 @@ const add: RequestHandler = async (req, res, next) => {
     const newCandidateOffer = {
       candidate_id: req.candidate.id,
       offer_id: req.body.offer_id,
-      resume: req.body.resume,
+      resume: req.file?.filename,
     };
     const insertId = await CandidateOfferRepository.create(newCandidateOffer);
 

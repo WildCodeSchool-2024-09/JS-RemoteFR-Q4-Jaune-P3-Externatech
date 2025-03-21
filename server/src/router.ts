@@ -4,12 +4,12 @@ const router = express.Router();
 
 //Define your imports here
 /* ************************************************************************* */
-
 import authActions from "./middlewares/authActions";
 import formApply from "./middlewares/formApply";
 import formCandidate from "./middlewares/formCandidate";
 import formCompany from "./middlewares/formCompany";
 import formOffer from "./middlewares/formOffer";
+import uploadResume from "./middlewares/uploadResume";
 
 /* *********************************************************************** */
 
@@ -110,6 +110,7 @@ router.put(
 router.post(
   "/api/candidates_offers",
   authActions.verifyCandidate,
+  uploadResume.uploadFile,
   formApply.validate,
   candidateOfferActions.add,
 );
