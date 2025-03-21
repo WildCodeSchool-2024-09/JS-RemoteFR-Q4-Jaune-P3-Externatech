@@ -14,6 +14,7 @@ import formOffer from "./middlewares/formOffer";
 
 import candidateActions from "./modules/candidate/candidateActions";
 import candidateOfferActions from "./modules/candidate_offer/candidateOfferActions";
+import candidate_registeredOfferActions from "./modules/candidate_registeredOffer/candidate_registeredOfferActions";
 import companyActions from "./modules/company/companyActions";
 import contractActions from "./modules/contract/contractActions";
 import offerActions from "./modules/offer/offerActions";
@@ -110,6 +111,32 @@ router.get(
   "/api/candidates_offers/candidates",
   authActions.verifyCandidate,
   candidateOfferActions.browseCandidatesOffersByCandidate,
+);
+
+// CANDIDATE_OFFER_REGISTERED / OFFRES ENREGISTRÉES PAR LES CANDIDATS *************************************************************************
+
+router.get(
+  "/api/candidates_offers/registered",
+  authActions.verifyCandidate,
+  candidate_registeredOfferActions.browseRegisteredOffersByCandidate,
+);
+
+router.get(
+  "/api/candidates_offers/registered/:id",
+  authActions.verifyCandidate,
+  candidate_registeredOfferActions.read,
+);
+
+router.post(
+  "/api/candidates_offers/registered",
+  authActions.verifyCandidate,
+  candidate_registeredOfferActions.add,
+);
+
+router.delete(
+  "/api/candidates_offers/registered/:id",
+  authActions.verifyCandidate,
+  candidate_registeredOfferActions.destroy,
 );
 
 /* STACK ************************************************************************* */

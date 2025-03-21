@@ -80,6 +80,15 @@ CREATE TABLE candidate_offer (
   FOREIGN KEY (application_status_id) REFERENCES application_status(id) ON DELETE CASCADE
 );
 
+CREATE TABLE candidate_offer_registered (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  candidate_id INT UNSIGNED NOT NULL,
+  offer_id INT UNSIGNED NOT NULL,
+  is_offer_registered BOOLEAN DEFAULT false,
+  FOREIGN KEY (offer_id) REFERENCES offer(id) ON DELETE CASCADE,
+  FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE
+);
+
 INSERT INTO company (name, logo, description, email, hashed_password, siret, address, postalCode, city, size, website) VALUES
 ('Tech Innov', '/logo-500-(1).png', 'Startup spécialisée dans l\'intelligence artificielle et les logiciels innovants.', 'contact@techinnov.com', '$argon2id$v=19$m=65536,t=3,p=4$tYykqjuRhLqF+J/VKx25sw$uf2YOEwp4c/5hCzLXizfewLN3UAdLWpqCS3LTmF/fJM', '12345678901234', '5 rue de la Technologie', '75001', 'Paris', '1-15', 'https://www.techinnov.com'),
 ('Green Future', '/logo-500-(2).png', 'Entreprise dédiée aux solutions écologiques et durables.', 'contact@greenfuture.com', '$argon2id$v=19$m=65536,t=3,p=4$mhjsza6PK0G8kI7LaJm2gQ$bX5kYl/Xz2Jb2716RdRHoP8+LWCnXKfjyc9SsusFk3Y', "98765432109876", '12 Avenue des Verts', '75002', 'Paris', '16-49', 'https://www.greenfuture.com'),
@@ -186,3 +195,11 @@ VALUES
 (2, 2, 'CV_Candidat2.pdf');
 
 
+INSERT INTO candidate_offer_registered (candidate_id, offer_id)
+VALUES 
+(1, 1), 
+(2, 1), 
+(3, 1), 
+(4, 1), 
+(1, 2), 
+(2, 2);
