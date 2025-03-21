@@ -14,6 +14,7 @@ export default function HomePage() {
     companies: CompanyData[];
     offers: OfferData[];
   };
+  console.info(offers);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);

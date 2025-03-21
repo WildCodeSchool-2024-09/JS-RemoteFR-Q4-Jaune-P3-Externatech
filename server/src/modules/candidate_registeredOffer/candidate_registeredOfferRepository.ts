@@ -17,7 +17,7 @@ class CandidateRegisteredOfferRepository {
       company.logo AS company_logo, 
       contract.name AS contract_name, 
       offer.title AS offer_title, 
-      offer.city AS offer_city, 
+      offer.city AS offer_city,
       offer.background AS offer_background, 
       work_condition.name AS work_condition_name,
       GROUP_CONCAT(stack.name) AS offer_stack_names
