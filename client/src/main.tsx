@@ -15,7 +15,7 @@ import { AuthProvider } from "./services/AuthContext";
 import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
 import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
-import CandidateDashboard from "./pages/candidateDashboard/CandidateDashboard";
+// import CandidateDashboard from "./pages/candidateDashboard/CandidateDashboard";
 import Companies from "./pages/companies/Companies";
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
 import HomePage from "./pages/homepage/HomePage";
@@ -25,7 +25,7 @@ import Offers from "./pages/offers/Offers";
 import {
   getAllCompanies,
   getAllOffers,
-  getApplyByCandidate,
+  // getApplyByCandidate,
   getCandidatesByCompany,
   getCities,
   getCompanyAuth,
@@ -34,6 +34,7 @@ import {
   getOffersByCompany,
   getStacks,
   getWorkCondition,
+  // getRegisteredOffers,
 } from "./services/requests";
 
 /* ************************************************************************* */
@@ -84,11 +85,14 @@ const router = createBrowserRouter([
           candidatesByCompany: await getCandidatesByCompany(),
         }),
       },
-      {
-        path: "/candidates/dashboard/",
-        element: <CandidateDashboard />,
-        loader: getApplyByCandidate,
-      },
+      // {
+      //   path: "/candidates/dashboard/",
+      //   element: <CandidateDashboard />,
+      //   loader: async () => ({
+      //     applies: await getApplyByCandidate(),
+      //     offersRegistered: await getRegisteredOffers(),
+      //   }),
+      // },
       {
         path: "/companies/dashboard/information",
         element: <CompanyInformation />,

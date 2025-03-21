@@ -9,7 +9,7 @@ import authActions from "./middlewares/authActions";
 import formCandidate from "./middlewares/formCandidate";
 import formCompany from "./middlewares/formCompany";
 import formOffer from "./middlewares/formOffer";
-
+import formRegisteredOffer from "./middlewares/formRegisteredOffer";
 /* *********************************************************************** */
 
 import candidateActions from "./modules/candidate/candidateActions";
@@ -121,20 +121,15 @@ router.get(
   candidate_registeredOfferActions.browseRegisteredOffersByCandidate,
 );
 
-router.get(
-  "/api/candidates_offers/registered/:id",
-  authActions.verifyCandidate,
-  candidate_registeredOfferActions.read,
-);
-
 router.post(
   "/api/candidates_offers/registered",
   authActions.verifyCandidate,
+  formRegisteredOffer.validate,
   candidate_registeredOfferActions.add,
 );
 
 router.delete(
-  "/api/candidates_offers/registered/:id",
+  "/api/candidates_offers/registered",
   authActions.verifyCandidate,
   candidate_registeredOfferActions.destroy,
 );

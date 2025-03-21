@@ -5,26 +5,33 @@ type Candidate_offer_registered = {
   id: number;
   candidate_id: number;
   offer_id: number;
-  offer_title: string;
-  offer_city: string;
-  offer_background: string;
-  offer_description: string;
-  offer_profil: string;
-  offer_salary: number;
-  company_id: number;
-  candidate_firstname: string;
-  candidate_lastname: string;
-  candidate_email: string;
-  resume: string;
-  status: string;
-  candidate_hashed_password: string;
-  is_registered: boolean;
 };
 
 class CandidateRegisteredOfferRepository {
   async readAllRegisteredOffersByCandidate(candidateId: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT c_o_r*, candidate.id AS candidate_id, candidate.firstname AS candidate_firstname, candidate.lastname AS candidate.lastname, candidate.email AS candidate_email, candidate.hashed_password AS candidate_hashed_password, offer_title AS offer.title, offer_city AS offer.city, offer_background AS offer.background, offer_description AS offer.description, offer_profile AS offer.profile, offer_salary AS offer.salary FROM candidate_offer_registered AS c_o_r JOIN candidate ON candidate.id = c_o_r.candidate_id JOIN offer ON offer.id = c_o_r.offer_id WHERE candidate.id = ? ORDER BY c_o_r.id",
+      `SELECT 
+      c_o_r.*, 
+      candidate.id AS candidate_id, 
+      company.name AS company_name, 
+      company.logo AS company_logo, 
+      contract.name AS contract_name, 
+      offer.title AS offer_title, 
+      offer.city AS offer_city, 
+      offer.background AS offer_background, 
+      work_condition.name AS work_condition_name,
+      GROUP_CONCAT(stack.name) AS offer_stack_names
+    FROM candidate_offer_registered AS c_o_r 
+    JOIN candidate ON candidate.id = c_o_r.candidate_id 
+    JOIN offer ON offer.id = c_o_r.offer_id 
+    JOIN company ON offer.company_id = company.id 
+    JOIN contract ON offer.contract_id = contract.id 
+    JOIN work_condition ON offer.work_condition_id = work_condition.id 
+    LEFT JOIN offer_stack ON offer.id = offer_stack.offer_id 
+    LEFT JOIN stack ON offer_stack.stack_id = stack.id 
+    WHERE candidate.id = ? 
+    GROUP BY c_o_r.id, candidate.id, company.id, contract.id, offer.id, work_condition.id 
+    ORDER BY c_o_r.id;`,
       [candidateId],
     );
     return rows as Candidate_offer_registered[];
@@ -34,11 +41,10 @@ class CandidateRegisteredOfferRepository {
     candidate_offer_registered: Omit<Candidate_offer_registered, "id">,
   ) {
     const [result] = await databaseClient.query<Result>(
-      "insert into c_o_r AS candidat_offer_resgistered(candidat_id, offer_id, is_registered) values (?, ?, ?)",
+      "INSERT INTO candidate_offer_registered (candidate_id, offer_id) VALUES (?, ?)",
       [
         candidate_offer_registered.candidate_id,
         candidate_offer_registered.offer_id,
-        true,
       ],
     );
     return result.insertId;
@@ -46,7 +52,7 @@ class CandidateRegisteredOfferRepository {
 
   async delete(id: number) {
     const [result] = await databaseClient.query<Result>(
-      "DELETE FROM c_o_r AS candidate_offer_registered WHERE id = ?",
+      "DELETE FROM candidate_offer_registered WHERE id = ?",
       [id],
     );
     return result.affectedRows;

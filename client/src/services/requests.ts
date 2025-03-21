@@ -92,6 +92,15 @@ const getApplyByCandidate = () => {
     .catch((error) => console.error(error));
 };
 
+const getRegisteredOffers = () => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/candidates_offers/registered`, {
+      withCredentials: true,
+    })
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
 export {
   getAllCompanies,
   getContracts,
@@ -105,4 +114,5 @@ export {
   getAllOffers,
   getCandidatesByCompany,
   getApplyByCandidate,
+  getRegisteredOffers,
 };

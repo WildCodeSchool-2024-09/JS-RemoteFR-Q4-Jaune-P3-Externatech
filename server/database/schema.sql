@@ -84,9 +84,9 @@ CREATE TABLE candidate_offer_registered (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   candidate_id INT UNSIGNED NOT NULL,
   offer_id INT UNSIGNED NOT NULL,
-  is_offer_registered BOOLEAN DEFAULT false,
   FOREIGN KEY (offer_id) REFERENCES offer(id) ON DELETE CASCADE,
-  FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE
+  FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE,
+  CONSTRAINT unique_offer_candidate UNIQUE (offer_id, candidate_id)
 );
 
 INSERT INTO company (name, logo, description, email, hashed_password, siret, address, postalCode, city, size, website) VALUES
