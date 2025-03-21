@@ -96,7 +96,6 @@ const getCandidatesByOffer = (offerId: string | undefined) => {
 };
 
 const getApplyByCandidate = () => {
-  console.info(Credential);
   return axios
 
     .get(`${import.meta.env.VITE_API_URL}/api/candidates_offers/candidates`, {
