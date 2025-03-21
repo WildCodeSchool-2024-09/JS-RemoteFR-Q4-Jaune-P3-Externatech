@@ -19,7 +19,7 @@ const browseCandidatesByOffer: RequestHandler = async (req, res, next) => {
     const offerId = Number(req.params.offerId);
 
     const candidates =
-      await CandidateOfferRepository.readAllCandidatesByCompany(offerId);
+      await CandidateOfferRepository.readAllCandidatesByOffer(offerId);
     res.json(candidates);
   } catch (err) {
     next(err);
