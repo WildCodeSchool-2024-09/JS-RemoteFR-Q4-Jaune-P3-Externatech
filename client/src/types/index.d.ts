@@ -16,6 +16,7 @@ interface CandidateOfferData {
   candidate_email: string;
   company_id: number;
   offer_title: string;
+  status: string;
 }
 
 interface CompanyData {
@@ -30,6 +31,7 @@ interface CompanyData {
   size: string;
   website: string;
   siret: string;
+  updated_at: string;
 }
 
 interface StackData {
