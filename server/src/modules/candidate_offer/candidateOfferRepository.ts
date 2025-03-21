@@ -94,7 +94,6 @@ class CandidateOfferRepository {
     JOIN company ON company.id = offer.company_id 
     JOIN work_condition ON work_condition.id = offer.work_condition_id
     JOIN application_status ON application_status.id = application_status_id
-   
     WHERE candidate.id = ?
     ORDER BY c_o.id`,
       [candidateID],

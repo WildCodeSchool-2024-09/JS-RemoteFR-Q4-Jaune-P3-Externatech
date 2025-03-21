@@ -82,11 +82,20 @@ const router = createBrowserRouter([
       {
         path: "/companies/dashboard",
         element: <CompanyDasboard />,
-        loader: async () => ({
-          company: await getCompanyAuth(),
-          offers: await getOffersByCompany(),
-          candidatesByCompany: await getCandidatesByCompany(),
-        }),
+        loader: async () => {
+          const company = await getCompanyAuth();
+          const offers = await getOffersByCompany();
+          const candidatesByCompany = await getCandidatesByCompany();
+          if (!company || !offers || !candidatesByCompany) {
+            return null;
+          }
+
+          return {
+            company,
+            offers,
+            candidatesByCompany,
+          };
+        },
       },
       {
         path: "/candidates/dashboard/",

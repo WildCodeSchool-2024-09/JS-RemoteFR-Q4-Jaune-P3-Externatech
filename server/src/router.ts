@@ -93,12 +93,12 @@ router.delete(
 /* CANDIDATE_OFFER / APPLY ************************************************************************* */
 
 router.get(
-  "/api/candidates_offers",
+  "/api/candidates_offers/company",
   authActions.verifyCompany,
   candidateOfferActions.browseCandidatesByCompany,
 );
 router.get(
-  "/api/candidates_offers/:offerId",
+  "/api/candidates_offers/company/:offerId",
   authActions.verifyCompany,
   candidateOfferActions.browseCandidatesByOffer,
 );
