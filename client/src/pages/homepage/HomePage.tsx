@@ -32,8 +32,8 @@ export default function HomePage() {
   return (
     <>
       <header className="headerHomepage">
-        <h1 id="h1Header">Ton futur au bout du clavier</h1>
-        <p id="pHeader">Plus de 666 raisons de nous rejoindre</p>
+        <h1>Ton futur au bout du clavier</h1>
+        <p>Propulse ta carrière en un clic</p>
 
         <div className="search-bar">
           <input
@@ -54,8 +54,12 @@ export default function HomePage() {
         </div>
       </header>
       <section className="home-page-offers">
-        <h2>Nos dernières OFFRES</h2>
-        <div className="gradientBar" />
+        <div className="title-homePage">
+          <h2>
+            Nos dernières <strong> OFFRES </strong>
+          </h2>
+          <div className="gradientBar" />
+        </div>
         <ul className="scroll-card-container">
           {offers.length > 0 ? (
             offers.map((offer) => (
@@ -78,7 +82,12 @@ export default function HomePage() {
         </Link>
       </section>
       <section className="home-page-companies">
-        <h2>Ils nous font CONFIANCE</h2>
+        <div className="title-homePage">
+          <h2>
+            Ils nous font <strong>CONFIANCE</strong>
+          </h2>
+          <div className="gradientBar" />
+        </div>
         <ul className="scroll-card-container">
           {companies.map((company) => (
             <li key={company.id}>
@@ -86,7 +95,6 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
-        <div className="gradientBar" />
       </section>
     </>
   );

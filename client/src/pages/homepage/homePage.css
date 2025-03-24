@@ -9,37 +9,48 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 300px;
+  height: 50vh;
   gap: 1rem;
-}
 
-#h1Header {
-  font-size: 2rem;
-  text-align: center;
-}
-
-#pHeader {
-  text-align: center;
+  & h1 {
+    padding: 0.6rem;
+    text-align: center;
+    font-size: 1.8rem;
+  }
 }
 
 .search-bar {
   display: flex;
   flex-direction: column;
   gap: .8rem;
-  width: 12rem;
+  width: 90vw;
   margin-top: 1rem;
 }
 
 .input-homepage {
-  width: 12rem;
+  width: 90vw;
   height: 2rem;
-  text-indent: 15px;
+  text-indent: 1rem;
+}
+
+.home-page-offers {
+  padding: 3rem 2rem;
+  & h2 {
+    padding-bottom: 1rem;
+    font-size: 1.3rem;
+
+    & strong {
+      font-weight: 900;
+    }
+  }
 }
 
 .colored-box-homepage {
   background-color: var(--secundary);
   color: var(--light);
   padding: 0.5rem 1rem;
+  border-radius: 8px;
+
   text-align: center;
 }
 
@@ -50,23 +61,11 @@
   text-align: center;
 }
 
-#infoHeader h1 {
-  font-size: 1.5rem;
-}
-
-#infoHeader p {
-  font-size: 1rem;
-}
-h2 {
-  font-size: 1rem;
-}
-
 .gradientBar {
   width: 100%;
-  height: 0.5rem;
+  height: 0.3rem;
   background: linear-gradient(to left, var(--secundary), var(--primary));
-  margin-left: 1.5rem;
-  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
 .lastOffers {
@@ -77,45 +76,70 @@ h2 {
 
 .greyBlock {
   background-image: url("../public/JoinUs4M.webp");
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 5rem;
+  height: 36vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: .5rem;
+  margin-bottom: 2rem;
+  & button {
+    border-radius: 8px;
+    padding: 0.5rem 0.8rem;
+  }
+  & h2 {
+    font-size: 1.3rem;
+    padding-bottom: 2rem;
+  }
 }
 
-.businessPartners {
-  margin: 1rem;
-  display: flex;
-  align-items: center;
-}
+.home-page-companies {
+  padding: 3rem 2rem;
+  & h2 {
+    padding-bottom: 1rem;
+    font-size: 1.3rem;
 
+    & strong {
+      font-weight: 900;
+    }
+  }
+}
 @media screen and (min-width: 768px) {
   .headerHomepage {
     display: flex;
     align-items: center;
     align-items: flex-start;
     padding-left: 4rem;
+    & h1 {
+      padding: 0;
+    }
   }
 
+  .title-homePage {
+    display: flex;
+    align-items: center;
+    & h2 {
+      width: 35vw;
+    }
+  }
   .input-homepage {
     width: 30rem;
-    height: 3rem;
+    height: 2.5rem;
     text-indent: 15px;
   }
 
   .colored-box-homepage {
     position: absolute;
     margin-top: 0.3rem;
-    margin-left: 20.7rem;
+    margin-left: 20.8rem;
     background-color: var(--secundary);
     color: var(--light);
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 1rem;
     text-align: center;
+    border-radius: 0;
   }
 
   .colored-box-homepage-business {
@@ -127,19 +151,14 @@ h2 {
 
   .greyBlock {
     background-image: url("../public/JoinUs4.webp");
-    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    height: 25rem;
+    height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-  }
-
-  .why-join-us {
-    font-size: 2rem;
   }
 }
 
