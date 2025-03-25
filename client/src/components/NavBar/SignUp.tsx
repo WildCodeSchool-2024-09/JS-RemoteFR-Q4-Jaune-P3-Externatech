@@ -88,8 +88,6 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
     formData.append("password", credentials.password);
     formData.append("password_confirmation", credentials.password_confirmation);
     formData.append("siret", credentials.siret);
-    console.info("logo", credentials.logo);
-    console.info("isCandidate", isCandidate);
 
     if (logo) {
       formData.append("logo", logo);
@@ -116,7 +114,6 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
             console.error(error);
           });
       } else {
-        console.info(formData);
         await axios
           .post(`${import.meta.env.VITE_API_URL}/api/companies`, formData, {
             withCredentials: true,
