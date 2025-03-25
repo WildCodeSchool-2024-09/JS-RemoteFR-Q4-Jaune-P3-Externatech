@@ -27,6 +27,21 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
+const readGeneralDetails: RequestHandler = async (req, res, next) => {
+  try {
+    const companyId = Number(req.params.id);
+    const company = await companyRepository.readGeneralDetails(companyId);
+
+    if (company == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(company);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add: RequestHandler = async (req, res, next) => {
   try {
     const newCompany = {
@@ -86,4 +101,4 @@ const edit: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, destroy, edit };
+export default { browse, read, readGeneralDetails, add, destroy, edit };

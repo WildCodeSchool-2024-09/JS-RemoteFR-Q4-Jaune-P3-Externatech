@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CompanyCard from "../../components/company-card/CompanyCard";
 
 export default function Companies() {
@@ -13,7 +14,9 @@ export default function Companies() {
       <section className="resultSearche">
         {allCompanies.length > 0 ? (
           allCompanies.map((company) => (
-            <CompanyCard key={company.id} company={company} />
+            <Link to={`./${company.id}`} key={company.id}>
+              <CompanyCard company={company} />
+            </Link>
           ))
         ) : (
           <p className="no-offers">Nous n’avons pas trouvé d'entreprise.'</p>

@@ -34,6 +34,7 @@ import {
   getCities,
   getCompanyAuth,
   getContracts,
+  getGeneralCompanyDetails,
   getOfferDetails,
   getOffersByCompany,
   getStacks,
@@ -78,6 +79,14 @@ const router = createBrowserRouter([
         path: "/companies",
         element: <Companies />,
         loader: getAllCompanies,
+      },
+      {
+        path: "/companies/:id",
+        element: <CompanyInformation />,
+        loader: async ({ params }) => {
+          const company = await getGeneralCompanyDetails(params.id);
+          return company;
+        },
       },
       {
         path: "/companies/dashboard",
