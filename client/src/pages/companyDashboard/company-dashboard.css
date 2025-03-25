@@ -3,108 +3,100 @@
   flex-direction: column;
   justify-content: center;
   margin: 1.2rem;
-}
-
-/* ********************************************* */
-.company-dashboard h1 {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-}
-.company-dashboard img {
-  width: 5rem;
-}
-.general-view {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 1rem;
-}
-.top {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-.box {
-  display: flex;
-  flex-direction: column;
-  border: 1px var(--tertiary) solid;
-  overflow: hidden;
-  min-width: 40%;
-  width: 100%;
-}
-
-.box h3 {
-  background-color: var(--secundary);
-  color: var(--light);
-  margin: 0;
-  padding: 1rem;
-}
-.box ul {
-  padding: 1rem 0.1rem 1rem 0.5rem;
-  & li {
-    margin: 0.4rem;
+  img {
+    width: 5rem;
   }
-}
-
-.light-box-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--light);
-  text-align: center;
-  border: solid var(--tertiary) 1px;
-  border-radius: 5px;
-}
-
-.display {
-  display: flex;
-  flex-direction: column;
-  & button {
+  h1 {
     display: flex;
-    width: auto;
-    padding: 0.5rem 1rem;
-    align-self: flex-end;
+    align-items: center;
+    gap: 3rem;
   }
-  & ul {
+  & .general-view {
     display: flex;
-    list-style: none;
-    list-style-position: inside;
-    padding-top: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  & .top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  & .box {
+    display: flex;
+    flex-direction: column;
+    border: 1px var(--tertiary) solid;
+    overflow: hidden;
+    min-width: 40%;
+    width: 100%;
+    & h3 {
+      background-color: var(--secundary);
+      color: var(--light);
+      margin: 0;
+      padding: 1rem;
+    }
+    & ul {
+      padding: 1rem 0.1rem 1rem 0.5rem;
+      & li {
+        margin: 0.4rem;
+      }
+    }
+  }
+  & .light-box-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light);
+    text-align: center;
+    border: solid var(--tertiary) 1px;
+    border-radius: 5px;
+  }
+  & .display {
+    display: flex;
+    flex-direction: column;
+    & button {
+      display: flex;
+      width: auto;
+      padding: 0.5rem 1rem;
+      align-self: flex-end;
+    }
+    & ul {
+      display: flex;
+      list-style: none;
+      list-style-position: inside;
+      padding-top: 0.5rem;
+      gap: 1rem;
+    }
+    & > p {
+      padding: 1rem;
+    }
+  }
+  & h2 {
+    position: relative;
+    padding: 2rem 0 1rem 0;
+  }
+  & h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 0;
+    height: 0.2rem;
+    background-color: var(--tertiary);
+  }
+  & .actions {
+    display: flex;
+    justify-content: end;
+    margin: 1rem 0.5rem 1rem 0;
     gap: 1rem;
   }
-  & p {
-    padding: 1rem;
+  & .form-offer {
+    display: flex;
+    flex-direction: column;
+  }
+  & .link-to-applies {
+    margin: 2rem 1rem 1rem 1rem;
   }
 }
-
-.company-dashboard h2 {
-  position: relative;
-  padding: 2rem 0 1rem 0;
-}
-
-.company-dashboard h2::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 20%;
-  right: 0;
-  height: 0.2rem;
-  background-color: var(--tertiary);
-}
-
-.actions {
-  display: flex;
-  justify-content: end;
-  margin: 1rem 0.5rem 1rem 0;
-  gap: 1rem;
-}
-
-.form-offer {
-  display: flex;
-  flex-direction: column;
-}
-
-/****************************************/

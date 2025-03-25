@@ -8,10 +8,11 @@ CREATE TABLE company (
   hashed_password VARCHAR(200) NOT NULL,
   siret VARCHAR(14) NOT NULL,
   address VARCHAR(255)NOT NULL DEFAULT 'adresse',
-  postalCode VARCHAR(10) NOT NULL DEFAULT 'code postal',
+  postalCode VARCHAR(10) NOT NULL DEFAULT 'codePostal',
   city VARCHAR(100) NOT NULL DEFAULT 'ville',
   size VARCHAR (255) NOT NULL DEFAULT 'taille',
-  website VARCHAR(255) NOT NULL DEFAULT 'site'
+  website VARCHAR(255) NOT NULL DEFAULT 'site',
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE candidate (

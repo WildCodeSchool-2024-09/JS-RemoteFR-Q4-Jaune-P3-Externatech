@@ -9,18 +9,20 @@ export default function Apply({ isOpen, onClose }: LoginCompanyProps) {
   const params = useParams();
 
   const [errorMessage, setErrorMessage] = useState("");
-  const [candidateOffer, setCandidateOffer] = useState({
-    offer_id: params.id,
-    resume: "",
-  });
+  const [resume, setResume] = useState(undefined as undefined | File);
 
   const handleSubmitApply: FormEventHandler = async (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append("offer_id", String(params.id));
+    if (resume) {
+      formData.append("resume", resume);
+    }
+
     try {
       await axios.post(
         `${import.meta.env.VITE_API_URL}/api/candidates_offers`,
-        candidateOffer,
-
+        formData,
         {
           withCredentials: true,
         },
@@ -34,7 +36,6 @@ export default function Apply({ isOpen, onClose }: LoginCompanyProps) {
         pauseOnHover: true,
         draggable: true,
         theme: "light",
-
         transition: Bounce,
         onClose: () => {
           onClose();
@@ -50,9 +51,11 @@ export default function Apply({ isOpen, onClose }: LoginCompanyProps) {
       }
     }
   };
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setCandidateOffer((prev) => ({ ...prev, [name]: value }));
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.currentTarget.files?.[0]) {
+      setResume(e.currentTarget.files[0]);
+    }
   };
 
   return (
@@ -61,13 +64,7 @@ export default function Apply({ isOpen, onClose }: LoginCompanyProps) {
         <form onSubmit={handleSubmitApply}>
           <h2>Je postule ! </h2>
           <h3>Veuillez inserer votre CV : </h3>
-          <input
-            type="file"
-            name="resume"
-            value={candidateOffer.resume}
-            onChange={handleChange}
-            required
-          />
+          <input type="file" name="resume" onChange={handleChange} required />
           <p>{errorMessage}</p>
           <div>
             <button className="colored-box " type="submit">

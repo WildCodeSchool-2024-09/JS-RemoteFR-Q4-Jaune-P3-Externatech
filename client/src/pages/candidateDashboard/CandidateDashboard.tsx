@@ -15,12 +15,14 @@ export default function CandidateDashboard() {
       <main className="candidatDashboard">
         <div className="apply">
           <h2>Mes candidatures</h2>
-          <p className="offersCount">{applies.length}</p>
+          <p className="offersCount">
+            {applies.length > 0 ? applies.length : null}
+          </p>
         </div>
         <div className="gradientBar" />
-        {applies.map((apply) => (
-          <OfferCard key={apply.id} offer={apply} />
-        ))}
+        {applies.length > 0
+          ? applies.map((apply) => <OfferCard key={apply.id} offer={apply} />)
+          : null}
       </main>
     </>
   );

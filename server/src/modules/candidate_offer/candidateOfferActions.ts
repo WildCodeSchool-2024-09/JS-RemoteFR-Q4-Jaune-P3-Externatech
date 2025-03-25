@@ -14,6 +14,18 @@ const browseCandidatesByCompany: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseCandidatesByOffer: RequestHandler = async (req, res, next) => {
+  try {
+    const offerId = Number(req.params.offerId);
+
+    const candidates =
+      await CandidateOfferRepository.readAllCandidatesByOffer(offerId);
+    res.json(candidates);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const browseCandidatesOffersByCandidate: RequestHandler = async (
   req,
   res,
@@ -54,7 +66,7 @@ const add: RequestHandler = async (req, res, next) => {
     const newCandidateOffer = {
       candidate_id: req.candidate.id,
       offer_id: req.body.offer_id,
-      resume: req.body.resume,
+      resume: req.file?.filename,
     };
     const insertId = await CandidateOfferRepository.create(newCandidateOffer);
 
@@ -66,6 +78,7 @@ const add: RequestHandler = async (req, res, next) => {
 
 export default {
   browseCandidatesByCompany,
+  browseCandidatesByOffer,
   browseCandidatesOffersByCandidate,
   editStatus,
   add,

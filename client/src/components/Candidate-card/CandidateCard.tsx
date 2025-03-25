@@ -43,23 +43,36 @@ export default function CandidateCard({ candidateOffer }: CandidateOfferProps) {
     <>
       <article className="candidate-card">
         <section className="identity">
-          <p>
-            {candidateOffer.candidate_firstname}{" "}
-            {candidateOffer.candidate_lastname}
-          </p>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg?20200418092106"
             alt={`${candidateOffer.candidate_name}`}
           />
-        </section>
-        <p className="bold">{candidateOffer.candidate_email}</p>
 
-        <h3 className="colored-box">{candidateOffer.offer_title}</h3>
-        <p className={displayStatus()}>{candidateOffer.status}</p>
-        <section className="actions">
-          <button type="button" className="light-box">
-            VOIR LE PROFIL
+          <p>
+            {candidateOffer.candidate_firstname}{" "}
+            {candidateOffer.candidate_lastname}
+          </p>
+          <p className="bold">{candidateOffer.candidate_email}</p>
+        </section>
+        <div className="statut">
+          <p className={displayStatus()}>{candidateOffer.status}</p>
+
+          <button
+            type="button"
+            onClick={() =>
+              window.open(
+                `${import.meta.env.VITE_API_URL}/uploads/resumes/${candidateOffer.resume}`,
+                "_blank",
+              )
+            }
+            aria-label="Voir le CV en PDF"
+            className="open-CV"
+          >
+            Voir le CV (PDF)
           </button>
+        </div>
+        <h3 className="title-offer">{candidateOffer.offer_title}</h3>
+        <section className="candidate-actions">
           <button
             type="submit"
             className="colored-box"

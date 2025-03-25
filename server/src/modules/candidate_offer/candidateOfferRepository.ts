@@ -20,7 +20,7 @@ type New_Candidate_offer = {
   id: number;
   candidate_id: number;
   offer_id: number;
-  resume: string;
+  resume: string | undefined;
 };
 
 type UpdateStatus = {
@@ -50,6 +50,30 @@ class CandidateOfferRepository {
     );
     return rows as Candidate_offer[];
   }
+
+  async readAllCandidatesByOffer(offerId: number) {
+    const [rows] = await DatabaseClient.query<Rows>(
+      `SELECT 
+        c_o.*, 
+        company.id AS company_id, 
+        candidate.firstname AS candidate_firstname, 
+        candidate.lastname AS candidate_lastname, 
+        candidate.email AS candidate_email, 
+        offer.title AS offer_title,
+        application_status.name AS status
+      FROM candidate_offer AS c_o
+      JOIN candidate ON candidate.id = c_o.candidate_id
+      JOIN offer ON offer.id = c_o.offer_id  
+      JOIN company ON company.id = offer.company_id 
+      JOIN application_status ON application_status.id = application_status_id
+      WHERE offer.id = ?
+      ORDER BY c_o.id`,
+      [offerId],
+    );
+    console.info(rows);
+    return rows as Candidate_offer[];
+  }
+
   async readAllCandidateOffersByCandidate(candidateID: number) {
     const [rows] = await DatabaseClient.query<Rows>(
       `SELECT 
@@ -70,7 +94,6 @@ class CandidateOfferRepository {
     JOIN company ON company.id = offer.company_id 
     JOIN work_condition ON work_condition.id = offer.work_condition_id
     JOIN application_status ON application_status.id = application_status_id
-   
     WHERE candidate.id = ?
     ORDER BY c_o.id`,
       [candidateID],

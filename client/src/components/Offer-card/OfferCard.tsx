@@ -3,7 +3,6 @@ import { Link, useRevalidator } from "react-router-dom";
 import "./offer-card.css";
 import axios from "axios";
 import { useAuth } from "../../services/AuthContext";
-import Apply from "../Apply/Apply";
 import Login from "../NavBar/Login";
 
 function OfferCard({ offer }: OfferDataProps) {
@@ -13,16 +12,6 @@ function OfferCard({ offer }: OfferDataProps) {
   );
   const { revalidate } = useRevalidator();
 
-  const [isApplyOpen, setIsApplyOpen] = useState(false);
-  const openApply = () => {
-    setIsApplyOpen(!isApplyOpen);
-    document.body.style.overflow = "hidden";
-  };
-
-  const closeApply = () => {
-    setIsApplyOpen(false);
-    document.body.style.overflow = "";
-  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -70,7 +59,7 @@ function OfferCard({ offer }: OfferDataProps) {
       </div>
       <div className="company-info">
         <h3>{offer.title}</h3>
-        <p className="status">{offer.status}</p>
+        {role === "candidate" ? <p className="status">{offer.status}</p> : null}
         <ul>
           <li>
             <strong>{offer.company_name}</strong>
@@ -83,10 +72,6 @@ function OfferCard({ offer }: OfferDataProps) {
       <div className="actions-buttons">
         {role === "candidate" ? (
           <>
-            <Apply isOpen={isApplyOpen} onClose={closeApply} />
-            <button type="button" onClick={openApply} className="light-box">
-              POSTULER
-            </button>
             <button
               type="button"
               className="register"

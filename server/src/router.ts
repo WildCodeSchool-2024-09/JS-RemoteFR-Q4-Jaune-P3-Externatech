@@ -4,13 +4,13 @@ const router = express.Router();
 
 //Define your imports here
 /* ************************************************************************* */
-
 import authActions from "./middlewares/authActions";
 import formApply from "./middlewares/formApply";
 import formCandidate from "./middlewares/formCandidate";
 import formCompany from "./middlewares/formCompany";
 import formOffer from "./middlewares/formOffer";
 import uploadLogo from "./middlewares/uploadLogo";
+import uploadResume from "./middlewares/uploadResume";
 
 /* *********************************************************************** */
 
@@ -95,9 +95,14 @@ router.delete(
 /* CANDIDATE_OFFER / APPLY ************************************************************************* */
 
 router.get(
-  "/api/candidates_offers",
+  "/api/candidates_offers/company",
   authActions.verifyCompany,
   candidateOfferActions.browseCandidatesByCompany,
+);
+router.get(
+  "/api/candidates_offers/company/:offerId",
+  authActions.verifyCompany,
+  candidateOfferActions.browseCandidatesByOffer,
 );
 router.put(
   "/api/candidates_offers",
@@ -107,6 +112,7 @@ router.put(
 router.post(
   "/api/candidates_offers",
   authActions.verifyCandidate,
+  uploadResume.uploadFile,
   formApply.validate,
   candidateOfferActions.add,
 );

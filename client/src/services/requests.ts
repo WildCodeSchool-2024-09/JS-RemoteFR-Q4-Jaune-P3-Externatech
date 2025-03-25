@@ -76,15 +76,28 @@ const getCities = () => {
 
 const getCandidatesByCompany = () => {
   return axios
-    .get(`${import.meta.env.VITE_API_URL}/api/candidates_offers`, {
+    .get(`${import.meta.env.VITE_API_URL}/api/candidates_offers/company`, {
       withCredentials: true,
     })
     .then((response) => response.data)
     .catch((error) => console.error(error));
 };
 
+const getCandidatesByOffer = (offerId: string | undefined) => {
+  return axios
+    .get(
+      `${import.meta.env.VITE_API_URL}/api/candidates_offers/company/${offerId}`,
+      {
+        withCredentials: true,
+      },
+    )
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
+
 const getApplyByCandidate = () => {
   return axios
+
     .get(`${import.meta.env.VITE_API_URL}/api/candidates_offers/candidates`, {
       withCredentials: true,
     })
@@ -104,5 +117,6 @@ export {
   getCities,
   getAllOffers,
   getCandidatesByCompany,
+  getCandidatesByOffer,
   getApplyByCandidate,
 };
