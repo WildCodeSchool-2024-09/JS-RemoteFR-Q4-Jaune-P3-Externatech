@@ -52,6 +52,7 @@ export default function Offers() {
         <span className="offersCount">{filteredOffers.length}</span>
       </div>
       <div className="offerGradientBar" />
+
       <section className="resultSearche">
         {filteredOffers.length > 0 ? (
           filteredOffers.map((offer) => (
