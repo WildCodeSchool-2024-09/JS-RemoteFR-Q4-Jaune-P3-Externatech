@@ -25,7 +25,6 @@ h2 > span {
   flex-direction: row;
   gap: 1rem;
   flex-wrap: wrap;
-  /* height: 2rem; */
   & input {
     height: 1.6rem;
   }
