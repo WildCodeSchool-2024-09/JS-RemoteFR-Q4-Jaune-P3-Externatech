@@ -31,7 +31,7 @@ const add: RequestHandler = async (req, res, next) => {
   try {
     const newCompany = {
       name: req.body.name,
-      logo: req.body.logo,
+      logo: req.file?.filename,
       description: req.body.description,
       email: req.body.email,
       hashed_password: req.body.hashed_password,

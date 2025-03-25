@@ -4,17 +4,12 @@ import type { Result, Rows } from "../../../database/client";
 
 type Company = {
   id: number;
-  logo: string;
+  logo: string | undefined;
   name: string;
   email: string;
   description: string;
   hashed_password: string;
   siret: string;
-  address?: string;
-  postalCode?: string;
-  city?: string;
-  size?: string;
-  website?: string;
 };
 
 type editCompany = {

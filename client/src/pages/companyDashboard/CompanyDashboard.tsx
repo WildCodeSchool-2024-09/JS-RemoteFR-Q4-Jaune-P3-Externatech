@@ -77,7 +77,10 @@ function CompanyDashboard() {
     <main className="company-dashboard">
       <h1>
         Bienvenue {company.name}
-        <img src={company.logo} alt={`logo de ${company.name}`} />
+        <img
+          src={`${import.meta.env.VITE_API_URL}/uploads/logo/${company.logo}`}
+          alt={`logo de ${company.name}`}
+        />
       </h1>
       <section className="general-view">
         <div className="top">
