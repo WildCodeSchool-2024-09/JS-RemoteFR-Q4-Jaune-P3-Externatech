@@ -14,6 +14,7 @@ function CompanyDashboard() {
     offers: OfferData[];
     candidatesByCompany: CandidateOfferData[];
   };
+
   /***************DYNAMICS DATAS ********************** */
   const activeOffers =
     offers.length <= 1

@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 85vw;
-  height: 60vh;
   margin: 1rem auto;
   padding: 1rem;
   border: solid 1px var(--tertiary);
@@ -15,34 +14,61 @@
   }
   & .identity {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
   }
+  & .statut {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    & p {
+      width: 47.5%;
+      height: 2.4rem;
+      font-size: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    & .open-CV {
+      width: 47.5%;
+      background: none;
+      border: 2px solid var(--fourth);
+      color: var(--fourth);
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+  }
   & .candidate-actions {
     display: flex;
+    flex-direction: raw;
     width: 100%;
     flex-wrap: wrap;
-    gap: 0.5rem;
     margin: 1rem 0.5rem 1rem 0;
     gap: 1rem;
   }
   & .candidate-actions button:first-child {
-    width: 100%;
+    width: 47.5%;
   }
   & .candidate-actions button:not(:first-child) {
-    flex: 1;
+    border: 2px solid var(--fourth);
+    color: var(--fourth);
+    width: 47.5%;
   }
   & .status {
     width: fit-content;
     background-color: var(--tertiary);
     color: var(--primary);
-    font-weight: 400;
+    font-weight: 600;
     padding: 0.2rem;
     text-align: center;
     border: solid var(--tertiary) 1px;
     border-radius: 5px;
     font-size: 0.8rem;
-    margin: 1rem 0;
+    margin-bottom: 1rem;
   }
   & .status.accepted {
     background-color: var(--secundary);
@@ -52,6 +78,16 @@
   & .status.rejected {
     background-color: var(--fourth);
     color: var(--light);
+  }
+  & .title-offer {
+    background-color: var(--fourth);
+    color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-radius: 5px;
   }
 }
 
