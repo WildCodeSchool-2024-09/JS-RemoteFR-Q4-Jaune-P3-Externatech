@@ -28,7 +28,7 @@
 }
 
 .offerGradientBar {
-  width: 20rem;
+  width: 80vw;
   height: 0.5rem;
   background: linear-gradient(to left, var(--secundary), var(--primary));
 }
@@ -48,12 +48,16 @@
   .resultSearche {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    width: 80vw;
+    margin-bottom: 2rem;
   }
 
   .offerGradientBar {
-    width: 60rem;
+    width: calc(80vw - 2rem);
+
+    display: flex;
+    justify-content: center;
   }
 }

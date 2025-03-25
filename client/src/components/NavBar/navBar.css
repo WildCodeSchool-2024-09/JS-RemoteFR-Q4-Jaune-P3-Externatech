@@ -49,6 +49,10 @@ nav {
   transform-origin: center;
 }
 
+.close {
+  color: var(--light);
+}
+
 .menuDroper {
   display: flex;
   flex-direction: column;
@@ -78,7 +82,7 @@ nav {
 .menuDroper > li > button,
 .menuDroper > button {
   position: relative;
-  color: var(--primary);
+  color: var(--light);
   gap: 1rem;
   cursor: pointer;
   display: block;
@@ -87,7 +91,7 @@ nav {
   text-decoration: none;
   background: none;
   border: none;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
 }
 
 .menuDroper > li > a:hover,

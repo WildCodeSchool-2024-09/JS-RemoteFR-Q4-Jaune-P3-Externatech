@@ -44,11 +44,6 @@ export default function NavBar() {
       path: "/candidates/dashboard",
       role: ["candidate"],
     },
-    {
-      name: "Mes offres enregistrées",
-      path: "/candidates/registered-offers",
-      role: ["candidate"],
-    },
   ];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -125,17 +120,6 @@ export default function NavBar() {
             <>
               <button
                 type="button"
-                className={activeLink === "espace-entreprise" ? "active" : ""}
-                onClick={() => {
-                  setActiveLink("espace-entreprise");
-                  openModal();
-                  setIsOpen(false);
-                }}
-              >
-                Espace entreprise
-              </button>
-              <button
-                type="button"
                 className={activeLink === "se-connecter" ? "active" : ""}
                 onClick={() => {
                   setActiveLink("se-connecter");
@@ -165,9 +149,6 @@ export default function NavBar() {
           </button>
         ) : (
           <>
-            <button type="button" onClick={openModal}>
-              Espace entreprise
-            </button>
             <button type="button" onClick={openModal}>
               Se connecter
             </button>

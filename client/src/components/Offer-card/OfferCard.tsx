@@ -88,9 +88,7 @@ function OfferCard({ offer }: OfferDataProps) {
         {role === "anonymous" ? (
           <>
             <Login isOpen={isModalOpen} onClose={closeModal} />
-            <button type="button" className="apply" onClick={openModal}>
-              Postuler
-            </button>
+
             <button type="button" className="register" onClick={openModal}>
               <img
                 src="/Logos/Icon_bookmark.png"

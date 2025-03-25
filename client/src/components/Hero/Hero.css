@@ -3,15 +3,15 @@
   background-size: cover;
   background-attachment: fixed;
   width: 100%;
-  height: 20rem;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  padding: 3rem;
 }
 
 .hero-title {
-  margin: 2rem;
+  margin: 1.6rem;
   text-align: center;
   color: white;
 }
@@ -24,7 +24,13 @@ h2 > span {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  height: 2rem;
+  flex-wrap: wrap;
+  & input {
+    height: 1.6rem;
+  }
+  & button {
+    height: 1.6rem;
+  }
 }
 
 .job-search {
@@ -59,5 +65,11 @@ h2 > span {
 
   .search-button {
     width: 20rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .search-container {
+    width: calc(80vw - 2rem);
   }
 }
