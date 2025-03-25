@@ -91,7 +91,9 @@ export default function HomePage() {
         <ul className="scroll-card-container">
           {companies.map((company) => (
             <li key={company.id}>
-              <CompanyCard company={company} />
+              <Link to={`./companies/${company.id}`}>
+                <CompanyCard company={company} />
+              </Link>
             </li>
           ))}
         </ul>

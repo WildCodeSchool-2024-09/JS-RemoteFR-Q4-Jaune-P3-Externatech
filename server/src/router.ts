@@ -34,6 +34,10 @@ router.get("/api/logout", authActions.logout);
 router.get("/api/companies", companyActions.browse);
 
 router.get("/api/authcompany", authActions.verifyCompany, companyActions.read);
+router.get(
+  "/api/company/general-details/:id",
+  companyActions.readGeneralDetails,
+);
 
 router.post(
   "/api/companies",

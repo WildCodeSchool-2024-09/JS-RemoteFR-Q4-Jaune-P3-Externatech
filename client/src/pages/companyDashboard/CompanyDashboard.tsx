@@ -108,13 +108,17 @@ function CompanyDashboard() {
       <section className="general-view">
         <div className="top">
           <div className="box">
-            <h3>Mes offres</h3>
+            <h3>
+              <a href="#my-offers">Mes offres</a>
+            </h3>
             <ul className="square-list">
               <li>{activeOffers}</li>
             </ul>
           </div>
           <div className="box">
-            <h3>Mes candidats</h3>
+            <h3>
+              <a href="#my-candidates">Mes candidats</a>
+            </h3>
             <ul className="square-list">
               <li>{activeCandidates}</li>
               <li>{acceptedApplies}</li>
@@ -131,7 +135,7 @@ function CompanyDashboard() {
         </Link>
       </section>
       <section className="display">
-        <h2>Mes OFFRES</h2>
+        <h2 id="my-offers">Mes OFFRES</h2>
         <ul className="scroll-card-container">
           {offers.length > 0 ? (
             offers.map((offer) => (
@@ -155,7 +159,7 @@ function CompanyDashboard() {
             AJOUTER UNE OFFRE
           </a>
         </div>
-        <h2>Mes CANDIDATS</h2>
+        <h2 id="my-candidates">Mes CANDIDATS</h2>
         <ul className="scroll-card-container">
           {candidatesByCompany.length > 0 ? (
             candidatesByCompany.map((candidateOffer) => (
