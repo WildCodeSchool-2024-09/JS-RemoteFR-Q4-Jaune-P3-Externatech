@@ -71,6 +71,11 @@ interface OfferData {
   status: string;
 }
 
+interface RegisteredOfferData {
+  registeredOffer: OfferData[];
+  registeredOfferId: number;
+}
+
 interface OfferDataForm {
   title: string;
   city: string;
@@ -94,19 +99,6 @@ interface OfferFormProps {
   value: OfferDataForm;
   errorMessage: string;
   onSubmit: (offer: OfferDataForm) => void;
-}
-
-interface OfferProviderProps {
-  children: ReactNode;
-}
-
-interface OffersContextProps {
-  registeredOffers: OfferData[];
-  appliedOffers: OfferData[];
-  toggleBookmark: (offer: OfferData, isBookmarked: boolean) => void;
-  toggleApplication: (offer: OfferData, isApplied: boolean) => void;
-  fetchRegisteredOffers: () => void;
-  fetchAppliedOffers: () => void;
 }
 
 type LoginCompanyProps = {

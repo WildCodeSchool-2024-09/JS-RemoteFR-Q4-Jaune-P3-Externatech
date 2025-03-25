@@ -10,7 +10,6 @@ import App from "./App";
 
 // Import Context
 import { AuthProvider } from "./services/AuthContext";
-import { OffersProvider } from "./services/OffersContext";
 
 // Import pages
 import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
@@ -117,9 +116,7 @@ if (rootElement == null) {
 createRoot(rootElement).render(
   <StrictMode>
     <AuthProvider>
-      <OffersProvider>
-        <RouterProvider router={router} />
-      </OffersProvider>
+      <RouterProvider router={router} />
     </AuthProvider>
   </StrictMode>,
 );

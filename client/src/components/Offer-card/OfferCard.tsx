@@ -3,34 +3,60 @@ import { Link, useRevalidator } from "react-router-dom";
 import "./offer-card.css";
 import axios from "axios";
 import { useAuth } from "../../services/AuthContext";
-import { useOffersContext } from "../../services/OffersContext";
-import Apply from "../Apply/Apply";
 import Login from "../NavBar/Login";
 
-function OfferCard({
-  offer,
-  isAppliedSection,
-}: OfferDataProps & { isAppliedSection?: boolean }) {
+function OfferCard({ offer }: OfferDataProps) {
   const { role } = useAuth();
-  const { registeredOffers, toggleBookmark } = useOffersContext();
-  const [isBookmarked, setIsBookmarked] = useState(
-    registeredOffers.some((o) => o.id === offer.id),
-  );
   const isOnCompanyDashboardPage = location.pathname.startsWith(
     "/companies/dashboard",
   );
   const { revalidate } = useRevalidator();
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
-  const [isApplyOpen, setIsApplyOpen] = useState(false);
-  const openApply = () => {
-    setIsApplyOpen(!isApplyOpen);
-    document.body.style.overflow = "hidden";
+  useEffect(() => {
+    checkIfBookmarked();
+  }, []);
+
+  const checkIfBookmarked = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/candidates_offers/registered`,
+        {
+          withCredentials: true,
+        },
+      );
+      setIsBookmarked(response.data.isBookmarked);
+    } catch (error) {
+      console.error("Error checking bookmark status:", error);
+    }
   };
 
-  const closeApply = () => {
-    setIsApplyOpen(false);
-    document.body.style.overflow = "";
+  const toggleBookmark = async () => {
+    try {
+      if (!isBookmarked) {
+        await axios.delete(
+          `${import.meta.env.VITE_API_URL}/api/candidates_offers/registered/${offer.id}`,
+          {
+            withCredentials: true,
+          },
+        );
+      } else {
+        await axios.post(
+          `${import.meta.env.VITE_API_URL}/api/candidates_offers/registered`,
+          {
+            offerId: offer.id,
+          },
+          {
+            withCredentials: true,
+          },
+        );
+      }
+      setIsBookmarked(!isBookmarked);
+    } catch (error) {
+      console.error("Error toggling bookmark:", error);
+    }
   };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -40,11 +66,6 @@ function OfferCard({
   const closeModal = () => {
     setIsModalOpen(false);
     document.body.style.overflow = "";
-  };
-
-  const handleBookmark = () => {
-    if (isAppliedSection) return; // Désactive le bookmark dans les candidatures
-    toggleBookmark(offer, isBookmarked);
   };
 
   const deleteOffer = (id: number) => {
@@ -62,10 +83,6 @@ function OfferCard({
     }
   };
 
-  useEffect(() => {
-    setIsBookmarked(registeredOffers.some((o) => o.id === offer.id));
-  }, [registeredOffers, offer.id]);
-
   return (
     <article className="offer-card">
       <img src={offer.background} alt="équipe dans un bureau" />
@@ -78,7 +95,7 @@ function OfferCard({
       </div>
       <div className="company-info">
         <h3>{offer.title}</h3>
-        <p className="status">{offer.status}</p>
+        {role === "candidate" ? <p className="status">{offer.status}</p> : null}
         <ul>
           <li>
             <strong>{offer.company_name}</strong>
@@ -91,19 +108,11 @@ function OfferCard({
       <div className="actions-buttons">
         {role === "candidate" ? (
           <>
-            <Apply isOpen={isApplyOpen} onClose={closeApply} />
-            <button type="button" onClick={openApply} className="light-box">
-              POSTULER
-            </button>
-            <button
-              type="button"
-              className={`register ${isBookmarked ? "bookmarked" : ""}`}
-              onClick={handleBookmark}
-            >
+            <button type="button" className="register" onClick={toggleBookmark}>
               <img
                 src={
                   isBookmarked
-                    ? "/Logos/Icon_bookmark_filled.png"
+                    ? "/Logos/Icon_bookmark_green.png"
                     : "/Logos/Icon_bookmark.png"
                 }
                 alt="bookmark"

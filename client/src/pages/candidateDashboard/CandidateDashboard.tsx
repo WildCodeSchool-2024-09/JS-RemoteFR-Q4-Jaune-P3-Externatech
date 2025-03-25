@@ -1,21 +1,13 @@
 import "./candidateDashboard.css";
-import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import OfferCard from "../../components/Offer-card/OfferCard";
-import { useOffersContext } from "../../services/OffersContext";
-
 import "./candidateDashboard.css";
 
 export default function CandidateDashboard() {
-  const { applies } = useLoaderData() as {
+  const { applies, offersRegistered } = useLoaderData() as {
     applies: OfferData[];
+    offersRegistered: OfferData[];
   };
-
-  const { registeredOffers, fetchRegisteredOffers } = useOffersContext();
-
-  useEffect(() => {
-    fetchRegisteredOffers();
-  }, [fetchRegisteredOffers]);
 
   return (
     <>
@@ -29,15 +21,15 @@ export default function CandidateDashboard() {
         </div>
         <div className="gradientBar" />
         {applies.map((apply) => (
-          <OfferCard key={apply.id} offer={apply} isAppliedSection />
+          <OfferCard key={apply.id} offer={apply} />
         ))}
 
         <div className="apply">
           <h2>Mes Offres enregistrées</h2>
-          <p className="offersCount">{registeredOffers.length}</p>
+          <p className="offersCount">{offersRegistered.length}</p>
         </div>
         <div className="gradientBar" />
-        {registeredOffers.map((offer) => (
+        {offersRegistered.map((offer) => (
           <OfferCard key={offer.id} offer={offer} />
         ))}
       </main>
