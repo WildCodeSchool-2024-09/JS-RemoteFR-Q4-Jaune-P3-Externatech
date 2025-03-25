@@ -1,3 +1,4 @@
+import { extname } from "node:path";
 import type { RequestHandler } from "express";
 import Joi from "joi";
 
@@ -8,9 +9,22 @@ const applySchema = Joi.object({
     "number.positive": "L'offre doit être selectionnée.",
     "any.required": "L'offre doit être selectionnée",
   }),
-  resume: Joi.any().required().messages({
-    "any.required": "Le CV est obligatoire.",
-  }),
+  resume: Joi.any()
+    .required()
+    .custom((value, helpers) => {
+      if (!value) {
+        return helpers.error("any.required");
+      }
+      const fileExtension = extname(value.originalname).toLowerCase();
+      if (fileExtension !== ".pdf") {
+        return helpers.error("any.invalid");
+      }
+      return value;
+    })
+    .messages({
+      "any.required": "Le CV est obligatoire.",
+      "any.invalid": "Le CV doit être au format PDF.",
+    }),
 });
 const validate: RequestHandler = (req, res, next) => {
   const { offer_id } = req.body;
