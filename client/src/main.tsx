@@ -10,11 +10,11 @@ import App from "./App";
 
 // Import Context
 import { AuthProvider } from "./services/AuthContext";
+import { OffersProvider } from "./services/OffersContext";
 
 // Import pages
 import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
-import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
 import CandidateDashboard from "./pages/candidateDashboard/CandidateDashboard";
 import Companies from "./pages/companies/Companies";
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
@@ -101,10 +101,6 @@ const router = createBrowserRouter([
           return company || null;
         },
       },
-      {
-        path: "/candidates/registered-offers",
-        element: <RegisteredOffers />,
-      },
     ],
   },
 ]);
@@ -121,7 +117,9 @@ if (rootElement == null) {
 createRoot(rootElement).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <OffersProvider>
+        <RouterProvider router={router} />
+      </OffersProvider>
     </AuthProvider>
   </StrictMode>,
 );

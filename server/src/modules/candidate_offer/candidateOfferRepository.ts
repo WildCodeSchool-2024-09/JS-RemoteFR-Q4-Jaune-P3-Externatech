@@ -53,26 +53,27 @@ class CandidateOfferRepository {
   async readAllCandidateOffersByCandidate(candidateID: number) {
     const [rows] = await DatabaseClient.query<Rows>(
       `SELECT 
-      c_o.*, 
+      c_o_r.*, 
+      candidate.id AS candidate_id, 
       company.name AS company_name, 
-      candidate.firstname AS candidate_firstname,
       company.logo AS company_logo, 
-      offer.title AS offer_title,
-      application_status.name AS status,
-      contract.name as contract_name,
-      work_condition.name as work_condition_name,
-      offer.background as background,
-      offer.city as offer_city
-    FROM candidate_offer AS c_o
-    JOIN candidate ON candidate.id = c_o.candidate_id
-    JOIN offer ON offer.id = c_o.offer_id  
-    JOIN contract ON contract.id = offer.contract_id
-    JOIN company ON company.id = offer.company_id 
-    JOIN work_condition ON work_condition.id = offer.work_condition_id
-    JOIN application_status ON application_status.id = application_status_id
-   
-    WHERE candidate.id = ?
-    ORDER BY c_o.id`,
+      contract.name AS contract_name,  
+      work_condition.name AS work_condition_name,
+      offer.title AS title, 
+      offer.city AS city,
+      offer.background AS background,
+      GROUP_CONCAT(stack.name) AS stack_names
+    FROM candidate_offer_registered AS c_o_r 
+    JOIN candidate ON candidate.id = c_o_r.candidate_id 
+    JOIN offer ON offer.id = c_o_r.offer_id 
+    JOIN company ON offer.company_id = company.id 
+    JOIN contract ON offer.contract_id = contract.id 
+    JOIN work_condition ON offer.work_condition_id = work_condition.id 
+    LEFT JOIN offer_stack ON offer.id = offer_stack.offer_id 
+    LEFT JOIN stack ON offer_stack.stack_id = stack.id 
+    WHERE candidate.id = ? 
+    GROUP BY c_o_r.id, candidate.id, company.id, contract.id, offer.id, work_condition.id 
+    ORDER BY c_o_r.id;`,
       [candidateID],
     );
     return rows as Candidate_offer[];

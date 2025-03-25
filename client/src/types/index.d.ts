@@ -96,6 +96,19 @@ interface OfferFormProps {
   onSubmit: (offer: OfferDataForm) => void;
 }
 
+interface OfferProviderProps {
+  children: ReactNode;
+}
+
+interface OffersContextProps {
+  registeredOffers: OfferData[];
+  appliedOffers: OfferData[];
+  toggleBookmark: (offer: OfferData, isBookmarked: boolean) => void;
+  toggleApplication: (offer: OfferData, isApplied: boolean) => void;
+  fetchRegisteredOffers: () => void;
+  fetchAppliedOffers: () => void;
+}
+
 type LoginCompanyProps = {
   isOpen: boolean;
   onClose: () => void;

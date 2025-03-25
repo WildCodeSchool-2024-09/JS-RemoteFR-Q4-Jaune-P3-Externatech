@@ -47,7 +47,7 @@ const add: RequestHandler = async (req, res, next) => {
 
 const destroy: RequestHandler = async (req, res, next) => {
   try {
-    const offerRegisteredId = Number(req.body.offer_id);
+    const offerRegisteredId = Number(req.params.id);
     await candidate_registeredOfferRepository.delete(offerRegisteredId);
 
     res.sendStatus(204);

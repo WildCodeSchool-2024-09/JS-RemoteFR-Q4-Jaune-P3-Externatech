@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useRevalidator } from "react-router-dom";
 import "./offer-card.css";
 import axios from "axios";
 import { useAuth } from "../../services/AuthContext";
+import { useOffersContext } from "../../services/OffersContext";
 import Apply from "../Apply/Apply";
 import Login from "../NavBar/Login";
 
-function OfferCard({ offer }: OfferDataProps) {
+function OfferCard({
+  offer,
+  isAppliedSection,
+}: OfferDataProps & { isAppliedSection?: boolean }) {
   const { role } = useAuth();
+  const { registeredOffers, toggleBookmark } = useOffersContext();
+  const [isBookmarked, setIsBookmarked] = useState(
+    registeredOffers.some((o) => o.id === offer.id),
+  );
   const isOnCompanyDashboardPage = location.pathname.startsWith(
     "/companies/dashboard",
   );
@@ -33,14 +41,10 @@ function OfferCard({ offer }: OfferDataProps) {
     setIsModalOpen(false);
     document.body.style.overflow = "";
   };
-  const [showModal, setShowModal] = useState(false);
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
+  const handleBookmark = () => {
+    if (isAppliedSection) return; // Désactive le bookmark dans les candidatures
+    toggleBookmark(offer, isBookmarked);
   };
 
   const deleteOffer = (id: number) => {
@@ -57,6 +61,10 @@ function OfferCard({ offer }: OfferDataProps) {
         });
     }
   };
+
+  useEffect(() => {
+    setIsBookmarked(registeredOffers.some((o) => o.id === offer.id));
+  }, [registeredOffers, offer.id]);
 
   return (
     <article className="offer-card">
@@ -89,11 +97,15 @@ function OfferCard({ offer }: OfferDataProps) {
             </button>
             <button
               type="button"
-              className="register"
-              onClick={handleOpenModal}
+              className={`register ${isBookmarked ? "bookmarked" : ""}`}
+              onClick={handleBookmark}
             >
               <img
-                src="/Logos/Icon_bookmark.png"
+                src={
+                  isBookmarked
+                    ? "/Logos/Icon_bookmark_filled.png"
+                    : "/Logos/Icon_bookmark.png"
+                }
                 alt="bookmark"
                 className="bookmark"
               />
@@ -115,24 +127,7 @@ function OfferCard({ offer }: OfferDataProps) {
             </button>
           </>
         ) : null}
-        {showModal && (
-          <section className="modal">
-            <section className="modal-content">
-              <h2>Succès</h2>
-              <p className="registered_p">Cette offre a été enregistrée !</p>
-              <Link to="/RegisteredOffers" className="registered_offers">
-                Voir mes offres enregistrées
-              </Link>
-              <button
-                type="button"
-                className="close_button"
-                onClick={handleCloseModal}
-              >
-                Fermer
-              </button>
-            </section>
-          </section>
-        )}
+
         <Link to={`/OfferDetails/${offer.id}`} className="light-box centered">
           VOIR L'OFFRE
         </Link>

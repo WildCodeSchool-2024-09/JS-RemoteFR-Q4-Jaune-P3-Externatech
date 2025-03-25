@@ -129,7 +129,7 @@ router.post(
 );
 
 router.delete(
-  "/api/candidates_offers/registered",
+  "/api/candidates_offers/registered/:id",
   authActions.verifyCandidate,
   candidate_registeredOfferActions.destroy,
 );

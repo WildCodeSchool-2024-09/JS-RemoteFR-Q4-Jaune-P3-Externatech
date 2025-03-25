@@ -44,11 +44,6 @@ export default function NavBar() {
       path: "/candidates/dashboard",
       role: ["candidate"],
     },
-    {
-      name: "Mes offres enregistrées",
-      path: "/candidates/registered-offers",
-      role: ["candidate"],
-    },
   ];
 
   const [isOpen, setIsOpen] = useState(false);

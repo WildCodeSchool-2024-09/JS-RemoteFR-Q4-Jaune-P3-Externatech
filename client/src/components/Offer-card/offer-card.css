@@ -99,6 +99,12 @@
 }
 
 /*************************************************/
+
+.register.bookmarked {
+  background-color: var(--secundary);
+}
+
+/*************************************************/
 .offer-card .actions-buttons {
   display: flex;
   margin: 0.5rem;

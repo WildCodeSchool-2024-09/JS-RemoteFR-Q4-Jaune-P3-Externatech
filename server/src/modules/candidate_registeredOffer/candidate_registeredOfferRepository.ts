@@ -15,12 +15,12 @@ class CandidateRegisteredOfferRepository {
       candidate.id AS candidate_id, 
       company.name AS company_name, 
       company.logo AS company_logo, 
-      contract.name AS contract_name, 
-      offer.title AS offer_title, 
-      offer.city AS offer_city,
-      offer.background AS offer_background, 
+      contract.name AS contract_name,  
       work_condition.name AS work_condition_name,
-      GROUP_CONCAT(stack.name) AS offer_stack_names
+      offer.title AS title, 
+      offer.city AS city,
+      offer.background AS background,
+      GROUP_CONCAT(stack.name) AS stack_names
     FROM candidate_offer_registered AS c_o_r 
     JOIN candidate ON candidate.id = c_o_r.candidate_id 
     JOIN offer ON offer.id = c_o_r.offer_id 
@@ -34,6 +34,7 @@ class CandidateRegisteredOfferRepository {
     ORDER BY c_o_r.id;`,
       [candidateId],
     );
+    console.info("SQL Result Rows:", rows);
     return rows as Candidate_offer_registered[];
   }
 
