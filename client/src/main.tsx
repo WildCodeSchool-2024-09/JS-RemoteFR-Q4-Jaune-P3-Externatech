@@ -1,7 +1,12 @@
 // Import necessary modules from React and React Router
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+  useRouteError,
+} from "react-router-dom";
 
 /* ************************************************************************* */
 
@@ -13,6 +18,9 @@ import { AuthProvider } from "./services/AuthContext";
 
 // Import pages
 import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
+import Error403 from "./pages/ErrorPages/Error403/Error403";
+import Error404 from "./pages/ErrorPages/Error404/Error404";
+import Forbidden from "./pages/ErrorPages/Forbidden/Forbidden";
 import GeneralConditions from "./pages/GeneralConditions/GeneralConditions";
 import LegalInformations from "./pages/LegalInformations/LegalInformations";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
@@ -42,12 +50,31 @@ import {
 } from "./services/requests";
 
 /* ************************************************************************* */
+function ErrorBoundary() {
+  const error = useRouteError();
+  console.error(error);
+  const typeError = error as { status: number; message?: string };
 
+  if (typeError.status === 403) {
+    return <Navigate to="/Error403" replace />;
+  }
+
+  if (typeError.status === 404) {
+    return <Navigate to="/Error404" replace />;
+  }
+
+  if (typeError.message === "Forbidden") {
+    return <Navigate to="/Forbidden" replace />;
+  }
+
+  return <Navigate to="/Error404" replace />;
+}
 // Create router configuration with routes
 // You can add more routes as you build out your app!
 const router = createBrowserRouter([
   {
     element: <App />,
+    errorElement: <ErrorBoundary />,
     children: [
       {
         path: "/",
@@ -139,6 +166,18 @@ const router = createBrowserRouter([
       {
         path: "/GeneralConditions",
         element: <GeneralConditions />,
+      },
+      {
+        path: "/Error403",
+        element: <Error403 />,
+      },
+      {
+        path: "/Error404",
+        element: <Error404 />,
+      },
+      {
+        path: "/Forbidden",
+        element: <Forbidden />,
       },
     ],
   },

@@ -1,0 +1,157 @@
+.space-loader {
+  width: 12.5rem;
+  height: 12.5rem;
+  position: relative;
+  background-color: #000;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgb(42, 240, 42);
+}
+
+.planet {
+  width: 5rem;
+  height: 5rem;
+  background: radial-gradient(circle at 30% 30%, #7ee575, #087b1d);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.ring {
+  width: 7.5rem;
+  height: 7.5rem;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(75deg) rotateY(15deg);
+  animation: rotate 12s linear infinite;
+}
+
+.orbit {
+  width: 10rem;
+  height: 10rem;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.satellite {
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbit 8s linear infinite;
+}
+
+.stars {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.star {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotateX(75deg) rotateY(15deg) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateX(75deg) rotateY(15deg)
+      rotate(360deg);
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(80px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(80px) rotate(-360deg);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .space-loader {
+    width: 25rem;
+    height: 25rem;
+  }
+
+  .planet {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .ring {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .orbit {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  .satellite {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbit 12s linear infinite;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: translate(-50%, -50%) rotateX(75deg) rotateY(15deg)
+        rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotateX(75deg) rotateY(15deg)
+        rotate(360deg);
+    }
+  }
+
+  @keyframes orbit {
+    0% {
+      transform: rotate(0deg) translateX(160px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(160px) rotate(-360deg);
+    }
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+}
