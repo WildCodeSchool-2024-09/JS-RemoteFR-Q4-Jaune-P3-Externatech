@@ -51,17 +51,16 @@ import {
 function ErrorBoundary() {
   const error = useRouteError();
   console.error(error);
-  const typeError = error as { status?: number; message?: string };
+  const typeError = error as {
+    status?: number;
+    message?: string;
+    data?: string;
+  };
 
-  if (
-    typeError.status === 404 ||
-    typeError.status === 403 ||
-    typeError.status === 500
-  ) {
-    return <Navigate to="/Error" replace />;
-  }
+  const errorMessage = typeError.message || typeError.data;
+  const errorCode = typeError.status;
 
-  return <Navigate to="/Error" replace />;
+  return <Navigate to="/Error" state={{ errorMessage, errorCode }} replace />;
 }
 // Create router configuration with routes
 // You can add more routes as you build out your app!
@@ -161,7 +160,6 @@ const router = createBrowserRouter([
         path: "/GeneralConditions",
         element: <GeneralConditions />,
       },
-
       {
         path: "/Error",
         element: <ErrorPage />,
