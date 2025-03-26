@@ -95,6 +95,7 @@ const router = createBrowserRouter([
         loader: async () => {
           const company = await getCompanyAuth();
           const offers = await getOffersByCompany();
+          const stacks = await getStacks();
           const candidatesByCompany = await getCandidatesByCompany();
           if (!company || !offers || !candidatesByCompany) {
             return null;
@@ -103,6 +104,7 @@ const router = createBrowserRouter([
           return {
             company,
             offers,
+            stacks,
             candidatesByCompany,
           };
         },
@@ -112,7 +114,8 @@ const router = createBrowserRouter([
         element: <CompanyEditOffer />,
         loader: async ({ params }) => {
           const offer = await getOfferDetails(params.id);
-          return offer;
+          const stacks = await getStacks();
+          return { offer, stacks };
         },
       },
       {

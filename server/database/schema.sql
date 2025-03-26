@@ -76,6 +76,7 @@ CREATE TABLE candidate_offer (
   offer_id INT UNSIGNED NOT NULL,
   application_status_id INT UNSIGNED NOT NULL DEFAULT 1,
   resume TEXT NULL,
+  UNIQUE KEY (offer_id, candidate_id),
   FOREIGN KEY (offer_id) REFERENCES offer(id) ON DELETE CASCADE,
   FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE,
   FOREIGN KEY (application_status_id) REFERENCES application_status(id) ON DELETE CASCADE

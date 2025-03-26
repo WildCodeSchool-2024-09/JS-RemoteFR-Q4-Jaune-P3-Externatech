@@ -35,6 +35,7 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
   const [isSignIn, setIsSignIn] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const toggleCheck = () => {
     setChecked(!checked);
@@ -59,6 +60,7 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
       ...credentials,
       [event.currentTarget.name]: event.currentTarget.value,
     });
+    setError("");
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -90,8 +92,10 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
           .then((response) => {
             console.info(response);
             setIsSignIn(true);
+            setError("");
           })
           .catch((error) => {
+            setError(error.response.data.error);
             console.error(error);
           });
       } else {
@@ -193,6 +197,7 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
                 placeholder="Votre e-mail"
                 required
               />
+              {error ? <p className="errorMessage">{error}</p> : null}
               <label htmlFor="candidate-password">
                 Mot de passe<span className="star"> *</span>
               </label>
@@ -334,6 +339,7 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
                 placeholder="Votre e-mail"
                 required
               />
+              {error ? <p className="errorMessage">{error}</p> : null}
               <label htmlFor="company-password">
                 Mot de passe<span className="star"> *</span>
               </label>

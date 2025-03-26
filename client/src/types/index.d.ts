@@ -71,6 +71,7 @@ interface OfferData {
   company_name: string;
   company_description: string;
   stack_names: string;
+  stack_ids: string;
   status: string;
 }
 
@@ -83,6 +84,7 @@ interface OfferDataForm {
   profile: string;
   work_condition_id: number;
   contract_id: number;
+  stacks: number[];
 }
 
 interface OfferDataProps {
@@ -96,6 +98,7 @@ interface CompanyDataProps {
 interface OfferFormProps {
   children: ReactNode;
   value: OfferDataForm;
+  stacks: StackData[];
   errorMessage: string;
   onSubmit: (offer: OfferDataForm) => void;
 }

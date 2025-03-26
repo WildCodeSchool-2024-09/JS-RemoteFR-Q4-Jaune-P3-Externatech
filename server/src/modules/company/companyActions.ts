@@ -57,6 +57,14 @@ const add: RequestHandler = async (req, res, next) => {
 
     res.status(201).json({ insertId });
   } catch (err) {
+    if (typeof err === "object" && err !== null && "code" in err) {
+      const error = err as { code: string };
+
+      if (error.code === "ER_DUP_ENTRY") {
+        void res.status(400).json({ error: "Cet email est déjà utilisé." });
+        return;
+      }
+    }
     next(err);
   }
 };

@@ -8,7 +8,11 @@ import { useLoaderData } from "react-router-dom";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 
 function CompanyEditOffer() {
-  const offer = useLoaderData() as OfferData;
+  const { offer, stacks } = useLoaderData() as {
+    offer: OfferData;
+    stacks: StackData[];
+  };
+  console.info(offer);
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -21,6 +25,9 @@ function CompanyEditOffer() {
     profile: offer?.profile || "",
     work_condition_id: offer?.work_condition_id || 0,
     contract_id: offer?.contract_id || 0,
+    stacks: offer?.stack_ids
+      ? offer.stack_ids.split(",").map((id) => Number(id.trim()))
+      : [],
   }));
   const handleOfferSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -69,14 +76,24 @@ function CompanyEditOffer() {
     >,
   ) => {
     const { name, value } = event.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]:
-        ["work_condition_id", "contract_id", "salary"].includes(name) &&
-        value !== ""
-          ? Number(value)
-          : value,
-    }));
+    if (name === "stacks" && event.target instanceof HTMLSelectElement) {
+      const selectedStacks = Array.from(event.target.options)
+        .filter((option) => option.selected)
+        .map((option) => Number(option.value));
+      setFormData((prev) => ({
+        ...prev,
+        stacks: selectedStacks,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]:
+          ["work_condition_id", "contract_id", "salary"].includes(name) &&
+          value !== ""
+            ? Number(value)
+            : value,
+      }));
+    }
   };
 
   const maxLengths = {
@@ -133,6 +150,21 @@ function CompanyEditOffer() {
               value={formData.description}
               onChange={handleChange}
             />
+          </label>
+          <label>
+            Sélectionnez les technologies associées *
+            <select
+              name="stacks"
+              multiple
+              value={formData.stacks.map(String)}
+              onChange={handleChange}
+            >
+              {stacks.map((stack) => (
+                <option key={stack.id} value={stack.id}>
+                  {stack.name}
+                </option>
+              ))}
+            </select>
           </label>
           <label>
             Le poste est-il en télétravail ? *
