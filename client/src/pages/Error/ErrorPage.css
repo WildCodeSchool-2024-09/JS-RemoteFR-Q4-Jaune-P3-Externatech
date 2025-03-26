@@ -8,12 +8,11 @@
   gap: 5rem;
 }
 
-.error_allpage > h1 {
-  text-align: center;
-}
-
 @media screen and (min-width: 900px) {
   .error_allpage {
     min-height: 63.5vh;
+  }
+  & .error_title {
+    font-size: 3rem;
   }
 }
