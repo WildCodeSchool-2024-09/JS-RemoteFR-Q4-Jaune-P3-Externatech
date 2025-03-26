@@ -95,7 +95,6 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
             setError("");
           })
           .catch((error) => {
-            console.info(error.response.data.error);
             setError(error.response.data.error);
             console.error(error);
           });
