@@ -141,7 +141,7 @@ function CompanyDashboard() {
             offers.map((offer) => (
               <li key={offer.id}>
                 {" "}
-                <OfferCard offer={offer} />
+                <OfferCard offer={offer} editable={true} />
                 <Link
                   className="colored-box link-to-applies"
                   to={`/companies/dashboard/candidates-offers/${offer.id}`}

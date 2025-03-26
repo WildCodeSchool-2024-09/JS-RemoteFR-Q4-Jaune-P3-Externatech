@@ -19,7 +19,8 @@
 }
 
 .company-dashboard form input,
-.company-dashboard form select {
+.company-dashboard form select,
+.company-dashboard form textarea {
   width: 100%;
   margin: 0.6rem 0;
   padding: 0.6rem;

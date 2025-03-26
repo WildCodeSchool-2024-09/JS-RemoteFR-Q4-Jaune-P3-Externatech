@@ -103,7 +103,7 @@ GROUP BY offer.id`,
 
   async read(id: number) {
     const [rows] = await DatabaseClient.query<Rows>(
-      "SELECT offer.id, offer.title, offer.description, offer.city, offer.background, offer.salary, offer.profile, contract.name AS contract_name, work_condition.name AS work_condition_name, company.name AS company_name, company.description AS company_description, company.id as company_id, company.logo AS company_logo, GROUP_CONCAT(stack.name SEPARATOR ', ') AS stack_names FROM offer INNER JOIN company ON offer.company_id = company.id INNER JOIN offer_stack ON offer.id = offer_stack.offer_id INNER JOIN stack ON offer_stack.stack_id = stack.id INNER JOIN contract ON offer.contract_id = contract.id INNER JOIN work_condition ON offer.work_condition_id=work_condition.id WHERE offer.id = ? GROUP BY offer.id, company.id",
+      "SELECT offer.*, contract.name AS contract_name, work_condition.name AS work_condition_name, company.name AS company_name, company.description AS company_description, company.id as company_id, company.logo AS company_logo, GROUP_CONCAT(stack.name SEPARATOR ', ') AS stack_names FROM offer INNER JOIN company ON offer.company_id = company.id INNER JOIN offer_stack ON offer.id = offer_stack.offer_id INNER JOIN stack ON offer_stack.stack_id = stack.id INNER JOIN contract ON offer.contract_id = contract.id INNER JOIN work_condition ON offer.work_condition_id=work_condition.id WHERE offer.id = ? GROUP BY offer.id, company.id",
       [id],
     );
 

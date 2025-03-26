@@ -67,6 +67,7 @@ interface OfferData {
   contract_id: number;
   contract_name: string;
   work_condition_name: string;
+  work_condition_id?: number;
   company_name: string;
   company_description: string;
   stack_names: string;
@@ -86,6 +87,7 @@ interface OfferDataForm {
 
 interface OfferDataProps {
   offer: OfferData;
+  editable: boolean;
 }
 interface CompanyDataProps {
   company: CompanyData;

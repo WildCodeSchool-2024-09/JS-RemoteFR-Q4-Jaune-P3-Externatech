@@ -6,7 +6,7 @@
   border: solid 1px var(--tertiary);
 }
 
-.offer-card > img {
+.offer-card img.offer-background {
   object-fit: cover;
   min-width: 100%;
   height: 20vh;
@@ -103,6 +103,7 @@
   gap: 1rem;
   position: relative;
   bottom: 0;
+  justify-content: space-around;
 }
 
 .centered {
