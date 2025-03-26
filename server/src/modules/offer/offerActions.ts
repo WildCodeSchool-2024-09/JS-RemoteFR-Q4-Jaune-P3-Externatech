@@ -86,8 +86,8 @@ const add: RequestHandler = async (req, res, next) => {
       company_id: req.company.id,
       contract_id: req.body.contract_id,
     };
-    console.info("newOffer", newOffer);
-    const insertId = await offerRepository.create(newOffer);
+
+    const insertId = await offerRepository.create(newOffer, req.body.stacks);
 
     res.status(201).json({ insertId });
   } catch (err) {

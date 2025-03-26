@@ -75,7 +75,9 @@
 @media only screen and (min-width: 768px) {
   .company-dashboard {
     padding: 2rem 6rem 4rem 6rem;
-
+    & .link-to-applies {
+      width: 20vw;
+    }
     & h2 {
       padding-top: 4rem;
     }
