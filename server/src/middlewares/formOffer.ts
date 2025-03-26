@@ -45,6 +45,15 @@ const offerSchema = Joi.object({
     "number.base": "Le type de contrat doit être selectionné.",
     "any.required": "Le type de contrat est obligatoire.",
   }),
+  stacks: Joi.array()
+    .items(Joi.number().integer().positive())
+    .required()
+    .messages({
+      "array.base": "Les stacks doivent être un tableau.",
+      "array.includesRequiredUnknowns":
+        "Les stacks doivent contenir des IDs valides.",
+      "any.required": "Les stacks sont obligatoires.",
+    }),
 });
 
 const validate: RequestHandler = (req, res, next) => {

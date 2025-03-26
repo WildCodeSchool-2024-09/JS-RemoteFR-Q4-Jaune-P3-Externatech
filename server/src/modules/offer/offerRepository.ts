@@ -20,7 +20,7 @@ type City = {
 };
 
 class offerRepository {
-  async create(offer: Omit<Offer, "id">) {
+  async create(offer: Omit<Offer, "id">, stacks: number[]) {
     const {
       title,
       city,
@@ -46,7 +46,16 @@ class offerRepository {
         offer.contract_id,
       ],
     );
+    const offerId = result.insertId;
 
+    if (stacks && stacks.length > 0) {
+      const offerStacks = stacks.map((stackId) => [offerId, stackId]);
+
+      await DatabaseClient.query(
+        "INSERT INTO offer_stack (offer_id, stack_id) VALUES ?",
+        [offerStacks],
+      );
+    }
     return result.insertId;
   }
 

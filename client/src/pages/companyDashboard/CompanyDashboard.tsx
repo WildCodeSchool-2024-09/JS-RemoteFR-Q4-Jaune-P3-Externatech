@@ -9,8 +9,9 @@ import CandidateCard from "../../components/Candidate-card/CandidateCard";
 import OfferCard from "../../components/Offer-card/OfferCard";
 
 function CompanyDashboard() {
-  const { company, offers, candidatesByCompany } = useLoaderData() as {
+  const { company, offers, candidatesByCompany, stacks } = useLoaderData() as {
     company: CompanyData;
+    stacks: StackData[];
     offers: OfferData[];
     candidatesByCompany: CandidateOfferData[];
   };
@@ -61,6 +62,7 @@ function CompanyDashboard() {
     profile: "",
     work_condition_id: 0,
     contract_id: 0,
+    stacks: [],
   };
 
   const handleOfferSubmit = async (newOffer: OfferDataForm) => {
@@ -186,6 +188,7 @@ function CompanyDashboard() {
       <h2 id="add-offer">Créer une OFFRE</h2>
       <OfferForm
         value={newOffer}
+        stacks={stacks}
         errorMessage={errorMessage}
         onSubmit={handleOfferSubmit}
       >
