@@ -68,7 +68,7 @@ export default function NavBar() {
     <nav>
       <Link to="/" className="logo_title">
         <img
-          src="/public/logo-app.png"
+          src="/public/Logo-app.png"
           alt="Logo de l'application Externatech"
           className="LogoApp"
         />
