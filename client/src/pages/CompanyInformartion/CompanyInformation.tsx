@@ -207,7 +207,7 @@ export default function CompanyInformation() {
           <p>Logo de l'entreprise:</p>
           <img
             className="form_CI logo"
-            src={company.logo}
+            src={`${import.meta.env.VITE_API_URL}/uploads/logo/${company.logo}`}
             alt={`logo de l'entreprise ${company.name}`}
           />
           <p>Rue:</p>
