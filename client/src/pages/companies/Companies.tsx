@@ -1,19 +1,23 @@
 import { useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CompanyCard from "../../components/company-card/CompanyCard";
+import "./Companies.css";
 
 export default function Companies() {
   const allCompanies = useLoaderData() as CompanyData[];
   return (
-    <div className="containerAll">
+    <div className="containerAll_companies">
       <div className="containerTop">
         <h2>Les ENTREPRISES </h2>
         {/* <span className="offersCount">{allCompanies.length}</span> */}
       </div>
-      <div className="offerGradientBar" />
+      <div className="offerGradientBar_companies" />
       <section className="resultSearche">
         {allCompanies.length > 0 ? (
           allCompanies.map((company) => (
-            <CompanyCard key={company.id} company={company} />
+            <Link to={`./${company.id}`} key={company.id}>
+              <CompanyCard company={company} />
+            </Link>
           ))
         ) : (
           <p className="no-offers">Nous n’avons pas trouvé d'entreprise.'</p>

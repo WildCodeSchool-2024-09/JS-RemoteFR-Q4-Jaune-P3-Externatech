@@ -104,6 +104,12 @@ const getApplyByCandidate = () => {
     .then((response) => response.data)
     .catch((error) => console.error(error));
 };
+const getGeneralCompanyDetails = (id: string | undefined) => {
+  return axios
+    .get(`${import.meta.env.VITE_API_URL}/api/company/general-details/${id}`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error));
+};
 
 export {
   getAllCompanies,
@@ -119,4 +125,5 @@ export {
   getCandidatesByCompany,
   getCandidatesByOffer,
   getApplyByCandidate,
+  getGeneralCompanyDetails,
 };

@@ -2,13 +2,14 @@ import axios from "axios";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { useRevalidator } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 
 import "./CompanyInformations.css";
 
 export default function CompanyInformation() {
   const { revalidate } = useRevalidator();
-
+  const location = useLocation();
   const company = useLoaderData() as CompanyData;
 
   const companyToUpdate = {
@@ -215,8 +216,12 @@ export default function CompanyInformation() {
           <p className="form_CI">{company.postalCode}</p>
           <p>Ville:</p>
           <p className="form_CI">{company.city}</p>
-          <p>E-mail:</p>
-          <p className="form_CI">{company.email}</p>
+          {location.pathname.endsWith("information") ? (
+            <>
+              <p>E-mail:</p>
+              <p className="form_CI">{company.email}</p>
+            </>
+          ) : null}
           <p>Taille de l'entreprise:</p>
           <select className="form_CI" defaultValue={company.size}>
             <option value="1-15">1-15</option>
@@ -231,13 +236,17 @@ export default function CompanyInformation() {
           <p className="form_CI">{company.siret}</p>
           <p>Description:</p>
           <p className="form_CI">{company.description}</p>
-          <button
-            type="button"
-            className="colored-box"
-            onClick={() => setIsEditing(true)}
-          >
-            Modifier mes informations
-          </button>
+          {location.pathname.endsWith("information") ? (
+            <>
+              <button
+                type="button"
+                className="colored-box"
+                onClick={() => setIsEditing(true)}
+              >
+                Modifier mes informations
+              </button>
+            </>
+          ) : null}
         </section>
       ) : (
         renderEditableForm()

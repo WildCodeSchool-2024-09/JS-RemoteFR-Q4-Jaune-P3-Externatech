@@ -21,6 +21,7 @@ import CandidateDashboard from "./pages/candidateDashboard/CandidateDashboard";
 import Companies from "./pages/companies/Companies";
 import CompanyApplies from "./pages/companyApplies/CompanyApplies";
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
+import CompanyEditOffer from "./pages/companyDashboard/CompanyEditOffer";
 import HomePage from "./pages/homepage/HomePage";
 import Offers from "./pages/offers/Offers";
 
@@ -34,6 +35,7 @@ import {
   getCities,
   getCompanyAuth,
   getContracts,
+  getGeneralCompanyDetails,
   getOfferDetails,
   getOffersByCompany,
   getStacks,
@@ -80,11 +82,20 @@ const router = createBrowserRouter([
         loader: getAllCompanies,
       },
       {
+        path: "/companies/:id",
+        element: <CompanyInformation />,
+        loader: async ({ params }) => {
+          const company = await getGeneralCompanyDetails(params.id);
+          return company;
+        },
+      },
+      {
         path: "/companies/dashboard",
         element: <CompanyDasboard />,
         loader: async () => {
           const company = await getCompanyAuth();
           const offers = await getOffersByCompany();
+          const stacks = await getStacks();
           const candidatesByCompany = await getCandidatesByCompany();
           if (!company || !offers || !candidatesByCompany) {
             return null;
@@ -93,8 +104,18 @@ const router = createBrowserRouter([
           return {
             company,
             offers,
+            stacks,
             candidatesByCompany,
           };
+        },
+      },
+      {
+        path: "/companies/dashboard/edit-offer/:id",
+        element: <CompanyEditOffer />,
+        loader: async ({ params }) => {
+          const offer = await getOfferDetails(params.id);
+          const stacks = await getStacks();
+          return { offer, stacks };
         },
       },
       {

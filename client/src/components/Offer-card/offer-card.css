@@ -1,21 +1,15 @@
 .offer-card {
   display: flex;
   flex-direction: column;
-  width: 90vw;
-  height: 65vh;
-  margin: 1rem auto;
+  width: 80vw;
+  margin: 2rem auto;
   border: solid 1px var(--tertiary);
 }
 
-.offer-card > img {
+.offer-card img.offer-background {
   object-fit: cover;
   min-width: 100%;
-  max-height: 20vh;
-}
-
-.offer-card > div:first-of-type {
-  display: flex;
-  flex: 1;
+  height: 20vh;
 }
 
 /*************************************************/
@@ -92,10 +86,14 @@
 }
 
 .status {
-  border: 3px solid black;
-  border-radius: 50px;
-  width: 30%;
+  background-color: var(--tertiary);
+  color: var(--primary);
+  font-weight: 600;
+  padding: 0.6rem;
+  width: 95%;
   text-align: center;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 /*************************************************/
@@ -105,6 +103,7 @@
   gap: 1rem;
   position: relative;
   bottom: 0;
+  justify-content: space-around;
 }
 
 .centered {
@@ -121,7 +120,6 @@
 @media screen and (min-width: 768px) {
   .offer-card {
     margin: 1rem;
-    width: 25rem;
-    height: 65vh;
+    width: 35vw;
   }
 }

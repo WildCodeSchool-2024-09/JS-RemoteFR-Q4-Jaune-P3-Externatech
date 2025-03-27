@@ -10,8 +10,6 @@ export default function OfferDetails() {
   const offer = useLoaderData() as OfferData;
   const { role } = useAuth();
 
-  const [showModal, setShowModal] = useState(false);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -32,14 +30,6 @@ export default function OfferDetails() {
   const closeApply = () => {
     setIsApplyOpen(false);
     document.body.style.overflow = "";
-  };
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
   };
 
   return (
@@ -66,56 +56,16 @@ export default function OfferDetails() {
               <button type="button" className="apply" onClick={openModal}>
                 Postuler
               </button>
-              <button type="button" className="register" onClick={openModal}>
-                <img
-                  src="/Logos/Icon_bookmark.png"
-                  alt="bookmark"
-                  className="bookmark"
-                />
-                Enregistrer
-              </button>
             </>
           ) : null}
           {role === "candidate" ? (
-            <>
-              <button type="button" className="apply" onClick={openApply}>
-                Postuler
-              </button>
-              <button
-                type="button"
-                className="register"
-                onClick={handleOpenModal}
-              >
-                <img
-                  src="/Logos/Icon_bookmark.png"
-                  alt="bookmark"
-                  className="bookmark"
-                />
-                Enregistrer
-              </button>
-            </>
+            <button type="button" className="apply" onClick={openApply}>
+              Postuler
+            </button>
           ) : null}
         </section>
       </article>
 
-      {showModal && (
-        <section className="modal">
-          <section className="modal-content">
-            <h2>Succès</h2>
-            <p className="registered_p">Cette offre a été enregistrée !</p>
-            <Link to="/RegisteredOffers" className="registered_offers">
-              Voir mes offres enregistrées
-            </Link>
-            <button
-              type="button"
-              className="close_button"
-              onClick={handleCloseModal}
-            >
-              Fermer
-            </button>
-          </section>
-        </section>
-      )}
       <article className="the_offer">
         <section className="title_the_offer">
           <img src="/Logos/Icon_inbox.png" alt="box" className="box_png" />

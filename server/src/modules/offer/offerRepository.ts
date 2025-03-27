@@ -20,7 +20,7 @@ type City = {
 };
 
 class offerRepository {
-  async create(offer: Omit<Offer, "id">) {
+  async create(offer: Omit<Offer, "id">, stacks: number[]) {
     const {
       title,
       city,
@@ -46,7 +46,16 @@ class offerRepository {
         offer.contract_id,
       ],
     );
+    const offerId = result.insertId;
 
+    if (stacks && stacks.length > 0) {
+      const offerStacks = stacks.map((stackId) => [offerId, stackId]);
+
+      await DatabaseClient.query(
+        "INSERT INTO offer_stack (offer_id, stack_id) VALUES ?",
+        [offerStacks],
+      );
+    }
     return result.insertId;
   }
 
@@ -103,14 +112,14 @@ GROUP BY offer.id`,
 
   async read(id: number) {
     const [rows] = await DatabaseClient.query<Rows>(
-      "SELECT offer.id, offer.title, offer.description, offer.city, offer.background, offer.salary, offer.profile, contract.name AS contract_name, work_condition.name AS work_condition_name, company.name AS company_name, company.description AS company_description, company.id as company_id, company.logo AS company_logo, GROUP_CONCAT(stack.name SEPARATOR ', ') AS stack_names FROM offer INNER JOIN company ON offer.company_id = company.id INNER JOIN offer_stack ON offer.id = offer_stack.offer_id INNER JOIN stack ON offer_stack.stack_id = stack.id INNER JOIN contract ON offer.contract_id = contract.id INNER JOIN work_condition ON offer.work_condition_id=work_condition.id WHERE offer.id = ? GROUP BY offer.id, company.id",
+      "SELECT offer.*, contract.name AS contract_name, work_condition.name AS work_condition_name, company.name AS company_name, company.description AS company_description, company.id as company_id, company.logo AS company_logo, GROUP_CONCAT(stack.name SEPARATOR ', ') AS stack_names, GROUP_CONCAT(stack.id SEPARATOR ', ') AS stack_ids FROM offer INNER JOIN company ON offer.company_id = company.id INNER JOIN offer_stack ON offer.id = offer_stack.offer_id INNER JOIN stack ON offer_stack.stack_id = stack.id INNER JOIN contract ON offer.contract_id = contract.id INNER JOIN work_condition ON offer.work_condition_id=work_condition.id WHERE offer.id = ? GROUP BY offer.id, company.id",
       [id],
     );
 
     return rows.length > 0 ? rows[0] : null;
   }
 
-  async update(offer: Offer) {
+  async update(offer: Offer, stacks: number[]) {
     const [result] = await DatabaseClient.query<Result>(
       "update offer set title = ?, description = ?, city = ?, background = ?, salary = ?, profile = ?,  work_condition_id = ?, company_id = ?, contract_id = ? where id = ?",
       [
@@ -126,6 +135,14 @@ GROUP BY offer.id`,
         offer.id,
       ],
     );
+    if (stacks && stacks.length > 0) {
+      const offerStacks = stacks.map((stackId) => [offer.id, stackId]);
+
+      await DatabaseClient.query(
+        "INSERT INTO offer_stack (offer_id, stack_id) VALUES ?",
+        [offerStacks],
+      );
+    }
 
     return result.affectedRows;
   }

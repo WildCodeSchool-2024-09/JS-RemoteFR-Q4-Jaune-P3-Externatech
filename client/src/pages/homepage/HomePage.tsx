@@ -65,7 +65,7 @@ export default function HomePage() {
             offers.map((offer) => (
               <li key={offer.id}>
                 {" "}
-                <OfferCard offer={offer} />
+                <OfferCard offer={offer} editable={false} />
               </li>
             ))
           ) : (
@@ -91,7 +91,9 @@ export default function HomePage() {
         <ul className="scroll-card-container">
           {companies.map((company) => (
             <li key={company.id}>
-              <CompanyCard company={company} />
+              <Link to={`./companies/${company.id}`}>
+                <CompanyCard company={company} />
+              </Link>
             </li>
           ))}
         </ul>

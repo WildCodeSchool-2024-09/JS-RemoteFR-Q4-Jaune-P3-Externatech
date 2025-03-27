@@ -4,23 +4,37 @@ import { useEffect, useState } from "react";
 function OfferForm({
   children,
   value,
+  stacks,
   errorMessage,
   onSubmit,
 }: OfferFormProps) {
   const [formData, setFormData] = useState(value);
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
   ) => {
     const { name, value } = event.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]:
-        ["work_condition_id", "contract_id", "salary"].includes(name) &&
-        value !== ""
-          ? Number(value)
-          : value,
-    }));
+
+    if (name === "stacks" && event.target instanceof HTMLSelectElement) {
+      const selectedStacks = Array.from(event.target.options)
+        .filter((option) => option.selected)
+        .map((option) => Number(option.value));
+      setFormData((prev) => ({
+        ...prev,
+        stacks: selectedStacks,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]:
+          ["work_condition_id", "contract_id", "salary"].includes(name) &&
+          value !== ""
+            ? Number(value)
+            : value,
+      }));
+    }
   };
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -72,8 +86,7 @@ function OfferForm({
         </label>
         <label>
           Quel type de profil recherchez-vous ? *
-          <input
-            type="text"
+          <textarea
             name="profile"
             value={formData.profile}
             onChange={handleChange}
@@ -81,12 +94,26 @@ function OfferForm({
         </label>
         <label>
           Décrivez les missions et attentes du poste *
-          <input
-            type="text"
+          <textarea
             name="description"
             value={formData.description}
             onChange={handleChange}
           />
+        </label>
+        <label>
+          Sélectionnez les technologies associées *
+          <select
+            name="stacks"
+            multiple
+            value={formData.stacks.map(String)}
+            onChange={handleChange}
+          >
+            {stacks.map((stack) => (
+              <option key={stack.id} value={stack.id}>
+                {stack.name}
+              </option>
+            ))}
+          </select>
         </label>
         <label>
           Le poste est-il en télétravail ? *

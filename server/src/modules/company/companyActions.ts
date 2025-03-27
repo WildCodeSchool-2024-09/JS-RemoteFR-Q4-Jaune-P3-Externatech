@@ -27,6 +27,21 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
+const readGeneralDetails: RequestHandler = async (req, res, next) => {
+  try {
+    const companyId = Number(req.params.id);
+    const company = await companyRepository.readGeneralDetails(companyId);
+
+    if (company == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(company);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add: RequestHandler = async (req, res, next) => {
   try {
     const newCompany = {
@@ -42,6 +57,14 @@ const add: RequestHandler = async (req, res, next) => {
 
     res.status(201).json({ insertId });
   } catch (err) {
+    if (typeof err === "object" && err !== null && "code" in err) {
+      const error = err as { code: string };
+
+      if (error.code === "ER_DUP_ENTRY") {
+        void res.status(400).json({ error: "Cet email est déjà utilisé." });
+        return;
+      }
+    }
     next(err);
   }
 };
@@ -86,4 +109,4 @@ const edit: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, add, destroy, edit };
+export default { browse, read, readGeneralDetails, add, destroy, edit };

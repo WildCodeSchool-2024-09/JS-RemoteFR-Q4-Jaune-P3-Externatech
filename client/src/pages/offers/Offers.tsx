@@ -52,10 +52,11 @@ export default function Offers() {
         <span className="offersCount">{filteredOffers.length}</span>
       </div>
       <div className="offerGradientBar" />
+
       <section className="resultSearche">
         {filteredOffers.length > 0 ? (
           filteredOffers.map((offer) => (
-            <OfferCard key={offer.id} offer={offer} />
+            <OfferCard key={offer.id} offer={offer} editable={false} />
           ))
         ) : (
           <p className="no-offers">

@@ -61,6 +61,14 @@ class CompanyRepository {
     return rows[0] as Company;
   }
 
+  async readGeneralDetails(id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      "select company.name, company.logo, company.description, company.siret, company.address, company.postalCode, company.city, company.size, company.website from company where id = ?",
+      [id],
+    );
+    return rows[0] as Company;
+  }
+
   async readAll() {
     const [rows] = await databaseClient.query<Rows>("select * from company");
 
