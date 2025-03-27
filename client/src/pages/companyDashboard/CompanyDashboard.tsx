@@ -101,6 +101,7 @@ function CompanyDashboard() {
         Bienvenue {company.name}
         <img src={company.logo} alt={`logo de ${company.name}`} />
       </h1>
+
       <main className="company-dashboard">
         <h2>
           Le <strong> RÉCAPUTILATIF</strong>
@@ -124,7 +125,6 @@ function CompanyDashboard() {
                 <li>{activeCandidates}</li>
               </ul>
             </article>
-
             <article>
               <h3>
                 <a href="#my-candidates"> Candidature(s) acceptée(s)</a>
@@ -157,7 +157,7 @@ function CompanyDashboard() {
               offers.map((offer) => (
                 <li key={offer.id}>
                   {" "}
-                  <OfferCard offer={offer} />
+                  <OfferCard offer={offer} editable={true} />
                   <Link
                     className="colored-box link-to-applies"
                     to={`/companies/dashboard/candidates-offers/${offer.id}`}

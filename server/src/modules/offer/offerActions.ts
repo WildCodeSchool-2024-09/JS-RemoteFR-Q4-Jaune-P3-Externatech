@@ -61,7 +61,7 @@ const edit: RequestHandler = async (req, res, next) => {
       contract_id: req.body.contract_id,
     };
 
-    const affectedRows = await offerRepository.update(offer);
+    const affectedRows = await offerRepository.update(offer, req.body.stacks);
 
     if (affectedRows === 0) {
       res.sendStatus(404);

@@ -11,7 +11,9 @@ function OfferForm({
   const [formData, setFormData] = useState(value);
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
   ) => {
     const { name, value } = event.target;
 
@@ -84,8 +86,7 @@ function OfferForm({
         </label>
         <label>
           Quel type de profil recherchez-vous ? *
-          <input
-            type="text"
+          <textarea
             name="profile"
             value={formData.profile}
             onChange={handleChange}
@@ -93,8 +94,7 @@ function OfferForm({
         </label>
         <label>
           Décrivez les missions et attentes du poste *
-          <input
-            type="text"
+          <textarea
             name="description"
             value={formData.description}
             onChange={handleChange}
