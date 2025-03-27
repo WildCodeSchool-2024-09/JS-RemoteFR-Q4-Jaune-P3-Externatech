@@ -2,8 +2,8 @@ import "./OfferDetails.css";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Apply from "../../components/Apply/Apply";
-import Login from "../../components/NavBar/Login";
+import Apply from "../../components/apply/Apply";
+import Login from "../../components/navbar/Login";
 import { useAuth } from "../../services/AuthContext";
 
 export default function OfferDetails() {

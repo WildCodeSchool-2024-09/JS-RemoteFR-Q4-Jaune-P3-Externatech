@@ -12,17 +12,17 @@ import App from "./App";
 import { AuthProvider } from "./services/AuthContext";
 
 // Import pages
-import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
-import GeneralConditions from "./pages/GeneralConditions/GeneralConditions";
-import LegalInformations from "./pages/LegalInformations/LegalInformations";
-import OfferDetails from "./pages/OfferDetails/OfferDetails";
-import RegisteredOffers from "./pages/RegisteredOffers/RegisteredOffers";
 import CandidateDashboard from "./pages/candidateDashboard/CandidateDashboard";
 import Companies from "./pages/companies/Companies";
 import CompanyApplies from "./pages/companyApplies/CompanyApplies";
-import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
-import HomePage from "./pages/homepage/HomePage";
+import CompanyDashboard from "./pages/companyDashboard/CompanyDashboard";
+import CompanyInformation from "./pages/companyInformation/CompanyInformation";
+import GeneralConditions from "./pages/generalConditions/GeneralConditions";
+import HomePage from "./pages/homePage/HomePage";
+import LegalInformations from "./pages/legalInformations/LegalInformations";
+import OfferDetails from "./pages/offerDetails/OfferDetails";
 import Offers from "./pages/offers/Offers";
+import RegisteredOffers from "./pages/registeredOffers/RegisteredOffers";
 
 //Import API requests
 import {
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/companies/dashboard",
-        element: <CompanyDasboard />,
+        element: <CompanyDashboard />,
         loader: async () => {
           const company = await getCompanyAuth();
           const offers = await getOffersByCompany();
@@ -157,6 +157,7 @@ if (rootElement == null) {
 // Render the app inside the root element
 createRoot(rootElement).render(
   <StrictMode>
+    ,
     <AuthProvider>
       <RouterProvider router={router} />
     </AuthProvider>

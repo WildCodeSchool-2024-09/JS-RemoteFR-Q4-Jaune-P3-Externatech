@@ -1,5 +1,5 @@
 import axios from "axios";
-import "./SignUp.css";
+import "./signUp.css";
 import { useState } from "react";
 import SvgIcons from "../SvgIcons";
 import Login from "./Login";

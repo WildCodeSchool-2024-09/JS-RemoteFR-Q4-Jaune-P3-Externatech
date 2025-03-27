@@ -1,10 +1,10 @@
-import CompanyCard from "../../components/company-card/CompanyCard";
+import CompanyCard from "../../components/companyCard/CompanyCard";
 import "./homePage.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
-import OfferCard from "../../components/Offer-card/OfferCard";
+import OfferCard from "../../components/offerCard/OfferCard";
 
 export default function HomePage() {
   const [searchValue, setSearchValue] = useState("");

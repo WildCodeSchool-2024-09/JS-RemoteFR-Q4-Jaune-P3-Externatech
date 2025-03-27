@@ -1,4 +1,4 @@
-import "./company-card.css";
+import "./companyCard.css";
 
 export default function CompanyCard({ company }: CompanyDataProps) {
   return (

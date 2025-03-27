@@ -1,5 +1,5 @@
 import { useRevalidator } from "react-router-dom";
-import "./candidate-card.css";
+import "./candidateCard.css";
 import axios from "axios";
 
 export default function CandidateCard({ candidateOffer }: CandidateOfferProps) {
@@ -61,7 +61,9 @@ export default function CandidateCard({ candidateOffer }: CandidateOfferProps) {
             type="button"
             onClick={() =>
               window.open(
-                `${import.meta.env.VITE_API_URL}/uploads/resumes/${candidateOffer.resume}`,
+                `${import.meta.env.VITE_API_URL}/uploads/resumes/${
+                  candidateOffer.resume
+                }`,
                 "_blank",
               )
             }

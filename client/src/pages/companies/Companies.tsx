@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
-import CompanyCard from "../../components/company-card/CompanyCard";
+import CompanyCard from "../../components/companyCard/CompanyCard";
 import "./Companies.css";
 
 export default function Companies() {
