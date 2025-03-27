@@ -1,5 +1,6 @@
 import { Link, useNavigate, useRevalidator } from "react-router-dom";
-import "./offer-card.css";
+import "./offerCard.css";
+
 import axios from "axios";
 import { useAuth } from "../../services/AuthContext";
 

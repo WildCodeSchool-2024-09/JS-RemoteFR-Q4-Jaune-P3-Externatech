@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import Hero from "../../components/Hero/Hero";
-import OfferCard from "../../components/Offer-card/OfferCard";
+import Hero from "../../components/hero/Hero";
+import OfferCard from "../../components/offerCard/OfferCard";
 import "./offers.css";
 
 export default function Offers() {

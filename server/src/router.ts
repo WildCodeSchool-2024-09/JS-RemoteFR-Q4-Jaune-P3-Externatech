@@ -15,7 +15,7 @@ import uploadResume from "./middlewares/uploadResume";
 /* *********************************************************************** */
 
 import candidateActions from "./modules/candidate/candidateActions";
-import candidateOfferActions from "./modules/candidate_offer/candidateOfferActions";
+import candidateOfferActions from "./modules/candidateOffer/candidateOfferActions";
 import companyActions from "./modules/company/companyActions";
 import contractActions from "./modules/contract/contractActions";
 import offerActions from "./modules/offer/offerActions";

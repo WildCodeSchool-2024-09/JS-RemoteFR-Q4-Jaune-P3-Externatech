@@ -1,7 +1,7 @@
 import "./footer.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Login from "../NavBar/Login";
+import Login from "../navbar/Login";
 
 export default function Footer() {
   const [isModalOpen, setIsModalOpen] = useState(false);

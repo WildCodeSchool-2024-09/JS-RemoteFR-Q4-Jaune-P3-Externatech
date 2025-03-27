@@ -1,7 +1,7 @@
 import "./candidateDashboard.css";
 
 import { useLoaderData } from "react-router-dom";
-import OfferCard from "../../components/Offer-card/OfferCard";
+import OfferCard from "../../components/offerCard/OfferCard";
 import "./candidateDashboard.css";
 
 export default function CandidateDashboard() {

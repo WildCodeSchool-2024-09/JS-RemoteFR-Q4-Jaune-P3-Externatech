@@ -1,6 +1,6 @@
 import { Link, useLoaderData } from "react-router-dom";
-import CandidateCard from "../../components/Candidate-card/CandidateCard";
-import "./company-applies.css";
+import CandidateCard from "../../components/candidateCard/CandidateCard";
+import "./companyApplies.css";
 
 function CompanyApplies() {
   const applies = useLoaderData() as CandidateOfferData[];

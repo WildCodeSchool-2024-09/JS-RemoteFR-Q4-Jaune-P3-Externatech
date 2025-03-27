@@ -5,9 +5,9 @@ import { useRevalidator } from "react-router-dom";
 
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import OfferForm from "./OfferForm";
-import "./company-dashboard.css";
-import CandidateCard from "../../components/Candidate-card/CandidateCard";
-import OfferCard from "../../components/Offer-card/OfferCard";
+import "./companyDashboard.css";
+import CandidateCard from "../../components/candidateCard/CandidateCard";
+import OfferCard from "../../components/offerCard/OfferCard";
 
 function CompanyDashboard() {
   const { company, offers, candidatesByCompany, stacks } = useLoaderData() as {

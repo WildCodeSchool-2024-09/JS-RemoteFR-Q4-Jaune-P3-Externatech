@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./company-edit-offer.css";
-import "./company-dashboard.css";
+import "./companyDashboard.css";
 import "./offerForm.css";
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";

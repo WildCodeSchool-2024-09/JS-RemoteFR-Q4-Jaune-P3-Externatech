@@ -5,7 +5,7 @@ import { useRevalidator } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 
-import "./CompanyInformations.css";
+import "./companyInformation.css";
 
 export default function CompanyInformation() {
   const { revalidate } = useRevalidator();
