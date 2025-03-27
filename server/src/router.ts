@@ -9,6 +9,7 @@ import formApply from "./middlewares/formApply";
 import formCandidate from "./middlewares/formCandidate";
 import formCompany from "./middlewares/formCompany";
 import formOffer from "./middlewares/formOffer";
+import uploadLogo from "./middlewares/uploadLogo";
 import uploadResume from "./middlewares/uploadResume";
 
 /* *********************************************************************** */
@@ -41,6 +42,7 @@ router.get(
 
 router.post(
   "/api/companies",
+  uploadLogo.uploadFile,
   formCompany.validate,
   authActions.hashPassword,
   companyActions.add,

@@ -6,14 +6,14 @@ const companySchema = Joi.object({
     "any.required": "Le nom est obligatoire",
     "string.empty": "Le champ ne peut pas être vide",
   }),
-  logo: Joi.string().max(100).required().messages({
+  logo: Joi.any().required().messages({
     "any.required": "Le champ logo est obligatoire",
-    "string.empty": "Le champ logo ne peut pas être vide",
   }),
   description: Joi.string().required().messages({
     "any.required": "Ce champ est obligatoire",
     "string.empty": "Le champ ne peut pas être vide",
   }),
+  address: Joi.string().optional(),
   siret: Joi.string().required().messages({
     "string.empty": "Ce champ doit contenir 14 chiffres",
     "any.required": "Ce champ est obligatoire",
@@ -63,10 +63,8 @@ const companyUpdateSchema = Joi.object({
     "any.required": "Le champ logo est obligatoire",
     "string.empty": "Le champ logo ne peut pas être vide",
   }),
-  address: Joi.string().max(100).required().messages({
-    "any.required": "Le champ rue est obligatoire",
-    "string.empty": "Le champ rue ne peut pas être vide",
-  }),
+  address: Joi.string().optional(),
+
   postalCode: Joi.string().required().messages({
     "any.required": "Ce champ est obligatoire",
     "string.empty": "Le champ ne peut pas être vide",

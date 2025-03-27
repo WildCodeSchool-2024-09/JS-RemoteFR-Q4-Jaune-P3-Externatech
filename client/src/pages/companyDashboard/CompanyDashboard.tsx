@@ -99,7 +99,10 @@ function CompanyDashboard() {
     <>
       <h1 className="title-company-dashboard">
         Bienvenue {company.name}
-        <img src={company.logo} alt={`logo de ${company.name}`} />
+        <img
+          src={`${import.meta.env.VITE_API_URL}/uploads/logo/${company.logo}`}
+          alt={`logo de ${company.name}`}
+        />
       </h1>
 
       <main className="company-dashboard">
