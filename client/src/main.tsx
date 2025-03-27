@@ -13,6 +13,7 @@ import { AuthProvider } from "./services/AuthContext";
 
 // Import pages
 import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import GeneralConditions from "./pages/GeneralConditions/GeneralConditions";
 import LegalInformations from "./pages/LegalInformations/LegalInformations";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
@@ -49,6 +50,7 @@ import {
 const router = createBrowserRouter([
   {
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
