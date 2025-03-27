@@ -82,6 +82,7 @@ class CandidateOfferRepository {
   candidate.firstname AS candidate_firstname,
   company.logo AS company_logo,
   offer.title AS offer_title,
+  offer.id AS id,
   application_status.name AS status,
   contract.name AS contract_name,
   work_condition.name AS work_condition_name,
