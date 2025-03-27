@@ -4,6 +4,9 @@
   width: 80vw;
   margin: 2rem auto;
   border: solid 1px var(--tertiary);
+  & img {
+    width: 100%;
+  }
 }
 
 .offer-card img.offer-background {
