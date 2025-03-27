@@ -1,12 +1,7 @@
 // Import necessary modules from React and React Router
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import {
-  Navigate,
-  RouterProvider,
-  createBrowserRouter,
-  useRouteError,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 /* ************************************************************************* */
 
@@ -48,26 +43,13 @@ import {
 } from "./services/requests";
 
 /* ************************************************************************* */
-function ErrorBoundary() {
-  const error = useRouteError();
-  console.error(error);
-  const typeError = error as {
-    status?: number;
-    message?: string;
-    data?: string;
-  };
 
-  const errorMessage = typeError.message || typeError.data;
-  const errorCode = typeError.status;
-
-  return <Navigate to="/Error" state={{ errorMessage, errorCode }} replace />;
-}
 // Create router configuration with routes
 // You can add more routes as you build out your app!
 const router = createBrowserRouter([
   {
     element: <App />,
-    errorElement: <ErrorBoundary />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -159,10 +141,6 @@ const router = createBrowserRouter([
       {
         path: "/GeneralConditions",
         element: <GeneralConditions />,
-      },
-      {
-        path: "/Error",
-        element: <ErrorPage />,
       },
     ],
   },

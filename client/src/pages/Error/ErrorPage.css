@@ -8,8 +8,18 @@
   gap: 5rem;
 }
 
+.error_title {
+  margin-top: 15rem;
+}
+
 .error_message {
   text-align: center;
+}
+
+.back_to_home {
+  border: var(--secundary) 2px solid;
+  padding: 0.5rem;
+  border-radius: 8px;
 }
 
 @media screen and (min-width: 900px) {

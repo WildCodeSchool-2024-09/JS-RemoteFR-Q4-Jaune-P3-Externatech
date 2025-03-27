@@ -1,13 +1,21 @@
-import { useLocation } from "react-router-dom";
+import { Link, useRouteError } from "react-router-dom";
 import ErrorImage from "../../components/Error/Error";
 import "./ErrorPage.css";
 
 export default function ErrorPage() {
-  const location = useLocation();
-  const { errorMessage, errorCode } = location.state || {
-    errorMessage: "An unexpected error occurred.",
-    errorCode: 500,
+  const error = useRouteError();
+  console.error(error);
+  const typeError = error as {
+    status?: number;
+    message?: string;
+    data?: string;
   };
+
+  const errorMessage = typeError.message || typeError.data;
+  const errorCode = typeError.status || 500;
+
+  console.error("Error Code:", errorCode);
+  console.error("Error Message:", errorMessage);
 
   return (
     <main className="error_allpage">
@@ -18,6 +26,9 @@ export default function ErrorPage() {
       <div className="error_image">
         <ErrorImage />
       </div>
+      <Link to="/" className="back_to_home">
+        <strong>Retour à la page d'accueil</strong>
+      </Link>
     </main>
   );
 }
