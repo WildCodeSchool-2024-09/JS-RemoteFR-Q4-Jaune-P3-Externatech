@@ -9,6 +9,9 @@ function OfferCard({ offer, editable }: OfferDataProps) {
   const isOnCompanyDashboardPage = location.pathname.startsWith(
     "/companies/dashboard",
   );
+  const isOnCandidateDashboardPage = location.pathname.startsWith(
+    "/candidates/dashboard",
+  );
   const { revalidate } = useRevalidator();
 
   const deleteOffer = (id: number) => {
@@ -46,7 +49,7 @@ function OfferCard({ offer, editable }: OfferDataProps) {
         </div>
         <div className="company-info">
           <h3>{offer.title}</h3>
-          {role === "candidate" ? (
+          {isOnCandidateDashboardPage ? (
             <p className="status">{offer.status}</p>
           ) : null}
           <ul>

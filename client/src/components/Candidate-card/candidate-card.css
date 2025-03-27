@@ -40,6 +40,7 @@
       color: var(--fourth);
       border-radius: 5px;
       margin-bottom: 1rem;
+      padding: 0.5rem 0;
     }
   }
   & .candidate-actions {
@@ -51,12 +52,12 @@
     gap: 1rem;
   }
   & .candidate-actions button:first-child {
-    width: 47.5%;
+    width: 47%;
   }
   & .candidate-actions button:not(:first-child) {
     border: 2px solid var(--fourth);
     color: var(--fourth);
-    width: 47.5%;
+    width: 47%;
   }
   & .status {
     width: fit-content;
