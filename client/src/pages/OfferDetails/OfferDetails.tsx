@@ -37,7 +37,11 @@ export default function OfferDetails() {
       <Apply isOpen={isApplyOpen} onClose={closeApply} />
       <article className="presentation">
         <section className="title_logo">
-          <img src={offer.company_logo} alt="logo" className="logo_company" />
+          <img
+            src={`${import.meta.env.VITE_API_URL}/uploads/logo/${offer.company_logo}`}
+            alt="logo"
+            className="logo_company"
+          />
           <h1 className="offername">{offer.company_name}</h1>
         </section>
         <h2 className="offertitle">{offer.title}</h2>
@@ -86,7 +90,11 @@ export default function OfferDetails() {
           <h2 className="the_company_title">L'entreprise</h2>
         </section>
         <section className="title_logo_2">
-          <img src={offer.company_logo} alt="logo" className="logo_company" />
+          <img
+            src={`${import.meta.env.VITE_API_URL}/uploads/logo/${offer.company_logo}`}
+            alt="logo"
+            className="logo_company"
+          />
           <h1 className="offername">{offer.company_name}</h1>
         </section>
         <p>

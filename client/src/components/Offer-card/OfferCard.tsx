@@ -35,7 +35,10 @@ function OfferCard({ offer, editable }: OfferDataProps) {
           alt="équipe dans un bureau"
         />
         <div className="header-card">
-          <img src={offer.company_logo} alt="logo" />
+          <img
+            src={`${import.meta.env.VITE_API_URL}/uploads/logo/${offer.company_logo}`}
+            alt="logo"
+          />
           <div className="remote">
             <img src="/icon-home.png" alt="maison" />
             <p>{offer.work_condition_name}</p>

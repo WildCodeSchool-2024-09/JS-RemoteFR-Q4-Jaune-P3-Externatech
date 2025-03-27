@@ -9,7 +9,6 @@ export default function Companies() {
     <div className="containerAll_companies">
       <div className="containerTop">
         <h2>Les ENTREPRISES </h2>
-        {/* <span className="offersCount">{allCompanies.length}</span> */}
       </div>
       <div className="offerGradientBar_companies" />
       <section className="resultSearche">
