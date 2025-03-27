@@ -138,7 +138,8 @@ const router = createBrowserRouter([
         element: <CompanyApplies />,
         loader: async ({ params }) => {
           const applies = await getCandidatesByOffer(params.offerId);
-          return applies || null;
+          const offer = await getOfferDetails(params.offerId);
+          return { applies, offer };
         },
       },
       {

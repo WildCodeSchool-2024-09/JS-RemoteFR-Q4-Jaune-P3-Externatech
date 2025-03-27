@@ -32,3 +32,32 @@
     background-color: var(--tertiary);
   }
 }
+.no-offer {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin: 1.2rem;
+  & p {
+    font-size: 0.9rem;
+  }
+  & h2 {
+    position: relative;
+    padding: 2rem 0 1rem 0;
+    font-size: 1.5rem;
+  }
+  & h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 0;
+    height: 0.2rem;
+    background-color: var(--tertiary);
+  }
+  & h2:first-child {
+    margin: 0 auto;
+  }
+  & article {
+    margin: 1rem auto;
+  }
+}
