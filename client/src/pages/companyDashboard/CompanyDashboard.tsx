@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { useRevalidator } from "react-router-dom";
 
+import { Bounce, ToastContainer, toast } from "react-toastify";
 import OfferForm from "./OfferForm";
 import "./companyDashboard.css";
 import CandidateCard from "../../components/candidateCard/CandidateCard";
@@ -16,16 +17,12 @@ function CompanyDashboard() {
     candidatesByCompany: CandidateOfferData[];
   };
 
-  /***************DYNAMICS DATAS ********************** */
-  const activeOffers =
-    offers.length <= 1
-      ? `${offers.length} offre active`
-      : `${offers.length} offres actives`;
+  const validator = useRevalidator();
 
-  const activeCandidates =
-    candidatesByCompany.length <= 1
-      ? `${candidatesByCompany.length} candidature`
-      : `${candidatesByCompany.length} candidatures`;
+  /***************DYNAMICS DATAS ********************** */
+  const activeOffers = offers.length;
+
+  const activeCandidates = candidatesByCompany.length;
 
   let countAcceptedApplies = 0;
   for (const apply of candidatesByCompany) {
@@ -33,10 +30,6 @@ function CompanyDashboard() {
       countAcceptedApplies += 1;
     }
   }
-  const acceptedApplies =
-    countAcceptedApplies <= 1
-      ? `${countAcceptedApplies} candidature acceptée`
-      : `${countAcceptedApplies} candidatures acceptées`;
 
   const date = new Date(company.updated_at);
   const formattedDate = new Intl.DateTimeFormat("fr-FR", {
@@ -72,6 +65,7 @@ function CompanyDashboard() {
       });
       setErrorMessage("");
       console.info("Offre ajoutée avec succès !");
+      validator.revalidate();
       toast.success("Offre ajoutée avec succès !", {
         position: "bottom-center",
         autoClose: 2000,
@@ -102,112 +96,143 @@ function CompanyDashboard() {
   };
   /***************************************************************** */
   return (
-    <main className="company-dashboard">
-      <h1>
+    <>
+      <h1 className="title-company-dashboard">
         Bienvenue {company.name}
-        <img src={company.logo} alt={`logo de ${company.name}`} />
+        <img
+          src={`${import.meta.env.VITE_API_URL}/uploads/logo/${company.logo}`}
+          alt={`logo de ${company.name}`}
+        />
       </h1>
-      <section className="general-view">
-        <div className="top">
-          <div className="box">
-            <h3>
-              <a href="#my-offers">Mes offres</a>
-            </h3>
-            <ul className="square-list">
-              <li>{activeOffers}</li>
-            </ul>
-          </div>
-          <div className="box">
-            <h3>
-              <a href="#my-candidates">Mes candidats</a>
-            </h3>
-            <ul className="square-list">
-              <li>{activeCandidates}</li>
-              <li>{acceptedApplies}</li>
-            </ul>
-          </div>
-        </div>
-        <Link className="light-box-link" to="/companies/dashboard/information">
-          <div className="box">
-            <h3>Mes infos</h3>
-            <ul className="square-list">
-              <li>dernière actualisation le {formattedDate}</li>
-            </ul>
-          </div>
-        </Link>
-      </section>
-      <section className="display">
-        <h2 id="my-offers">Mes OFFRES</h2>
-        <ul className="scroll-card-container">
-          {offers.length > 0 ? (
-            offers.map((offer) => (
-              <li key={offer.id}>
-                {" "}
-                <OfferCard offer={offer} />
-                <Link
-                  className="colored-box link-to-applies"
-                  to={`/companies/dashboard/candidates-offers/${offer.id}`}
-                >
-                  voir les candidatures
-                </Link>
-              </li>
-            ))
-          ) : (
-            <li>Pas d'offre active</li>
-          )}
-        </ul>
-        <div className="actions">
-          <a className="light-box" href="#add-offer">
-            AJOUTER UNE OFFRE
-          </a>
-        </div>
-        <h2 id="my-candidates">Mes CANDIDATS</h2>
-        <ul className="scroll-card-container">
-          {candidatesByCompany.length > 0 ? (
-            candidatesByCompany.map((candidateOffer) => (
-              <li key={candidateOffer.id}>
-                <CandidateCard candidateOffer={candidateOffer} />
-              </li>
-            ))
-          ) : (
-            <li>Pas de candidature en cours</li>
-          )}
-        </ul>
 
-        <h2>Ma DESCRIPTION</h2>
-        <p>{company.description}</p>
-        <div className="actions">
-          <Link className="colored-box" to="/">
-            MODIFIER
+      <main className="company-dashboard">
+        <h2>
+          Le <strong> RÉCAPUTILATIF</strong>
+        </h2>
+        <div className="gradientBar" />
+        <section className="general-view">
+          <div className="top">
+            <article>
+              <h3>
+                <a href="#my-offers">Offre(s)</a>
+              </h3>
+              <ul className="square-list">
+                <li>{activeOffers}</li>
+              </ul>
+            </article>
+            <article>
+              <h3>
+                <a href="#my-candidates">Candidature(s)</a>
+              </h3>
+              <ul className="square-list">
+                <li>{activeCandidates}</li>
+              </ul>
+            </article>
+            <article>
+              <h3>
+                <a href="#my-candidates"> Candidature(s) acceptée(s)</a>
+              </h3>
+              <ul className="square-list">
+                <li>{countAcceptedApplies} </li>
+              </ul>
+            </article>
+          </div>
+          <Link
+            className="light-box-link"
+            to="/companies/dashboard/information"
+          >
+            <div className="info-resume">
+              <h3>Mes infos</h3>
+              <ul className="square-list">
+                <li>dernière actualisation le {formattedDate}</li>
+              </ul>
+            </div>
           </Link>
-          <Link className="light-box" to="/companies/dashboard/information">
-            VOIR TOUTES MES INFOS
-          </Link>
-        </div>
-      </section>
-      <h2 id="add-offer">Créer une OFFRE</h2>
-      <OfferForm
-        value={newOffer}
-        stacks={stacks}
-        errorMessage={errorMessage}
-        onSubmit={handleOfferSubmit}
-      >
-        AJOUTER UNE OFFRE
-      </OfferForm>
-      <ToastContainer
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce}
-      />{" "}
-    </main>
+        </section>
+        <section className="display">
+          <h2>
+            Mes <strong> OFFRES</strong>
+          </h2>
+          <div className="gradientBar" />
+
+          <ul className="scroll-card-container">
+            {offers.length > 0 ? (
+              offers.map((offer) => (
+                <li key={offer.id}>
+                  {" "}
+                  <OfferCard offer={offer} editable={true} />
+                  <Link
+                    className="colored-box link-to-applies"
+                    to={`/companies/dashboard/candidates-offers/${offer.id}`}
+                  >
+                    voir les candidatures
+                  </Link>
+                </li>
+              ))
+            ) : (
+              <li>Pas d'offre active</li>
+            )}
+          </ul>
+
+          <h2>
+            Mes <strong>CANDIDATS</strong>
+          </h2>
+          <div className="gradientBar" />
+
+          <ul className="scroll-card-container">
+            {candidatesByCompany.length > 0 ? (
+              candidatesByCompany.map((candidateOffer) => (
+                <li key={candidateOffer.id}>
+                  <CandidateCard candidateOffer={candidateOffer} />
+                </li>
+              ))
+            ) : (
+              <li>Pas de candidature en cours</li>
+            )}
+          </ul>
+
+          <h2>
+            Ma <strong>DESCRIPTION</strong>
+          </h2>
+          <div className="gradientBar" />
+
+          <p>{company.description}</p>
+          <div className="actions">
+            <Link className="colored-box" to="/">
+              MODIFIER
+            </Link>
+            <Link className="light-box" to="/companies/dashboard/information">
+              VOIR TOUTES MES INFOS
+            </Link>
+          </div>
+        </section>
+        <h2>
+          Créer une <strong>OFFRE</strong>
+        </h2>
+        <div className="gradientBar" />
+        <OfferForm
+          value={newOffer}
+          stacks={stacks}
+          errorMessage={errorMessage}
+          onSubmit={handleOfferSubmit}
+        >
+          AJOUTER UNE OFFRE
+        </OfferForm>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Bounce}
+        />{" "}
+      </main>
+    </>
   );
 }
 

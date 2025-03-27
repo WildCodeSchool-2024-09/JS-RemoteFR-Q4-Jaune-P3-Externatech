@@ -35,8 +35,8 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
   const [isSignIn, setIsSignIn] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState(false);
+  const [logo, setLogo] = useState(undefined as undefined | File);
   const [error, setError] = useState("");
-
   const toggleCheck = () => {
     setChecked(!checked);
   };
@@ -63,6 +63,12 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
     setError("");
   };
 
+  const handleChangeLogo = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.currentTarget.files && e.currentTarget.files.length > 0) {
+      setLogo(e.currentTarget.files[0]);
+    }
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -75,6 +81,18 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
           description: undefined,
         }
       : { ...credentials, firstname: undefined, lastname: undefined };
+
+    const formData = new FormData();
+    formData.append("name", credentials.name);
+    formData.append("description", credentials.description);
+    formData.append("email", credentials.email);
+    formData.append("password", credentials.password);
+    formData.append("password_confirmation", credentials.password_confirmation);
+    formData.append("siret", credentials.siret);
+
+    if (logo) {
+      formData.append("logo", logo);
+    }
 
     const controller = new AbortController();
 
@@ -100,7 +118,7 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
           });
       } else {
         await axios
-          .post(`${import.meta.env.VITE_API_URL}/api/companies`, dataToSend, {
+          .post(`${import.meta.env.VITE_API_URL}/api/companies`, formData, {
             withCredentials: true,
           })
           .then((response) => {
@@ -159,7 +177,6 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
           </div>
 
           {isCandidate ? (
-            //Form of candidate
             <div className="candidate_form">
               <label htmlFor="candidate-firstname">
                 Prénom<span className="star"> *</span>
@@ -280,7 +297,6 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
               </button>
             </div>
           ) : (
-            // Form for Company
             <div>
               <label htmlFor="company_name">
                 Nom de l'entreprise<span className="star"> *</span>
@@ -313,7 +329,7 @@ export default function SignUp({ isOpen, onClose }: LoginCompanyProps) {
                 type="file"
                 id="company-logo"
                 name="logo"
-                onChange={handleChange}
+                onChange={handleChangeLogo}
                 required
               />
               <label htmlFor="company-description">

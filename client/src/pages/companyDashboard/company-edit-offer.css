@@ -1,0 +1,31 @@
+main.company-edit-offer {
+  & h2 {
+    position: relative;
+    padding: 2rem 0 1rem 0;
+    font-size: 2rem;
+    text-align: left;
+  }
+  & h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 0;
+    height: 0.2rem;
+    background-color: var(--tertiary);
+  }
+  & form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  & button.colored-box {
+    margin-bottom: 2rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  main.company-edit-offer {
+    width: 70vw;
+    margin: 0 auto;
+  }
+}

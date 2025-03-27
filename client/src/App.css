@@ -134,7 +134,7 @@ button:hover {
 }
 
 .scroll-card-container::-webkit-scrollbar-track {
-  background: var(--tertiary);
+  background: var(--light);
 }
 
 .scroll-card-container::-webkit-scrollbar-thumb {
