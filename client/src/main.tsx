@@ -21,7 +21,6 @@ import CandidateDashboard from "./pages/candidateDashboard/CandidateDashboard";
 import Companies from "./pages/companies/Companies";
 import CompanyApplies from "./pages/companyApplies/CompanyApplies";
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
-import CompanyEditOffer from "./pages/companyDashboard/CompanyEditOffer";
 import HomePage from "./pages/homepage/HomePage";
 import Offers from "./pages/offers/Offers";
 
@@ -107,15 +106,6 @@ const router = createBrowserRouter([
             stacks,
             candidatesByCompany,
           };
-        },
-      },
-      {
-        path: "/companies/dashboard/edit-offer/:id",
-        element: <CompanyEditOffer />,
-        loader: async ({ params }) => {
-          const offer = await getOfferDetails(params.id);
-          const stacks = await getStacks();
-          return { offer, stacks };
         },
       },
       {
