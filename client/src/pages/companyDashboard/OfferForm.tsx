@@ -153,15 +153,7 @@ function OfferForm({
             <option value="5">Freelance</option>
           </select>
         </label>
-        <label>
-          Ajoutez votre background
-          <input
-            type="text"
-            name="background"
-            value={formData.background}
-            onChange={handleChange}
-          />
-        </label>
+
         <p className="errorMessage">{errorMessage}</p>
         <button className="colored-box" type="submit">
           {children}
