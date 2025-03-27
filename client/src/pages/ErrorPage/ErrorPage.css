@@ -1,3 +1,21 @@
+.error_allpage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 0 3rem 0;
+  height: 45vh;
+  gap: 5rem;
+}
+
+.error_title {
+  margin-top: 15rem;
+}
+
+.error_message {
+  text-align: center;
+}
+
 .space-loader {
   width: 12.5rem;
   height: 12.5rem;
@@ -97,7 +115,19 @@
   }
 }
 
+.back_to_home {
+  border: var(--secundary) 2px solid;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
 @media screen and (min-width: 900px) {
+  .error_allpage {
+    min-height: 63.5vh;
+  }
+  .error_title {
+    font-size: 3rem;
+  }
   .space-loader {
     width: 25rem;
     height: 25rem;

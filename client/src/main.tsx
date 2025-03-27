@@ -13,7 +13,7 @@ import { AuthProvider } from "./services/AuthContext";
 
 // Import pages
 import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
-import ErrorPage from "./pages/Error/ErrorPage";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import GeneralConditions from "./pages/GeneralConditions/GeneralConditions";
 import LegalInformations from "./pages/LegalInformations/LegalInformations";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";

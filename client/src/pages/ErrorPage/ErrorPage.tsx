@@ -1,5 +1,4 @@
 import { Link, useRouteError } from "react-router-dom";
-import ErrorImage from "../../components/Error/Error";
 import "./ErrorPage.css";
 
 export default function ErrorPage() {
@@ -23,9 +22,15 @@ export default function ErrorPage() {
       <strong>
         <p className="error_message">{errorMessage}</p>
       </strong>
-      <div className="error_image">
-        <ErrorImage />
-      </div>
+      <section className="error_image">
+        <div className="space-loader">
+          <div id="stars" className="stars" />
+          <div className="orbit" />
+          <div className="ring" />
+          <div className="planet" />
+          <div className="satellite" />
+        </div>
+      </section>
       <Link to="/" className="back_to_home">
         <strong>Retour à la page d'accueil</strong>
       </Link>
