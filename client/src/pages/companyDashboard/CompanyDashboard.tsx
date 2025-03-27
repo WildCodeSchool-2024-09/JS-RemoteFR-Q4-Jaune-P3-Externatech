@@ -49,7 +49,8 @@ function CompanyDashboard() {
   const newOffer = {
     title: "",
     city: "",
-    background: "",
+    background:
+      "https://img.freepik.com/photos-gratuite/mise-plat-du-poste-travail-espace-copie-ordinateur-portable_23-2148430879.jpg?t=st=1741708462~exp=1741712062~hmac=fc3ef3ceba416d8f6a8456900ea74ac435386eed51bef95986547d07996280e3&w=1380",
     description: "",
     salary: 0,
     profile: "",
