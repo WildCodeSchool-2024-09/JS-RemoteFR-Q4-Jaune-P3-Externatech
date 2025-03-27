@@ -12,7 +12,6 @@ function CompanyEditOffer() {
     offer: OfferData;
     stacks: StackData[];
   };
-  console.info(offer);
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -40,7 +39,7 @@ function CompanyEditOffer() {
         },
       );
       setErrorMessage("");
-      toast.success("Offre ajoutée avec succès !", {
+      toast.success("Offre modifiée avec succès !", {
         position: "bottom-center",
         autoClose: 2000,
         hideProgressBar: false,
@@ -54,7 +53,7 @@ function CompanyEditOffer() {
       if (axios.isAxiosError(error)) {
         console.error("Erreur lors de la modification de l'offre :", error);
         setErrorMessage(error.response?.data?.error || "Erreur inconnue");
-        toast.error("Erreur lors de l'ajout de l'offre !", {
+        toast.error("Erreur lors de la modification de l'offre !", {
           position: "bottom-center",
           autoClose: 2000,
           hideProgressBar: false,

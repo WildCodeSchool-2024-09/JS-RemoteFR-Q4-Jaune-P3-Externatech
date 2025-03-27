@@ -135,13 +135,19 @@ GROUP BY offer.id`,
         offer.id,
       ],
     );
-    if (stacks && stacks.length > 0) {
-      const offerStacks = stacks.map((stackId) => [offer.id, stackId]);
+    if (stacks) {
+      await DatabaseClient.query("DELETE FROM offer_stack WHERE offer_id = ?", [
+        offer.id,
+      ]);
 
-      await DatabaseClient.query(
-        "INSERT INTO offer_stack (offer_id, stack_id) VALUES ?",
-        [offerStacks],
-      );
+      if (stacks.length > 0) {
+        const offerStacks = stacks.map((stackId) => [offer.id, stackId]);
+
+        await DatabaseClient.query(
+          "INSERT INTO offer_stack (offer_id, stack_id) VALUES ?",
+          [offerStacks],
+        );
+      }
     }
 
     return result.affectedRows;
