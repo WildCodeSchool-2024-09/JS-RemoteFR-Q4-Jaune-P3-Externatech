@@ -27,6 +27,7 @@ export default function CompanyInformation() {
 
   const [updatedCompany, setUpdatedCompany] = useState(companyToUpdate);
   const [isEditing, setIsEditing] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -50,6 +51,8 @@ export default function CompanyInformation() {
           withCredentials: true,
         },
       );
+      setErrorMessage("");
+
       console.info("Données mises à jour avec succès !");
       toast.success("Données mises à jour avec succès !", {
         position: "bottom-center",
@@ -62,16 +65,22 @@ export default function CompanyInformation() {
       });
       revalidate();
     } catch (error) {
-      console.error("Erreur lors de la modification :", error);
-      toast.error("Erreur lors de la modification. Veuillez réessayer.", {
-        position: "bottom-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "light",
-        transition: Bounce,
-      });
+      if (axios.isAxiosError(error)) {
+        console.error("Erreur lors de l'ajout de l'offre :", error);
+        setErrorMessage(error.response?.data.error);
+        toast.error(errorMessage, {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Bounce,
+        });
+      } else {
+        console.error("Une erreur inattendue s'est produite :", error);
+        setErrorMessage("Une erreur inattendue s'est produite.");
+      }
     }
   };
 
@@ -167,6 +176,7 @@ export default function CompanyInformation() {
             value={updatedCompany.description}
             onChange={handleInputChange}
           />
+          <p className="errorMessage">{errorMessage}</p>
 
           <input type="submit" value="Enregistrer" className="colored-box" />
           <ToastContainer
@@ -182,6 +192,7 @@ export default function CompanyInformation() {
             theme="light"
             transition={Bounce}
           />
+
           <button
             type="button"
             className="light-box"
@@ -236,6 +247,7 @@ export default function CompanyInformation() {
           <p className="form_CI">{company.siret}</p>
           <p>Description:</p>
           <p className="form_CI">{company.description}</p>
+
           {location.pathname.endsWith("information") ? (
             <>
               <button
