@@ -153,3 +153,21 @@
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .dialog_signup {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    & .opening_register {
+      & .cancel-box {
+        align-self: center;
+        width: 14.406rem;
+      }
+      & .colored-box {
+        align-items: center;
+        width: 14.406rem;
+      }
+    }
+  }
+}

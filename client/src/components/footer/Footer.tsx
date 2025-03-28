@@ -19,7 +19,7 @@ export default function Footer() {
     <footer>
       <img src="/Logo-app.png" alt="logo" />
       <div>
-        <ul>
+        <ul className="first_part_footer">
           <li>
             <Link to="/">Accueil</Link>
           </li>
@@ -33,7 +33,7 @@ export default function Footer() {
           </li>
         </ul>
         <div />
-        <ul>
+        <ul className="second_part_footer">
           <li>
             <Link to="/GeneralConditions">Conditions générales</Link>
           </li>

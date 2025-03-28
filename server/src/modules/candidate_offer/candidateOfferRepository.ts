@@ -76,26 +76,43 @@ class CandidateOfferRepository {
 
   async readAllCandidateOffersByCandidate(candidateID: number) {
     const [rows] = await DatabaseClient.query<Rows>(
-      `SELECT 
-      c_o.*, 
-      company.name AS company_name, 
-      candidate.firstname AS candidate_firstname,
-      company.logo AS company_logo, 
-      offer.title AS offer_title,
-      application_status.name AS status,
-      contract.name as contract_name,
-      work_condition.name as work_condition_name,
-      offer.background as background,
-      offer.city as offer_city
-    FROM candidate_offer AS c_o
-    JOIN candidate ON candidate.id = c_o.candidate_id
-    JOIN offer ON offer.id = c_o.offer_id  
-    JOIN contract ON contract.id = offer.contract_id
-    JOIN company ON company.id = offer.company_id 
-    JOIN work_condition ON work_condition.id = offer.work_condition_id
-    JOIN application_status ON application_status.id = application_status_id
-    WHERE candidate.id = ?
-    ORDER BY c_o.id`,
+      `SELECT
+  c_o.*,
+  company.name AS company_name,
+  candidate.firstname AS candidate_firstname,
+  company.logo AS company_logo,
+  offer.title AS offer_title,
+  offer.id AS id,
+  application_status.name AS status,
+  contract.name AS contract_name,
+  work_condition.name AS work_condition_name,
+  offer.background AS background,
+  offer.city AS offer_city,
+  GROUP_CONCAT(stack.name ORDER BY stack.name SEPARATOR ', ') AS stack_names
+FROM
+  candidate_offer AS c_o
+JOIN
+  candidate ON candidate.id = c_o.candidate_id
+JOIN
+  offer ON offer.id = c_o.offer_id
+JOIN
+  contract ON contract.id = offer.contract_id
+JOIN
+  company ON company.id = offer.company_id
+JOIN
+  work_condition ON work_condition.id = offer.work_condition_id
+JOIN
+  application_status ON application_status.id = c_o.application_status_id
+LEFT JOIN
+  offer_stack ON offer_stack.offer_id = offer.id
+LEFT JOIN
+  stack ON offer_stack.stack_id = stack.id
+WHERE
+  candidate.id = ?
+GROUP BY
+  c_o.id
+ORDER BY
+  c_o.id;`,
       [candidateID],
     );
     return rows as Candidate_offer[];

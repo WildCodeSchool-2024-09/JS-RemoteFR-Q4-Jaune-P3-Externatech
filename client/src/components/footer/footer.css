@@ -27,12 +27,19 @@ footer div ul li button {
 }
 
 @media screen and (min-width: 768px) {
+  footer {
+    & img {
+      margin-right: 3rem;
+    }
+  }
+
   footer div {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
   }
+
   footer div div {
     width: 2px;
     height: 8rem;
@@ -41,21 +48,29 @@ footer div ul li button {
 
   footer div ul {
     display: flex;
-    width: 35vw;
+    width: auto;
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  footer div ul {
-    margin-left: 4rem;
-  }
-  footer div ul:first-of-type li {
-    margin-left: 6rem;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  footer div ul:first-of-type li {
-    margin-left: 10rem;
+  footer div {
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  footer div ul {
+    margin-left: 0;
+    margin-right: 0;
+    width: auto;
+  }
+
+  footer div ul:first-of-type {
+    margin-left: 0;
+  }
+
+  footer div ul:first-of-type > li {
+    margin-left: 0;
   }
 }

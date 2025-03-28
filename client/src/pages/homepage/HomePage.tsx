@@ -75,7 +75,8 @@ export default function HomePage() {
           {offers.length > 0 ? (
             offers.map((offer) => (
               <li key={offer.id}>
-                <OfferCard offer={offer} />
+                {" "}
+                <OfferCard offer={offer} editable={false} />
               </li>
             ))
           ) : (

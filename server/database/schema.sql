@@ -2,16 +2,16 @@
 CREATE TABLE company (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(100) NOT NULL,
-  logo TEXT NOT NULL,
+  logo VARCHAR(255),
   description TEXT NOT NULL, 
   email VARCHAR(100) NOT NULL UNIQUE,
   hashed_password VARCHAR(200) NOT NULL,
   siret VARCHAR(14) NOT NULL,
-  address VARCHAR(255) NOT NULL,
-  postalCode VARCHAR(255) NOT NULL,
-  city VARCHAR(100) NOT NULL,
-  size VARCHAR (255) NOT NULL,
-  website TEXT NOT NULL,
+  address VARCHAR(255)NOT NULL DEFAULT 'adresse',
+  postalCode VARCHAR(10) NOT NULL DEFAULT 'codePostal',
+  city VARCHAR(100) NOT NULL DEFAULT 'ville',
+  size VARCHAR (255) NOT NULL DEFAULT 'taille',
+  website VARCHAR(255) NOT NULL DEFAULT 'site',
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
@@ -76,6 +76,7 @@ CREATE TABLE candidate_offer (
   offer_id INT UNSIGNED NOT NULL,
   application_status_id INT UNSIGNED NOT NULL DEFAULT 1,
   resume TEXT NULL,
+  UNIQUE KEY (offer_id, candidate_id),
   FOREIGN KEY (offer_id) REFERENCES offer(id) ON DELETE CASCADE,
   FOREIGN KEY (candidate_id) REFERENCES candidate(id) ON DELETE CASCADE,
   FOREIGN KEY (application_status_id) REFERENCES application_status(id) ON DELETE CASCADE
@@ -86,10 +87,10 @@ INSERT INTO company (name, logo, description, email, hashed_password, siret, add
 ('Green Future', '/logo-500-(2).png', 'Entreprise dédiée aux solutions écologiques et durables.', 'contact@greenfuture.com', '$argon2id$v=19$m=65536,t=3,p=4$mhjsza6PK0G8kI7LaJm2gQ$bX5kYl/Xz2Jb2716RdRHoP8+LWCnXKfjyc9SsusFk3Y', "98765432109876", '12 Avenue des Verts', '75002', 'Paris', '16-49', 'https://www.greenfuture.com'),
 ('DataCorp', '/logo-500-(4).png', 'Société experte en analyse de données et business intelligence.', 'contact@datacorp.com', '$argon2id$v=19$m=65536,t=3,p=4$dnPMkZ69DvtnaT5rC2wkuQ$GxkOezr8jaouUpRu+YRkZl3z43jgUFt2m27LHbkI3E4', "54321678901234", '25 Boulevard des Données', '69001', 'Lyon', '50-99', 'https://www.datacorp.com'),
 ('DevStudio', '/logo-500-(6).png', 'Agence de développement web et mobile sur mesure.', 'contact@devstudio.com', '$argon2id$v=19$m=65536,t=3,p=4$M1x4Uer4552/q2y3+BLVTA$Ueiv0XwGr22wRnOTOCuRFYrU9herwsjiiqMOUdy/mDU', "13579246801357", '3 Rue du Développement', '33000', 'Bordeaux', '16-49', 'https://www.devstudio.com'),
-('CyberSecure','https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Entreprise spécialisée en cybersécurité et protection des données.', 'contact@cybersecure.com', '$argon2id$v=19$m=65536,t=3,p=4$IcK0QfINDCvq4nZM88oSMA$H8oOOVuK/Bb1+VbhTs54khT1U5HuTG7v12paRAQcN8A', "24681357902468", '8 Rue de la Cybersécurité', '75003', 'Paris', '100-500', 'https://www.cybersecure.com'),
-('HealthTech', 'https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Société innovante dans le domaine de la santé numérique.', 'contact@healthtech.com', '$argon2id$v=19$m=65536,t=3,p=4$gL4ldMUzAu9kJIDtqWjRtw$JFjh2pQZO7DiIIichNhrbpG3Fvi9phstBKs6XqRKf+8', "75315946803571", '15 Rue de la Santé', '75004', 'Paris', '50-99', 'https://www.healthtech.com'),
-('EcoSolutions','https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Solutions technologiques pour un monde plus vert.', 'contact@ecosolutions.com', '$argon2id$v=19$m=65536,t=3,p=4$SaZLVtpjmr3qEFI9wrOZ3A$KxZZLhQy0mbm9qLiZ7r1QrdkFYy0cCaB7Y5Ka4P6INM', "86420975308642", '30 Rue de l\'Environnement', '13001', 'Marseille', '16-49', 'https://www.ecosolutions.com'),
-('AI Dynamics', 'https://e7.pngegg.com/pngimages/993/800/png-clipart-empty-set-mathematical-notation-computer-icons-mathematics-symbol-mathematics-logo-sign.png', 'Développement d\'intelligences artificielles avancées.', 'contact@aidynamics.com', '$argon2id$v=19$m=65536,t=3,p=4$n40qO5lYLuI8SuBZLu3f/w$MV3TsEHporSTYiP/GcIrFq3877pCGvBQQV2XIN0iqB8', "11223344556677", '20 Rue de l\'Innovation', '69002', 'Lyon', '100-500', 'https://www.aidynamics.com');
+('CyberSecure','/logo-500-7.png', 'Entreprise spécialisée en cybersécurité et protection des données.', 'contact@cybersecure.com', '$argon2id$v=19$m=65536,t=3,p=4$IcK0QfINDCvq4nZM88oSMA$H8oOOVuK/Bb1+VbhTs54khT1U5HuTG7v12paRAQcN8A', "24681357902468", '8 Rue de la Cybersécurité', '75003', 'Paris', '100-500', 'https://www.cybersecure.com'),
+('HealthTech', '/logo-500-8.png', 'Société innovante dans le domaine de la santé numérique.', 'contact@healthtech.com', '$argon2id$v=19$m=65536,t=3,p=4$gL4ldMUzAu9kJIDtqWjRtw$JFjh2pQZO7DiIIichNhrbpG3Fvi9phstBKs6XqRKf+8', "75315946803571", '15 Rue de la Santé', '75004', 'Paris', '50-99', 'https://www.healthtech.com'),
+('EcoSolutions','/logo-500-10.png', 'Solutions technologiques pour un monde plus vert.', 'contact@ecosolutions.com', '$argon2id$v=19$m=65536,t=3,p=4$SaZLVtpjmr3qEFI9wrOZ3A$KxZZLhQy0mbm9qLiZ7r1QrdkFYy0cCaB7Y5Ka4P6INM', "86420975308642", '30 Rue de l\'Environnement', '13001', 'Marseille', '16-49', 'https://www.ecosolutions.com'),
+('AI Dynamics', '/logo-500-11.png', 'Développement d\'intelligences artificielles avancées.', 'contact@aidynamics.com', '$argon2id$v=19$m=65536,t=3,p=4$n40qO5lYLuI8SuBZLu3f/w$MV3TsEHporSTYiP/GcIrFq3877pCGvBQQV2XIN0iqB8', "11223344556677", '20 Rue de l\'Innovation', '69002', 'Lyon', '100-500', 'https://www.aidynamics.com');
 
 
 INSERT INTO stack (name) VALUES ('JavaScript'), ('Python'), ('Swift'), ('C#'), ('Ruby');

@@ -10,8 +10,6 @@ export default function OfferDetails() {
   const offer = useLoaderData() as OfferData;
   const { role } = useAuth();
 
-  const [showModal, setShowModal] = useState(false);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -34,20 +32,16 @@ export default function OfferDetails() {
     document.body.style.overflow = "";
   };
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
   return (
     <main className="all_detail_page">
       <Apply isOpen={isApplyOpen} onClose={closeApply} />
       <article className="presentation">
         <section className="title_logo">
-          <img src={offer.company_logo} alt="logo" className="logo_company" />
+          <img
+            src={`${import.meta.env.VITE_API_URL}/uploads/logo/${offer.company_logo}`}
+            alt="logo"
+            className="logo_company"
+          />
           <h1 className="offername">{offer.company_name}</h1>
         </section>
         <h2 className="offertitle">{offer.title}</h2>
@@ -66,56 +60,16 @@ export default function OfferDetails() {
               <button type="button" className="apply" onClick={openModal}>
                 Postuler
               </button>
-              <button type="button" className="register" onClick={openModal}>
-                <img
-                  src="/Logos/Icon_bookmark.png"
-                  alt="bookmark"
-                  className="bookmark"
-                />
-                Enregistrer
-              </button>
             </>
           ) : null}
           {role === "candidate" ? (
-            <>
-              <button type="button" className="apply" onClick={openApply}>
-                Postuler
-              </button>
-              <button
-                type="button"
-                className="register"
-                onClick={handleOpenModal}
-              >
-                <img
-                  src="/Logos/Icon_bookmark.png"
-                  alt="bookmark"
-                  className="bookmark"
-                />
-                Enregistrer
-              </button>
-            </>
+            <button type="button" className="apply" onClick={openApply}>
+              Postuler
+            </button>
           ) : null}
         </section>
       </article>
 
-      {showModal && (
-        <section className="modal">
-          <section className="modal-content">
-            <h2>Succès</h2>
-            <p className="registered_p">Cette offre a été enregistrée !</p>
-            <Link to="/RegisteredOffers" className="registered_offers">
-              Voir mes offres enregistrées
-            </Link>
-            <button
-              type="button"
-              className="close_button"
-              onClick={handleCloseModal}
-            >
-              Fermer
-            </button>
-          </section>
-        </section>
-      )}
       <article className="the_offer">
         <section className="title_the_offer">
           <img src="/Logos/Icon_inbox.png" alt="box" className="box_png" />
@@ -136,7 +90,11 @@ export default function OfferDetails() {
           <h2 className="the_company_title">L'entreprise</h2>
         </section>
         <section className="title_logo_2">
-          <img src={offer.company_logo} alt="logo" className="logo_company" />
+          <img
+            src={`${import.meta.env.VITE_API_URL}/uploads/logo/${offer.company_logo}`}
+            alt="logo"
+            className="logo_company"
+          />
           <h1 className="offername">{offer.company_name}</h1>
         </section>
         <p>

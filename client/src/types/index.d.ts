@@ -67,9 +67,11 @@ interface OfferData {
   contract_id: number;
   contract_name: string;
   work_condition_name: string;
+  work_condition_id?: number;
   company_name: string;
   company_description: string;
   stack_names: string;
+  stack_ids: string;
   status: string;
 }
 
@@ -82,10 +84,12 @@ interface OfferDataForm {
   profile: string;
   work_condition_id: number;
   contract_id: number;
+  stacks: number[];
 }
 
 interface OfferDataProps {
   offer: OfferData;
+  editable: boolean;
 }
 interface CompanyDataProps {
   company: CompanyData;
@@ -94,6 +98,7 @@ interface CompanyDataProps {
 interface OfferFormProps {
   children: ReactNode;
   value: OfferDataForm;
+  stacks: StackData[];
   errorMessage: string;
   onSubmit: (offer: OfferDataForm) => void;
 }

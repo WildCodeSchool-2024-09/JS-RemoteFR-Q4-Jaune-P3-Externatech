@@ -13,6 +13,7 @@ import { AuthProvider } from "./services/AuthContext";
 
 // Import pages
 import CompanyInformation from "./pages/CompanyInformartion/CompanyInformation";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import GeneralConditions from "./pages/GeneralConditions/GeneralConditions";
 import LegalInformations from "./pages/LegalInformations/LegalInformations";
 import OfferDetails from "./pages/OfferDetails/OfferDetails";
@@ -21,6 +22,7 @@ import CandidateDashboard from "./pages/candidateDashboard/CandidateDashboard";
 import Companies from "./pages/companies/Companies";
 import CompanyApplies from "./pages/companyApplies/CompanyApplies";
 import CompanyDasboard from "./pages/companyDashboard/CompanyDashboard";
+import CompanyEditOffer from "./pages/companyDashboard/CompanyEditOffer";
 import HomePage from "./pages/homepage/HomePage";
 import Offers from "./pages/offers/Offers";
 
@@ -48,6 +50,7 @@ import {
 const router = createBrowserRouter([
   {
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -94,6 +97,7 @@ const router = createBrowserRouter([
         loader: async () => {
           const company = await getCompanyAuth();
           const offers = await getOffersByCompany();
+          const stacks = await getStacks();
           const candidatesByCompany = await getCandidatesByCompany();
           if (!company || !offers || !candidatesByCompany) {
             return null;
@@ -102,8 +106,18 @@ const router = createBrowserRouter([
           return {
             company,
             offers,
+            stacks,
             candidatesByCompany,
           };
+        },
+      },
+      {
+        path: "/companies/dashboard/edit-offer/:id",
+        element: <CompanyEditOffer />,
+        loader: async ({ params }) => {
+          const offer = await getOfferDetails(params.id);
+          const stacks = await getStacks();
+          return { offer, stacks };
         },
       },
       {
@@ -124,7 +138,8 @@ const router = createBrowserRouter([
         element: <CompanyApplies />,
         loader: async ({ params }) => {
           const applies = await getCandidatesByOffer(params.offerId);
-          return applies || null;
+          const offer = await getOfferDetails(params.offerId);
+          return { applies, offer };
         },
       },
       {
