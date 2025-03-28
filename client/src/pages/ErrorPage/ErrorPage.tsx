@@ -31,7 +31,7 @@ export default function ErrorPage() {
           <div className="satellite" />
         </div>
       </section>
-      <Link to="/" className="back_to_home">
+      <Link to="/" className="colored-box">
         <strong>Retour à la page d'accueil</strong>
       </Link>
     </main>

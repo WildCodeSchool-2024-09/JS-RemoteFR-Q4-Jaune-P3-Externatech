@@ -82,6 +82,10 @@
       padding-top: 4rem;
     }
   }
+  .title-company-dashboard {
+    padding: 4rem 6rem;
+    justify-content: space-between;
+  }
 
   .company-dashboard .general-view {
     display: flex;
