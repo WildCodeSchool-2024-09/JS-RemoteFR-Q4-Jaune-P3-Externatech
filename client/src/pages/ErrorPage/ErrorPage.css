@@ -9,7 +9,7 @@
 }
 
 .error_title {
-  margin-top: 15rem;
+  margin-top: 20rem;
 }
 
 .error_message {
@@ -23,13 +23,17 @@
   background-color: #000;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 0 30px rgb(42, 240, 42);
+  box-shadow: 0 0 30px var(--primary);
 }
 
 .planet {
   width: 5rem;
   height: 5rem;
-  background: radial-gradient(circle at 30% 30%, #7ee575, #087b1d);
+  background: radial-gradient(
+    circle at 30% 30%,
+    var(--secundary),
+    var(--secundary)
+  );
   border-radius: 50%;
   position: absolute;
   top: 50%;

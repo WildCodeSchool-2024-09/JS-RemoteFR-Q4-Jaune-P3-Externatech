@@ -32,10 +32,12 @@
 
 .all_detail_page h2,
 .all_detail_page h3 {
-  color: var(--light);
   font-weight: 400;
 }
 
+.offertitle {
+  color: var(--primary);
+}
 .title_logo {
   display: flex;
   flex-direction: row;
@@ -142,6 +144,8 @@
 .title_company,
 .profil_title,
 .searched_profile {
+  color: var(--light);
+
   display: flex;
   justify-content: flex-start;
   align-items: center;

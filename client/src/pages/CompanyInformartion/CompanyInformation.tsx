@@ -198,10 +198,15 @@ export default function CompanyInformation() {
     <main className="container_CI">
       {!isEditing ? (
         <section>
-          <h2 className="title_CI">
-            Mes <strong>INFORMATIONS</strong>
-          </h2>
-
+          {location.pathname.endsWith("information") ? (
+            <h2 className="title_CI">
+              Mes <strong>INFORMATIONS</strong>
+            </h2>
+          ) : (
+            <h2 className="title_CI">
+              <strong>INFORMATIONS</strong>
+            </h2>
+          )}
           <p>Nom de l'entreprise:</p>
           <p className="form_CI">{company.name}</p>
           <p>Logo de l'entreprise:</p>
